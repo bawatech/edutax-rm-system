@@ -9,6 +9,7 @@
     padding: 1em 2em;
     width: 100%;
     max-width: 20%;
+    min-width: 15em;
     background: var(--sec-color);
     color: white;
     border: none;
