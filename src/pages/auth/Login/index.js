@@ -2,11 +2,12 @@ import './style.css';
 import { Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [data, setData] = useState({});
     const [error, setError] = useState({});
+    const navigate = useNavigate()
     
     
     const handleChange = (name, value) => {
@@ -43,7 +44,7 @@ const Login = () => {
             <Button 
                 name="login"
                 title="Login"
-                // onClick={}
+                onClick={()=>navigate("/home")}
             />
             <br/>
             <NavLink className="gotoSignup" to="/signup">Did'nt have an account?</NavLink>

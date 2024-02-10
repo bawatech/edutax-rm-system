@@ -13,6 +13,7 @@ const Welcome = () =>{
 
     useEffect(() => {
         setQuestions(QuestionList);
+        setError(Object.values(data).includes("YES") && "Value has Yes")
     },[data])
     
     const handleChange = (name,value) => {
@@ -23,11 +24,13 @@ const Welcome = () =>{
     }
 
     const handleSubmit = () =>{
-        setError(Object.values(data).includes("YES") && "Value has Yes")
-        navigate(error === false && "login")
+        if(error === "" || error === false){
+            navigate("login")
+        }else if(Object.values(data).includes("YES")){
+            setError("Value Has Yes")
+        }
     }
-    console.log(data)
-
+    console.log("data",data)
 
     return <div className="home-container">
         <div className="home-inner-container">
@@ -49,7 +52,7 @@ const Welcome = () =>{
             onClick={handleSubmit}
         />
 
-{console.log(error)}
+{console.log("error",error)}
     </div>
     
 

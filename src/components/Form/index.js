@@ -45,16 +45,20 @@ export const LabelYesNo = (props) => {
 
 
         return<div className="input-div">
-            <input 
-                className="input"
-                name={props?.name}
-                value={props?.value || ''}
-                placeholder={props?.hint}
-                type={props?.password ? toggle ? 'text': 'password' :props?.type }
-                onChange={(e)=>props?.handleChange(props.name, e.target.value)}
-            /> 
-            {props?.password && <span className='icon icon-pass' onClick={handleToggle}>{ toggle ? <EyeOffIcon/> :<EyeIcon/>}</span>} 
+            {props?.label && <label className="input-label">{props?.label}</label>}
+            <div className="input-inner-div">
+                <input 
+                    className="input"
+                    name={props?.name}
+                    value={props?.value || ''}
+                    placeholder={props?.hint}
+                    type={props?.password ? toggle ? 'text': 'password' :props?.type }
+                    onChange={(e)=>props?.handleChange(props.name, e.target.value)}
+                /> 
+                {props?.password && <span className='icon icon-pass' onClick={handleToggle}>{ toggle ? <EyeOffIcon/> :<EyeIcon/>}</span>} 
+            </div>
         </div>
+            
     }
     
     Input.defaultProps = {
@@ -62,3 +66,19 @@ export const LabelYesNo = (props) => {
     }
 // ===================================Input======================================================
 
+// ===================================FormGroup======================================================
+
+export const FormGroup =(props) =>{
+    
+    return<div className="form-group">{props.children}</div>
+}
+
+// ===================================FormGroup======================================================
+// ===================================FormField======================================================
+
+export const FormField =(props) =>{
+    
+    return<div className="form-field">{props.children}</div>
+}
+
+// ===================================FormField======================================================
