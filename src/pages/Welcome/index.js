@@ -1,8 +1,111 @@
-const Welcome = () =>{
+import { useEffect, useState } from "react";
+import { ErrorMessage, LabelYesNo } from "../../components/Form";
+import './style.css';
+import { Button } from "../../components/Button";
+import { useNavigate } from "react-router-dom";
 
-    return <h1>Welcome pages</h1>
+const Welcome = () =>{
+    const [questions, setQuestions] = useState([]);
+    const [data, setData] = useState({});
+    const [error, setError] = useState("");
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setQuestions(QuestionList);
+        
+        setError(Object.values(data).includes("YES") && "Value has Yes")
+    },[data])
+    
+    const handleChange = (name,value) => {
+        setData({
+            ...data,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = () =>{
+        navigate(error === false && "login")
+    }
+    console.log(data)
+
+
+    return <div className="home-container">
+        <div className="home-inner-container">
+            {questions?.map((itm, index) => { return <LabelYesNo 
+                    key={index}
+                    id={index}
+                    name={itm?.name}
+                    label={`${index+1}. ${itm?.label}`}
+                    value={data[itm?.name]}
+                    handleChange={handleChange}
+                />
+            })}
+        </div>
+        
+        {Object.values(data).includes("YES") && <ErrorMessage error={error} /> }
+
+        <Button 
+            title="Submit"
+            onClick={handleSubmit}
+        />
+
+{console.log(error)}
+    </div>
+    
 
 }
 
 
 export default Welcome;
+
+const QuestionList = [
+    {
+        id: 'q1',
+        name: 'question1',
+        label: 'Are you a student',
+        value: ''
+    },
+    {
+        id: 'q2',
+        name: 'question2',
+        label: 'Are you a student',
+        value: ''
+    },
+    {
+        id: 'q3',
+        name: 'question3',
+        label: 'Are you a student',
+        value: ''
+    },
+    {
+        id: 'q4',
+        name: 'question4',
+        label: 'Are you a student',
+        value: ''
+    },
+    {
+        id: 'q5',
+        name: 'question5',
+        label: 'Are you a student',
+        value: ''
+    },
+    {
+        id: 'q6',
+        name: 'question6',
+        label: 'Are you a student',
+        value: ''
+    },
+    {
+        id: 'q7',
+        name: 'question7',
+        label: 'Are you a student',
+        value: ''
+    },
+    {
+        id: 'q8',
+        name: 'question8',
+        label: 'Are you a student',
+        value: ''
+    },
+]

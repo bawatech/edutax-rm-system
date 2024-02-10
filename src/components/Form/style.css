@@ -1,0 +1,110 @@
+.label-yn{
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    padding-top: .6em;
+    padding-bottom: .6em;
+    margin-bottom: 1em;
+}
+.label-yn.inline{
+    flex-direction: row;
+    justify-content: space-between;
+}
+.label-yn-label{
+    width: 100%;
+    flex-grow: 1;
+    position: relative;
+}
+
+.label-yn-box,
+.label-field-box{
+    text-align: center;
+    padding: 0.5em 1em;
+    background: black;
+    color: white;
+}
+
+.label-yn-btn{
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    /* justify-content: center; */
+}
+.label-yn-btn .ynbtn{
+    border:1px solid var(--pri-color);
+    border-radius: 10px;
+    padding: 1.3em 5em;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    color: var(--pri-color);
+    transition: all 0.2s ease-in-out;
+}
+
+/* .ynbtn:first-child{
+    border-right: 1px solid var(--sec-color);
+} */
+
+.label-yn-btn .ynbtn:hover{
+    background: var(--pri-color-alpha);
+}
+
+.label-yn-btn .ynbtn.active{
+    background: var(--pri-color);
+    color: white;
+}
+
+.label-yn-btn .ynbtn.active:hover{
+    background: var(--pri-color-active);
+}
+
+/* ========================================Error ============================================================= */
+
+.error-container{
+    padding: 0 1em;
+}
+
+.error-container span{
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* ========================================Error ============================================================= */
+
+/* ========================================Input============================================================= */
+
+.input-div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(210,210,210);
+    border-radius: 0.5em;
+}
+
+.input-div>input{
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 1.1em;
+    padding: 1em;
+    outline: none;
+}
+
+.input-div>input::placeholder{
+    color: rgba(0,0,0,0.2);
+    font-weight: lighter;
+}
+
+.icon{
+    padding: 0.5em 0.8em;
+    background: transparent;
+    color: grey;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+/* ========================================Input============================================================= */

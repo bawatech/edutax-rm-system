@@ -1,3 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --pri-color: #b1a296;
+  --pri-color-active: #b1a296d0;
+  --pri-color-alpha: #b1a29630;
+  --sec-color: #5d5c61;
+  --sec-color-alpha: #5d5c61;
+  --sec-color-active: #5d5c61ef;
+
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,3 +28,5 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+

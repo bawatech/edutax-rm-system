@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-    Navigate,
+    // Navigate,
     BrowserRouter as Router,
     useRoutes
 } from 'react-router-dom';
 import Welcome from '../pages/Welcome';
+import Login from '../pages/auth/Login';
 // import ErrorPage from '../pages/ErrorPage.js'
 // import { Layout as LayoutYR22 } from '../YR22/pages/Layout.js';
 // import {Layout as LayoutYR23 } from '../YR23/pages/Layout.js'
@@ -28,6 +29,7 @@ const AllRoutes = () => {
     const routes = [
         {path:'',element:<Welcome/>},
         {path:'welcome',element:<Welcome/>},
+        {path:'login',element:<Login/>},
 
 
         { path: '*', element: <h1>error</h1> }
