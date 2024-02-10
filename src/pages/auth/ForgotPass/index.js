@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { NavLink } from 'react-router-dom';
 
-const Login = () => {
+const ForgotPass = () => {
     const [data, setData] = useState({});
     const [error, setError] = useState({});
     
@@ -19,7 +19,7 @@ const Login = () => {
 
     return <div className="login-section">
         <div className="login-inner-container">
-            <h2 style={{textAlign: 'center', marginBottom: '2em'}}>Log In</h2>
+            <h2 style={{textAlign: 'center', marginBottom: '2em'}}>Reset Password</h2>
 
             <Input 
                 name="email"
@@ -27,28 +27,18 @@ const Login = () => {
                 hint="Email"
                 handleChange={handleChange}
             />
-            <Input 
-                name="password"
-                type="password"
-                password
-                value={data.password}
-                hint="Password"
-                handleChange={handleChange}
-            />
-            
-            <div className='forgot-div'>
-                <NavLink className="gotoForgot" to="/reset">forgot password?</NavLink>
-            </div>
+
             <br/>
+
             <Button 
-                name="login"
-                title="Login"
+                name="forgotPass"
+                title="Forgot Password"
                 // onClick={}
             />
             <br/>
-            <NavLink className="gotoSignup" to="/signup">Did'nt have an account?</NavLink>
+            <NavLink className="gotoLogin" to="/login">want to back to login?</NavLink>
         </div>
     </div>
 }
 
-export default Login;
+export default ForgotPass;

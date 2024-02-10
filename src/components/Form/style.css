@@ -2,7 +2,6 @@
     position: relative;
     display: flex;
     align-items: center;
-    flex-direction: column;
     gap: 1em;
     padding-top: .6em;
     padding-bottom: .6em;
@@ -27,10 +26,10 @@
 }
 
 .label-yn-btn{
-    width: 100%;
+    width: 20%;
+    min-width: 8em;
     display: flex;
     gap: 1em;
-    /* justify-content: center; */
 }
 .label-yn-btn .ynbtn{
     border:1px solid var(--pri-color);
@@ -42,10 +41,6 @@
     color: var(--pri-color);
     transition: all 0.2s ease-in-out;
 }
-
-/* .ynbtn:first-child{
-    border-right: 1px solid var(--sec-color);
-} */
 
 .label-yn-btn .ynbtn:hover{
     background: var(--pri-color-alpha);
@@ -60,6 +55,19 @@
     background: var(--pri-color-active);
 }
 
+@media only screen and (min-width: 10px) {
+    .label-yn-btn .ynbtn{
+        padding: 0.5em 1em;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .label-yn-btn .ynbtn{
+        padding: 0.5em 1em;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    
+}
 /* ========================================Error ============================================================= */
 
 .error-container{

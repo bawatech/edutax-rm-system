@@ -15,22 +15,14 @@
     border-radius: 1em;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1em;
 }
+
 .signup-inner-container a{
     text-decoration: none;
     text-align: center;
     width: fit-content;
 }
-
-.login-inner-container .forgot-div{
-    padding: 0;
-    text-align: right;
-    width: 100%;
-    margin-top: -1em;
-}
-
 
 @media only screen and (min-width: 10px) {
     .login-inner-container{
