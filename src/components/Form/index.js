@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { EyeIcon, EyeOffIcon } from '../Icon';
 import './style.css';
 
@@ -106,26 +106,34 @@ export const FormField =(props) =>{
 
 export const FileUpload = (props) => {
     const [selectedFile, setSelectedFile] = useState(null);
-
+    const refImage = useRef();
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
     };
 
     const handleUpload = () => {
-        if (selectedFile) {
-            console.log('Uploading file:', selectedFile);
-            setSelectedFile(null);
-        } else {
-            // console.log('No file selected');
-            alert('No file selected');
-        }
+        // if (selectedFile) {
+        //     console.log('Uploading file:', selectedFile);
+        //     setSelectedFile(null);
+        // } else {
+        //     // console.log('No file selected');
+        //     alert('No file selected');
+        // }
+        refImage.current.click()
     };
+
 
     return (
         <div className='file-main-section'>
             {props?.label && <label className="input-label">{props?.label}</label>}
             <div className="file-section">
-                <input className="file" type="file" onChange={handleFileChange} />
+                <p className='file-name-display'>{props?.fileName}</p>
+                <input 
+                    ref={refImage} 
+                    className="file" 
+                    type="file" 
+                    name={props?.name}
+                    onChange={(event)=>props?.handleFileChange(props?.name, event.target.files[0])} />
                 <button onClick={handleUpload}>Upload</button>
             </div>
         </div>

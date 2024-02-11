@@ -134,6 +134,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
+    padding: 0.5em 0;
 }
 
 /* ========================================Form Group============================================================= */
@@ -150,18 +151,14 @@
 }
 @media only screen and (min-width: 768px) {
     .form-field{
-        min-width: 15em;
+        min-width: 48%;
     }
 }
 @media only screen and (min-width: 1200px) {
-    .form-field{
-        min-width: 19em;
-    }
+    
 }
 @media only screen and (min-width: 1500px) {
-    .form-field{
-        min-width: 24em;
-    }
+    
 }
 
 /* ========================================Form Field============================================================= */
@@ -188,7 +185,7 @@
     width: 100%;
     padding: 1em;
     outline: none;
-    font-size: 1.1em;
+    font-size: 1em;
     border: none;
     color: grey;
     background: transparent;
@@ -196,6 +193,10 @@
 
 /* ========================================Dropdown============================================================= */
 
+/* ========================================file============================================================= */
+.file-main-section{
+    width: 100%;
+}
 
 .file-section{
     width: 100%;
@@ -203,19 +204,28 @@
     border-radius: 0.5em;
     overflow: hidden;
     border: 1px solid rgba(210,210,210);
-    
+    position: relative; 
+}
+
+.file-name-display{
+    position: absolute;
+    inset: 0;
+    top: 1em;
+    left: 5%;
+
 }
 
 .file{
     width: 100%;
-    padding: 1.3em;
-    font-size: 1;
+    padding: 1.1em;
+    opacity: 0;
    
 }
 
 .file-section>button{
     min-width: 20%;
     border: none;
+    z-index: 999;
 }
 
 .file-main-section{
@@ -223,3 +233,5 @@
     flex-direction: column;
     gap: 0.5em;
 }
+
+/* ========================================file============================================================= */

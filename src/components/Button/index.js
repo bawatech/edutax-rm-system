@@ -20,4 +20,5 @@ export const Button = (props)=>{
 Button.defaultProps = {
     type: 'button',
     title: 'title',
+    varient: 'contained'
 }

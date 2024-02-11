@@ -2,34 +2,21 @@ import { useEffect, useState } from "react";
 import { Dropdown, FileUpload, FormField, FormGroup, Input } from "../../components/Form";
 import UserLayout from "../UserLayout";
 import { Button } from "../../components/Button";
-
-
+import './style.css'
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const Home = ()=> {
 
     const [payload, setPayload] = useState({});
-    const [otherFields, setOtherFields] = useState({});
 
-
-    useEffect(() => {
-        setOtherFields(
-            documents?.filter((ofiled) => payload[ofiled?.name] !== undefined)
-        );
-        }, [payload?.docType]);
-
-        const handleOtherFiledAdd = (name, value) => {
-            handleChange(value, null);
-        };
-
-        const handleOtherFiledDelete = (key,name) => {
-            let curInstance = { ...payload };
-            delete curInstance[key];
-
+    useEffect(()=> {
+        if(payload?.documentsArray === undefined){
             setPayload({
                 ...payload,
-                [name] : curInstance
-            })
-        };
+                ['documentsArray']: payload?.documentsArray || [{}]
+            });
+        }
+    },[])
 
     const handleChange = (name,value)=> {
         setPayload({
@@ -37,7 +24,38 @@ const Home = ()=> {
             [name] : value
         })
     }
+
+    const handleAddForm = ()=> {
+        let oldArr = [...payload?.documentsArray]
+        let newArr = [...oldArr]
+        newArr.push({})
+
+        handleChange('documentsArray', newArr)
+    }
+
+    const handleChangeArray = (name,value,thisIndex) => {
+        let oldArr = [...payload?.documentsArray]
+        let curRow = { ...oldArr[thisIndex] }
+        curRow[name] = value
+        oldArr[thisIndex] = curRow
+    
+        handleChange('documentsArray',oldArr)
+    }
+
+    const handleDeleteArray = (delIndex) => {
+        let oldArr = [...payload?.documentsArray]
+        handleChange('documentsArray',oldArr?.filter((itm, ind) => {return ind !== delIndex}))
+    }
     console.log("Payload",payload)
+
+    const handleChangeFileArray = (name,value,thisIndex) => {
+        let oldArr = [...payload?.documentsArray]
+        let curRow = { ...oldArr[thisIndex] }
+        curRow[name] = value
+        oldArr[thisIndex] = curRow
+    
+        handleChange('documentsArray',oldArr)
+    }
 
     return<div className="">
         <UserLayout>
@@ -114,60 +132,47 @@ const Home = ()=> {
                         handleChange={handleChange}
                     />
                 </FormField>
-                <FormField>
-                    <Dropdown 
-                        label="Select your document type"
-                        name="docType"
-                        selected={payload.docType}
-                        options={{list: documents, name: 'name', value: 'id'}}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                {documents?.map((oField) => {
-                return (
-                    <FormField key={oField}>
-                        <Input
-                            label={oField?.name}
-                            value={payload?.[oField?.name]}
-                            name={oField?.name}
-                            handleChange={handleChange}
-                            onDelete={() => handleOtherFiledDelete(oField?.name)}
+            </FormGroup>
+            
+            {payload?.documentsArray?.map((itm, index) => {
+                return<FormGroup key={index}>
+                    <FormField>
+                        <Dropdown 
+                            label="Document Type"
+                            name="docType"
+                            selected={itm?.docType}
+                            options={{list: documents, name: 'name', value: 'id'}}
+                            handleChange={(name,value)=>handleChangeArray(name,value,index)}
                         />
                     </FormField>
-                    );
-                })}
-
-                <FormField>
-                    <Dropdown
-                        label="docType"
-                        name="docType"
-                        options={{
-                            list: documents?.filter(
-                            (thisItm) => payload[thisItm.name] === undefined
-                            ),
-                            value: "id",
-                            name: "name",
-                        }}
-                        selected="" 
-                        handleChange={handleOtherFiledAdd}
-                    />
-                </FormField>
-                <FormField >
-                    <FileUpload 
-                        label="choose your file"
-                    />
-                </FormField>
-            </FormGroup>
-
+                    <FormField>
+                        <div className="array-div">
+                            <FileUpload
+                                label="Choose File"
+                                name="chooseFile"
+                                fileName={itm?.chooseFile?.name}
+                                handleFileChange={(name,value)=>handleChangeFileArray(name,value,index)}
+                            />
+                            <Button 
+                                varient="icon" 
+                                title={<RiDeleteBin6Line />} 
+                                onClick={()=>handleDeleteArray(index)}/>
+                        </div>
+                    </FormField>
+                    
+                </FormGroup>
+            })}
             
-
             <br/>
             <br/>
             <br/>
-
-            {/* <Button 
-                title="Add More Form"
-            /> */}
+            <div className="" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <Button 
+                    title="Add More Form"
+                    onClick={handleAddForm}
+                />
+            </div>
+            
         </UserLayout>
     </div>
 }
