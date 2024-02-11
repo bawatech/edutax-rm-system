@@ -5,7 +5,7 @@ export const Button = (props)=>{
 
     return <div className="btn-section">
         <button 
-            className={`btn ${props?.className}`}
+            className={`btn ${props?.varient}`}
             name={props?.name}
             type={props?.type}
             value={props?.value}

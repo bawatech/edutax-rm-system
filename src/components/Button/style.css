@@ -20,6 +20,11 @@
     transition: all 0.3s ease-in-out;
 }
 
+.btn.contained{
+    background: var(--sec-color);
+    padding: 1em 2em;
+}
+
 .btn:hover{
     background: rgba(0, 128, 0, 0.9);
 }

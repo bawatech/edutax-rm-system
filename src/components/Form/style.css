@@ -195,3 +195,23 @@
 }
 
 /* ========================================Dropdown============================================================= */
+
+
+.file-section{
+    width: 100%;
+    display: flex;
+    margin-top: 1em;
+    /* background: ; */
+    border: 1px solid rgba(210,210,210);
+    
+}
+
+.file{
+    width: 100%;
+    padding: 1em;
+}
+
+.file-section>button{
+    min-width: 20%;
+    border: none;
+}

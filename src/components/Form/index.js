@@ -102,3 +102,29 @@ export const FormField =(props) =>{
         </div>
     }
 // ===================================Dropdown======================================================
+
+
+export const FileUpload = (props) => {
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
+
+    const handleUpload = () => {
+        if (selectedFile) {
+            console.log('Uploading file:', selectedFile);
+            setSelectedFile(null);
+        } else {
+            // console.log('No file selected');
+            alert('No file selected');
+        }
+    };
+
+    return (
+        <div className="file-section">
+        <input className="file" type="file" onChange={handleFileChange} />
+        <button onClick={handleUpload}>Upload</button>
+        </div>
+    );
+};

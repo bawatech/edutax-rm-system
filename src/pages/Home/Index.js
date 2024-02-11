@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Dropdown, FormField, FormGroup, Input } from "../../components/Form";
+import { Dropdown, FileUpload, FormField, FormGroup, Input } from "../../components/Form";
 import UserLayout from "../UserLayout";
 import { Button } from "../../components/Button";
 
@@ -148,19 +148,22 @@ const Home = ()=> {
                             value: "id",
                             name: "name",
                         }}
-                        selected=""
+                        selected="" 
                         handleChange={handleOtherFiledAdd}
                     />
                 </FormField>
+
             </FormGroup>
 
+            <FileUpload />
+
             <br/>
             <br/>
             <br/>
 
-            <Button 
+            {/* <Button 
                 title="Add More Form"
-            />
+            /> */}
         </UserLayout>
     </div>
 }
