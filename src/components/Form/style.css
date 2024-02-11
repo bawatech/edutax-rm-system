@@ -200,18 +200,26 @@
 .file-section{
     width: 100%;
     display: flex;
-    margin-top: 1em;
-    /* background: ; */
+    border-radius: 0.5em;
+    overflow: hidden;
     border: 1px solid rgba(210,210,210);
     
 }
 
 .file{
     width: 100%;
-    padding: 1em;
+    padding: 1.3em;
+    font-size: 1;
+   
 }
 
 .file-section>button{
     min-width: 20%;
     border: none;
+}
+
+.file-main-section{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
 }

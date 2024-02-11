@@ -152,10 +152,14 @@ const Home = ()=> {
                         handleChange={handleOtherFiledAdd}
                     />
                 </FormField>
-
+                <FormField >
+                    <FileUpload 
+                        label="choose your file"
+                    />
+                </FormField>
             </FormGroup>
 
-            <FileUpload />
+            
 
             <br/>
             <br/>

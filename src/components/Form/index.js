@@ -122,9 +122,13 @@ export const FileUpload = (props) => {
     };
 
     return (
-        <div className="file-section">
-        <input className="file" type="file" onChange={handleFileChange} />
-        <button onClick={handleUpload}>Upload</button>
+        <div className='file-main-section'>
+            {props?.label && <label className="input-label">{props?.label}</label>}
+            <div className="file-section">
+                <input className="file" type="file" onChange={handleFileChange} />
+                <button onClick={handleUpload}>Upload</button>
+            </div>
         </div>
+
     );
 };
