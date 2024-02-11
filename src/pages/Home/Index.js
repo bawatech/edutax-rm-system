@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { FormField, FormGroup, Input } from "../../components/Form";
+import { useEffect, useState } from "react";
+import { Dropdown, FormField, FormGroup, Input } from "../../components/Form";
 import UserLayout from "../UserLayout";
 import { Button } from "../../components/Button";
 
@@ -8,6 +8,28 @@ import { Button } from "../../components/Button";
 const Home = ()=> {
 
     const [payload, setPayload] = useState({});
+    const [otherFields, setOtherFields] = useState({});
+
+
+    useEffect(() => {
+        setOtherFields(
+            documents?.filter((ofiled) => payload[ofiled?.name] !== undefined)
+        );
+        }, [payload?.docType]);
+
+        const handleOtherFiledAdd = (name, value) => {
+            handleChange(value, null);
+        };
+
+        const handleOtherFiledDelete = (key,name) => {
+            let curInstance = { ...payload };
+            delete curInstance[key];
+
+            setPayload({
+                ...payload,
+                [name] : curInstance
+            })
+        };
 
     const handleChange = (name,value)=> {
         setPayload({
@@ -92,7 +114,44 @@ const Home = ()=> {
                         handleChange={handleChange}
                     />
                 </FormField>
+                <FormField>
+                    <Dropdown 
+                        label="Select your document type"
+                        name="docType"
+                        selected={payload.docType}
+                        options={{list: documents, name: 'name', value: 'id'}}
+                        handleChange={handleChange}
+                    />
+                </FormField>
+                {documents?.map((oField) => {
+                return (
+                    <FormField key={oField}>
+                        <Input
+                            label={oField?.name}
+                            value={payload?.[oField?.name]}
+                            name={oField?.name}
+                            handleChange={handleChange}
+                            onDelete={() => handleOtherFiledDelete(oField?.name)}
+                        />
+                    </FormField>
+                    );
+                })}
 
+                <FormField>
+                    <Dropdown
+                        label="docType"
+                        name="docType"
+                        options={{
+                            list: documents?.filter(
+                            (thisItm) => payload[thisItm.name] === undefined
+                            ),
+                            value: "id",
+                            name: "name",
+                        }}
+                        selected=""
+                        handleChange={handleOtherFiledAdd}
+                    />
+                </FormField>
             </FormGroup>
 
             <br/>
@@ -107,3 +166,26 @@ const Home = ()=> {
 }
 
 export default Home;
+
+const documents = [
+    {
+        id: '1',
+        name: 'Driving License',
+    },
+    {
+        id: '2',
+        name: 'Aadhar Card',
+    },
+    {
+        id: '3',
+        name: 'Voter Card',
+    },
+    {
+        id: '4',
+        name: 'PAN Card',
+    },
+    {
+        id: '5',
+        name: 'Passport',
+    },
+]

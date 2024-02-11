@@ -165,3 +165,33 @@
 }
 
 /* ========================================Form Field============================================================= */
+/* ========================================Dropdown============================================================= */
+
+.dropdown-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.dropdown-inner-div{
+    width: 100%;
+    border: 1px solid rgba(210,210,210);
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.dropdown{
+    width: 100%;
+    padding: 1em;
+    outline: none;
+    font-size: 1.1em;
+    border: none;
+    color: grey;
+    background: transparent;
+}
+
+/* ========================================Dropdown============================================================= */

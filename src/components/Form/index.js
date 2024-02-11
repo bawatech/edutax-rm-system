@@ -34,6 +34,23 @@ export const LabelYesNo = (props) => {
 
 // ===================================Error Message======================================================
 
+
+// ===================================FormGroup======================================================
+
+export const FormGroup =(props) =>{
+    
+    return<div className="form-group">{props.children}</div>
+}
+
+// ===================================FormGroup======================================================
+// ===================================FormField======================================================
+
+export const FormField =(props) =>{
+    
+    return<div className="form-field">{props.children}</div>
+}
+
+// ===================================FormField======================================================
 // ===================================Input======================================================
 
     export const Input =(props) =>{
@@ -65,20 +82,23 @@ export const LabelYesNo = (props) => {
         type: 'text',
     }
 // ===================================Input======================================================
+// ===================================Dropdown======================================================
+    export const Dropdown = (props) =>{
+        
+        return<div className="dropdown-section">
+            {props?.label && <label className="input-label">{props?.label}</label>}
+            <div className="dropdown-inner-div">
+                <select className="dropdown" id={props.id}
+                    onChange={(e) => props.handleChange(props.name, e?.target?.value, props?.options?.list.find(itm=>itm[props?.options?.value]==e?.target?.value))}
+                    value={props?.selected}
+                >
+                    <option value="0">--Select--</option>
 
-// ===================================FormGroup======================================================
-
-export const FormGroup =(props) =>{
-    
-    return<div className="form-group">{props.children}</div>
-}
-
-// ===================================FormGroup======================================================
-// ===================================FormField======================================================
-
-export const FormField =(props) =>{
-    
-    return<div className="form-field">{props.children}</div>
-}
-
-// ===================================FormField======================================================
+                    {props?.options?.list?.map((itm,index) => {
+                        return <option id={index} key={index} value={itm[props?.options?.value]}>{itm[props?.options?.name]}</option>
+                    })}
+                </select>
+            </div>
+        </div>
+    }
+// ===================================Dropdown======================================================
