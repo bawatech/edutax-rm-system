@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Dropdown, FileUpload, FormField, FormGroup, Input } from "../../components/Form";
+import { ChatInput, ChatLayout, Dropdown, FileUpload, FormField, FormGroup, Input } from "../../components/Form";
 import UserLayout from "../UserLayout";
 import { Button } from "../../components/Button";
 import './style.css'
@@ -55,6 +55,17 @@ const Home = ()=> {
         oldArr[thisIndex] = curRow
     
         handleChange('documentsArray',oldArr)
+    }
+
+    const handleSend = () => {
+
+        let chat = [payload?.chatArray?.message]
+        console.log("chat", chat)
+        let newChat = [...chat]
+        newChat.push({})
+
+        handleChange('chatArray', newChat)
+        console.log("chat", newChat)
     }
 
     return<div className="">
@@ -172,7 +183,31 @@ const Home = ()=> {
                     onClick={handleAddForm}
                 />
             </div>
+            <br/>
+            <br/>
             
+            <div className="details-chat-section">
+                    <div className="details-chat-inner-section">
+                        <div className="details-chat-msg-div">
+                            <Sender 
+                                msg="snvlksdnvlksdnvlk"
+                            />
+                            <Reciever
+                                msg=";svbknkl;vns;kdnvk;sdnv;ksndvkinpirnbpirenpn"
+                            />
+                            
+                        </div>
+                        <div className="details-chat-input-div">
+                            <ChatInput 
+                                name="chatInput"
+                                value={payload?.chatInput}
+                                hint="write message here"
+                                handleChange={handleChange}
+                                onClickSend={handleSend}
+                            />
+                        </div>
+                    </div>
+                </div>  
         </UserLayout>
     </div>
 }
@@ -201,3 +236,21 @@ const documents = [
         name: 'Passport',
     },
 ]
+
+const Sender = (props) => {
+
+    return<div className='sender-div-section'>
+        <div className="sender-div">
+            <p>{props?.msg}</p>
+        </div>
+    </div>
+}
+
+const Reciever = (props) => {
+
+    return<div className='reciever-div-section'>
+        <div className="reciever-div">
+            <p>{props?.msg}</p>
+        </div>
+    </div>
+}

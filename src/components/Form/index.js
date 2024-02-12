@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react';
 import { EyeIcon, EyeOffIcon } from '../Icon';
 import './style.css';
-
-
+import { AiFillAudio } from "react-icons/ai";
+import { MdMessage } from "react-icons/md";
+import { IoSendSharp } from "react-icons/io5";
+import { Button } from '../Button';
 // ========================================= Radio/LabelYesNo Component============================================
 
 export const LabelYesNo = (props) => {
@@ -82,6 +84,55 @@ export const FormField =(props) =>{
         type: 'text',
     }
 // ===================================Input======================================================
+
+// ===================================chat Input======================================================
+
+export const ChatInput =(props) =>{
+    const [toggle, setToggle] = useState(false);
+    
+    const handleToggle = () =>{
+        setToggle((prev) => !prev)
+    }
+
+
+    return<div className="input-div">
+        {props?.label && <label className="input-label">{props?.label}</label>}
+        <div className="chatinput-inner-div">
+            <input 
+                className="chatinput"
+                name={props?.name}
+                value={props?.value || ''}
+                placeholder={props?.hint}
+                type={props?.password ? toggle ? 'text': 'password' :props?.type }
+                onChange={(e)=>props?.handleChange(props.name, e.target.value)}
+            /> 
+            <Button 
+                title={<AiFillAudio />}
+                varient="icon"
+                onClick={props?.onClickAudio}
+            />
+            <Button 
+                title={<MdMessage />}
+                varient="icon"
+                onClick={props?.onClickMessage}
+            />
+            <Button 
+                title={<IoSendSharp />}
+                varient="icon"
+                onClick={props?.onClickSend}
+            />
+            {props?.password && <span className='icon icon-pass' onClick={handleToggle}>{ toggle ? <EyeOffIcon/> :<EyeIcon/>}</span>} 
+        </div>
+    </div>
+        
+}
+
+Input.defaultProps = {
+    type: 'text',
+}
+// ===================================chat Input======================================================
+
+
 // ===================================Dropdown======================================================
     export const Dropdown = (props) =>{
         
@@ -140,3 +191,44 @@ export const FileUpload = (props) => {
 
     );
 };
+
+
+// =================================================================
+
+export const ChatLayout = (props) => {
+
+    return<div className="details-chat-section">
+    <div className="details-chat-inner-section">
+        <div className="details-chat-msg-div">
+            <Sender 
+                msg="snvlksdnvlksdnvlk"
+            />
+            <Reciever
+                msg=";svbknkl;vns;kdnvk;sdnv;ksndvkinpirnbpirenpn"
+            />
+            
+        </div>
+        <div className="details-chat-input-div">
+            {props?.children}
+        </div>
+    </div>
+</div>  
+}
+
+const Sender = (props) => {
+
+    return<div className='sender-div-section'>
+        <div className="sender-div">
+            <p>{props?.msg}</p>
+        </div>
+    </div>
+}
+
+const Reciever = (props) => {
+
+    return<div className='reciever-div-section'>
+        <div className="reciever-div">
+            <p>{props?.msg}</p>
+        </div>
+    </div>
+}
