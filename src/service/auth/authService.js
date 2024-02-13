@@ -12,8 +12,11 @@ class authService {
         return await postRequest('auth/login', payload);
     }
 
+    // addTaxfile = async (payload) => {
+    //     return await postFormdata('user/upload-documents', payload);
+    // }
     addTaxfile = async (payload) => {
-        return await postFormdata('user/upload-documents', payload);
+        return await postFormdata('user/add-taxfile', payload);
     }
 }
 

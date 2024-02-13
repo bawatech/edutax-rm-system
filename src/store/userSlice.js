@@ -2,18 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import authService from "../service/auth";
 
 
+
 export const signUp = (param) => async (dispatch) => {
     return authService.signUp(param)
         .then(async (res) => {
             console.log('resp at slice', res)
             // dispatch(setInputs(res?.data.response));
-            // localStorage.setItem("token", res?.data?.response?.token)
+            localStorage.setItem("token", res?.data?.response?.token)
             return res;
         })
         .catch((error) => {
 
             // dispatch(authSuccess(null));
-            // localStorage.removeItem("token")
+             localStorage.removeItem("token")
             throw error
         });
 };
@@ -23,13 +24,13 @@ export const login = (param) => async (dispatch) => {
         .then(async (res) => {
             console.log('resp at slice', res)
             // dispatch(setInputs(res?.data.response));
-            // localStorage.setItem("token", res?.data?.response?.token)
-            return res;
+            localStorage.setItem("token", res?.data?.response?.token)
+              return res;
         })
         .catch((error) => {
 
             // dispatch(authSuccess(null));
-            // localStorage.removeItem("token")
+            localStorage.removeItem("token")
             throw error
         });
 };

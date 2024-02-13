@@ -1,7 +1,17 @@
 import axios from 'axios';
 
 const axiosClient = axios.create();
-const access_token = localStorage.getItem('token')
+//const access_token = localStorage.getItem('token')
+let access_token = "";
+axiosClient.interceptors.request.use(config => {
+    access_token = localStorage.getItem('token');
+    if (access_token) {
+        config.headers['Authorization'] = `Bearer ${access_token}`;
+    }
+    return config;
+}, error => {
+    return Promise.reject(error);
+});
 
 
 axiosClient.defaults.baseURL = process.env.REACT_APP_API;

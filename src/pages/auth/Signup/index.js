@@ -2,7 +2,7 @@ import './style.css';
 import { Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Layout from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../../store/userSlice';
@@ -11,6 +11,7 @@ const Signup = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
 
     const handleChange = (name, value) => {
@@ -27,6 +28,7 @@ const Signup = () => {
     const handleSubmit = () => {
         dispatch(signUp(payload))
             .then(res => {
+                navigate("/home")
                 console.log('rrrrrrrrreeeeee', res)
             })
             .catch(err => {
@@ -36,6 +38,7 @@ const Signup = () => {
                     alert(err?.data?.message)
                 }
                 console.log('errrrrrr', err)
+                alert(err?.data?.message)
             })
     }
 

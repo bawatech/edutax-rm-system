@@ -7,25 +7,26 @@ import UserLayout from "../layouts/UserLayout";
 import { useDispatch } from 'react-redux';
 import { addTaxfile } from "../../store/userSlice";
 
-const Home = ()=> {
+const Home = () => {
 
     const [payload, setPayload] = useState({});
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch()
 
-    useEffect(()=> {
-        if(payload?.documents === undefined){
+    useEffect(() => {
+        if (payload?.documents === undefined) {
             setPayload({
                 ...payload,
                 ['documents']: payload?.documents || [{}]
             });
         }
-    },[])
+    }, [])
 
     const handleSubmit = () => {
         dispatch(addTaxfile(payload))
             .then(res => {
-                console.log('rrrrrrrrreeeeee', res)
+                console.log('Response', res)
+                alert(res?.data?.message)
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
@@ -33,18 +34,19 @@ const Home = ()=> {
                 } else {
                     alert(err?.data?.message)
                 }
-                console.log('errrrrrr', err)
+                console.log('Error', err)
+                alert(err?.data?.message)
             })
     }
 
-    const handleChange = (name,value)=> {
+    const handleChange = (name, value) => {
         setPayload({
             ...payload,
-            [name] : value
+            [name]: value
         })
     }
 
-    const handleAddForm = ()=> {
+    const handleAddForm = () => {
         let oldArr = [...payload?.documents]
         let newArr = [...oldArr]
         newArr.push({})
@@ -52,28 +54,28 @@ const Home = ()=> {
         handleChange('documents', newArr)
     }
 
-    const handleChangeArray = (name,value,thisIndex) => {
+    const handleChangeArray = (name, value, thisIndex) => {
         let oldArr = [...payload?.documents]
         let curRow = { ...oldArr[thisIndex] }
         curRow[name] = value
         oldArr[thisIndex] = curRow
-    
-        handleChange('documents',oldArr)
+
+        handleChange('documents', oldArr)
     }
 
     const handleDeleteArray = (delIndex) => {
         let oldArr = [...payload?.documents]
-        handleChange('documents',oldArr?.filter((itm, ind) => {return ind !== delIndex}))
+        handleChange('documents', oldArr?.filter((itm, ind) => { return ind !== delIndex }))
     }
-    console.log("Payload",payload)
+    console.log("Payload", payload)
 
-    const handleChangeFileArray = (name,value,thisIndex) => {
+    const handleChangeFileArray = (name, value, thisIndex) => {
         let oldArr = [...payload?.documents]
         let curRow = { ...oldArr[thisIndex] }
         curRow[name] = value
         oldArr[thisIndex] = curRow
-    
-        handleChange('documents',oldArr)
+
+        handleChange('documents', oldArr)
     }
 
     const handleSend = () => {
@@ -87,101 +89,111 @@ const Home = ()=> {
         console.log("chat", newChat)
     }
 
-    return<div className="">
+    return <div className="">
         <UserLayout>
             <FormGroup>
                 <FormField>
-                    <Input 
+                    <Input
                         label="First Name"
-                        name="firstName"
-                        value={payload.firstName}
+                        name="firstname"
+                        value={payload.firstname}
+                        error={errors?.firstname}
                         handleChange={handleChange}
                     />
                 </FormField>
                 <FormField>
-                    <Input 
+                    <Input
                         label="Last Name"
-                        name="lastName"
-                        value={payload.lastName}
+                        name="lastname"
+                        value={payload.lastname}
+                        error={errors?.lastname}
                         handleChange={handleChange}
                     />
                 </FormField>
                 <FormField>
-                    <Input 
+                    <Input
                         label="Date of Birth"
-                        name="dob"
-                        value={payload.dob}
+                        name="date_of_birth"
+                        value={payload.date_of_birth}
+                        error={errors?.date_of_birth}
                         handleChange={handleChange}
                     />
                 </FormField>
                 <FormField>
-                    <Input 
+                    <Input
                         label="Marital Status"
-                        name="maritalStatus"
-                        value={payload.maritalStatus}
+                        name="marital_status"
+                        value={payload.marital_status}
+                        error={errors?.marital_status}
                         handleChange={handleChange}
                     />
                 </FormField>
                 <FormField>
-                    <Input 
+                    <Input
                         label="Street Name"
-                        name="streetName"
-                        value={payload.streetName}
+                        name="street_name"
+                        value={payload.street_name}
+                        error={errors?.street_name}
                         handleChange={handleChange}
                     />
                 </FormField>
                 <FormField>
-                    <Input 
+                    <Input
                         label="City"
                         name="city"
                         value={payload.city}
+                        error={errors?.city}
                         handleChange={handleChange}
                     />
                 </FormField>
                 <FormField>
-                    <Input 
-                        label="Provision"
-                        name="provision"
-                        value={payload.provision}
+                    <Input
+                        label="Province"
+                        name="province"
+                        value={payload.province}
+                        error={errors?.province}
                         handleChange={handleChange}
                     />
                 </FormField>
                 <FormField>
-                    <Input 
+                    <Input
                         label="Postal Code"
-                        name="postalCode"
-                        value={payload.postalCode}
+                        name="postal_code"
+                        value={payload.postal_code}
+                        error={errors?.postal_code}
                         handleChange={handleChange}
                     />
                 </FormField>
                 <FormField>
-                    <Input 
+                    <Input
                         label="Mobile Number"
-                        name="mobile"
-                        value={payload.mobile}
+                        name="mobile_number"
+                        value={payload.mobile_number}
+                        error={errors?.mobile_number}
                         handleChange={handleChange}
                     />
                 </FormField>
 
                 <FormField>
-                    <Input 
-                        label="taxfile id"
-                        name="taxfileId"
-                        value={payload.taxfileId}
+                    <Input
+                        label="Taxyear"
+                        name="tax_year"
+                        value={payload.tax_year}
+                        error={errors?.tax_year}
                         handleChange={handleChange}
                     />
                 </FormField>
             </FormGroup>
-            
+
             {payload?.documents?.map((itm, index) => {
-                return<FormGroup key={index}>
+                return <FormGroup key={index}>
                     <FormField>
-                        <Dropdown 
+                        <Dropdown
                             label="Document Type"
                             name="typeid"
                             selected={itm?.typeid}
-                            options={{list: documents, name: 'name', value: 'id'}}
-                            handleChange={(name,value)=>handleChangeArray(name,value,index)}
+                            options={{ list: documents, name: 'name', value: 'id' }}
+                            handleChange={(name, value) => handleChangeArray(name, value, index)}
                         />
                     </FormField>
                     <FormField>
@@ -190,58 +202,58 @@ const Home = ()=> {
                                 label="Choose File"
                                 name="taxfile"
                                 fileName={itm?.taxfile?.name}
-                                handleFileChange={(name,value)=>handleChangeFileArray(name,value,index)}
+                                handleFileChange={(name, value) => handleChangeFileArray(name, value, index)}
                             />
-                            <Button 
-                                varient="icon" 
-                                title={<RiDeleteBin6Line />} 
-                                onClick={()=>handleDeleteArray(index)}/>
+                            <Button
+                                varient="icon"
+                                title={<RiDeleteBin6Line />}
+                                onClick={() => handleDeleteArray(index)} />
                         </div>
                     </FormField>
-                    
+
                 </FormGroup>
             })}
-            
-            <br/>
-            <br/>
-            <br/>
-            <div className="" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Button 
+
+            <br />
+            <br />
+            <br />
+            <div className="" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Button
                     title="Add More Documents"
                     onClick={handleAddForm}
                 />
             </div>
-            <br/>
-            <br/>
             <br />
-                <Button
-                    name="addTaxFile"
-                    title="Add TaxFile"
-                    onClick={handleSubmit}
-                />
-                <br />
+            <br />
+            <br />
+            <Button
+                name="addTaxFile"
+                title="Add TaxFile"
+                onClick={handleSubmit}
+            />
+            <br />
             <div className="details-chat-section">
-                    <div className="details-chat-inner-section">
-                        <div className="details-chat-msg-div">
-                            <Sender 
-                                msg="snvlksdnvlksdnvlk"
-                            />
-                            <Reciever
-                                msg=";svbknkl;vns;kdnvk;sdnv;ksndvkinpirnbpirenpn"
-                            />
-                            
-                        </div>
-                        <div className="details-chat-input-div">
-                            <ChatInput 
-                                name="chatInput"
-                                value={payload?.chatInput}
-                                hint="write message here"
-                                handleChange={handleChange}
-                                onClickSend={handleSend}
-                            />
-                        </div>
+                <div className="details-chat-inner-section">
+                    <div className="details-chat-msg-div">
+                        <Sender
+                            msg="snvlksdnvlksdnvlk"
+                        />
+                        <Reciever
+                            msg=";svbknkl;vns;kdnvk;sdnv;ksndvkinpirnbpirenpn"
+                        />
+
                     </div>
-                </div>  
+                    <div className="details-chat-input-div">
+                        <ChatInput
+                            name="chatInput"
+                            value={payload?.chatInput}
+                            hint="write message here"
+                            handleChange={handleChange}
+                            onClickSend={handleSend}
+                        />
+                    </div>
+                </div>
+            </div>
         </UserLayout>
     </div>
 }
@@ -273,7 +285,7 @@ const documents = [
 
 const Sender = (props) => {
 
-    return<div className='sender-div-section'>
+    return <div className='sender-div-section'>
         <div className="sender-div">
             <p>{props?.msg}</p>
         </div>
@@ -282,7 +294,7 @@ const Sender = (props) => {
 
 const Reciever = (props) => {
 
-    return<div className='reciever-div-section'>
+    return <div className='reciever-div-section'>
         <div className="reciever-div">
             <p>{props?.msg}</p>
         </div>

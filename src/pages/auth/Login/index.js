@@ -37,7 +37,7 @@ const Login = () => {
     const handleSubmit = () => {
         dispatch(login(payload))
             .then(res => {
-                console.log('rrrrrrrrreeeeee', res)
+                navigate("/home")
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
@@ -46,6 +46,7 @@ const Login = () => {
                     alert(err?.data?.message)
                 }
                 console.log('errrrrrr', err)
+                alert(err?.data?.message)
             })
     }
 
