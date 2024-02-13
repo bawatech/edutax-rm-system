@@ -4,19 +4,38 @@ import { Button } from "../../components/Button";
 import './style.css'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import UserLayout from "../layouts/UserLayout";
+import { useDispatch } from 'react-redux';
+import { addTaxfile } from "../../store/userSlice";
 
 const Home = ()=> {
 
     const [payload, setPayload] = useState({});
+    const [errors, setErrors] = useState({});
+    const dispatch = useDispatch()
 
     useEffect(()=> {
-        if(payload?.documentsArray === undefined){
+        if(payload?.documents === undefined){
             setPayload({
                 ...payload,
-                ['documentsArray']: payload?.documentsArray || [{}]
+                ['documents']: payload?.documents || [{}]
             });
         }
     },[])
+
+    const handleSubmit = () => {
+        dispatch(addTaxfile(payload))
+            .then(res => {
+                console.log('rrrrrrrrreeeeee', res)
+            })
+            .catch(err => {
+                if (err?.data?.field_errors) {
+                    setErrors(err?.data?.field_errors)
+                } else {
+                    alert(err?.data?.message)
+                }
+                console.log('errrrrrr', err)
+            })
+    }
 
     const handleChange = (name,value)=> {
         setPayload({
@@ -26,35 +45,35 @@ const Home = ()=> {
     }
 
     const handleAddForm = ()=> {
-        let oldArr = [...payload?.documentsArray]
+        let oldArr = [...payload?.documents]
         let newArr = [...oldArr]
         newArr.push({})
 
-        handleChange('documentsArray', newArr)
+        handleChange('documents', newArr)
     }
 
     const handleChangeArray = (name,value,thisIndex) => {
-        let oldArr = [...payload?.documentsArray]
+        let oldArr = [...payload?.documents]
         let curRow = { ...oldArr[thisIndex] }
         curRow[name] = value
         oldArr[thisIndex] = curRow
     
-        handleChange('documentsArray',oldArr)
+        handleChange('documents',oldArr)
     }
 
     const handleDeleteArray = (delIndex) => {
-        let oldArr = [...payload?.documentsArray]
-        handleChange('documentsArray',oldArr?.filter((itm, ind) => {return ind !== delIndex}))
+        let oldArr = [...payload?.documents]
+        handleChange('documents',oldArr?.filter((itm, ind) => {return ind !== delIndex}))
     }
     console.log("Payload",payload)
 
     const handleChangeFileArray = (name,value,thisIndex) => {
-        let oldArr = [...payload?.documentsArray]
+        let oldArr = [...payload?.documents]
         let curRow = { ...oldArr[thisIndex] }
         curRow[name] = value
         oldArr[thisIndex] = curRow
     
-        handleChange('documentsArray',oldArr)
+        handleChange('documents',oldArr)
     }
 
     const handleSend = () => {
@@ -143,15 +162,24 @@ const Home = ()=> {
                         handleChange={handleChange}
                     />
                 </FormField>
+
+                <FormField>
+                    <Input 
+                        label="taxfile id"
+                        name="taxfileId"
+                        value={payload.taxfileId}
+                        handleChange={handleChange}
+                    />
+                </FormField>
             </FormGroup>
             
-            {payload?.documentsArray?.map((itm, index) => {
+            {payload?.documents?.map((itm, index) => {
                 return<FormGroup key={index}>
                     <FormField>
                         <Dropdown 
                             label="Document Type"
-                            name="docType"
-                            selected={itm?.docType}
+                            name="typeid"
+                            selected={itm?.typeid}
                             options={{list: documents, name: 'name', value: 'id'}}
                             handleChange={(name,value)=>handleChangeArray(name,value,index)}
                         />
@@ -160,8 +188,8 @@ const Home = ()=> {
                         <div className="array-div">
                             <FileUpload
                                 label="Choose File"
-                                name="chooseFile"
-                                fileName={itm?.chooseFile?.name}
+                                name="taxfile"
+                                fileName={itm?.taxfile?.name}
                                 handleFileChange={(name,value)=>handleChangeFileArray(name,value,index)}
                             />
                             <Button 
@@ -179,13 +207,19 @@ const Home = ()=> {
             <br/>
             <div className="" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <Button 
-                    title="Add More Form"
+                    title="Add More Documents"
                     onClick={handleAddForm}
                 />
             </div>
             <br/>
             <br/>
-            
+            <br />
+                <Button
+                    name="addTaxFile"
+                    title="Add TaxFile"
+                    onClick={handleSubmit}
+                />
+                <br />
             <div className="details-chat-section">
                     <div className="details-chat-inner-section">
                         <div className="details-chat-msg-div">

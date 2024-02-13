@@ -4,12 +4,12 @@ import authService from "../service/auth";
 
 export const signUp = (param) => async (dispatch) => {
     return authService.signUp(param)
-    .then(async (res) => {
-        console.log('resp at slice',res)
-        // dispatch(setInputs(res?.data.response));
-        // localStorage.setItem("token", res?.data?.response?.token)
-        return res;
-    })
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            // dispatch(setInputs(res?.data.response));
+            // localStorage.setItem("token", res?.data?.response?.token)
+            return res;
+        })
         .catch((error) => {
 
             // dispatch(authSuccess(null));
@@ -17,8 +17,41 @@ export const signUp = (param) => async (dispatch) => {
             throw error
         });
 };
+
+export const login = (param) => async (dispatch) => {
+    return authService.login(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            // dispatch(setInputs(res?.data.response));
+            // localStorage.setItem("token", res?.data?.response?.token)
+            return res;
+        })
+        .catch((error) => {
+
+            // dispatch(authSuccess(null));
+            // localStorage.removeItem("token")
+            throw error
+        });
+};
+
+export const addTaxfile = (param) => async (dispatch) => {
+    return authService.addTaxfile(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            // dispatch(setInputs(res?.data.response));
+            // localStorage.setItem("token", res?.data?.response?.token)
+            return res;
+        })
+        .catch((error) => {
+
+            // dispatch(authSuccess(null));
+            // localStorage.removeItem("token")
+            throw error
+        });
+};
+
 const initialState = {
-    user:null
+    user: null
 };
 
 const userSlice = createSlice({

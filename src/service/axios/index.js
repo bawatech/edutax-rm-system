@@ -1,14 +1,14 @@
 import axios from 'axios';
 
 const axiosClient = axios.create();
-const access_token=localStorage.getItem('token')
+const access_token = localStorage.getItem('token')
 
 
 axiosClient.defaults.baseURL = process.env.REACT_APP_API;
 axiosClient.defaults.baseURL = 'http://localhost:3011';
 axiosClient.defaults.headers = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin':' *',
+    'Access-Control-Allow-Origin': ' *',
     'Authorization': `Bearer ${access_token}`
 };
 
@@ -16,10 +16,10 @@ axiosClient.defaults.headers = {
 axiosClient.defaults.timeout = 5000;
 
 axiosClient.defaults.withCredentials = false;
-axiosClient.interceptors.response.use((response)=>{
+axiosClient.interceptors.response.use((response) => {
 
     return response;
-  }, (error)=>{
+}, (error) => {
     if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
@@ -27,45 +27,45 @@ axiosClient.interceptors.response.use((response)=>{
         // console.log('API Error status',error.response.status);
         // console.log('API Error header',error.response.headers);
 
-        
-        if(error.response.status==401){
-          localStorage.removeItem('token')
-          window.location.href='/login'
+
+        if (error.response.status == 401) {
+            localStorage.removeItem('token')
+            window.location.href = '/login'
         }
         return Promise.reject({
-            data:error?.response?.data,
-            status:error?.response?.status
+            data: error?.response?.data,
+            status: error?.response?.status
         });
-      } else if (error.request) {
-        console.log('API Request Error',error.request);
+    } else if (error.request) {
+        console.log('API Request Error', error.request);
         return Promise.reject({
-            data:{
-                message:"Network error occured"
+            data: {
+                message: "Network error occured"
             },
-            status:500
+            status: 500
         });
-      } else {
+    } else {
         // Something happened in setting up the request that triggered an Error
         console.log('API Error', error.message);
         return Promise.reject({
-            data:{
-                message:error.message
+            data: {
+                message: error.message
             },
-            status:500
+            status: 500
         });
-      }
-      
-  });
-
-export async function getRequest(URL,urlParam={}) {
-    return axiosClient.get(`/${URL}`,
-    {
-        params:urlParam
     }
+
+});
+
+export async function getRequest(URL, urlParam = {}) {
+    return axiosClient.get(`/${URL}`,
+        {
+            params: urlParam
+        }
     )
 }
 
-export async function  postRequest(URL, payload) {
+export async function postRequest(URL, payload) {
     return await axiosClient.post(`/${URL}`, payload).then(response => response);
 }
 
@@ -73,6 +73,21 @@ export async function putRequest(URL, payload) {
     return axiosClient.put(`/${URL}`, payload).then(response => response);
 }
 
-export async function deleteRequest(URL,urlParam) {
-    return axiosClient.delete(`/${URL}`,{data:urlParam}).then(response => response);
+export async function deleteRequest(URL, urlParam) {
+    return axiosClient.delete(`/${URL}`, { data: urlParam }).then(response => response);
+}
+
+export async function postFormdata(URL, payload) {
+    // const formData = new FormData();
+    // console.log("frontfrontfrontfront",payload)
+    // Object.keys(payload).forEach(key => {
+
+    //     formData.append(key, payload[key]);
+    // });
+    return await axiosClient.post(`/${URL}`, payload, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${access_token}`
+        }
+    }).then(response => response);
 }
