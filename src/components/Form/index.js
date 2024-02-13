@@ -76,6 +76,7 @@ export const FormField =(props) =>{
                 /> 
                 {props?.password && <span className='icon icon-pass' onClick={handleToggle}>{ toggle ? <EyeOffIcon/> :<EyeIcon/>}</span>} 
             </div>
+            {props?.error && <p className='input-error-text'>{props.error}</p>}
         </div>
             
     }

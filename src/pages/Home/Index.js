@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { ChatInput, ChatLayout, Dropdown, FileUpload, FormField, FormGroup, Input } from "../../components/Form";
-import UserLayout from "../UserLayout";
 import { Button } from "../../components/Button";
 import './style.css'
 import { RiDeleteBin6Line } from "react-icons/ri";
+import UserLayout from "../layouts/UserLayout";
 
 const Home = ()=> {
 

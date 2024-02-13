@@ -51,6 +51,9 @@
     color: white;
 }
 
+.input-error-text{
+    color: red;
+}
 .label-yn-btn .ynbtn.active:hover{
     background: var(--pri-color-active);
 }

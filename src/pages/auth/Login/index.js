@@ -3,6 +3,7 @@ import { Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
+import UserLayout from '../../layouts/UserLayout';
 
 const Login = () => {
     const [data, setData] = useState({});
@@ -18,7 +19,8 @@ const Login = () => {
         })
     }
 
-    return <div className="login-section">
+    return <UserLayout>
+        <div className="login-section">
         <div className="login-inner-container">
             <h2 style={{textAlign: 'center', marginBottom: '2em'}}>Log In</h2>
 
@@ -50,6 +52,7 @@ const Login = () => {
             <NavLink className="gotoSignup" to="/signup">Did'nt have an account?</NavLink>
         </div>
     </div>
+    </UserLayout>
 }
 
 export default Login;

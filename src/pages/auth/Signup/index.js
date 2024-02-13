@@ -3,48 +3,74 @@ import { Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { NavLink } from 'react-router-dom';
+import Layout from '../../layouts/Layout';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../../store/userSlice';
 
 const Signup = () => {
-    const [data, setData] = useState({});
-    const [error, setError] = useState({});
+    const [payload,setPayload] = useState({})
+    const [errors, setErrors] = useState({});
+    const dispatch = useDispatch()
     
     
     const handleChange = (name, value) => {
-
-        setData({
-            ...data,
-            [name] : value
+        setPayload({
+            ...payload,
+            [name]:value
+        })
+        setErrors({
+            ...errors,
+            [name]:null
         })
     }
 
-    return <div className="signup-section">
+    const handleSubmit = () => {
+        dispatch(signUp(payload))
+        .then(res=>{
+            console.log('rrrrrrrrreeeeee',res)
+        })
+        .catch(err=>{
+            if(err?.data?.field_errors){
+                setErrors(err?.data?.field_errors)
+            }else{
+                alert(err?.data?.message)
+            }
+            console.log('errrrrrr',err)
+        })
+    }
+
+    return <Layout>
+        <div className="signup-section">
         <div className="signup-inner-container">
-            <h2 style={{textAlign: 'center', marginBottom: '2em'}}>SignUp</h2>
+            <h2 style={{textAlign: 'center', marginBottom: '2em'}}>Sign Up</h2>
 
             <Input 
                 name="email"
-                value={data.email}
+                value={payload?.email}
                 hint="Email"
                 handleChange={handleChange}
+                error={errors?.email}
             />
             <Input 
                 name="password"
                 type="password"
                 password
-                value={data.password}
+                value={payload?.password}
                 hint="Password"
                 handleChange={handleChange}
+                error={errors?.password}
             />
             <br/>
             <Button 
                 name="signup"
                 title="Sign Up"
-                // onClick={}
+                onClick={handleSubmit}
             />
             <br/>
             <NavLink className="gotoLogin" to="/login">Already have an account?</NavLink>
         </div>
     </div>
+    </Layout>
 }
 
 export default Signup;
