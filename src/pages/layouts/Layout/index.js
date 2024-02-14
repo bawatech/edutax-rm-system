@@ -1,23 +1,54 @@
 import "./style.css";
 import logo from "./../../../assets/images/logo.png"
-const Layout = (props) => {
+export const Layout = (props) => {
   return (
     <>
-    <div className="layout-header">
-        <div className="layout-header-logo">
-        <img src={logo} alt="logo" resizeMode="contain"/>
-        </div>
-    </div>
+    <Header>
+      <HeaderLeft/>
+    </Header>
     <div className="layout-section">
       <div className="layout-inner-section">
-        
-        <br />
         {props.children}
-        <br />
       </div>
     </div>
     </>
   );
 };
 
-export default Layout;
+
+export const UserLayout = (props) => {
+  return (
+    <>
+    <Header>
+      <HeaderLeft/>
+    </Header>
+    <div className="layout-section">
+      <div className="layout-inner-section">
+        {props.children}
+      </div>
+    </div>
+    </>
+  );
+};
+
+
+const Header =({children})=>{
+  return <div className="layout-header">
+  {children}
+</div>
+}
+
+const HeaderLeft=()=>{
+  return <div className="layout-header-logo">
+    <img src={logo} alt="logo" resizeMode="contain"/>
+  </div>
+}
+
+
+
+const HeaderRight=()=>{
+  return <div className="layout-header-logo">
+  <img src={logo} alt="logo" resizeMode="contain"/>
+  </div>
+}
+

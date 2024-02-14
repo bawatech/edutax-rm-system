@@ -3,7 +3,7 @@ import { Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Layout from '../../layouts/Layout';
+import { Layout } from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../../store/userSlice';
 
@@ -28,8 +28,7 @@ const Signup = () => {
     const handleSubmit = () => {
         dispatch(signUp(payload))
             .then(res => {
-                navigate("/home")
-                console.log('rrrrrrrrreeeeee', res)
+                navigate("/user/tax-file-add")
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
@@ -37,8 +36,6 @@ const Signup = () => {
                 } else {
                     alert(err?.data?.message)
                 }
-                console.log('errrrrrr', err)
-                alert(err?.data?.message)
             })
     }
 

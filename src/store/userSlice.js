@@ -23,13 +23,11 @@ export const login = (param) => async (dispatch) => {
     return authService.login(param)
         .then(async (res) => {
             console.log('resp at slice', res)
-            // dispatch(setInputs(res?.data.response));
             localStorage.setItem("token", res?.data?.response?.token)
               return res;
         })
         .catch((error) => {
 
-            // dispatch(authSuccess(null));
             localStorage.removeItem("token")
             throw error
         });

@@ -3,8 +3,7 @@ import { ErrorMessage, LabelYesNo } from "../../components/Form";
 import './style.css';
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
-import Layout from "../layouts/Layout";
-
+import { Layout } from "../layouts/Layout";
 const Welcome = () =>{
     const [error, setError] = useState("");
     const [selected,setSelected] = useState([])

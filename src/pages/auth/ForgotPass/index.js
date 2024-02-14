@@ -3,7 +3,7 @@ import { Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { NavLink } from 'react-router-dom';
-
+import { Layout } from '../../layouts/Layout';
 const ForgotPass = () => {
     const [data, setData] = useState({});
     const [error, setError] = useState({});

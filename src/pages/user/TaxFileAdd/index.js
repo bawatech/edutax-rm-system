@@ -1,32 +1,39 @@
 import { useEffect, useState } from "react";
-import { ChatInput, ChatLayout, Dropdown, FileUpload, FormField, FormGroup, Input } from "../../components/Form";
-import { Button } from "../../components/Button";
+import { ChatInput, ChatLayout, Dropdown, FileUpload, FormField, FormGroup, Input, InputDate } from "../../../components/Form";
+import { Button } from "../../../components/Button";
 import './style.css'
 import { RiDeleteBin6Line } from "react-icons/ri";
-import UserLayout from "../layouts/UserLayout";
 import { useDispatch } from 'react-redux';
-import { addTaxfile } from "../../store/userSlice";
+import { addTaxfile } from "../../../store/userSlice";
+import { UserLayout } from "../../layouts/Layout";
+import { useNavigate } from "react-router-dom";
+const TaxFileAdd = () => {
 
-const Home = () => {
-
-    const [payload, setPayload] = useState({});
+    const [payload, setPayload] = useState({
+        documents:[]
+    });
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    useEffect(() => {
-        if (payload?.documents === undefined) {
-            setPayload({
-                ...payload,
-                ['documents']: payload?.documents || [{}]
-            });
-        }
-    }, [])
+    console.log('PAYLOAD IS ',payload)
+
+    //_____ MOVED TO USE STATE
+    // useEffect(() => {
+    //     if (payload?.documents === undefined) {
+    //         setPayload({
+    //             ...payload,
+    //             ['documents']: payload?.documents || [{}]
+    //         });
+    //     }
+    // }, [])
 
     const handleSubmit = () => {
         dispatch(addTaxfile(payload))
             .then(res => {
-                console.log('Response', res)
+                console.log('Response', res?.data?.taxfile?.id)
                 alert(res?.data?.message)
+                navigate(`/user/tax-file-details/${res?.data?.taxfile?.id}`)
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
@@ -78,16 +85,7 @@ const Home = () => {
         handleChange('documents', oldArr)
     }
 
-    const handleSend = () => {
-
-        let chat = [payload?.chatArray?.message]
-        console.log("chat", chat)
-        let newChat = [...chat]
-        newChat.push({})
-
-        handleChange('chatArray', newChat)
-        console.log("chat", newChat)
-    }
+    
 
     return <div className="">
         <UserLayout>
@@ -111,22 +109,29 @@ const Home = () => {
                     />
                 </FormField>
                 <FormField>
-                    <Input
+                    <InputDate 
+                     label="Date of Birth"
+                     name="date_of_birth"
+                     value={payload.date_of_birth}
+                     error={errors?.date_of_birth}
+                     handleChange={handleChange}
+                    />
+                    {/* <Input
                         label="Date of Birth"
                         name="date_of_birth"
                         value={payload.date_of_birth}
                         error={errors?.date_of_birth}
                         handleChange={handleChange}
-                    />
+                    /> */}
                 </FormField>
                 <FormField>
-                    <Input
-                        label="Marital Status"
-                        name="marital_status"
-                        value={payload.marital_status}
-                        error={errors?.marital_status}
-                        handleChange={handleChange}
-                    />
+                <Dropdown
+                            label="Marital Status"
+                            name="marital_status"
+                            selected={payload?.marital_status}
+                            options={{ list: maritalStatus, name: 'name', value: 'code' }}
+                            handleChange={(name, value) => handleChangeArray(name, value)}
+                        />
                 </FormField>
                 <FormField>
                     <Input
@@ -147,13 +152,13 @@ const Home = () => {
                     />
                 </FormField>
                 <FormField>
-                    <Input
-                        label="Province"
-                        name="province"
-                        value={payload.province}
-                        error={errors?.province}
-                        handleChange={handleChange}
-                    />
+                <Dropdown
+                            label="Province"
+                            name="province"
+                            selected={payload?.province}
+                            options={{ list: province, name: 'name', value: 'code' }}
+                            handleChange={(name, value) => handleChangeArray(name, value)}
+                        />
                 </FormField>
                 <FormField>
                     <Input
@@ -199,7 +204,7 @@ const Home = () => {
                     <FormField>
                         <div className="array-div">
                             <FileUpload
-                                label="Choose File"
+                                label="."
                                 name="taxfile"
                                 fileName={itm?.taxfile?.name}
                                 handleFileChange={(name, value) => handleChangeFileArray(name, value, index)}
@@ -213,52 +218,29 @@ const Home = () => {
 
                 </FormGroup>
             })}
-
-            <br />
-            <br />
-            <br />
-            <div className="" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Button
-                    title="Add More Documents"
+            <div className="" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                <button
+                    style={{padding:'8px'}}
                     onClick={handleAddForm}
-                />
+                >
+                    + Add More Documents
+                    </button>
             </div>
             <br />
-            <br />
-            <br />
+            <div style={{textAlign:'center'}}>
             <Button
                 name="addTaxFile"
                 title="Add TaxFile"
                 onClick={handleSubmit}
             />
-            <br />
-            <div className="details-chat-section">
-                <div className="details-chat-inner-section">
-                    <div className="details-chat-msg-div">
-                        <Sender
-                            msg="snvlksdnvlksdnvlk"
-                        />
-                        <Reciever
-                            msg=";svbknkl;vns;kdnvk;sdnv;ksndvkinpirnbpirenpn"
-                        />
-
-                    </div>
-                    <div className="details-chat-input-div">
-                        <ChatInput
-                            name="chatInput"
-                            value={payload?.chatInput}
-                            hint="write message here"
-                            handleChange={handleChange}
-                            onClickSend={handleSend}
-                        />
-                    </div>
-                </div>
             </div>
+            <br />
+            
         </UserLayout>
     </div>
 }
 
-export default Home;
+export default TaxFileAdd;
 
 const documents = [
     {
@@ -283,20 +265,25 @@ const documents = [
     },
 ]
 
-const Sender = (props) => {
+const maritalStatus = [
+    {
+        code: 'MRD',
+        name: 'Married',
+    },
+    {
+        code: 'UNM',
+        name: 'Un Married',
+    }
+]
 
-    return <div className='sender-div-section'>
-        <div className="sender-div">
-            <p>{props?.msg}</p>
-        </div>
-    </div>
-}
+const province = [
+    {
+        code: 'MRD',
+        name: 'Married',
+    },
+    {
+        code: 'UNM',
+        name: 'Un Married',
+    }
+]
 
-const Reciever = (props) => {
-
-    return <div className='reciever-div-section'>
-        <div className="reciever-div">
-            <p>{props?.msg}</p>
-        </div>
-    </div>
-}
