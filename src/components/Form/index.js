@@ -185,6 +185,7 @@ export const Dropdown = (props) => {
           })}
         </select>
       </div>
+      {props?.error && <p className="input-error-text">{props.error}</p>}
     </div>
   );
 };

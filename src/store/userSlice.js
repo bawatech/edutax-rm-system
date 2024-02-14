@@ -14,7 +14,7 @@ export const signUp = (param) => async (dispatch) => {
         .catch((error) => {
 
             // dispatch(authSuccess(null));
-             localStorage.removeItem("token")
+            localStorage.removeItem("token")
             throw error
         });
 };
@@ -24,7 +24,7 @@ export const login = (param) => async (dispatch) => {
         .then(async (res) => {
             console.log('resp at slice', res)
             localStorage.setItem("token", res?.data?.response?.token)
-              return res;
+            return res;
         })
         .catch((error) => {
 
@@ -45,6 +45,39 @@ export const addTaxfile = (param) => async (dispatch) => {
 
             // dispatch(authSuccess(null));
             // localStorage.removeItem("token")
+            throw error
+        });
+};
+
+export const verifyEmail = (param) => async (dispatch) => {
+    return authService.verifyEmail(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const forgotPassword = (param) => async (dispatch) => {
+    return authService.forgotPassword(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const setNewPassword = (param) => async (dispatch) => {
+    return authService.setNewPassword(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
             throw error
         });
 };

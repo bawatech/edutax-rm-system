@@ -5,9 +5,9 @@ import { Button } from '../../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../../store/userSlice';
+import { verifyEmail } from '../../../store/userSlice';
 
-const Signup = () => {
+const VerifyEmail = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch()
@@ -26,16 +26,16 @@ const Signup = () => {
     }
 
     const handleSubmit = () => {
-        dispatch(signUp(payload))
+        dispatch(verifyEmail(payload))
             .then(res => {
-               // alert(res?.data?.message)
-                navigate("/verify-email")
+                alert(res?.data?.message)
+                navigate("/user/tax-file-add")
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
                 } else {
-                    // alert(err?.data?.message)
+                   // alert(err?.data?.message)
                 }
                 alert(err?.data?.message)
             })
@@ -44,35 +44,25 @@ const Signup = () => {
     return <Layout>
         <div className="signup-section">
             <div className="signup-inner-container">
-                <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Sign Up</h2>
+                <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Email Address</h2>
 
                 <Input
-                    name="email"
-                    value={payload?.email}
-                    hint="Email"
+                    name="otp"
+                    value={payload?.otp}
+                    hint="Otp"
                     handleChange={handleChange}
-                    error={errors?.email}
-                />
-                <Input
-                    name="password"
-                    type="password"
-                    password
-                    value={payload?.password}
-                    hint="Password"
-                    handleChange={handleChange}
-                    error={errors?.password}
+                    error={errors?.otp}
                 />
                 <br />
                 <Button
-                    name="signup"
-                    title="Sign Up"
+                    name="verify"
+                    title="Verify"
                     onClick={handleSubmit}
                 />
                 <br />
-                <NavLink className="gotoLogin" to="/login">Already have an account?</NavLink>
             </div>
         </div>
     </Layout>
 }
 
-export default Signup;
+export default VerifyEmail;

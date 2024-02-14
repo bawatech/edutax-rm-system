@@ -35,6 +35,7 @@ const Login = () => {
                 } else {
                     // alert(err?.data?.message)
                 }
+                alert(err?.data?.message)
             })
     }
 

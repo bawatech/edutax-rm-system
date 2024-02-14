@@ -2,43 +2,69 @@ import './style.css';
 import { Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
-const ForgotPass = () => {
-    const [data, setData] = useState({});
-    const [error, setError] = useState({});
-    
-    
-    const handleChange = (name, value) => {
+import { useDispatch } from 'react-redux';
+import { forgotPassword, verifyEmail } from '../../../store/userSlice';
 
-        setData({
-            ...data,
-            [name] : value
+const ForgotPassword = () => {
+    const [payload, setPayload] = useState({})
+    const [errors, setErrors] = useState({});
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+
+    const handleChange = (name, value) => {
+        setPayload({
+            ...payload,
+            [name]: value
+        })
+        setErrors({
+            ...errors,
+            [name]: null
         })
     }
 
-    return <div className="login-section">
-        <div className="login-inner-container">
-            <h2 style={{textAlign: 'center', marginBottom: '2em'}}>Reset Password</h2>
+    const handleSubmit = () => {
+        dispatch(forgotPassword(payload))
+            .then(res => {
+                alert(res?.data?.message)
+                navigate("/verify-forgot-pass-otp")
+            })
+            .catch(err => {
+                if (err?.data?.field_errors) {
+                    setErrors(err?.data?.field_errors)
+                } else {
+                    // alert(err?.data?.message)
+                }
+                alert(err?.data?.message)
+            })
+    }
 
-            <Input 
-                name="email"
-                value={data.email}
-                hint="Email"
-                handleChange={handleChange}
-            />
+    return <Layout>
+        <div className="signup-section">
+            <div className="signup-inner-container">
+                <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Forgot Password? Get Otp</h2>
 
-            <br/>
+                <Input
+                    name="email"
+                    value={payload.email}
+                    hint="Email"
+                    handleChange={handleChange}
+                    error={errors?.email}
+                />
 
-            <Button 
-                name="forgotPass"
-                title="Forgot Password"
-                // onClick={}
-            />
-            <br/>
-            <NavLink className="gotoLogin" to="/login">want to back to login?</NavLink>
+
+                <br />
+                <Button
+                    name="getOtp"
+                    title="Get Otp"
+                    onClick={handleSubmit}
+                />
+                <br />
+            </div>
         </div>
-    </div>
+    </Layout>
 }
 
-export default ForgotPass;
+export default ForgotPassword;

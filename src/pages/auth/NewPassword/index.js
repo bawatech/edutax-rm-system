@@ -5,9 +5,9 @@ import { Button } from '../../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../../store/userSlice';
+import { setNewPassword } from '../../../store/userSlice';
 
-const Signup = () => {
+const NewPassword = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch()
@@ -26,10 +26,10 @@ const Signup = () => {
     }
 
     const handleSubmit = () => {
-        dispatch(signUp(payload))
+        dispatch(setNewPassword(payload))
             .then(res => {
-               // alert(res?.data?.message)
-                navigate("/verify-email")
+                alert(res?.data?.message)
+                navigate("/login")
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
@@ -44,35 +44,43 @@ const Signup = () => {
     return <Layout>
         <div className="signup-section">
             <div className="signup-inner-container">
-                <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Sign Up</h2>
+                <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Set New Password</h2>
 
                 <Input
                     name="email"
-                    value={payload?.email}
+                    value={payload.email}
                     hint="Email"
                     handleChange={handleChange}
                     error={errors?.email}
                 />
+
                 <Input
-                    name="password"
-                    type="password"
-                    password
-                    value={payload?.password}
-                    hint="Password"
+                    name="otp"
+                    value={payload.otp}
+                    hint="OTP"
                     handleChange={handleChange}
-                    error={errors?.password}
+                    error={errors?.otp}
                 />
+
+                <Input
+                    name="newPassword"
+                    value={payload.newPassword}
+                    hint="New Password"
+                    handleChange={handleChange}
+                    error={errors?.newPassword}
+                />
+
+
                 <br />
                 <Button
-                    name="signup"
-                    title="Sign Up"
+                    name="setNewPassword"
+                    title="Set New Password"
                     onClick={handleSubmit}
                 />
                 <br />
-                <NavLink className="gotoLogin" to="/login">Already have an account?</NavLink>
             </div>
         </div>
     </Layout>
 }
 
-export default Signup;
+export default NewPassword;

@@ -39,7 +39,7 @@ const TaxFileAdd = () => {
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
                 } else {
-                    alert(err?.data?.message)
+                    // alert(err?.data?.message)
                 }
                 console.log('Error', err)
                 alert(err?.data?.message)
@@ -130,7 +130,9 @@ const TaxFileAdd = () => {
                             name="marital_status"
                             selected={payload?.marital_status}
                             options={{ list: maritalStatus, name: 'name', value: 'code' }}
-                            handleChange={(name, value) => handleChangeArray(name, value)}
+                            error={errors?.marital_status}
+                            // handleChange={(name, value) => handleChangeArray(name, value)}
+                            handleChange={handleChange}
                         />
                 </FormField>
                 <FormField>
@@ -157,7 +159,7 @@ const TaxFileAdd = () => {
                             name="province"
                             selected={payload?.province}
                             options={{ list: province, name: 'name', value: 'code' }}
-                            handleChange={(name, value) => handleChangeArray(name, value)}
+                            handleChange={handleChange}
                         />
                 </FormField>
                 <FormField>
@@ -278,12 +280,12 @@ const maritalStatus = [
 
 const province = [
     {
-        code: 'MRD',
-        name: 'Married',
+        code: 'ON',
+        name: 'Ontario',
     },
     {
-        code: 'UNM',
-        name: 'Un Married',
+        code: 'QC',
+        name: 'Quebec',
     }
 ]
 

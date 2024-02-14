@@ -10,6 +10,8 @@ import Signup from '../pages/auth/Signup';
 import ForgotPass from '../pages/auth/ForgotPass';
 import TaxFileAdd from '../pages/user/TaxFileAdd';
 import TaxFileDetails from '../pages/user/TaxFileDetails';
+import VerifyEmail from '../pages/auth/VerifyEmail';
+import NewPassword from '../pages/auth/NewPassword';
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
     const routes = [
@@ -17,7 +19,9 @@ const AllRoutes = () => {
         {path:'login',element:<Login/>},
         {path:'welcome',element:<Welcome/>},
         {path:'sign-up',element:<Signup/>},
+        {path:'verify-email',element:<VerifyEmail/>},
         {path:'reset',element:<ForgotPass/>},
+        {path:'verify-forgot-pass-otp',element:<NewPassword/>},
         {path: 'user',
         children:[
             {index:true, element : <h1>Dashboard</h1>},

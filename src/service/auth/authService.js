@@ -21,6 +21,19 @@ class authService {
     getTaxfileDetails = async (id) => {
         return await getRequest(`user/taxfile-details/${id}`);
     }
+
+    verifyEmail = async (payload) => {
+        return await postRequest('auth/verify-email', payload);
+    }
+
+    forgotPassword = async (payload) => {
+        return await postRequest('auth/forgot-password', payload);
+    }
+
+    setNewPassword = async (payload) => {
+        return await postRequest('auth/new-password', payload);
+    }
+
 }
 
 const instance = new authService();
