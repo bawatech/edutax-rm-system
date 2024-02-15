@@ -23,7 +23,7 @@ import { useNavigate } from "react-router-dom";
 const TaxFileAdd = () => {
   const [payload, setPayload] = useState({
     documents: [
-        {}
+      {}
     ],
   });
   const [errors, setErrors] = useState({});
@@ -119,58 +119,49 @@ const TaxFileAdd = () => {
                 handleChange={handleChange}
               />
             </FormField>
-            </FormGroup>
-            <LabelYesNo
-              label="Have you moved to canada in 2023?" 
-              name="haveYouMovedToCanada"
-              value={payload?.haveYouMovedToCanada}
-              handleChange={handleChange}
-            />
+          </FormGroup>
+          <LabelYesNo
+            label="Have you moved to canada in 2023?"
+            name="moved_to_canada"
+            value={payload?.moved_to_canada}
+            handleChange={handleChange}
+          />
 
-            {payload?.haveYouMovedToCanada === "YES" && <FormField>
-              <FormField>
-                <InputDate
-                  label="Date of Entry"
-                  name="date_of_entry"
-                  value={payload.date_of_entry}
-                  error={errors?.date_of_entry}
-                  handleChange={handleChange}
+          {payload?.moved_to_canada === "YES" && <FormField>
+            <FormField>
+              <InputDate
+                label="Date of Entry"
+                name="date_of_entry"
+                value={payload.date_of_entry}
+                error={errors?.date_of_entry}
+                handleChange={handleChange}
+              />
+            </FormField>
+          </FormField>}
+
+          <LabelYesNo
+            label="Do you want to setup or change your direct deposit with CRA?"
+            name="direct_deposit_cra"
+            value={payload?.direct_deposit_cra}
+            handleChange={handleChange}
+          />
+
+          {payload?.direct_deposit_cra === "YES" && <FormGroup>
+            <FormField>
+              <div className="array-div">
+                <FileUpload
+                  label="."
+                  name="document_direct_deposit_cra"
+                  fileName={payload?.document_direct_deposit_cra?.name}
+                  handleFileChange={handleChange}
                 />
-              </FormField>
-            </FormField>}
-
-            <LabelYesNo
-              label="Do you want to setup or change your direct deposit with CRA?" 
-              name="doYouWantToSetupOrChangeDirectDepositWithCRA"
-              value={payload?.doYouWantToSetupOrChangeDirectDepositWithCRA}
-              handleChange={handleChange}
-            />
-
-            {payload?.doYouWantToSetupOrChangeDirectDepositWithCRA === "YES" && <FormGroup>
-              <FormField>
-                <Dropdown
-                  label="Document Type"
-                  name="typeid"
-                  selected={payload?.typeid}
-                  options={{ list: documents, name: "name", value: "id" }}
-                  handleChange={handleChange}
-                />
-              </FormField>
-              <FormField>
-                <div className="array-div">
-                  <FileUpload
-                    label="."
-                    name="taxfile"
-                    fileName={payload?.taxfile?.name}
-                    handleFileChange={handleChange}
-                  />
-                </div>
-              </FormField>
-            </FormGroup>}
+              </div>
+            </FormField>
+          </FormGroup>}
 
         </Form>
 
-        <FormSectionName name="Attach Documents"/>
+        <FormSectionName name="Attach Documents" />
         {payload?.documents?.map((itm, index) => {
           return (
             <FormGroup key={index}>
