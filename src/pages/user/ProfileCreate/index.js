@@ -15,30 +15,26 @@ const ProfileCreate = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    console.log('PAYLOAD IS ',payload)
+    console.log('PAYLOAD IS ', payload)
 
 
     const handleSubmit = () => {
 
-        //---------UNCOMMENT THE FOLLOWING
-
-        navigate(`/user/tax-file-add`)
-
-        // authService.updateProfile(payload)
-        //     .then(res => {
-        //         console.log('Response', res?.data?.taxfile?.id)
-        //         alert(res?.data?.message)
-        //         navigate(`/user/tax-file-add`)
-        //     })
-        //     .catch(err => {
-        //         if (err?.data?.field_errors) {
-        //             setErrors(err?.data?.field_errors)
-        //         } else {
-        //             // alert(err?.data?.message)
-        //         }
-        //         console.log('Error', err)
-        //         alert(err?.data?.message)
-        //     })
+        authService.createProfile(payload)
+            .then(res => {
+                console.log('Response', res?.data?.taxfile?.id)
+                alert(res?.data?.message)
+                navigate(`/user/tax-file-add`)
+            })
+            .catch(err => {
+                if (err?.data?.field_errors) {
+                    setErrors(err?.data?.field_errors)
+                } else {
+                    // alert(err?.data?.message)
+                }
+                console.log('Error', err)
+                alert(err?.data?.message)
+            })
     }
 
     const handleChange = (name, value) => {
@@ -46,45 +42,49 @@ const ProfileCreate = () => {
             ...payload,
             [name]: value
         })
+        setErrors({
+            ...errors,
+            [name]: null
+        })
     }
 
-    
+
 
     return <div className="">
         <UserLayout>
             <Form>
-            <FormName name="Create Profile" />
-            <FormGroup>
-                <FormField>
-                    <Input
-                        label="First Name"
-                        name="firstname"
-                        value={payload.firstname}
-                        error={errors?.firstname}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                <FormField>
-                    <Input
-                        label="Last Name"
-                        name="lastname"
-                        value={payload.lastname}
-                        error={errors?.lastname}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                <FormField>
-                    <InputDate 
-                     label="Date of Birth"
-                     name="date_of_birth"
-                     value={payload.date_of_birth}
-                     error={errors?.date_of_birth}
-                     handleChange={handleChange}
-                    />
+                <FormName name="Create Profile" />
+                <FormGroup>
+                    <FormField>
+                        <Input
+                            label="First Name"
+                            name="firstname"
+                            value={payload.firstname}
+                            error={errors?.firstname}
+                            handleChange={handleChange}
+                        />
+                    </FormField>
+                    <FormField>
+                        <Input
+                            label="Last Name"
+                            name="lastname"
+                            value={payload.lastname}
+                            error={errors?.lastname}
+                            handleChange={handleChange}
+                        />
+                    </FormField>
+                    <FormField>
+                        <InputDate
+                            label="Date of Birth"
+                            name="date_of_birth"
+                            value={payload.date_of_birth}
+                            error={errors?.date_of_birth}
+                            handleChange={handleChange}
+                        />
 
-                </FormField>
-                <FormField>
-                <Dropdown
+                    </FormField>
+                    <FormField>
+                        <Dropdown
                             label="Marital Status"
                             name="marital_status"
                             selected={payload?.marital_status}
@@ -93,66 +93,66 @@ const ProfileCreate = () => {
                             // handleChange={(name, value) => handleChangeArray(name, value)}
                             handleChange={handleChange}
                         />
-                </FormField>
-                <FormField>
-                    <Input
-                        label="Street Name"
-                        name="street_name"
-                        value={payload.street_name}
-                        error={errors?.street_name}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                <FormField>
-                    <Input
-                        label="City"
-                        name="city"
-                        value={payload.city}
-                        error={errors?.city}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                <FormField>
-                <Dropdown
+                    </FormField>
+                    <FormField>
+                        <Input
+                            label="Street Name"
+                            name="street_name"
+                            value={payload.street_name}
+                            error={errors?.street_name}
+                            handleChange={handleChange}
+                        />
+                    </FormField>
+                    <FormField>
+                        <Input
+                            label="City"
+                            name="city"
+                            value={payload.city}
+                            error={errors?.city}
+                            handleChange={handleChange}
+                        />
+                    </FormField>
+                    <FormField>
+                        <Dropdown
                             label="Province"
                             name="province"
                             selected={payload?.province}
                             options={{ list: province, name: 'name', value: 'code' }}
                             handleChange={handleChange}
                         />
-                </FormField>
-                <FormField>
-                    <Input
-                        label="Postal Code"
-                        name="postal_code"
-                        value={payload.postal_code}
-                        error={errors?.postal_code}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                <FormField>
-                    <Input
-                        label="Mobile Number"
-                        name="mobile_number"
-                        value={payload.mobile_number}
-                        error={errors?.mobile_number}
-                        handleChange={handleChange}
-                    />
-                </FormField>
+                    </FormField>
+                    <FormField>
+                        <Input
+                            label="Postal Code"
+                            name="postal_code"
+                            value={payload.postal_code}
+                            error={errors?.postal_code}
+                            handleChange={handleChange}
+                        />
+                    </FormField>
+                    <FormField>
+                        <Input
+                            label="Mobile Number"
+                            name="mobile_number"
+                            value={payload.mobile_number}
+                            error={errors?.mobile_number}
+                            handleChange={handleChange}
+                        />
+                    </FormField>
 
-            </FormGroup>
+                </FormGroup>
 
-            <br />
-            <div style={{textAlign:'center'}}>
-            <Button
-                name="addTaxFile"
-                title="Save"
-                onClick={handleSubmit}
-            />
-            </div>
-            <br />
+                <br />
+                <div style={{ textAlign: 'center' }}>
+                    <Button
+                        name="createProfile"
+                        title="Save"
+                        onClick={handleSubmit}
+                    />
+                </div>
+                <br />
             </Form>
-            
+
         </UserLayout>
     </div>
 }

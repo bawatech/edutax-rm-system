@@ -112,8 +112,8 @@ const TaxFileAdd = () => {
             <FormField>
               <Dropdown
                 label="PROVINCE OF RETURN AS ON 31ST DECEMBER?"
-                name="province"
-                selected={payload?.province}
+                name="taxfile_province"
+                selected={payload?.taxfile_province}
                 options={{ list: province, name: "name", value: "code" }}
                 handleChange={handleChange}
               />
@@ -122,9 +122,9 @@ const TaxFileAdd = () => {
             <FormField>
               <InputDate
                 label="Date of Entry"
-                name="canada_entry_date"
-                value={payload.canada_entry_date}
-                error={errors?.canada_entry_date}
+                name="date_of_entry"
+                value={payload.date_of_entry}
+                error={errors?.date_of_entry}
                 handleChange={handleChange}
               />
             </FormField>
