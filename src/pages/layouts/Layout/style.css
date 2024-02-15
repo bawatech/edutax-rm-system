@@ -1,9 +1,10 @@
 .layout-header{
-    background-color: rgb(230, 238, 255);
-    padding: 8px;
+    background-color: #cce6ff;
+    padding: 8px 1.5em;
     min-height: 80px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: 0px;
 }
@@ -28,4 +29,31 @@
 
 .layout-inner-section{
     width: 80%;
+}
+
+/* ================================================================ */
+
+.layout-header-content{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+
+.layout-right-header ul{
+    list-style: none;
+    display: flex;
+    gap: 2em;
+}
+
+.layout-right-header ul li a{
+    font-size: 1.5em;
+    color: rgb(48, 48, 48);
+    transition: all 0.3s ease-in-out;
+}
+
+.layout-right-header ul li a:hover{
+    color: var(--pri-color);
 }

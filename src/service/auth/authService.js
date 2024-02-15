@@ -39,6 +39,7 @@ class authService {
     }
 
     addClientMessage = async (payload) => {
+        console.log("authservice payload", payload);
         return await postRequest('user/add-client-message', payload);
     }
 

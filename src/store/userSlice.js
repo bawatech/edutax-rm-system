@@ -49,6 +49,19 @@ export const addTaxfile = (param) => async (dispatch) => {
         });
 };
 
+export const addClientMessage = (param) => async (dispatch) => {
+    return authService.addClientMessage(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            
+            return res;
+        })
+        .catch((error) => {
+            
+            throw error
+        });
+};
+
 export const verifyEmail = (param) => async (dispatch) => {
     return authService.verifyEmail(param)
         .then(async (res) => {

@@ -1,3 +1,10 @@
+//change password
+
+
+
+
+
+
 import { useEffect, useMemo, useState } from 'react'
 import './style.css'
 import authService from '../../../service/auth'
@@ -6,14 +13,18 @@ import { ChatInput, FormField, FormGroup } from '../../../components/Form'
 import { useParams } from 'react-router-dom'
 import { FaDownload } from "react-icons/fa6";
 import { IoIosEye } from "react-icons/io";
-import { Button } from '../../../components/Button'
+import { useDispatch } from 'react-redux'
+import { addClientMessage } from '../../../store/userSlice'
 
 
 const TaxFileDetails = () => {
 
     const [details, setDetails] = useState(null)
+    const [chatMsg, setChatMsg] = useState([])
     const [payload, setPayload] = useState({});
+    const [reload, setReload] = useState(false);
     const param = useParams()
+    const dispatch = useDispatch()
 
     console.log('param', param, 'details', details)
     useEffect(() => {
@@ -32,13 +43,40 @@ const TaxFileDetails = () => {
         authService.getClientMessages(param?.id)
             .then(res => {
                 console.log('Client messages are ', res?.data)
+                console.log('Client messages are ', res?.data?.response?.messages)
                 // setDetails(res?.data)
+                setChatMsg(res?.data?.response?.messages)
             })
             .catch(err => {
                 console.log('Error in Get Client Messages', err)
                 alert(err?.data?.message)
             })
-    }, [])
+    },[reload])
+
+    const handleChange = (name,value) => {
+        setPayload({
+            ...payload,
+            [name]: value,
+            ['taxfile_id']: param?.id 
+        })
+    }
+    // console.log('payload', payload)
+
+    const handleSend = () => {
+        // console.log("handlesend",payload)
+        dispatch(addClientMessage(payload))
+            .then((res) => {
+                console.log("data added", res)
+                setPayload('')
+                setReload((prev) => !prev)
+            })
+            .catch((err) => {
+                console.log('Error', err)
+            })
+
+        
+    }
+
 
     const detailBody = useMemo(() => {
 
@@ -47,7 +85,7 @@ const TaxFileDetails = () => {
         } else {
 
             return <>
-                <h1>Taxfile details </h1>
+                <h1 style={{textAlign: 'center', marginTop: '2em'}}>Taxfile details </h1>
                 <br/>
                 <div className="userDetails-section">
             <div className="userDetails-inner-container">
@@ -92,7 +130,7 @@ const TaxFileDetails = () => {
                             value={details?.taxfile?.postal_code}
                         />
                         <DetailsComponent 
-                            heading="Postal Code"
+                            heading="Tax Year"
                             value={details?.taxfile?.tax_year}
                         />
                     </div>
@@ -102,12 +140,12 @@ const TaxFileDetails = () => {
                     details?.taxfile?.documents?.map((itm, index) => {
                         return <FormGroup key={index}>
                             <FormField>
-                            <FileComponent 
-                                name="File"
-                                download={itm?.full_path}
-                                downloadType={itm?.documents?.[index]?.filename}
-                                view={itm?.full_path}
-                            />
+                                <FileComponent 
+                                    name="File"
+                                    download={itm?.full_path}
+                                    downloadName={itm?.documents?.[index]?.filename}
+                                    view={itm?.full_path}
+                                />
                             </FormField>
 
                         </FormGroup>
@@ -128,7 +166,12 @@ const TaxFileDetails = () => {
         <br />
         <br />
         <br />
-        <ChatWindow />
+        <ChatWindow 
+            chatMsg={chatMsg}
+            value={payload?.message}
+            handleChange={handleChange}
+            handleSend={handleSend}
+        />
         <br />
         <br />
         <br />
@@ -149,21 +192,30 @@ const ChatWindow = (props) => {
     return <div className="details-chat-section">
         <div className="details-chat-inner-section">
             <div className="details-chat-msg-div">
-                <Sender
-                    msg="snvlksdnvlksdnvlk"
-                />
-                <Reciever
-                    msg=";svbknkl;vns;kdnvk;sdnv;ksndvkinpirnbpirenpn"
-                />
+                {props?.chatMsg?.map((msg, index) => {
+                    console.log("mmeeeeeeeeeeeemememememememe", msg?.user_type)
 
+                    if(msg?.user_type === "CLIENT"){
+                        return <Sender
+                            msg={msg?.message} 
+                        />
+                    }else if(msg?.user_type === "EXECUTIVE"){
+                        return <Reciever
+                            msg={msg?.message} 
+                        />
+                    }
+                    
+                })}
+                
+                
             </div>
             <div className="details-chat-input-div">
                 <ChatInput
-                    name="chatInput"
-                    value={newMessage}
+                    name="message"
+                    value={props?.value}
                     hint="write message here"
-                    handleChange={(name, value) => setNewMessage(value)}
-                    onClickSend={handleSend}
+                    handleChange={props.handleChange}
+                    onClickSend={props?.handleSend}
                 />
             </div>
         </div>

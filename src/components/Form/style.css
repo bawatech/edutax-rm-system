@@ -278,7 +278,7 @@
     justify-content: center;
     overflow: hidden;
     /* border: 1px solid rgba(210,210,210); */
-    box-shadow: 0 0 2em 0.1em rgba(0,0,0,0.05);
+    box-shadow: 0 0 2em 0.1em rgba(0,0,0,0.03);
     /* border-radius: 0.5em; */
 }
 

@@ -13,6 +13,7 @@ import VerifyEmail from '../pages/auth/VerifyEmail';
 import NewPassword from '../pages/auth/NewPassword';
 import QnaVerify from '../pages/QnaVerify';
 import ProfileCreate from '../pages/user/ProfileCreate';
+
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
     const routes = [
