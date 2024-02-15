@@ -58,6 +58,19 @@
     background: var(--pri-color-active);
 }
 
+.form-name {
+    font-weight: bold;
+    font-size: 32px;
+    text-align: center;
+    padding: 15px;
+}
+.form-section-name {
+    font-weight: bold;
+    font-size:32x;
+    margin-top:50px;
+    color: rgb(68, 67, 67);
+}
+
 @media only screen and (min-width: 10px) {
     .label-yn-btn .ynbtn{
         padding: 0.5em 1em;

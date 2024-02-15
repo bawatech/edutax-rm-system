@@ -1,291 +1,239 @@
 import { useEffect, useState } from "react";
-import { ChatInput, ChatLayout, Dropdown, FileUpload, FormField, FormGroup, Input, InputDate } from "../../../components/Form";
+import {
+  ChatInput,
+  ChatLayout,
+  Dropdown,
+  FileUpload,
+  Form,
+  FormField,
+  FormGroup,
+  FormName,
+  FormSectionName,
+  Input,
+  InputDate,
+} from "../../../components/Form";
 import { Button } from "../../../components/Button";
-import './style.css'
+import "./style.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { addTaxfile } from "../../../store/userSlice";
 import { UserLayout } from "../../layouts/Layout";
 import { useNavigate } from "react-router-dom";
 const TaxFileAdd = () => {
+  const [payload, setPayload] = useState({
+    documents: [
+        {}
+    ],
+  });
+  const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const [payload, setPayload] = useState({
-        documents:[]
+  console.log("PAYLOAD IS ", payload);
+
+  //_____ MOVED TO USE STATE
+  // useEffect(() => {
+  //     if (payload?.documents === undefined) {
+  //         setPayload({
+  //             ...payload,
+  //             ['documents']: payload?.documents || [{}]
+  //         });
+  //     }
+  // }, [])
+
+  const handleSubmit = () => {
+    dispatch(addTaxfile(payload))
+      .then((res) => {
+        console.log("Response", res?.data?.taxfile?.id);
+        alert(res?.data?.message);
+        navigate(`/user/tax-file-details/${res?.data?.taxfile?.id}`);
+      })
+      .catch((err) => {
+        if (err?.data?.field_errors) {
+          setErrors(err?.data?.field_errors);
+        } else {
+          // alert(err?.data?.message)
+        }
+        console.log("Error", err);
+        alert(err?.data?.message);
+      });
+  };
+
+  const handleChange = (name, value) => {
+    setPayload({
+      ...payload,
+      [name]: value,
     });
-    const [errors, setErrors] = useState({});
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  };
 
-    console.log('PAYLOAD IS ',payload)
+  const handleAddForm = () => {
+    let oldArr = [...payload?.documents];
+    let newArr = [...oldArr];
+    newArr.push({});
 
-    //_____ MOVED TO USE STATE
-    // useEffect(() => {
-    //     if (payload?.documents === undefined) {
-    //         setPayload({
-    //             ...payload,
-    //             ['documents']: payload?.documents || [{}]
-    //         });
-    //     }
-    // }, [])
+    handleChange("documents", newArr);
+  };
 
-    const handleSubmit = () => {
-        dispatch(addTaxfile(payload))
-            .then(res => {
-                console.log('Response', res?.data?.taxfile?.id)
-                alert(res?.data?.message)
-                navigate(`/user/tax-file-details/${res?.data?.taxfile?.id}`)
-            })
-            .catch(err => {
-                if (err?.data?.field_errors) {
-                    setErrors(err?.data?.field_errors)
-                } else {
-                    // alert(err?.data?.message)
-                }
-                console.log('Error', err)
-                alert(err?.data?.message)
-            })
-    }
+  const handleChangeArray = (name, value, thisIndex) => {
+    let oldArr = [...payload?.documents];
+    let curRow = { ...oldArr[thisIndex] };
+    curRow[name] = value;
+    oldArr[thisIndex] = curRow;
 
-    const handleChange = (name, value) => {
-        setPayload({
-            ...payload,
-            [name]: value
-        })
-    }
+    handleChange("documents", oldArr);
+  };
 
-    const handleAddForm = () => {
-        let oldArr = [...payload?.documents]
-        let newArr = [...oldArr]
-        newArr.push({})
+  const handleDeleteArray = (delIndex) => {
+    let oldArr = [...payload?.documents];
+    handleChange(
+      "documents",
+      oldArr?.filter((itm, ind) => {
+        return ind !== delIndex;
+      })
+    );
+  };
+  console.log("Payload", payload);
 
-        handleChange('documents', newArr)
-    }
+  const handleChangeFileArray = (name, value, thisIndex) => {
+    let oldArr = [...payload?.documents];
+    let curRow = { ...oldArr[thisIndex] };
+    curRow[name] = value;
+    oldArr[thisIndex] = curRow;
 
-    const handleChangeArray = (name, value, thisIndex) => {
-        let oldArr = [...payload?.documents]
-        let curRow = { ...oldArr[thisIndex] }
-        curRow[name] = value
-        oldArr[thisIndex] = curRow
+    handleChange("documents", oldArr);
+  };
 
-        handleChange('documents', oldArr)
-    }
+  return (
+    <div className="">
+      <UserLayout>
+        <Form>
+          <FormName name="Add Tax File Details" />
+          <FormGroup>
+            <FormField>
+              <Dropdown
+                label="PROVINCE OF RETURN AS ON 31ST DECEMBER?"
+                name="province"
+                selected={payload?.province}
+                options={{ list: province, name: "name", value: "code" }}
+                handleChange={handleChange}
+              />
+            </FormField>
 
-    const handleDeleteArray = (delIndex) => {
-        let oldArr = [...payload?.documents]
-        handleChange('documents', oldArr?.filter((itm, ind) => { return ind !== delIndex }))
-    }
-    console.log("Payload", payload)
-
-    const handleChangeFileArray = (name, value, thisIndex) => {
-        let oldArr = [...payload?.documents]
-        let curRow = { ...oldArr[thisIndex] }
-        curRow[name] = value
-        oldArr[thisIndex] = curRow
-
-        handleChange('documents', oldArr)
-    }
-
-    
-
-    return <div className="">
-        <UserLayout>
-            <FormGroup>
-                <FormField>
-                    <Input
-                        label="First Name"
-                        name="firstname"
-                        value={payload.firstname}
-                        error={errors?.firstname}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                <FormField>
-                    <Input
-                        label="Last Name"
-                        name="lastname"
-                        value={payload.lastname}
-                        error={errors?.lastname}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                <FormField>
-                    <InputDate 
-                     label="Date of Birth"
-                     name="date_of_birth"
-                     value={payload.date_of_birth}
-                     error={errors?.date_of_birth}
-                     handleChange={handleChange}
-                    />
-                    {/* <Input
-                        label="Date of Birth"
-                        name="date_of_birth"
-                        value={payload.date_of_birth}
-                        error={errors?.date_of_birth}
-                        handleChange={handleChange}
-                    /> */}
-                </FormField>
-                <FormField>
-                <Dropdown
-                            label="Marital Status"
-                            name="marital_status"
-                            selected={payload?.marital_status}
-                            options={{ list: maritalStatus, name: 'name', value: 'code' }}
-                            error={errors?.marital_status}
-                            // handleChange={(name, value) => handleChangeArray(name, value)}
-                            handleChange={handleChange}
-                        />
-                </FormField>
-                <FormField>
-                    <Input
-                        label="Street Name"
-                        name="street_name"
-                        value={payload.street_name}
-                        error={errors?.street_name}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                <FormField>
-                    <Input
-                        label="City"
-                        name="city"
-                        value={payload.city}
-                        error={errors?.city}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                <FormField>
-                <Dropdown
-                            label="Province"
-                            name="province"
-                            selected={payload?.province}
-                            options={{ list: province, name: 'name', value: 'code' }}
-                            handleChange={handleChange}
-                        />
-                </FormField>
-                <FormField>
-                    <Input
-                        label="Postal Code"
-                        name="postal_code"
-                        value={payload.postal_code}
-                        error={errors?.postal_code}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-                <FormField>
-                    <Input
-                        label="Mobile Number"
-                        name="mobile_number"
-                        value={payload.mobile_number}
-                        error={errors?.mobile_number}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-
-                <FormField>
-                    <Input
-                        label="Taxyear"
-                        name="tax_year"
-                        value={payload.tax_year}
-                        error={errors?.tax_year}
-                        handleChange={handleChange}
-                    />
-                </FormField>
+            <FormField>
+              <InputDate
+                label="Date of Entry"
+                name="canada_entry_date"
+                value={payload.canada_entry_date}
+                error={errors?.canada_entry_date}
+                handleChange={handleChange}
+              />
+            </FormField>
             </FormGroup>
-
-            {payload?.documents?.map((itm, index) => {
-                return <FormGroup key={index}>
-                    <FormField>
-                        <Dropdown
-                            label="Document Type"
-                            name="typeid"
-                            selected={itm?.typeid}
-                            options={{ list: documents, name: 'name', value: 'id' }}
-                            handleChange={(name, value) => handleChangeArray(name, value, index)}
-                        />
-                    </FormField>
-                    <FormField>
-                        <div className="array-div">
-                            <FileUpload
-                                label="."
-                                name="taxfile"
-                                fileName={itm?.taxfile?.name}
-                                handleFileChange={(name, value) => handleChangeFileArray(name, value, index)}
-                            />
-                            <Button
-                                varient="icon"
-                                title={<RiDeleteBin6Line />}
-                                onClick={() => handleDeleteArray(index)} />
-                        </div>
-                    </FormField>
-
-                </FormGroup>
-            })}
-            <div className="" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                <button
-                    style={{padding:'8px'}}
-                    onClick={handleAddForm}
-                >
-                    + Add More Documents
-                    </button>
-            </div>
-            <br />
-            <div style={{textAlign:'center'}}>
-            <Button
-                name="addTaxFile"
-                title="Add TaxFile"
-                onClick={handleSubmit}
-            />
-            </div>
-            <br />
-            
-        </UserLayout>
+        </Form>
+        <FormSectionName name="Attach Documents"/>
+        {payload?.documents?.map((itm, index) => {
+          return (
+            <FormGroup key={index}>
+              <FormField>
+                <Dropdown
+                  label="Document Type"
+                  name="typeid"
+                  selected={itm?.typeid}
+                  options={{ list: documents, name: "name", value: "id" }}
+                  handleChange={(name, value) =>
+                    handleChangeArray(name, value, index)
+                  }
+                />
+              </FormField>
+              <FormField>
+                <div className="array-div">
+                  <FileUpload
+                    label="."
+                    name="taxfile"
+                    fileName={itm?.taxfile?.name}
+                    handleFileChange={(name, value) =>
+                      handleChangeFileArray(name, value, index)
+                    }
+                  />
+                  <Button
+                    varient="icon"
+                    title={<RiDeleteBin6Line />}
+                    onClick={() => handleDeleteArray(index)}
+                  />
+                </div>
+              </FormField>
+            </FormGroup>
+          );
+        })}
+        <div
+          className=""
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
+        >
+          <button style={{ padding: "8px" }} onClick={handleAddForm}>
+            + Add More Documents
+          </button>
+        </div>
+        <br />
+        <div style={{ textAlign: "center" }}>
+          <Button
+            name="addTaxFile"
+            title="Add TaxFile"
+            onClick={handleSubmit}
+          />
+        </div>
+        <br />
+      </UserLayout>
     </div>
-}
+  );
+};
 
 export default TaxFileAdd;
 
 const documents = [
-    {
-        id: '1',
-        name: 'Driving License',
-    },
-    {
-        id: '2',
-        name: 'Aadhar Card',
-    },
-    {
-        id: '3',
-        name: 'Voter Card',
-    },
-    {
-        id: '4',
-        name: 'PAN Card',
-    },
-    {
-        id: '5',
-        name: 'Passport',
-    },
-]
+  {
+    id: "1",
+    name: "Driving License",
+  },
+  {
+    id: "2",
+    name: "Aadhar Card",
+  },
+  {
+    id: "3",
+    name: "Voter Card",
+  },
+  {
+    id: "4",
+    name: "PAN Card",
+  },
+  {
+    id: "5",
+    name: "Passport",
+  },
+];
 
 const maritalStatus = [
-    {
-        code: 'MRD',
-        name: 'Married',
-    },
-    {
-        code: 'UNM',
-        name: 'Un Married',
-    }
-]
+  {
+    code: "MRD",
+    name: "Married",
+  },
+  {
+    code: "UNM",
+    name: "Un Married",
+  },
+];
 
 const province = [
-    {
-        code: 'ON',
-        name: 'Ontario',
-    },
-    {
-        code: 'QC',
-        name: 'Quebec',
-    }
-]
-
+  {
+    code: "ON",
+    name: "Ontario",
+  },
+  {
+    code: "QC",
+    name: "Quebec",
+  },
+];

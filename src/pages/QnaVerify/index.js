@@ -4,7 +4,7 @@ import './style.css';
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { Layout } from "../layouts/Layout";
-const Welcome = () =>{
+const QnaVerify = () =>{
     const [error, setError] = useState("");
     const [selected,setSelected] = useState([])
 
@@ -35,7 +35,7 @@ const Welcome = () =>{
 
     const handleSubmit = () =>{
         // if(error === "" || error === false){
-            navigate("sign-up")
+            navigate("/sign-up")
         // }else if(Object.values(data).includes("YES")){
         //     setError("Value Has Yes")
         // }
@@ -68,7 +68,7 @@ const Welcome = () =>{
 }
 
 
-export default Welcome;
+export default QnaVerify;
 
 const questionList = [
     {

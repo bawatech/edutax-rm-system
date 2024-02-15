@@ -35,9 +35,9 @@ const Signup = () => {
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
                 } else {
-                    // alert(err?.data?.message)
+                    alert(err?.data?.message)
                 }
-                alert(err?.data?.message)
+                // alert(err?.data?.message)
             })
     }
 

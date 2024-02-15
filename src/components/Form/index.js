@@ -58,6 +58,20 @@ export const FormGroup = (props) => {
   return <div className="form-group">{props.children}</div>;
 };
 
+
+export const Form = (props) => {
+  return <div className="form">{props?.children}</div>;
+};
+
+
+export const FormName = (props) => {
+  return <div className="form-name">{props?.name}</div>;
+};
+
+export const FormSectionName = (props) => {
+  return <div className="form-section-name">{props?.name}</div>;
+};
+
 // ===================================FormGroup======================================================
 // ===================================FormField======================================================
 

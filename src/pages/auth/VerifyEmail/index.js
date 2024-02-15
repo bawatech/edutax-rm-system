@@ -29,7 +29,7 @@ const VerifyEmail = () => {
         dispatch(verifyEmail(payload))
             .then(res => {
                 alert(res?.data?.message)
-                navigate("/user/tax-file-add")
+                navigate("/user/profile-create")
             })
             .catch(err => {
                 if (err?.data?.field_errors) {

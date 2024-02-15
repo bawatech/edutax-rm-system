@@ -34,6 +34,10 @@ class authService {
         return await postRequest('auth/new-password', payload);
     }
 
+    updateProfile = async (payload) => {
+        return await postRequest('user/profile/update', payload);
+    }
+
 }
 
 const instance = new authService();

@@ -31,6 +31,7 @@ const TaxFileDetails = () => {
 
             return <>
                 <h1>Taxfile details </h1>
+                <div style={{display:'flex',rowGap:'20x',flexDirection:'column'}}>
                 <p><b>first name :</b> {details?.taxfile?.firstname}</p>
                 <p><b>last name :</b> {details?.taxfile?.lastname}</p>
                 <p><b>Date of Birth :</b> {details?.taxfile?.date_of_birth}</p>
@@ -41,6 +42,7 @@ const TaxFileDetails = () => {
                 <p><b>Postal Code :</b> {details?.taxfile?.postal_code}</p>
                 <p><b>Mobile Number :</b> {details?.taxfile?.mobile_number}</p>
                 <p><b>Tax Year :</b> {details?.taxfile?.tax_year}</p>
+                </div>
 
                 {
                     details?.taxfile?.documents?.map((itm, index) => {
@@ -64,6 +66,9 @@ const TaxFileDetails = () => {
         <br />
         <br />
         <ChatWindow />
+        <br />
+        <br />
+        <br />
     </UserLayout>
 
 }

@@ -4,7 +4,6 @@ import {
     BrowserRouter as Router,
     useRoutes
 } from 'react-router-dom';
-import Welcome from '../pages/Welcome';
 import Login from '../pages/auth/Login';
 import Signup from '../pages/auth/Signup';
 import ForgotPass from '../pages/auth/ForgotPass';
@@ -12,12 +11,14 @@ import TaxFileAdd from '../pages/user/TaxFileAdd';
 import TaxFileDetails from '../pages/user/TaxFileDetails';
 import VerifyEmail from '../pages/auth/VerifyEmail';
 import NewPassword from '../pages/auth/NewPassword';
+import QnaVerify from '../pages/QnaVerify';
+import ProfileCreate from '../pages/user/ProfileCreate';
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
     const routes = [
         {path:'',element:<Login/>},
         {path:'login',element:<Login/>},
-        {path:'welcome',element:<Welcome/>},
+        {path:'qna-verify',element:<QnaVerify/>},
         {path:'sign-up',element:<Signup/>},
         {path:'verify-email',element:<VerifyEmail/>},
         {path:'reset',element:<ForgotPass/>},
@@ -25,6 +26,7 @@ const AllRoutes = () => {
         {path: 'user',
         children:[
             {index:true, element : <h1>Dashboard</h1>},
+            {path:'profile-create', element : <ProfileCreate/>},
             {path:'tax-file-add', element : <TaxFileAdd/>},
             {path:'tax-file-details/:id', element : <TaxFileDetails/>}
         ]

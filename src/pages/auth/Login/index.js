@@ -72,7 +72,7 @@ const Login = () => {
                     onClick={handleSubmit}
                 />
                 <br />
-                <NavLink className="gotoSignup" to="/sign-up">Don't have an account?</NavLink>
+                <NavLink className="gotoSignup" to="/qna-verify">Don't have an account?</NavLink>
             </div>
         </div>
     </Layout>
