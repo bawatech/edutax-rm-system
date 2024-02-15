@@ -38,6 +38,14 @@ class authService {
         return await postRequest('user/create-profile', payload);
     }
 
+    addClientMessage = async (payload) => {
+        return await postRequest('user/add-client-message', payload);
+    }
+
+    getClientMessages = async (id) => {
+        return await getRequest(`user/get-client-messages/${id}`);
+    }
+
 }
 
 const instance = new authService();

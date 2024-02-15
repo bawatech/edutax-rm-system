@@ -23,6 +23,18 @@ const TaxFileDetails = () => {
             })
     }, [])
 
+    useEffect(() => {
+        authService.getClientMessages(param?.id)
+            .then(res => {
+                console.log('Client messages are ', res?.data)
+                // setDetails(res?.data)
+            })
+            .catch(err => {
+                console.log('Error in Get Client Messages', err)
+                alert(err?.data?.message)
+            })
+    }, [])
+
     const detailBody = useMemo(() => {
 
         if (details == null) {
@@ -31,24 +43,24 @@ const TaxFileDetails = () => {
 
             return <>
                 <h1>Taxfile details </h1>
-                <div style={{display:'flex',rowGap:'20x',flexDirection:'column'}}>
-                <p><b>first name :</b> {details?.taxfile?.firstname}</p>
-                <p><b>last name :</b> {details?.taxfile?.lastname}</p>
-                <p><b>Date of Birth :</b> {details?.taxfile?.date_of_birth}</p>
-                <p><b>Marital Status :</b> {details?.taxfile?.marital_status}</p>
-                <p><b>Street Name :</b> {details?.taxfile?.street_name}</p>
-                <p><b>City :</b> {details?.taxfile?.city}</p>
-                <p><b>Province :</b> {details?.taxfile?.province}</p>
-                <p><b>Postal Code :</b> {details?.taxfile?.postal_code}</p>
-                <p><b>Mobile Number :</b> {details?.taxfile?.mobile_number}</p>
-                <p><b>Tax Year :</b> {details?.taxfile?.tax_year}</p>
+                <div style={{ display: 'flex', rowGap: '20x', flexDirection: 'column' }}>
+                    <p><b>first name :</b> {details?.taxfile?.firstname}</p>
+                    <p><b>last name :</b> {details?.taxfile?.lastname}</p>
+                    <p><b>Date of Birth :</b> {details?.taxfile?.date_of_birth}</p>
+                    <p><b>Marital Status :</b> {details?.taxfile?.marital_status}</p>
+                    <p><b>Street Name :</b> {details?.taxfile?.street_name}</p>
+                    <p><b>City :</b> {details?.taxfile?.city}</p>
+                    <p><b>Province :</b> {details?.taxfile?.province}</p>
+                    <p><b>Postal Code :</b> {details?.taxfile?.postal_code}</p>
+                    <p><b>Mobile Number :</b> {details?.taxfile?.mobile_number}</p>
+                    <p><b>Tax Year :</b> {details?.taxfile?.tax_year}</p>
                 </div>
 
                 {
                     details?.taxfile?.documents?.map((itm, index) => {
                         return <FormGroup key={index}>
                             <FormField>
-                            <b>File : </b><p style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => window.open(itm.full_path, '_blank')}>{itm.full_path}</p>
+                                <b>File : </b><p style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => window.open(itm.full_path, '_blank')}>{itm.full_path}</p>
                             </FormField>
 
                         </FormGroup>
