@@ -4,10 +4,15 @@ import authService from '../../../service/auth'
 import { UserLayout } from '../../layouts/Layout'
 import { ChatInput, FormField, FormGroup } from '../../../components/Form'
 import { useParams } from 'react-router-dom'
+import { FaDownload } from "react-icons/fa6";
+import { IoIosEye } from "react-icons/io";
+import { Button } from '../../../components/Button'
+
 
 const TaxFileDetails = () => {
 
     const [details, setDetails] = useState(null)
+    const [payload, setPayload] = useState({});
     const param = useParams()
 
     console.log('param', param, 'details', details)
@@ -43,24 +48,66 @@ const TaxFileDetails = () => {
 
             return <>
                 <h1>Taxfile details </h1>
-                <div style={{ display: 'flex', rowGap: '20x', flexDirection: 'column' }}>
-                    <p><b>first name :</b> {details?.taxfile?.firstname}</p>
-                    <p><b>last name :</b> {details?.taxfile?.lastname}</p>
-                    <p><b>Date of Birth :</b> {details?.taxfile?.date_of_birth}</p>
-                    <p><b>Marital Status :</b> {details?.taxfile?.marital_status}</p>
-                    <p><b>Street Name :</b> {details?.taxfile?.street_name}</p>
-                    <p><b>City :</b> {details?.taxfile?.city}</p>
-                    <p><b>Province :</b> {details?.taxfile?.province}</p>
-                    <p><b>Postal Code :</b> {details?.taxfile?.postal_code}</p>
-                    <p><b>Mobile Number :</b> {details?.taxfile?.mobile_number}</p>
-                    <p><b>Tax Year :</b> {details?.taxfile?.tax_year}</p>
+                <br/>
+                <div className="userDetails-section">
+            <div className="userDetails-inner-container">
+                <div className='userDetails-head-content'>
+                    <div className="userDetails-txt-content">
+                        <DetailsComponent
+                            heading="First Name"
+                            value={details?.taxfile?.firstname}
+                        />
+                        <DetailsComponent 
+                            heading="Last Name"
+                            value={details?.taxfile?.lastname}
+                        />
+                        <DetailsComponent 
+                            heading="Date of Birth"
+                            value={details?.taxfile?.date_of_birth}
+                        />
+                        <DetailsComponent 
+                            heading="Marital Status"
+                            value={details?.taxfile?.marital_status}
+                        />
+                        <DetailsComponent 
+                            heading="Mobile Number"
+                            value={details?.taxfile?.mobile_number}
+                        />
+                    </div>
+                    <div className="userDetails-txt-content">
+                        <DetailsComponent 
+                            heading="Street Name"
+                            value={details?.taxfile?.street_name}
+                        />
+                        <DetailsComponent 
+                            heading="City"
+                            value={details?.taxfile?.city}
+                        />
+                        <DetailsComponent 
+                            heading="Province"
+                            value={details?.taxfile?.province}
+                        />
+                        <DetailsComponent 
+                            heading="Postal Code"
+                            value={details?.taxfile?.postal_code}
+                        />
+                        <DetailsComponent 
+                            heading="Postal Code"
+                            value={details?.taxfile?.tax_year}
+                        />
+                    </div>
                 </div>
-
+                <div className="userDetails-img-content">
                 {
                     details?.taxfile?.documents?.map((itm, index) => {
                         return <FormGroup key={index}>
                             <FormField>
-                                <b>File : </b><p style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => window.open(itm.full_path, '_blank')}>{itm.full_path}</p>
+                            <FileComponent 
+                                name="File"
+                                download={itm?.full_path}
+                                downloadType={itm?.documents?.[index]?.filename}
+                                view={itm?.full_path}
+                            />
                             </FormField>
 
                         </FormGroup>
@@ -68,6 +115,10 @@ const TaxFileDetails = () => {
                     })
 
                 }
+                </div>
+            </div>
+        </div>
+                
             </>
         }
     }, [details])
@@ -137,3 +188,27 @@ const Reciever = (props) => {
         </div>
     </div>
 }
+
+const DetailsComponent = (props) => {
+
+    return<div className="details-component-section">
+        <label>
+            {props?.heading}
+        </label>
+        <p>{props?.value}</p>
+    </div>
+}
+
+const FileComponent = (props) => {
+
+    return<div className="file-component-section">
+        <label>
+            {props?.name}
+        </label>
+        <div className="file-component-btn-div">
+            <a href={props?.download} download={props?.downloadName} target="_blank" rel="noreferrer"><FaDownload /></a>
+            <a href="" onClick={()=>{window.open(props?.view, "_blank")}}><IoIosEye /></a>
+        </div>
+    </div>
+}
+

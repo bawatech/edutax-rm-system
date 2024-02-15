@@ -47,8 +47,8 @@ const HeaderLeft=()=>{
 
 
 const HeaderRight=()=>{
-  return <div className="layout-header-logo">
-  <img src={logo} alt="logo" resizeMode="contain"/>
+  return <div className="layout-header-content">
+    <img src={logo} alt="logo" resizeMode="contain"/>
   </div>
 }
 
