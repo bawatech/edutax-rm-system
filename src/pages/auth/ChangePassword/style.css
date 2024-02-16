@@ -1,0 +1,15 @@
+.change-password-section{
+    width: 100%;
+    padding: 2em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.change-password-inner-container{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+

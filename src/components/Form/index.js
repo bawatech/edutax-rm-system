@@ -8,6 +8,7 @@ import { Button } from "../Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
+import { RxCross2 } from "react-icons/rx";
 // ========================================= Radio/LabelYesNo Component============================================
 
 export const LabelYesNo = (props) => {
@@ -130,13 +131,13 @@ export const ChatInput = (props) => {
     <div className="input-div">
       {props?.label && <label className="input-label">{props?.label}</label>}
       <div className="chatinput-inner-div">
-        <input
-          className="chatinput"
-          name={props?.name}
-          value={props?.value || ""}
-          placeholder={props?.hint}
-          type={props?.password ? (toggle ? "text" : "password") : props?.type}
-          onChange={(e) => props?.handleChange(e.target.value)}
+        <Textarea
+            name={props?.name}
+            value={props?.value}
+            rows={props?.rows}
+            cols={props?.cols}
+            placeholder={props?.hint}
+            handleChange={props?.handleChange}
         />
         {/* <Button
           title={<AiFillAudio />}
@@ -163,10 +164,39 @@ export const ChatInput = (props) => {
   );
 };
 
-Input.defaultProps = {
-  type: "text",
-};
+ChatInput.defaultProps = {
+  type: 'text',
+  rows: 2,
+  cols: 1,
+}
 // ===================================chat Input======================================================
+// ===================================textarea======================================================
+
+export const Textarea =(props) =>{
+
+
+  return<div className="textarea-div">
+      {props?.label && <label className="textarea-label">{props?.label}</label>}
+      <div className="textarea-inner-div">
+          <textarea 
+              className="textarea"
+              name={props?.name}
+              value={props?.value || ''}
+              rows={props?.rows}
+              cols={props?.cols}
+              placeholder={props?.hint}
+              onChange={(e)=>props?.handleChange(props.name, e.target.value)}
+          ></textarea>
+      </div>
+  </div>
+      
+}
+
+Textarea.defaultProps = {
+  rows: 10,
+  cols: 30,
+}
+// ===================================textarea======================================================
 
 // ===================================Dropdown======================================================
 export const Dropdown = (props) => {
@@ -297,3 +327,25 @@ export const InputDate = (props) => {
     </>
   );
 };
+
+// ===================================Popup======================================================
+
+export const Popup = (props)=> {
+
+  return props?.trigger && <div className="popup-section">
+      <div className='popup-background'></div>
+
+      <div className="popup-content">
+          <div className="popup-header">
+              <Button varient="icon" title={<RxCross2 />} onClick={props?.setTrigger}/>
+          </div>
+          <div className="popup-body">
+              {props.children}
+          </div>
+      </div>
+      
+  </div>
+}
+
+// ===================================Popup======================================================
+

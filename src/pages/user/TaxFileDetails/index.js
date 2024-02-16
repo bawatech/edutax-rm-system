@@ -1,8 +1,3 @@
-//change password
-
-
-
-
 
 
 import { useEffect, useMemo, useState } from 'react'
@@ -16,6 +11,7 @@ import { IoIosEye } from "react-icons/io";
 import { useDispatch } from 'react-redux'
 import { addClientMessage } from '../../../store/userSlice'
 import { toastError } from '../../../BTUI/BtToast'
+import { MdEdit } from "react-icons/md";
 
 
 const TaxFileDetails = () => {
@@ -54,17 +50,7 @@ const TaxFileDetails = () => {
             })
     }, [reload])
 
-    const handleChange = (name, value) => {
-        setPayload({
-            ...payload,
-            [name]: value,
-            ['taxfile_id']: param?.id
-        })
-    }
     // console.log('payload', payload)
-
-
-
 
     const detailBody = useMemo(() => {
 
@@ -186,16 +172,19 @@ const ChatWindow = ({ taxfile_id }) => {
     const [messageList, setMessageList] = useState([])
     const dispatch = useDispatch()
 
+    const handleChange = (name,value) => {
+        setNewMessage({
+            ...newMessage,
+            [name] : value,
+            taxfile_id: taxfile_id
+        })
+    }
 
     const handleSend = () => {
-
-        if (newMessage.trim().length < 1) {
-            return false;
-        }
-        dispatch(addClientMessage({
-            taxfile_id,
-            message: newMessage
-        }))
+        // if (newMessage?.trim()?.length < 1) {
+        //     return false;
+        // }
+        dispatch(addClientMessage(newMessage))
             .then((res) => {
                 getMessageList()
                 setNewMessage("")
@@ -238,7 +227,6 @@ const ChatWindow = ({ taxfile_id }) => {
                             msg={msg?.message}
                         />
                     }
-
                 })}
 
 
@@ -246,9 +234,9 @@ const ChatWindow = ({ taxfile_id }) => {
             <div className="details-chat-input-div">
                 <ChatInput
                     name="message"
-                    value={newMessage}
+                    value={newMessage?.message}
                     hint="write message here"
-                    handleChange={setNewMessage}
+                    handleChange={handleChange}
                     onClickSend={handleSend}
                 />
             </div>
@@ -294,6 +282,7 @@ const FileComponent = (props) => {
         <div className="file-component-btn-div">
             <a href={props?.download} download={props?.downloadName} target="_blank" rel="noreferrer"><FaDownload /></a>
             <a href="" onClick={() => { window.open(props?.view, "_blank") }}><IoIosEye /></a>
+            <a href="" onClick=""><MdEdit /></a>
         </div>
     </div>
 }

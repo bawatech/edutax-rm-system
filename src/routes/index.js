@@ -13,6 +13,7 @@ import VerifyEmail from '../pages/auth/VerifyEmail';
 import NewPassword from '../pages/auth/NewPassword';
 import QnaVerify from '../pages/QnaVerify';
 import ProfileCreate from '../pages/user/ProfileCreate';
+import ChangePassword from '../pages/auth/ChangePassword';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
@@ -23,6 +24,7 @@ const AllRoutes = () => {
         {path:'sign-up',element:<Signup/>},
         {path:'verify-email',element:<VerifyEmail/>},
         {path:'reset',element:<ForgotPass/>},
+        {path:'settings',element:<ChangePassword/>},
         {path:'verify-forgot-pass-otp',element:<NewPassword/>},
         {path: 'user',
         children:[

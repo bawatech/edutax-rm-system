@@ -268,7 +268,31 @@
     
 }
 /* ===========================Chat Message================================================ */
+.textarea-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
 
+.textarea-label{
+    color: grey;
+}
+
+.textarea-inner-div{
+    width: 100%;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 0.3em;
+    overflow: hidden;
+}
+
+.textarea-inner-div>textarea{
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 1em;
+}
 /* ================================chat input========================================= */
 
 .chatinput-inner-div{
@@ -282,16 +306,20 @@
     /* border-radius: 0.5em; */
 }
 
-.chatinput-inner-div>input{
+.chatinput-inner-div>div>div{
+    border: none;
+}
+
+.chatinput-inner-div>div>div textarea{
     width: 100%;
     border: none;
     background: transparent;
     font-size: 1.1em;
-    padding: 1em;
+    padding: 0.5em;
     outline: none;
 }
 
-.chatinput-inner-div>input::placeholder{
+.chatinput-inner-div textarea::placeholder{
     color: rgba(0,0,0,0.2);
     font-weight: lighter;
 }
@@ -300,3 +328,42 @@
     padding: 0.5em 0.5em !important;
     font-size: 1.5em !important;
 }
+
+/* ========================================popup============================================================= */
+
+.popup-section{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-background{
+    background: rgba(0, 0, 0,0.3);
+    position: absolute;
+    inset: 0;
+}
+
+.popup-content{
+    max-width: 50%;
+    background: white;
+    z-index: 9999;
+    padding: 1em;
+    border-radius: 0.5em;
+}
+
+.popup-header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5em;
+    font-size: 1.1em;
+}
+
+.popup-body{
+    padding: 1em;
+}
+
+/* ========================================popup============================================================= */

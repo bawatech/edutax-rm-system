@@ -8,9 +8,9 @@
   --pri-color: #005acf;
   --pri-color-active: #b1a296d0;
   --pri-color-alpha: #b1a29630;
-  --sec-color: #5d5c61;
-  --sec-color-alpha: #5d5c61;
-  --sec-color-active: #5d5c61ef;
+  --sec-color: #FE5757;
+  --sec-color-alpha: #FE575761;
+  --sec-color-active: #fe5757ef;
 
 }
 
@@ -22,6 +22,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background: #EDF1FA; */
 }
 
 code {

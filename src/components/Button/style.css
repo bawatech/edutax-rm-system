@@ -15,7 +15,6 @@
 
 .btn.contained{
     background: var(--sec-color);
-    padding: 1em 2em;
     padding: 1.3em 3em;
     width: 100%;
     background: green;
@@ -34,4 +33,19 @@
     padding: 0.5em;
     /* background: rgb(255, 246, 246); */
     border-radius: 0.3em;
+}
+
+.btn.small{
+    background: var(--pri-color);
+    padding: .8em 1em;
+    width: fit-content;
+    color: white;
+    border-radius: 0.3em;
+    max-width: 20%;
+    min-width: 10em;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn.danger{
+    background: var(--sec-color);
 }
