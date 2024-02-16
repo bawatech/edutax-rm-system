@@ -95,6 +95,17 @@ export const setNewPassword = (param) => async (dispatch) => {
         });
 };
 
+export const updatePassword = (param) => async (dispatch) => {
+    return authService.updatePassword(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
 const initialState = {
     user: null
 };

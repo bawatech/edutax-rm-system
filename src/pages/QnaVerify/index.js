@@ -74,49 +74,19 @@ const questionList = [
     {
         id: 'q1',
         name: 'question1',
-        label: 'Are you a student dfv dfśbśḍghśḍhgdsḥdf bg df b dsf b dfsb  dfsb d sfgb df sb dsf b dfs b dsf b dsf b df b dfb ds fgnbdsf b fsgnbdfsg nb rsn brs tb rstb',
+        label: 'Do you have any Business/Self-employed income',
         value: false
     },
     {
         id: 'q2',
         name: 'question2',
-        label: 'Are you a student df g dfh  dgsh dg sh g sdh df sh gsd fgh sde gh t h srt h srt h srt hsr th rst',
+        label: 'Do you have any income from UBER, LIFT, SKIP etc?',
         value: false
     },
     {
         id: 'q3',
         name: 'question3',
-        label: 'Are you a student',
-        value: false
-    },
-    {
-        id: 'q4',
-        name: 'question4',
-        label: 'Are you a student',
-        value: false
-    },
-    {
-        id: 'q5',
-        name: 'question5',
-        label: 'Are you a student',
-        value: false
-    },
-    {
-        id: 'q6',
-        name: 'question6',
-        label: 'Are you a student',
-        value: false
-    },
-    {
-        id: 'q7',
-        name: 'question7',
-        label: 'Are you a student',
-        value: false
-    },
-    {
-        id: 'q8',
-        name: 'question8',
-        label: 'Are you a student',
+        label: 'Do you have any Rental Income',
         value: false
     },
 ]

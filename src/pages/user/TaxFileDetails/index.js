@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import './style.css'
 import authService from '../../../service/auth'
 import { UserLayout } from '../../layouts/Layout'
-import { ChatInput, FormField, FormGroup } from '../../../components/Form'
+import { ChatInput, Container, FormField, FormGroup } from '../../../components/Form'
 import { useParams } from 'react-router-dom'
 import { FaDownload } from "react-icons/fa6";
 import { IoIosEye } from "react-icons/io";
@@ -18,7 +18,6 @@ const TaxFileDetails = () => {
 
     const [details, setDetails] = useState(null)
     const [chatMsg, setChatMsg] = useState([])
-    const [payload, setPayload] = useState({});
     const [reload, setReload] = useState(false);
     const param = useParams()
     const dispatch = useDispatch()
@@ -59,7 +58,7 @@ const TaxFileDetails = () => {
         } else {
 
             return <>
-                <h1 style={{ textAlign: 'center', marginTop: '2em' }}>Taxfile details </h1>
+                <h1 className="tax-file-details-heading">Taxfile details </h1>
                 <br />
                 <div className="userDetails-section">
                     <div className="userDetails-inner-container">
@@ -149,17 +148,20 @@ const TaxFileDetails = () => {
     }, [details])
 
     return <UserLayout>
-        {detailBody}
-        <br />
-        <br />
-        <br />
-        <ChatWindow
-            chatMsg={chatMsg}
-            taxfile_id={param?.id}
-        />
-        <br />
-        <br />
-        <br />
+        <Container>
+            {detailBody}
+            <br />
+            <br />
+            <br />
+            <ChatWindow
+                chatMsg={chatMsg}
+                taxfile_id={param?.id}
+            />
+            <br />
+            <br />
+            <br />
+        </Container>
+        
     </UserLayout>
 
 }
@@ -221,10 +223,12 @@ const ChatWindow = ({ taxfile_id }) => {
                     if (msg?.user_type === "CLIENT") {
                         return <Sender
                             msg={msg?.message}
+                            time={msg?.added_on}
                         />
                     } else if (msg?.user_type === "EXECUTIVE") {
                         return <Reciever
                             msg={msg?.message}
+                            time={msg?.added_on}
                         />
                     }
                 })}
@@ -251,6 +255,9 @@ const Sender = (props) => {
         <div className="sender-div">
             <p>{props?.msg}</p>
         </div>
+        <div className="sender-time">
+            <p>{props?.time}</p>
+        </div>
     </div>
 }
 
@@ -259,6 +266,9 @@ const Reciever = (props) => {
     return <div className='reciever-div-section'>
         <div className="reciever-div">
             <p>{props?.msg}</p>
+        </div>
+        <div className="reciever-time">
+            <p>{props?.time}</p>
         </div>
     </div>
 }

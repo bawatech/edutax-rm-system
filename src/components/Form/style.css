@@ -243,7 +243,7 @@
     min-width: 100%;
     border: none;
     z-index: 999;
-    padding: 1.1em;
+    padding: 1.3em;
 }
 
 .file-main-section{
@@ -363,7 +363,48 @@
 }
 
 .popup-body{
-    padding: 1em;
+    /* padding: em; */
+    padding: 0em 1em 1em 1em ;
 }
 
 /* ========================================popup============================================================= */
+
+/* ========================================container============================================================= */
+
+.container-section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-inner-div{
+    width: 100%;
+    max-width: 60em;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    padding: 2em;
+    border-radius: 2em;
+}
+
+@media only screen and (min-width: 100px) {
+    .container-inner-div{
+        padding: 0em;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .container-inner-div{
+        padding: 1em;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .container-inner-div{
+        padding: 2em;
+    }
+}
+
+
+
+/* ========================================container============================================================= */

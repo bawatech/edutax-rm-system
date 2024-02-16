@@ -1,5 +1,5 @@
 import './style.css';
-import { Input } from "../../../components/Form";
+import { Container, FormField, FormGroup, Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -42,28 +42,38 @@ const ForgotPassword = () => {
     }
 
     return <Layout>
-        <div className="signup-section">
-            <div className="signup-inner-container">
-                <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Forgot Password? Get Otp</h2>
+        <Container>
+            {/* <div className="signup-section">
+                <div className="signup-inner-container"> */}
+                <br/>
+                    <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Forgot Password? Get Otp</h2>
 
-                <Input
-                    name="email"
-                    value={payload.email}
-                    hint="Email"
-                    handleChange={handleChange}
-                    error={errors?.email}
-                />
+                    <FormGroup>
+                        <FormField>
+                            <Input
+                                name="email"
+                                value={payload.email}
+                                hint="Email"
+                                handleChange={handleChange}
+                                error={errors?.email}
+                            />
+                        </FormField>
+                    </FormGroup>
+                    <br />
 
-
-                <br />
-                <Button
-                    name="getOtp"
-                    title="Get Otp"
-                    onClick={handleSubmit}
-                />
-                <br />
-            </div>
-        </div>
+                    <div style={{textAlign: 'center'}}>
+                        <Button
+                            name="getOtp"
+                            title="Get Otp"
+                            onClick={handleSubmit}
+                        />
+                    </div>
+                    
+                    <br />
+                {/* </div>
+            </div> */}
+        </Container>
+        
     </Layout>
 }
 

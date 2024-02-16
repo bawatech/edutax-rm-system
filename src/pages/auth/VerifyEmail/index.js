@@ -1,11 +1,12 @@
 import './style.css';
-import { Input } from "../../../components/Form";
+import { Container, FormField, FormGroup, Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
 import { verifyEmail } from '../../../store/userSlice';
+import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 
 const VerifyEmail = () => {
     const [payload, setPayload] = useState({})
@@ -28,40 +29,52 @@ const VerifyEmail = () => {
     const handleSubmit = () => {
         dispatch(verifyEmail(payload))
             .then(res => {
-                alert(res?.data?.message)
+                toastSuccess(res?.data?.message)
                 navigate("/user/profile-create")
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
+                    toastError(err?.data?.field_errors)
                     setErrors(err?.data?.field_errors)
                 } else {
                    // alert(err?.data?.message)
                 }
-                alert(err?.data?.message)
+                toastError(err?.data?.message)
             })
     }
 
     return <Layout>
-        <div className="signup-section">
-            <div className="signup-inner-container">
-                <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Email Address</h2>
+        <Container>
+            {/* <div className="signup-section">
+                <div className="signup-inner-container"> */}
+                    <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Email Address</h2>
 
-                <Input
-                    name="otp"
-                    value={payload?.otp}
-                    hint="Otp"
-                    handleChange={handleChange}
-                    error={errors?.otp}
-                />
-                <br />
-                <Button
-                    name="verify"
-                    title="Verify"
-                    onClick={handleSubmit}
-                />
-                <br />
-            </div>
-        </div>
+                    <FormGroup>
+                        <FormField>
+                            <Input
+                                name="otp"
+                                value={payload?.otp}
+                                hint="Otp"
+                                handleChange={handleChange}
+                                error={errors?.otp}
+                            />
+                        </FormField>
+                    </FormGroup>
+                    <br />
+
+                    <div style={{textAlign: 'center'}}>
+                        <Button
+                            name="verify"
+                            title="Verify"
+                            onClick={handleSubmit}
+                        />
+                    </div>
+                    
+                    <br />
+                {/* </div>
+            </div> */}
+        </Container>
+        
     </Layout>
 }
 

@@ -348,4 +348,16 @@ export const Popup = (props)=> {
 }
 
 // ===================================Popup======================================================
+// ===================================container======================================================
+
+export const Container = ({children})=> {
+
+  return <div className="container-section">
+    <div className="container-inner-div">
+      {children}
+    </div>
+  </div>
+}
+
+// ===================================container======================================================
 

@@ -34,6 +34,10 @@ class authService {
         return await postRequest('auth/new-password', payload);
     }
 
+    updatePassword = async (payload) => {
+        return await postRequest('auth/update-password', payload);
+    }
+
     createProfile = async (payload) => {
         return await postRequest('user/create-profile', payload);
     }

@@ -8,6 +8,7 @@ import { addTaxfile } from "../../../store/userSlice";
 import { UserLayout } from "../../layouts/Layout";
 import { useNavigate } from "react-router-dom";
 import authService from "../../../service/auth";
+import { toastError, toastSuccess } from "../../../BTUI/BtToast";
 const ProfileCreate = () => {
 
     const [payload, setPayload] = useState({});
@@ -23,17 +24,21 @@ const ProfileCreate = () => {
         authService.createProfile(payload)
             .then(res => {
                 console.log('Response', res?.data?.taxfile?.id)
-                alert(res?.data?.message)
+                // alert(res?.data?.message)
+                toastSuccess(res?.data?.message)
                 navigate(`/user/tax-file-add`)
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
+                    toastError(err?.data?.field_errors)
                 } else {
                     // alert(err?.data?.message)
+                    toastError(err?.data?.message)
+
                 }
-                console.log('Error', err)
-                alert(err?.data?.message)
+                // alert(err?.data?.message)
+                toastError(err?.data?.message)
             })
     }
 

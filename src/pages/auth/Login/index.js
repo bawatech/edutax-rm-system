@@ -1,5 +1,5 @@
 import './style.css';
-import { Input } from "../../../components/Form";
+import { Container, FormField, FormGroup, Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -47,43 +47,56 @@ const Login = () => {
     }
 
     return <Layout>
-        <div className="login-section">
-            <div className="login-inner-container">
+        {/* <div className="login-section">
+            <div className="login-inner-container"> */}
+            <Container>
                 <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Log In</h2>
 
-                <Input
-                    name="email"
-                    value={payload?.email}
-                    hint="Email"
-                    handleChange={handleChange}
-                    error={errors?.email}
-                />
-                <Input
-                    name="password"
-                    type="password"
-                    password
-                    value={payload?.password}
-                    hint="Password"
-                    handleChange={handleChange}
-                    error={errors?.password}
-
-                />
+                <FormGroup>
+                    <FormField>
+                        <Input
+                            name="email"
+                            value={payload?.email}
+                            hint="Email"
+                            handleChange={handleChange}
+                            error={errors?.email}
+                        />
+                    </FormField>
+                </FormGroup>
+                <FormGroup>
+                    <FormField>
+                        <Input
+                            name="password"
+                            type="password"
+                            password
+                            value={payload?.password}
+                            hint="Password"
+                            handleChange={handleChange}
+                            error={errors?.password}
+                        />
+                    </FormField>
+                </FormGroup>
 
                 <div className='forgot-div'>
                     <NavLink className="gotoForgot" to="/reset">forgot password?</NavLink>
                 </div>
                 <br />
-                <Button
-                    name="login"
-                    title="Login"
-                    loading={loadingButton}
-                    loadingText="Logging In"
-                    onClick={handleSubmit}
-                />
-                <br />
-                <NavLink className="gotoSignup" to="/qna-verify">Don't have an account?</NavLink>
-            </div>
-        </div>
+
+                <div style={{textAlign: 'center'}}>
+                    <Button
+                        name="login"
+                        title="Login"
+                        loading={loadingButton}
+                        loadingText="Logging In"
+                        onClick={handleSubmit}
+                    />
+                    <br />
+                    <NavLink className="gotoSignup" to="/qna-verify">Don't have an account?</NavLink>
+                </div>
+                
+            </Container>
+            {/* </div>
+        </div> */}
     </Layout>
 }
 

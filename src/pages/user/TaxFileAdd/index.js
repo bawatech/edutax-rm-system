@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   ChatInput,
   ChatLayout,
+  Container,
   Dropdown,
   FileUpload,
   Form,
@@ -22,6 +23,8 @@ import { UserLayout } from "../../layouts/Layout";
 import { useNavigate } from "react-router-dom";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
 import { hideLoader, showLoader } from "../../../BTUI/BtLoader";
+
+
 const TaxFileAdd = () => {
   const [payload, setPayload] = useState({
     documents: [
@@ -96,14 +99,14 @@ const TaxFileAdd = () => {
   };
 
   return (
-    <div className="">
       <UserLayout>
+        <Container>
         <Form>
           <FormName name="Add Tax File Details" />
           <FormGroup>
             <FormField>
               <Dropdown
-                label="PROVINCE OF RETURN AS ON 31ST DECEMBER?"
+                label="Province of return as on 31st December?"
                 name="taxfile_province"
                 selected={payload?.taxfile_province}
                 options={{ list: province, name: "name", value: "code" }}
@@ -208,8 +211,8 @@ const TaxFileAdd = () => {
           />
         </div>
         <br />
+        </Container>
       </UserLayout>
-    </div>
   );
 };
 
