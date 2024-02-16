@@ -27,15 +27,15 @@ const TaxFileDetails = () => {
     const param = useParams()
     const dispatch = useDispatch()
 
-    console.log('param', param, 'details', details)
+    // console.log('param', param, 'details', details)
     useEffect(() => {
         authService.getTaxfileDetails(param?.id)
             .then(res => {
-                console.log('details are ', res?.data)
+                //  console.log('details are ', res?.data)
                 setDetails(res?.data)
             })
             .catch(err => {
-                console.log('Error in taxfiledetail', err)
+                // console.log('Error in taxfiledetail', err)
                 alert(err?.data?.message)
             })
     }, [])
@@ -43,27 +43,27 @@ const TaxFileDetails = () => {
     useEffect(() => {
         authService.getClientMessages(param?.id)
             .then(res => {
-                console.log('Client messages are ', res?.data)
-                console.log('Client messages are ', res?.data?.response?.messages)
+                // console.log('Client messages are ', res?.data)
+                // console.log('Client messages are ', res?.data?.response?.messages)
                 // setDetails(res?.data)
                 setChatMsg(res?.data?.response?.messages)
             })
             .catch(err => {
-                console.log('Error in Get Client Messages', err)
+                // console.log('Error in Get Client Messages', err)
                 alert(err?.data?.message)
             })
-    },[reload])
+    }, [reload])
 
-    const handleChange = (name,value) => {
+    const handleChange = (name, value) => {
         setPayload({
             ...payload,
             [name]: value,
-            ['taxfile_id']: param?.id 
+            ['taxfile_id']: param?.id
         })
     }
     // console.log('payload', payload)
 
-   
+
 
 
     const detailBody = useMemo(() => {
@@ -73,78 +73,91 @@ const TaxFileDetails = () => {
         } else {
 
             return <>
-                <h1 style={{textAlign: 'center', marginTop: '2em'}}>Taxfile details </h1>
-                <br/>
+                <h1 style={{ textAlign: 'center', marginTop: '2em' }}>Taxfile details </h1>
+                <br />
                 <div className="userDetails-section">
-            <div className="userDetails-inner-container">
-                <div className='userDetails-head-content'>
-                    <div className="userDetails-txt-content">
-                        <DetailsComponent
-                            heading="First Name"
-                            value={details?.taxfile?.firstname}
-                        />
-                        <DetailsComponent 
-                            heading="Last Name"
-                            value={details?.taxfile?.lastname}
-                        />
-                        <DetailsComponent 
-                            heading="Date of Birth"
-                            value={details?.taxfile?.date_of_birth}
-                        />
-                        <DetailsComponent 
-                            heading="Marital Status"
-                            value={details?.taxfile?.marital_status}
-                        />
-                        <DetailsComponent 
-                            heading="Mobile Number"
-                            value={details?.taxfile?.mobile_number}
-                        />
-                    </div>
-                    <div className="userDetails-txt-content">
-                        <DetailsComponent 
-                            heading="Street Name"
-                            value={details?.taxfile?.street_name}
-                        />
-                        <DetailsComponent 
-                            heading="City"
-                            value={details?.taxfile?.city}
-                        />
-                        <DetailsComponent 
-                            heading="Province"
-                            value={details?.taxfile?.province}
-                        />
-                        <DetailsComponent 
-                            heading="Postal Code"
-                            value={details?.taxfile?.postal_code}
-                        />
-                        <DetailsComponent 
-                            heading="Tax Year"
-                            value={details?.taxfile?.tax_year}
-                        />
-                    </div>
-                </div>
-                <div className="userDetails-img-content">
-                {
-                    details?.taxfile?.documents?.map((itm, index) => {
-                        return <FormGroup key={index}>
+                    <div className="userDetails-inner-container">
+                        <div className='userDetails-head-content'>
+                            <div className="userDetails-txt-content">
+                                <DetailsComponent
+                                    heading="First Name"
+                                    value={details?.taxfile?.firstname}
+                                />
+                                <DetailsComponent
+                                    heading="Last Name"
+                                    value={details?.taxfile?.lastname}
+                                />
+                                <DetailsComponent
+                                    heading="Date of Birth"
+                                    value={details?.taxfile?.date_of_birth}
+                                />
+                                <DetailsComponent
+                                    heading="Marital Status"
+                                    value={details?.taxfile?.marital_status}
+                                />
+                                <DetailsComponent
+                                    heading="Mobile Number"
+                                    value={details?.taxfile?.mobile_number}
+                                />
+                            </div>
+                            <div className="userDetails-txt-content">
+                                <DetailsComponent
+                                    heading="Street Name"
+                                    value={details?.taxfile?.street_name}
+                                />
+                                <DetailsComponent
+                                    heading="City"
+                                    value={details?.taxfile?.city}
+                                />
+                                <DetailsComponent
+                                    heading="Province"
+                                    value={details?.taxfile?.province}
+                                />
+                                <DetailsComponent
+                                    heading="Postal Code"
+                                    value={details?.taxfile?.postal_code}
+                                />
+                                <DetailsComponent
+                                    heading="Tax Year"
+                                    value={details?.taxfile?.tax_year}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="userDetails-img-content">
                             <FormField>
-                                <FileComponent 
-                                    name="File"
-                                    download={itm?.full_path}
-                                    downloadName={itm?.documents?.[index]?.filename}
-                                    view={itm?.full_path}
+                                <FileComponent
+                                    name="Document (setup or change your direct deposit with CRA) : "
+                                    download={details?.taxfile?.document_direct_deposit_cra}
+                                    downloadName={details?.taxfile?.document_direct_deposit_cra}
+                                    view={details?.taxfile?.document_direct_deposit_cra}
                                 />
                             </FormField>
+                        </div>
 
-                        </FormGroup>
 
-                    })
+                        <div className="userDetails-img-content">
+                            {
+                                details?.taxfile?.documents?.map((itm, index) => {
+                                    return <FormGroup key={index}>
+                                        <FormField>
+                                            <FileComponent
+                                                name="File : "
+                                                download={itm?.full_path}
+                                                downloadName={itm?.documents?.[index]?.filename}
+                                                view={itm?.full_path}
+                                            />
+                                        </FormField>
 
-                }
+                                    </FormGroup>
+
+                                })
+
+                            }
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-                
+
             </>
         }
     }, [details])
@@ -154,9 +167,9 @@ const TaxFileDetails = () => {
         <br />
         <br />
         <br />
-        <ChatWindow 
+        <ChatWindow
             chatMsg={chatMsg}
-            taxfile_id = {param?.id}
+            taxfile_id={param?.id}
         />
         <br />
         <br />
@@ -168,20 +181,20 @@ const TaxFileDetails = () => {
 export default TaxFileDetails
 
 
-const ChatWindow = ({taxfile_id}) => {
+const ChatWindow = ({ taxfile_id }) => {
     const [newMessage, setNewMessage] = useState("")
     const [messageList, setMessageList] = useState([])
     const dispatch = useDispatch()
 
 
     const handleSend = () => {
-        
-        if(newMessage.trim().length<1){
+
+        if (newMessage.trim().length < 1) {
             return false;
         }
         dispatch(addClientMessage({
             taxfile_id,
-            message:newMessage
+            message: newMessage
         }))
             .then((res) => {
                 getMessageList()
@@ -192,43 +205,43 @@ const ChatWindow = ({taxfile_id}) => {
             })
     }
 
-    const getMessageList= () => {
+    const getMessageList = () => {
         authService.getClientMessages(taxfile_id)
             .then(res => {
-                console.log('Client messages are ', res?.data)
-                console.log('Client messages are ', res?.data?.response?.messages)
+                // console.log('Client messages are ', res?.data)
+                // console.log('Client messages are ', res?.data?.response?.messages)
                 // setDetails(res?.data)
                 setMessageList(res?.data?.response?.messages)
             })
             .catch(err => {
-                console.log('Error in Get Client Messages', err)
+                // console.log('Error in Get Client Messages', err)
                 toastError(err?.data?.message)
             })
     }
     useEffect(() => {
         getMessageList()
-    },[])
+    }, [])
 
 
     return <div className="details-chat-section">
         <div className="details-chat-inner-section">
             <div className="details-chat-msg-div">
                 {messageList?.map((msg, index) => {
-                    console.log("mmeeeeeeeeeeeemememememememe", msg?.user_type)
+                    //  console.log("mmeeeeeeeeeeeemememememememe", msg?.user_type)
 
-                    if(msg?.user_type === "CLIENT"){
+                    if (msg?.user_type === "CLIENT") {
                         return <Sender
-                            msg={msg?.message} 
+                            msg={msg?.message}
                         />
-                    }else if(msg?.user_type === "EXECUTIVE"){
+                    } else if (msg?.user_type === "EXECUTIVE") {
                         return <Reciever
-                            msg={msg?.message} 
+                            msg={msg?.message}
                         />
                     }
-                    
+
                 })}
-                
-                
+
+
             </div>
             <div className="details-chat-input-div">
                 <ChatInput
@@ -264,7 +277,7 @@ const Reciever = (props) => {
 
 const DetailsComponent = (props) => {
 
-    return<div className="details-component-section">
+    return <div className="details-component-section">
         <label>
             {props?.heading}
         </label>
@@ -274,13 +287,13 @@ const DetailsComponent = (props) => {
 
 const FileComponent = (props) => {
 
-    return<div className="file-component-section">
+    return <div className="file-component-section">
         <label>
             {props?.name}
         </label>
         <div className="file-component-btn-div">
             <a href={props?.download} download={props?.downloadName} target="_blank" rel="noreferrer"><FaDownload /></a>
-            <a href="" onClick={()=>{window.open(props?.view, "_blank")}}><IoIosEye /></a>
+            <a href="" onClick={() => { window.open(props?.view, "_blank") }}><IoIosEye /></a>
         </div>
     </div>
 }

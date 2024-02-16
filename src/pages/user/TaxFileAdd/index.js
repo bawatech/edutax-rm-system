@@ -36,7 +36,7 @@ const TaxFileAdd = () => {
     showLoader()
     dispatch(addTaxfile(payload))
       .then((res) => {
-        console.log("Response", res?.data?.taxfile?.id);
+       // console.log("Response", res?.data?.taxfile?.id);
         toastSuccess(res?.data?.message);
         hideLoader()
         navigate(`/user/tax-file-details/${res?.data?.taxfile?.id}`);
@@ -84,7 +84,7 @@ const TaxFileAdd = () => {
       })
     );
   };
-  console.log("Payload", payload);
+//  console.log("Payload", payload);
 
   const handleChangeFileArray = (name, value, thisIndex) => {
     let oldArr = [...payload?.documents];
