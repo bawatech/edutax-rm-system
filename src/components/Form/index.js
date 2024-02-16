@@ -136,9 +136,9 @@ export const ChatInput = (props) => {
           value={props?.value || ""}
           placeholder={props?.hint}
           type={props?.password ? (toggle ? "text" : "password") : props?.type}
-          onChange={(e) => props?.handleChange(props.name, e.target.value)}
+          onChange={(e) => props?.handleChange(e.target.value)}
         />
-        <Button
+        {/* <Button
           title={<AiFillAudio />}
           varient="icon"
           onClick={props?.onClickAudio}
@@ -147,7 +147,7 @@ export const ChatInput = (props) => {
           title={<MdMessage />}
           varient="icon"
           onClick={props?.onClickMessage}
-        />
+        /> */}
         <Button
           title={<IoSendSharp />}
           varient="icon"

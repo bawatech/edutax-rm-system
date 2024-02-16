@@ -15,6 +15,7 @@ import { FaDownload } from "react-icons/fa6";
 import { IoIosEye } from "react-icons/io";
 import { useDispatch } from 'react-redux'
 import { addClientMessage } from '../../../store/userSlice'
+import { toastError } from '../../../BTUI/BtToast'
 
 
 const TaxFileDetails = () => {
@@ -62,20 +63,7 @@ const TaxFileDetails = () => {
     }
     // console.log('payload', payload)
 
-    const handleSend = () => {
-        // console.log("handlesend",payload)
-        dispatch(addClientMessage(payload))
-            .then((res) => {
-                console.log("data added", res)
-                setPayload('')
-                setReload((prev) => !prev)
-            })
-            .catch((err) => {
-                console.log('Error', err)
-            })
-
-        
-    }
+   
 
 
     const detailBody = useMemo(() => {
@@ -168,9 +156,7 @@ const TaxFileDetails = () => {
         <br />
         <ChatWindow 
             chatMsg={chatMsg}
-            value={payload?.message}
-            handleChange={handleChange}
-            handleSend={handleSend}
+            taxfile_id = {param?.id}
         />
         <br />
         <br />
@@ -182,17 +168,52 @@ const TaxFileDetails = () => {
 export default TaxFileDetails
 
 
-const ChatWindow = (props) => {
-
+const ChatWindow = ({taxfile_id}) => {
     const [newMessage, setNewMessage] = useState("")
+    const [messageList, setMessageList] = useState([])
+    const dispatch = useDispatch()
+
 
     const handleSend = () => {
-        alert(newMessage)
+        
+        if(newMessage.trim().length<1){
+            return false;
+        }
+        dispatch(addClientMessage({
+            taxfile_id,
+            message:newMessage
+        }))
+            .then((res) => {
+                getMessageList()
+                setNewMessage("")
+            })
+            .catch((err) => {
+                toastError(err?.data?.message)
+            })
     }
+
+    const getMessageList= () => {
+        authService.getClientMessages(taxfile_id)
+            .then(res => {
+                console.log('Client messages are ', res?.data)
+                console.log('Client messages are ', res?.data?.response?.messages)
+                // setDetails(res?.data)
+                setMessageList(res?.data?.response?.messages)
+            })
+            .catch(err => {
+                console.log('Error in Get Client Messages', err)
+                toastError(err?.data?.message)
+            })
+    }
+    useEffect(() => {
+        getMessageList()
+    },[])
+
+
     return <div className="details-chat-section">
         <div className="details-chat-inner-section">
             <div className="details-chat-msg-div">
-                {props?.chatMsg?.map((msg, index) => {
+                {messageList?.map((msg, index) => {
                     console.log("mmeeeeeeeeeeeemememememememe", msg?.user_type)
 
                     if(msg?.user_type === "CLIENT"){
@@ -212,10 +233,10 @@ const ChatWindow = (props) => {
             <div className="details-chat-input-div">
                 <ChatInput
                     name="message"
-                    value={props?.value}
+                    value={newMessage}
                     hint="write message here"
-                    handleChange={props.handleChange}
-                    onClickSend={props?.handleSend}
+                    handleChange={setNewMessage}
+                    onClickSend={handleSend}
                 />
             </div>
         </div>
