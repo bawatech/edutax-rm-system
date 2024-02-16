@@ -1,0 +1,23 @@
+.bt-loader-wrapper{
+    
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0,0,0, .3);
+    padding: 20px;
+}
+.bt-loader-body{
+    width: 90%;
+    max-width: 400px;
+    height: 150px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow:  0 0 10px -5px grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

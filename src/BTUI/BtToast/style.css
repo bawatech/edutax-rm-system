@@ -1,0 +1,31 @@
+.bt-toast{
+    
+    position: fixed;
+    max-width: 400px;
+    min-width: 300px;
+    margin:40px;
+    min-height: 100px;
+    z-index: 1000;
+    left: 50%;
+    border-radius: 10px;
+    padding: 15px;
+    translate: -50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    /* animation-name: example; */
+    /* animation-duration: .5s; */
+}
+.bt-toast.type-error{
+    background: rgb(231, 49, 49);
+}
+
+
+.bt-toast.type-success{
+    background: rgb(10, 167, 96);
+}
+/* 
+@keyframes example {
+    from {top: 10%;}
+    to {top: 13%;}
+  } */

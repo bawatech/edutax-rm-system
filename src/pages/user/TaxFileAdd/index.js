@@ -20,6 +20,8 @@ import { useDispatch } from "react-redux";
 import { addTaxfile } from "../../../store/userSlice";
 import { UserLayout } from "../../layouts/Layout";
 import { useNavigate } from "react-router-dom";
+import { toastError, toastSuccess } from "../../../BTUI/BtToast";
+import { hideLoader, showLoader } from "../../../BTUI/BtLoader";
 const TaxFileAdd = () => {
   const [payload, setPayload] = useState({
     documents: [
@@ -30,33 +32,22 @@ const TaxFileAdd = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log("PAYLOAD IS ", payload);
-
-  //_____ MOVED TO USE STATE
-  // useEffect(() => {
-  //     if (payload?.documents === undefined) {
-  //         setPayload({
-  //             ...payload,
-  //             ['documents']: payload?.documents || [{}]
-  //         });
-  //     }
-  // }, [])
-
   const handleSubmit = () => {
+    showLoader()
     dispatch(addTaxfile(payload))
       .then((res) => {
         console.log("Response", res?.data?.taxfile?.id);
-        alert(res?.data?.message);
+        toastSuccess(res?.data?.message);
+        hideLoader()
         navigate(`/user/tax-file-details/${res?.data?.taxfile?.id}`);
       })
       .catch((err) => {
         if (err?.data?.field_errors) {
           setErrors(err?.data?.field_errors);
         } else {
-          // alert(err?.data?.message)
+          toastError(err?.data?.message)
         }
-        console.log("Error", err);
-        alert(err?.data?.message);
+        hideLoader()
       });
   };
 

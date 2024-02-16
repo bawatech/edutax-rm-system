@@ -11,8 +11,9 @@ export const Button = (props)=>{
             value={props?.value}
             style={props?.style}
             onClick={props?.onClick}
+            disabled= {props?.disabled || props?.loading}
         >
-            {props?.title}
+            {props?.loading ? props?.loadingText : props?.title}
         </button>
     </div>
 }
@@ -20,5 +21,7 @@ export const Button = (props)=>{
 Button.defaultProps = {
     type: 'button',
     title: 'title',
-    varient: 'contained'
+    varient: 'contained',
+    loading:false,
+    loadingText:'Loading'
 }

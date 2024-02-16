@@ -6,9 +6,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../../store/userSlice';
 import { Layout } from '../../layouts/Layout';
+import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 const Login = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
+    const [loadingButton,setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -24,18 +26,23 @@ const Login = () => {
     }
 
     const handleSubmit = () => {
+        setLoadingButton(true)
         dispatch(login(payload))
             .then(res => {
+                toastSuccess(res?.data?.message)
                 navigate("/user/tax-file-add")
+                setLoadingButton(false)
+                
             })
             .catch(err => {
-                console.log('err',err)
+            
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
+                    toastError(err?.data?.message)
                 } else {
-                    // alert(err?.data?.message)
+                    toastError(err?.data?.message)
                 }
-                alert(err?.data?.message)
+                setLoadingButton(false)
             })
     }
 
@@ -69,6 +76,8 @@ const Login = () => {
                 <Button
                     name="login"
                     title="Login"
+                    loading={loadingButton}
+                    loadingText="Logging In"
                     onClick={handleSubmit}
                 />
                 <br />
