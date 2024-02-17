@@ -11,6 +11,7 @@ import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 const VerifyEmail = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
+    const [loadingButton,setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -66,6 +67,8 @@ const VerifyEmail = () => {
                         <Button
                             name="verify"
                             title="Verify"
+                            loading={loadingButton}
+                            loadingText="Verifying OTP..."
                             onClick={handleSubmit}
                         />
                     </div>

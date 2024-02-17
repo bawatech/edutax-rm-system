@@ -265,13 +265,14 @@
 
 .details-chat-msg-div{
     width: 100%;
-    height: 40em;
+    height: 25em;
     
     overflow-y: scroll;
     padding: 2em;
     display: flex;
     gap: 1em;
     flex-direction: column;
+    background-color: #f4f4f4;
 }
 
 .details-chat-msg-div::-webkit-scrollbar {

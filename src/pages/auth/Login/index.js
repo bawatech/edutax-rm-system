@@ -87,7 +87,7 @@ const Login = () => {
                         name="login"
                         title="Login"
                         loading={loadingButton}
-                        loadingText="Logging In"
+                        loadingText="Logging In..."
                         onClick={handleSubmit}
                     />
                     <br />

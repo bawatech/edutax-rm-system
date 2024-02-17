@@ -11,6 +11,7 @@ import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 const Signup = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
+    const [loadingButton,setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -27,21 +28,20 @@ const Signup = () => {
     }
 
     const handleSubmit = () => {
+        setLoadingButton(true)
         dispatch(signUp(payload))
             .then(res => {
                // alert(res?.data?.message)
                 toastSuccess(res.data?.message)
+                setLoadingButton(false)
                 navigate("/verify-email")
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
-                    toastError(err?.data?.field_errors)
-                } else {
-                    // alert(err?.data?.message)
-                    toastError(err?.data?.message)
                 }
-                // alert(err?.data?.message)
+                toastError(err?.data?.message)
+                setLoadingButton(false)
             })
     }
 
@@ -83,6 +83,8 @@ const Signup = () => {
                             <Button
                                 name="signup"
                                 title="Sign Up"
+                                loading={loadingButton}
+                                loadingText="Signing In..."
                                 onClick={handleSubmit}
                             />
                             <br />

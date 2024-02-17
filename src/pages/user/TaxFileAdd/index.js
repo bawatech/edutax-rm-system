@@ -1,3 +1,5 @@
+//----Uplod void cheque
+
 import { useEffect, useState } from "react";
 import {
   ChatInput,
@@ -221,23 +223,27 @@ export default TaxFileAdd;
 const documents = [
   {
     id: "1",
-    name: "Driving License",
+    name: "T4",
   },
   {
     id: "2",
-    name: "Aadhar Card",
+    name: "T2202 TUTION SLIP",
   },
   {
     id: "3",
-    name: "Voter Card",
+    name: "T4A",
   },
   {
     id: "4",
-    name: "PAN Card",
+    name: "T4E",
   },
   {
     id: "5",
-    name: "Passport",
+    name: "OTHER",
+  },
+  {
+    id: "6",
+    name: "ID",
   },
 ];
 

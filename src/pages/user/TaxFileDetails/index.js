@@ -17,12 +17,9 @@ import { MdEdit } from "react-icons/md";
 const TaxFileDetails = () => {
 
     const [details, setDetails] = useState(null)
-    const [chatMsg, setChatMsg] = useState([])
-    const [reload, setReload] = useState(false);
     const param = useParams()
-    const dispatch = useDispatch()
 
-    // console.log('param', param, 'details', details)
+    console.log('param', param, 'details', details)
     useEffect(() => {
         authService.getTaxfileDetails(param?.id)
             .then(res => {
@@ -35,21 +32,6 @@ const TaxFileDetails = () => {
             })
     }, [])
 
-    useEffect(() => {
-        authService.getClientMessages(param?.id)
-            .then(res => {
-                // console.log('Client messages are ', res?.data)
-                // console.log('Client messages are ', res?.data?.response?.messages)
-                // setDetails(res?.data)
-                setChatMsg(res?.data?.response?.messages)
-            })
-            .catch(err => {
-                // console.log('Error in Get Client Messages', err)
-                alert(err?.data?.message)
-            })
-    }, [reload])
-
-    // console.log('payload', payload)
 
     const detailBody = useMemo(() => {
 
@@ -108,7 +90,7 @@ const TaxFileDetails = () => {
                                 />
                             </div>
                         </div>
-
+{/* 
                         <div className="userDetails-img-content">
                             <FormField>
                                 <FileComponent
@@ -118,7 +100,7 @@ const TaxFileDetails = () => {
                                     view={details?.taxfile?.document_direct_deposit_cra}
                                 />
                             </FormField>
-                        </div>
+                        </div> */}
 
 
                         <div className="userDetails-img-content">
@@ -127,7 +109,7 @@ const TaxFileDetails = () => {
                                     return <FormGroup key={index}>
                                         <FormField>
                                             <FileComponent
-                                                name="File : "
+                                                name={itm?.filename || 'Document'}
                                                 download={itm?.full_path}
                                                 downloadName={itm?.documents?.[index]?.filename}
                                                 view={itm?.full_path}
@@ -154,7 +136,6 @@ const TaxFileDetails = () => {
             <br />
             <br />
             <ChatWindow
-                chatMsg={chatMsg}
                 taxfile_id={param?.id}
             />
             <br />
@@ -247,6 +228,7 @@ const ChatWindow = ({ taxfile_id }) => {
         </div>
     </div>
 }
+
 
 
 const Sender = (props) => {
