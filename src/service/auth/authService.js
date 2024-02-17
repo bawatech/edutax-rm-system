@@ -43,12 +43,28 @@ class authService {
     }
 
     addClientMessage = async (payload) => {
-        console.log("authservice payload", payload);
+        // console.log("authservice payload", payload);
         return await postRequest('user/add-client-message', payload);
     }
 
     getClientMessages = async (id) => {
         return await getRequest(`user/get-client-messages/${id}`);
+    }
+
+
+    ////////////////////////
+    //ROUTES FOR MASTERS //START HERE
+    ////////////////////////
+    getMaritalStatus = async (id) => {
+        return await getRequest(`user/get-marital-status`);
+    }
+
+    getProvinces = async (id) => {
+        return await getRequest(`user/get-provinces`);
+    }
+
+    getDocumentTypes = async (id) => {
+        return await getRequest(`user/get-document-types`);
     }
 
 }

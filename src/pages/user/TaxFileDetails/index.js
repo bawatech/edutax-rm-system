@@ -90,7 +90,7 @@ const TaxFileDetails = () => {
                                 />
                             </div>
                         </div>
-{/* 
+
                         <div className="userDetails-img-content">
                             <FormField>
                                 <FileComponent
@@ -100,7 +100,7 @@ const TaxFileDetails = () => {
                                     view={details?.taxfile?.document_direct_deposit_cra}
                                 />
                             </FormField>
-                        </div> */}
+                        </div>
 
 
                         <div className="userDetails-img-content">
