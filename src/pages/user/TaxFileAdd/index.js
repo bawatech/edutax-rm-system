@@ -25,6 +25,8 @@ import { UserLayout } from "../../layouts/Layout";
 import { useNavigate } from "react-router-dom";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
 import { hideLoader, showLoader } from "../../../BTUI/BtLoader";
+import { Provinces } from "../../../service/master";
+import authService from "../../../service/auth";
 
 
 const TaxFileAdd = () => {
@@ -36,6 +38,33 @@ const TaxFileAdd = () => {
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [provinces, setProvinces] = useState([])
+  const [docType, setDocType] = useState([])
+
+  
+  useEffect(()=>{
+    authService.getProvinces()
+        .then((res)=>{
+          setProvinces(res?.data?.response?.provincesList)
+          console.log(res)
+        })
+        .catch((err)=>{
+            
+          console.log(err)
+        });
+  },[])
+
+  useEffect(()=>{
+    authService.getDocumentTypes()
+        .then((res)=>{
+          setDocType(res?.data?.response?.documentTypesList)
+          console.log(res)
+        })
+        .catch((err)=>{
+            
+          console.log(err)
+        });
+  },[])
 
   const handleSubmit = () => {
     showLoader()
@@ -89,7 +118,7 @@ const TaxFileAdd = () => {
       })
     );
   };
-//  console.log("Payload", payload);
+
 
   const handleChangeFileArray = (name, value, thisIndex) => {
     let oldArr = [...payload?.documents];
@@ -111,7 +140,7 @@ const TaxFileAdd = () => {
                 label="Province of return as on 31st December?"
                 name="taxfile_province"
                 selected={payload?.taxfile_province}
-                options={{ list: province, name: "name", value: "code" }}
+                options={{ list: provinces, name: "name", value: "code" }}
                 handleChange={handleChange}
               />
             </FormField>
@@ -123,7 +152,7 @@ const TaxFileAdd = () => {
             handleChange={handleChange}
           />
 
-          {payload?.moved_to_canada === "YES" && <FormField>
+          {payload?.moved_to_canada === "YES" && <FormGroup>
             <FormField>
               <InputDate
                 label="Date of Entry"
@@ -133,7 +162,7 @@ const TaxFileAdd = () => {
                 handleChange={handleChange}
               />
             </FormField>
-          </FormField>}
+          </FormGroup>}
 
           <LabelYesNo
             label="Do you want to setup or change your direct deposit with CRA?"
@@ -166,7 +195,7 @@ const TaxFileAdd = () => {
                   label="Document Type"
                   name="typeid"
                   selected={itm?.typeid}
-                  options={{ list: documents, name: "name", value: "id" }}
+                  options={{ list: docType, name: "name", value: "id" }}
                   handleChange={(name, value) =>
                     handleChangeArray(name, value, index)
                   }
@@ -182,11 +211,13 @@ const TaxFileAdd = () => {
                       handleChangeFileArray(name, value, index)
                     }
                   />
-                  <Button
+
+                  {index>0 && <Button
                     varient="icon"
                     title={<RiDeleteBin6Line />}
                     onClick={() => handleDeleteArray(index)}
-                  />
+                  />}
+                  
                 </div>
               </FormField>
             </FormGroup>
@@ -220,51 +251,3 @@ const TaxFileAdd = () => {
 
 export default TaxFileAdd;
 
-const documents = [
-  {
-    id: "1",
-    name: "T4",
-  },
-  {
-    id: "2",
-    name: "T2202 TUTION SLIP",
-  },
-  {
-    id: "3",
-    name: "T4A",
-  },
-  {
-    id: "4",
-    name: "T4E",
-  },
-  {
-    id: "5",
-    name: "OTHER",
-  },
-  {
-    id: "6",
-    name: "ID",
-  },
-];
-
-const maritalStatus = [
-  {
-    code: "MRD",
-    name: "Married",
-  },
-  {
-    code: "UNM",
-    name: "Un Married",
-  },
-];
-
-const province = [
-  {
-    code: "ON",
-    name: "Ontario",
-  },
-  {
-    code: "QC",
-    name: "Quebec",
-  },
-];

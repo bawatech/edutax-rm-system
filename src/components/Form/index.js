@@ -56,9 +56,13 @@ export const ErrorMessage = (props) => {
 // ===================================FormGroup======================================================
 
 export const FormGroup = (props) => {
-  return <div className="form-group">{props.children}</div>;
+  return <div className={`form-group column-${props?.col} ${props?.mediaQueries}`}>{props.children}</div>;
 };
 
+FormGroup.defaultProps = {
+  col: 2,
+  mediaQueries: "sm md lg"
+};
 
 export const Form = (props) => {
   return <div className="form">{props?.children}</div>;
@@ -77,7 +81,12 @@ export const FormSectionName = (props) => {
 // ===================================FormField======================================================
 
 export const FormField = (props) => {
-  return <div className="form-field">{props.children}</div>;
+  return <div className={`form-field ${props?.mediaQueries}`}>{props.children}</div>;
+};
+
+FormField.defaultProps = {
+  col: 2,
+  mediaQueries: "sm md lg"
 };
 
 // ===================================FormField======================================================
@@ -301,7 +310,7 @@ const Reciever = (props) => {
     </div>
   );
 };
-
+// ==============================Date=========================================
 export const InputDate = (props) => {
   let value = null;
   if (moment(props?.value, "yyyy-MM-DD", true).isValid()) {
@@ -315,18 +324,23 @@ export const InputDate = (props) => {
     }
   };
   return (
-    <>
-      <DatePicker
-        showIcon
-        isClearable
-        dateFormat="dd-MMM-YYYY"
-        selected={value}
-        onChange={handleChange}
-      />
-      {props?.error && <p className="input-error-text">{props.error}</p>}
-    </>
+    <div className="dateinput-div">
+      {props?.label && <label className="input-label">{props?.label}</label>}
+      <div className="date-input-div">
+        <DatePicker
+          showIcon
+          isClearable
+          dateFormat="dd-MMM-YYYY"
+          selected={value}
+          onChange={handleChange}
+        />
+        
+      </div>
+    {props?.error && <p className="input-error-text">{props.error}</p>}
+    </div>
   );
 };
+// ==============================Date=========================================
 
 // ===================================Popup======================================================
 
@@ -350,13 +364,17 @@ export const Popup = (props)=> {
 // ===================================Popup======================================================
 // ===================================container======================================================
 
-export const Container = ({children})=> {
+export const Container = ({children, width})=> {
 
   return <div className="container-section">
-    <div className="container-inner-div">
+    <div className="container-inner-div" style={{width: width}}>
       {children}
     </div>
   </div>
+}
+
+Container.defaultProps = {
+  width: '60em'
 }
 
 // ===================================container======================================================

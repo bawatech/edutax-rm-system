@@ -46,7 +46,7 @@ const ChangePassword = (props) => {
     return<UserLayout>
             <br/>
             <br/>
-            <Container>
+            <Container width="30em">
                 <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Change Password</h2>
 
                 <FormGroup>

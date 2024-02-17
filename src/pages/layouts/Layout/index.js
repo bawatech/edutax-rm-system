@@ -94,6 +94,8 @@ export const UserLayout = (props) => {
       <div className="" style={{
         display: 'flex',
         gap: '1em',
+        width: '100%',
+        justifyContent: 'center',
       }}>
         <Button title="Logout" varient="small" onClick={handleLogout}/>
         <Button title="Cancel" varient="small danger" onClick={handleToggle}/>

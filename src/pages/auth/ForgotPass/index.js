@@ -42,7 +42,7 @@ const ForgotPassword = () => {
     }
 
     return <Layout>
-        <Container>
+        <Container width="30em">
             {/* <div className="signup-section">
                 <div className="signup-inner-container"> */}
                 <br/>

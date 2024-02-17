@@ -55,12 +55,12 @@ class authService {
     ////////////////////////
     //ROUTES FOR MASTERS //START HERE
     ////////////////////////
-    getMaritalStatus = async (id) => {
+    getMaritalStatus = async (id=null) => {
         return await getRequest(`user/get-marital-status`);
     }
 
-    getProvinces = async (id) => {
-        return await getRequest(`user/get-provinces`);
+    getProvinces = async (id=null) => {
+        return await getRequest(`user/get-provinces`,id);
     }
 
     getDocumentTypes = async (id) => {

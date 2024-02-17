@@ -49,7 +49,7 @@ const Login = () => {
     return <Layout>
         {/* <div className="login-section">
             <div className="login-inner-container"> */}
-            <Container>
+            <Container width="30em">
                 <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Log In</h2>
 
                 <FormGroup>

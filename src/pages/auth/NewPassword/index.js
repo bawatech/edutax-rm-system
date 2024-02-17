@@ -1,5 +1,5 @@
 import './style.css';
-import { Input } from "../../../components/Form";
+import { Container, FormField, FormGroup, Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -42,34 +42,44 @@ const NewPassword = () => {
     }
 
     return <Layout>
-        <div className="signup-section">
-            <div className="signup-inner-container">
+        <Container width="30em">
+        {/* <div className="signup-section">
+            <div className="signup-inner-container"> */}
                 <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Set New Password</h2>
 
-                <Input
-                    name="email"
-                    value={payload.email}
-                    hint="Email"
-                    handleChange={handleChange}
-                    error={errors?.email}
-                />
-
-                <Input
-                    name="otp"
-                    value={payload.otp}
-                    hint="OTP"
-                    handleChange={handleChange}
-                    error={errors?.otp}
-                />
-
-                <Input
-                    name="newPassword"
-                    value={payload.newPassword}
-                    hint="New Password"
-                    handleChange={handleChange}
-                    error={errors?.newPassword}
-                />
-
+                <FormGroup>
+                    <FormField>
+                        <Input
+                            name="email"
+                            value={payload.email}
+                            hint="Email"
+                            handleChange={handleChange}
+                            error={errors?.email}
+                        />
+                    </FormField>
+                </FormGroup>
+                <FormGroup>
+                    <FormField>
+                        <Input
+                            name="otp"
+                            value={payload.otp}
+                            hint="OTP"
+                            handleChange={handleChange}
+                            error={errors?.otp}
+                        />
+                    </FormField>
+                </FormGroup>
+                <FormGroup>
+                    <FormField>
+                        <Input
+                            name="newPassword"
+                            value={payload.newPassword}
+                            hint="New Password"
+                            handleChange={handleChange}
+                            error={errors?.newPassword}
+                        />
+                    </FormField>
+                </FormGroup>
 
                 <br />
                 <Button
@@ -78,8 +88,10 @@ const NewPassword = () => {
                     onClick={handleSubmit}
                 />
                 <br />
-            </div>
-        </div>
+                
+            {/* </div>
+        </div> */}
+        </Container>
     </Layout>
 }
 

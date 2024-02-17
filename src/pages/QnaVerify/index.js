@@ -4,6 +4,8 @@ import './style.css';
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { Layout } from "../layouts/Layout";
+
+
 const QnaVerify = () =>{
     const [error, setError] = useState("");
     const [selected,setSelected] = useState([])
@@ -50,6 +52,7 @@ const QnaVerify = () =>{
                     name={itm?.name}
                     label={`${index+1}. ${itm?.label}`}
                     value={(selected.includes(itm?.id))?true:false}
+                    // value={(selected.includes(itm?.id))?true:false}
                     handleChange={(name,value)=>handleChange(value,index,itm?.id)}
                 />
             })}

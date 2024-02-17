@@ -13,11 +13,19 @@ const ProfileCreate = () => {
 
     const [payload, setPayload] = useState({});
     const [errors, setErrors] = useState({});
+    const [maritalStatus, setMaritalStatus] = useState([]);
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     console.log('PAYLOAD IS ', payload)
 
+    useEffect(() => {
+        authService.getMaritalStatus()
+            .then((res) => {
+                setMaritalStatus(res?.data?.response?.maritalStatusList)
+                console.log("marital Status", res?.data?.response)
+            })
+    },[])
 
     const handleSubmit = () => {
 

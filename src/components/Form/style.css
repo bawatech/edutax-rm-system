@@ -75,10 +75,25 @@
     .label-yn-btn .ynbtn{
         padding: 0.5em 1em;
     }
+    .label-yn{
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .label-yn-btn .ynbtn{
+        padding: 0.5em 1em;
+    }
+    .label-yn{
+        flex-direction: row;
+    }
 }
 @media only screen and (min-width: 768px) {
     .label-yn-btn .ynbtn{
         padding: 0.5em 1em;
+    }
+    .label-yn{
+        flex-direction: row;
     }
 }
 @media only screen and (min-width: 1200px) {
@@ -151,27 +166,47 @@
     flex-wrap: wrap;
     gap: 1em;
     padding: 0.5em 0;
+    column-gap: 1em;
 }
 
 /* ========================================Form Group============================================================= */
 /* ========================================Form Field============================================================= */
 
-.form-field{
+.form-group.column-2 .form-field{
     flex-grow: 1;
+    width: 45%;
 }
 
+.form-group.column-1 .form-field{
+    flex-grow: 1;
+    width: 100%;
+}
+
+
 @media only screen and (min-width: 100px) {
-    .form-field{
-        min-width: 100%;
+    .field-group.sm .form-field{
+        width: 100%;
+        flex-grow: 1;
+    }
+    .form-group.column-2 .form-field{
+        flex-grow: 1;
+        width: 100%;
     }
 }
 @media only screen and (min-width: 768px) {
-    .form-field{
-        min-width: 48%;
+    .field-group.md .form-field{
+        width: 45%;
+        flex-grow: 1;
+    }
+    .form-group.column-2 .form-field{
+        flex-grow: 1;
+        width: 45%;
     }
 }
 @media only screen and (min-width: 1200px) {
-    
+    .field-group.lg .form-field{
+
+    }
 }
 @media only screen and (min-width: 1500px) {
     
@@ -199,7 +234,7 @@
 
 .dropdown{
     width: 100%;
-    padding: 1em;
+    padding: 1.2em;
     outline: none;
     font-size: 1em;
     border: none;
@@ -243,7 +278,7 @@
     min-width: 100%;
     border: none;
     z-index: 999;
-    padding: 1.3em;
+    padding: 1.6em;
 }
 
 .file-main-section{
@@ -338,6 +373,7 @@
     justify-content: center;
     align-items: center;
     z-index: 999;
+    padding: 1em;
 }
 
 .popup-background{
@@ -347,7 +383,8 @@
 }
 
 .popup-content{
-    max-width: 50%;
+    /* max-width: 50%; */
+    /* width: 100%; */
     background: white;
     z-index: 9999;
     padding: 1em;
@@ -367,6 +404,26 @@
     padding: 0em 1em 1em 1em ;
 }
 
+@media only screen and (min-width:10px){
+    .popup-content{
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width:500px){
+    
+}
+@media only screen and (min-width:900px){
+    .popup-content{
+        max-width: 70%;
+    }
+}
+@media only screen and (min-width:1200px){
+    .popup-content{
+        max-width: 50%;
+    }
+}
+
 /* ========================================popup============================================================= */
 
 /* ========================================container============================================================= */
@@ -380,7 +437,7 @@
 
 .container-inner-div{
     width: 100%;
-    max-width: 60em;
+    /* max-width: 60em; */
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(8px);
     padding: 2em;
@@ -408,3 +465,42 @@
 
 
 /* ========================================container============================================================= */
+.dateinput-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.date-input-div{
+    width: 100%;
+    border: 1px solid rgba(210,210,210);
+    padding: 1.2em;
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+}
+
+.date-input-div>div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.date-input-div>div>div{
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.date-input-div .react-datepicker__tab-loop{
+    width: 0%;
+}
+
+.date-input-div>div>div>input{
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0 2.5em;
+    font-size: 1em;
+}

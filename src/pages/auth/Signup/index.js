@@ -46,7 +46,7 @@ const Signup = () => {
     }
 
     return <Layout>
-            <Container>
+            <Container width="30em">
                 {/* <div className="signup-section">
                     <div className="signup-inner-container"> */}
                         <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Sign Up</h2>
