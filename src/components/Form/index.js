@@ -1,8 +1,6 @@
 import { useRef, useState } from "react";
 import { EyeIcon, EyeOffIcon } from "../Icon";
 import "./style.css";
-import { AiFillAudio } from "react-icons/ai";
-import { MdMessage, MdOutlineDataExploration } from "react-icons/md";
 import { IoSendSharp } from "react-icons/io5";
 import { Button } from "../Button";
 import DatePicker from "react-datepicker";
@@ -127,58 +125,6 @@ Input.defaultProps = {
 };
 // ===================================Input======================================================
 
-// ===================================chat Input======================================================
-
-export const ChatInput = (props) => {
-  const [toggle, setToggle] = useState(false);
-
-  const handleToggle = () => {
-    setToggle((prev) => !prev);
-  };
-
-  return (
-    <div className="input-div">
-      {props?.label && <label className="input-label">{props?.label}</label>}
-      <div className="chatinput-inner-div">
-        <Textarea
-            name={props?.name}
-            value={props?.value}
-            rows={props?.rows}
-            cols={props?.cols}
-            placeholder={props?.hint}
-            handleChange={props?.handleChange}
-        />
-        {/* <Button
-          title={<AiFillAudio />}
-          varient="icon"
-          onClick={props?.onClickAudio}
-        />
-        <Button
-          title={<MdMessage />}
-          varient="icon"
-          onClick={props?.onClickMessage}
-        /> */}
-        <Button
-          title={<IoSendSharp />}
-          varient="icon"
-          onClick={props?.onClickSend}
-        />
-        {props?.password && (
-          <span className="icon icon-pass" onClick={handleToggle}>
-            {toggle ? <EyeOffIcon /> : <EyeIcon />}
-          </span>
-        )}
-      </div>
-    </div>
-  );
-};
-
-ChatInput.defaultProps = {
-  type: 'text',
-  rows: 2,
-  cols: 1,
-}
-// ===================================chat Input======================================================
 // ===================================textarea======================================================
 
 export const Textarea =(props) =>{
@@ -269,47 +215,12 @@ export const FileUpload = (props) => {
           name={props?.name}
           onChange={handleFileChange}
         />
-        <button onClick={handleUpload}>{selectedFile?.name ? selectedFile?.name : 'Choose file'}</button>
+        <button onClick={handleUpload}>{selectedFile?.name ? selectedFile?.name : 'Upload file'}</button>
       </div>
     </div>
   );
 };
 
-// =================================================================
-
-export const ChatLayout = (props) => {
-  return (
-    <div className="details-chat-section">
-      <div className="details-chat-inner-section">
-        <div className="details-chat-msg-div">
-          <Sender msg="snvlksdnvlksdnvlk" />
-          <Reciever msg=";svbknkl;vns;kdnvk;sdnv;ksndvkinpirnbpirenpn" />
-        </div>
-        <div className="details-chat-input-div">{props?.children}</div>
-      </div>
-    </div>
-  );
-};
-
-const Sender = (props) => {
-  return (
-    <div className="sender-div-section">
-      <div className="sender-div">
-        <p>{props?.msg}</p>
-      </div>
-    </div>
-  );
-};
-
-const Reciever = (props) => {
-  return (
-    <div className="reciever-div-section">
-      <div className="reciever-div">
-        <p>{props?.msg}</p>
-      </div>
-    </div>
-  );
-};
 // ==============================Date=========================================
 export const InputDate = (props) => {
   let value = null;
@@ -330,9 +241,12 @@ export const InputDate = (props) => {
         <DatePicker
           showIcon
           isClearable
+          
           dateFormat="dd-MMM-YYYY"
           selected={value}
+          // selected={new Date(2024, 1, 1)}
           onChange={handleChange}
+          {...props}
         />
         
       </div>

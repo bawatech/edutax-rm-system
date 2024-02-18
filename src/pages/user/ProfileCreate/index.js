@@ -93,6 +93,7 @@ const ProfileCreate = () => {
                             value={payload.date_of_birth}
                             error={errors?.date_of_birth}
                             handleChange={handleChange}
+                            openToDate={new Date(2000,0,1)}
                         />
 
                     </FormField>
@@ -132,6 +133,7 @@ const ProfileCreate = () => {
                             selected={payload?.province}
                             options={{ list: province, name: 'name', value: 'code' }}
                             handleChange={handleChange}
+                            error={errors?.province}
                         />
                     </FormField>
                     <FormField>
@@ -172,39 +174,6 @@ const ProfileCreate = () => {
 
 export default ProfileCreate;
 
-const documents = [
-    {
-        id: '1',
-        name: 'Driving License',
-    },
-    {
-        id: '2',
-        name: 'Aadhar Card',
-    },
-    {
-        id: '3',
-        name: 'Voter Card',
-    },
-    {
-        id: '4',
-        name: 'PAN Card',
-    },
-    {
-        id: '5',
-        name: 'Passport',
-    },
-]
-
-const maritalStatus = [
-    {
-        code: 'MRD',
-        name: 'Married',
-    },
-    {
-        code: 'UNM',
-        name: 'Un Married',
-    }
-]
 
 const province = [
     {

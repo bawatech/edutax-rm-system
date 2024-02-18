@@ -239,7 +239,7 @@ const TaxFileAdd = () => {
         <div style={{ textAlign: "center" }}>
           <Button
             name="addTaxFile"
-            title="Add TaxFile"
+            title="Add Tax File"
             onClick={handleSubmit}
           />
         </div>

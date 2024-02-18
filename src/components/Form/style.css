@@ -107,7 +107,7 @@
 
 .error-container span{
     color: red;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 1.2em;
 }
 
@@ -327,41 +327,6 @@
     outline: none;
     resize: none;
     padding: 1em;
-}
-/* ================================chat input========================================= */
-
-.chatinput-inner-div{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    /* border: 1px solid rgba(210,210,210); */
-    box-shadow: 0 0 2em 0.1em rgba(0,0,0,0.03);
-    /* border-radius: 0.5em; */
-}
-
-.chatinput-inner-div>div>div{
-    border: none;
-}
-
-.chatinput-inner-div>div>div textarea{
-    width: 100%;
-    border: none;
-    background: transparent;
-    font-size: 1.1em;
-    padding: 0.5em;
-    outline: none;
-}
-
-.chatinput-inner-div textarea::placeholder{
-    color: rgba(0,0,0,0.2);
-    font-weight: lighter;
-}
-
-.chatinput-inner-div button{
-    padding: 0.5em 0.5em !important;
-    font-size: 1.5em !important;
 }
 
 /* ========================================popup============================================================= */

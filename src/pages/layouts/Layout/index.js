@@ -115,7 +115,7 @@ const Header =({children})=>{
 
 const HeaderLeft=()=>{
   return <div className="layout-header-logo">
-    <img src={logo} alt="logo" resizeMode="contain"/>
+    <img src={logo} alt="logo"/>
   </div>
 }
 
