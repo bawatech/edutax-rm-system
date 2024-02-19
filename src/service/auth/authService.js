@@ -1,4 +1,4 @@
-import { postRequest, postFormdata, getRequest } from "../axios";
+import { postRequest, postFormdata, getRequest, putRequest } from "../axios";
 /**
  * Api call
  */
@@ -12,14 +12,21 @@ class authService {
         return await postRequest('auth/login', payload);
     }
 
+    logout = async () => {
+        return await postRequest('auth/logout');
+    }
+
     // addTaxfile = async (payload) => {
     //     return await postFormdata('user/upload-documents', payload);
     // }
     addTaxfile = async (payload) => {
         return await postFormdata('user/add-taxfile', payload);
     }
+    getTaxfileList = async (payload) => {
+        return await getRequest('user/taxfile', payload);
+    }
     getTaxfileDetails = async (id) => {
-        return await getRequest(`user/taxfile-details/${id}`);
+        return await getRequest(`user/taxfile/${id}`);
     }
 
     verifyEmail = async (payload) => {
@@ -38,8 +45,12 @@ class authService {
         return await postRequest('auth/update-password', payload);
     }
 
-    createProfile = async (payload) => {
-        return await postRequest('user/create-profile', payload);
+    updateProfile = async (payload) => {
+        return await putRequest('user/profile', payload);
+    }
+
+    getProfile = async (payload) => {
+        return await getRequest('user/profile', payload);
     }
 
     addClientMessage = async (payload) => {

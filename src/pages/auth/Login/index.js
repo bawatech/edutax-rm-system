@@ -30,7 +30,7 @@ const Login = () => {
         dispatch(login(payload))
             .then(res => {
                 toastSuccess(res?.data?.message)
-                navigate("/user/tax-file-add")
+                navigate("/user")
                 setLoadingButton(false)
                 
             })
@@ -47,8 +47,6 @@ const Login = () => {
     }
 
     return <Layout>
-        {/* <div className="login-section">
-            <div className="login-inner-container"> */}
             <Container width="30em">
                 <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Log In</h2>
 

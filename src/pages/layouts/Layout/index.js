@@ -1,41 +1,33 @@
 import "./style.css";
 import logo from "./../../../assets/images/logo.png"
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { IoMdSettings } from "react-icons/io";
 import { IoIosNotifications } from "react-icons/io";
-import { IoPerson } from "react-icons/io5";
+import { IoHome, IoPerson } from "react-icons/io5";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { Button } from "../../../components/Button";
 import { Popup } from "../../../components/Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../store/userSlice";
+import { toastError } from "../../../BTUI/BtToast";
 
 
 export const Layout = (props) => {
 
   const navigate = useNavigate();
-  const [toggle,setToggle] = useState(false)
-
-  const handleLogout = (e)=>{
-    e.preventDefault();
-
-    window.localStorage.clear();
-    
-    navigate('/login')
-  }
-
-  const handleToggle =(e)=>{
-    e.preventDefault();
-
-    setToggle((prev)=>!prev)
-  }
+  const {user} =useSelector(store=>store?.user)
+  console.log('USER',user)
+  useEffect(()=>{
+    if(user?.token && user?.verify_status=='VERIFIED'){
+      navigate('/user')
+    }
+  },[user?.user?.token])
 
   return (
     <div style={{position: 'relative'}}>
     <Header>
       <HeaderLeft/>
-      {/* <HeaderRight 
-        {...props}
-      /> */}
     </Header>
     <div className="layout-section">
       <div className="layout-inner-section">
@@ -51,13 +43,28 @@ export const UserLayout = (props) => {
 
   const navigate = useNavigate();
   const [toggle,setToggle] = useState(false)
+  const user =useSelector(store=>store?.user)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    if(!user?.user?.token){
+      navigate('/login')
+    }
+  },[user?.user?.token])
+
 
   const handleLogout = (e)=>{
+    dispatch(logout())
+    .then(()=>{
+      navigate('/login')
+    })
+    .catch(()=>{
+      toastError('Something went wrong')
+    })
     e.preventDefault();
 
     window.localStorage.clear();
     
-    navigate('/login')
+    
   }
 
   const handleToggle =(e)=>{
@@ -77,7 +84,7 @@ export const UserLayout = (props) => {
     </Header>
     <div className="layout-section">
       <div className="layout-inner-section">
-        {props.children}
+        <Outlet/>
       </div>
     </div>
 
@@ -126,7 +133,8 @@ const HeaderRight=(props)=>{
   return <div className="layout-header-content">
     <div className="layout-right-header">
       <ul>
-        <li><NavLink to="/settings"><IoMdSettings /></NavLink></li>
+      <li><NavLink to="/user"><IoHome /></NavLink></li>
+        <li><NavLink to="/user/settings"><IoMdSettings /></NavLink></li>
         <li><NavLink to=""><IoIosNotifications /></NavLink></li>
         {/* <li><NavLink to=""><IoPerson /></NavLink></li> */}
         <li><NavLink to="" onClick={props?.handleLogout}><RiLogoutCircleLine/></NavLink></li>

@@ -31,11 +31,11 @@ const VerifyEmail = () => {
         dispatch(verifyEmail(payload))
             .then(res => {
                 toastSuccess(res?.data?.message)
-                navigate("/user/profile-create")
+                navigate("/user/profile?redirect-type=sign-up")
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
-                    toastError(err?.data?.field_errors)
+                    toastError(err?.data?.message)
                     setErrors(err?.data?.field_errors)
                 } else {
                    // alert(err?.data?.message)

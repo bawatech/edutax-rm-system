@@ -5,11 +5,10 @@ import './style.css'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from 'react-redux';
 import { addTaxfile } from "../../../store/userSlice";
-import { UserLayout } from "../../layouts/Layout";
 import { useNavigate } from "react-router-dom";
 import authService from "../../../service/auth";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
-const ProfileCreate = () => {
+const ProfileUpdate = () => {
 
     const [payload, setPayload] = useState({});
     const [errors, setErrors] = useState({});
@@ -29,7 +28,7 @@ const ProfileCreate = () => {
 
     const handleSubmit = () => {
 
-        authService.createProfile(payload)
+        authService.updateProfile(payload)
             .then(res => {
                 console.log('Response', res?.data?.taxfile?.id)
                 // alert(res?.data?.message)
@@ -64,9 +63,8 @@ const ProfileCreate = () => {
 
 
     return <div className="">
-        <UserLayout>
             <Form>
-                <FormName name="Create Profile" />
+                <FormName name="Profile" />
                 <FormGroup>
                     <FormField>
                         <Input
@@ -154,6 +152,16 @@ const ProfileCreate = () => {
                             handleChange={handleChange}
                         />
                     </FormField>
+                    <FormField>
+                        <Input
+                            label="SIN"
+                            name="sin"
+                            password
+                            value={payload.sin}
+                            error={errors?.sin}
+                            handleChange={handleChange}
+                        />
+                    </FormField>
 
                 </FormGroup>
 
@@ -168,11 +176,10 @@ const ProfileCreate = () => {
                 <br />
             </Form>
 
-        </UserLayout>
     </div>
 }
 
-export default ProfileCreate;
+export default ProfileUpdate;
 
 
 const province = [

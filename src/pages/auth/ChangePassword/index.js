@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Container, FormField, FormGroup, Input } from '../../../components/Form';
-import { Layout, UserLayout } from '../../layouts/Layout';
 import './style.css';
 import { Button } from '../../../components/Button';
 import { useDispatch } from 'react-redux';
@@ -43,10 +42,7 @@ const ChangePassword = (props) => {
         }
     }
 
-    return<UserLayout>
-            <br/>
-            <br/>
-            <Container width="30em">
+    return <Container width="30em">
                 <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Change Password</h2>
 
                 <FormGroup>
@@ -96,7 +92,6 @@ const ChangePassword = (props) => {
                 </div>
                 <br />
             </Container>
-    </UserLayout>
 }
 
 export default ChangePassword

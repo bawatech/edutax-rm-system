@@ -67,7 +67,7 @@ const questionList = [
     {
         id: 'q1',
         name: 'question1',
-        label: 'Do you have any Business/Self-employed income',
+        label: 'Do you have any Business/Self-employed income?',
         value: false
     },
     {
@@ -79,7 +79,7 @@ const questionList = [
     {
         id: 'q3',
         name: 'question3',
-        label: 'Do you have any Rental Income',
+        label: 'Do you have any Rental Income?',
         value: false
     },
 ]

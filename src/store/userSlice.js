@@ -7,8 +7,9 @@ export const signUp = (param) => async (dispatch) => {
     return authService.signUp(param)
         .then(async (res) => {
             console.log('resp at slice', res)
-            // dispatch(setInputs(res?.data.response));
             localStorage.setItem("token", res?.data?.response?.token)
+            let userData = res?.data?.response?.user || {}
+            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;
         })
         .catch((error) => {
@@ -22,13 +23,28 @@ export const signUp = (param) => async (dispatch) => {
 export const login = (param) => async (dispatch) => {
     return authService.login(param)
         .then(async (res) => {
-            console.log('resp at slice', res)
             localStorage.setItem("token", res?.data?.response?.token)
+            dispatch(setProfile(res?.data?.response?.profile || {}))
+            let userData = res?.data?.response?.user || {}
+            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;
         })
         .catch((error) => {
 
             localStorage.removeItem("token")
+            throw error
+        });
+};
+
+export const logout = () => async (dispatch) => {
+    return authService.logout()
+        .then(async (res) => {
+            window.localStorage.clear();
+            dispatch(setProfile({}))
+            dispatch(setUser({}))
+            return res;
+        })
+        .catch((error) => {
             throw error
         });
 };
@@ -107,7 +123,8 @@ export const updatePassword = (param) => async (dispatch) => {
 };
 
 const initialState = {
-    user: null
+    user: {},
+    profile:{}
 };
 
 const userSlice = createSlice({
@@ -117,11 +134,15 @@ const userSlice = createSlice({
         setUser: (state, action) => {
             state.user = action.payload
         },
+        setProfile: (state, action) => {
+            state.profile = action.payload
+        },
     }
 });
 
 export const {
-
+setProfile,
+setUser
 } = userSlice.actions;
 
 export default userSlice.reducer;

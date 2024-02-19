@@ -97,11 +97,9 @@
     align-items: center;
     padding: 1em 0;
     gap: 1em;
+    flex-direction: row;
 }
 
-.file-component-section label{
-    width: 100%;
-}
 
 .file-component-btn-div{
     width: 20%;
@@ -128,9 +126,8 @@
         padding: 0;
     }
 
-    .details-component-section,
-    .file-component-section{
-        flex-direction: column;
+    .details-component-section{
+        flex-direction: row;
     }
 
     .userDetails-txt-content,
@@ -156,9 +153,8 @@
         flex-direction: row;
     }
 
-    .details-component-section,
-    .file-component-section{
-        flex-direction: row;
+    .details-component-section{
+        flex-direction: column;
     }
     .details-component-section label,
     .details-component-section p{

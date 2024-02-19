@@ -15,11 +15,8 @@ import { IoIosEye } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { addClientMessage } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
-import { MdEdit } from "react-icons/md";
-import { IoSendSharp } from "react-icons/io5";
-import { EyeIcon, EyeOffIcon } from "../../../components/Icon";
 import { IconSendMessage } from "../../../BTUI/Icons";
-import { showDatetime } from "../../../utils/formatter";
+import { showDate, showDatetime } from "../../../utils/formatter";
 
 const TaxFileDetails = () => {
   const [details, setDetails] = useState(null);
@@ -61,11 +58,11 @@ const TaxFileDetails = () => {
                   />
                   <DetailsComponent
                     heading="Date of Birth"
-                    value={details?.taxfile?.date_of_birth}
+                    value={showDate(details?.taxfile?.date_of_birth)}
                   />
                   <DetailsComponent
                     heading="Marital Status"
-                    value={details?.taxfile?.marital_status}
+                    value={details?.taxfile?.marital_status_detail?.name}
                   />
                   <DetailsComponent
                     heading="Mobile Number"
@@ -83,7 +80,7 @@ const TaxFileDetails = () => {
                   />
                   <DetailsComponent
                     heading="Province"
-                    value={details?.taxfile?.province}
+                    value={details?.taxfile?.province_detail?.name}
                   />
                   <DetailsComponent
                     heading="Postal Code"
@@ -113,7 +110,7 @@ const TaxFileDetails = () => {
                     <FormGroup key={index}>
                       <FormField>
                         <FileComponent
-                          name={itm?.filename || "Document"}
+                          name={itm?.type?.name || "Document"}
                           download={itm?.full_path}
                           downloadName={itm?.documents?.[index]?.filename}
                           view={itm?.full_path}
@@ -131,7 +128,6 @@ const TaxFileDetails = () => {
   }, [details]);
 
   return (
-    <UserLayout>
       <Container>
         {detailBody}
         <br />
@@ -142,7 +138,6 @@ const TaxFileDetails = () => {
         <br />
         <br />
       </Container>
-    </UserLayout>
   );
 };
 
@@ -275,11 +270,11 @@ const DetailsComponent = (props) => {
 const FileComponent = (props) => {
   return (
     <div className="file-component-section">
-      <label>{props?.name}</label>
+      <div>{props?.name}</div>
       <div className="file-component-btn-div">
         <a
           href={props?.download}
-          download="abc.png"
+          download={props?.download}
           target="_blank"
           rel="noreferrer"
         >

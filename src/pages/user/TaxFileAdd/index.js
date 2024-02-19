@@ -21,7 +21,6 @@ import "./style.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { addTaxfile } from "../../../store/userSlice";
-import { UserLayout } from "../../layouts/Layout";
 import { useNavigate } from "react-router-dom";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
 import { hideLoader, showLoader } from "../../../BTUI/BtLoader";
@@ -73,7 +72,7 @@ const TaxFileAdd = () => {
        // console.log("Response", res?.data?.taxfile?.id);
         toastSuccess(res?.data?.message);
         hideLoader()
-        navigate(`/user/tax-file-details/${res?.data?.taxfile?.id}`);
+        navigate(`/user/taxfile-details/${res?.data?.taxfile?.id}`);
       })
       .catch((err) => {
         if (err?.data?.field_errors) {
@@ -129,9 +128,7 @@ const TaxFileAdd = () => {
     handleChange("documents", oldArr);
   };
 
-  return (
-      <UserLayout>
-        <Container>
+  return <Container>
         <Form>
           <FormName name="Add Tax File Details" />
           <FormGroup>
@@ -245,8 +242,6 @@ const TaxFileAdd = () => {
         </div>
         <br />
         </Container>
-      </UserLayout>
-  );
 };
 
 export default TaxFileAdd;

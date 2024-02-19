@@ -31,7 +31,6 @@ const Signup = () => {
         setLoadingButton(true)
         dispatch(signUp(payload))
             .then(res => {
-               // alert(res?.data?.message)
                 toastSuccess(res.data?.message)
                 setLoadingButton(false)
                 navigate("/verify-email")

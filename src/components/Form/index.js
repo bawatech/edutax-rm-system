@@ -212,6 +212,7 @@ export const FileUpload = (props) => {
           ref={refImage}
           className="file"
           type="file"
+          accept=".png, .jpg, .jpeg,.pdf"
           name={props?.name}
           onChange={handleFileChange}
         />
