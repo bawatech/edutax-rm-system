@@ -279,18 +279,24 @@ export const Popup = (props)=> {
 // ===================================Popup======================================================
 // ===================================container======================================================
 
-export const Container = ({children, width})=> {
+export const Container = ({children, maxWidth})=> {
 
   return <div className="container-section">
-    <div className="container-inner-div" style={{width: width}}>
+    <div className="container-inner-div" style={{maxWidth: maxWidth}}>
       {children}
     </div>
   </div>
 }
 
 Container.defaultProps = {
-  width: '60em'
+  maxWidth: '60em'
 }
 
 // ===================================container======================================================
 
+export const Center = ({children})=> {
+
+  return <div className="" style={{textAlign: 'center'}}>
+      {children}
+  </div>
+}

@@ -86,8 +86,9 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="dash-menu">
         <div onClick={() => navigate("/user/profile")}>Profile</div>
-        <div onClick={handleReturnClick}>Return</div>
-        <div>Settings</div>
+        <div onClick={handleReturnClick}>Add Tax File</div>
+        <div onClick={() => navigate("/user/settings")}>Settings</div>
+        <div onClick={() => navigate("/user/invite-spouse")}>Link Spouse</div>
       </div>
     </div>
   );

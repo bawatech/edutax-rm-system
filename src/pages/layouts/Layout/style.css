@@ -10,6 +10,23 @@
     backdrop-filter: blur(8px);
     z-index: 999;
 }
+
+.layout-header-bf-login{
+    padding: 8px 1.5em;
+    min-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+    z-index: 999;
+}
+
+.layout-header-bf-login.active{
+    background: linear-gradient(100deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.596),rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.596),rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.596));
+    backdrop-filter: blur(8px);
+}
+
 .layout-header-logo{
     max-height: 60px;
     max-width: 60px;
@@ -58,4 +75,58 @@
 
 .layout-right-header ul li a:hover{
     color: var(--sec-color);
+}
+
+
+.layout-header-content-bf-login{
+    width: 40%;
+    height: 100%;
+    min-width: 36em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.layout-header-content-bf-login ul{
+    list-style: none;
+    display: flex;
+    gap: 2em;
+    padding-right: 1em;
+}
+
+.layout-header-content-bf-login ul li a {
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+    position: relative;
+    padding: 0.5em 1em;
+    overflow: hidden;
+    display: flex;
+    transition: all 0.4s ease-in-out;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: .5em;
+    border-top-right-radius: .5em;
+    /* border: 1px solid rgba(255, 255, 255, 1); */
+}
+
+.layout-header-content-bf-login ul li a::before {
+    content: '';
+    position: absolute;
+    top: 100%; /* Start at the bottom */
+    left: 100%; /* Start at the right */
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 1em;
+    background-color: white; /* Background color of the sliding element */
+    transition: top 0.5s ease-in-out, left 0.3s ease-in-out;
+    z-index: -9; /* Place behind the anchor element */
+}
+
+.layout-header-content-bf-login ul li a:hover::before,
+.layout-header-content-bf-login ul li a.active ::before {
+    left: 0; /* Slide to left */
+    top: 0; /* Slide to top */
+}
+
+.layout-header-content-bf-login ul li a:hover{
+    color: black;
 }

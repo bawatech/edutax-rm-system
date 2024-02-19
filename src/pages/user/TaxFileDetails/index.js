@@ -27,12 +27,13 @@ const TaxFileDetails = () => {
     authService
       .getTaxfileDetails(param?.id)
       .then((res) => {
-        //  console.log('details are ', res?.data)
-        setDetails(res?.data);
+        console.log('details are ', res?.data)
+        setDetails(res?.data?.response);
       })
       .catch((err) => {
         // console.log('Error in taxfiledetail', err)
-        alert(err?.data?.message);
+        // alert(err?.data?.message);
+        toastError(err?.data?.message)
       });
   }, []);
 
@@ -128,7 +129,7 @@ const TaxFileDetails = () => {
   }, [details]);
 
   return (
-      <Container>
+      <Container maxWidth="100%">
         {detailBody}
         <br />
         <br />
@@ -177,7 +178,7 @@ const ChatWindow = ({ taxfile_id }) => {
         setMessageList(res?.data?.response?.messages);
       })
       .catch((err) => {
-        // console.log('Error in Get Client Messages', err)
+        console.log('Error in Get Client Messages', err)
         toastError(err?.data?.message);
       });
   };
@@ -185,17 +186,17 @@ const ChatWindow = ({ taxfile_id }) => {
     getMessageList();
   }, []);
 
-  return (
-    <div className="chat-wrapper">
-        <div className="chat-messages-list">
-          {messageList?.map((msg, index) => {
-            if (msg?.user_type === "CLIENT") {
-              return <Sender msg={msg?.message} time={msg?.added_on} />;
-            } else if (msg?.user_type === "EXECUTIVE") {
-              return;
-            }
-          })}
-        </div>
+  return (<div className="chat-wrapper-div">
+      <div className="chat-wrapper">
+          <div className="chat-messages-list">
+            {messageList?.map((msg, index) => {
+              if (msg?.user_type === "CLIENT") {
+                return <Sender msg={msg?.message} time={msg?.added_on} />;
+              } else if (msg?.user_type === "EXECUTIVE") {
+                return;
+              }
+            })}
+          </div>
           <ChatInput
             name="message"
             value={newMessage}
@@ -204,6 +205,7 @@ const ChatWindow = ({ taxfile_id }) => {
             handleSend={handleSend}
           />
       </div>
+    </div>
   );
 };
 

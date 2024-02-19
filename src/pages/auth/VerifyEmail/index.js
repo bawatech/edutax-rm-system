@@ -45,7 +45,7 @@ const VerifyEmail = () => {
     }
 
     return <Layout>
-        <Container width="30em">
+        <Container maxWidth="30em">
             {/* <div className="signup-section">
                 <div className="signup-inner-container"> */}
                     <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Email Address</h2>

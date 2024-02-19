@@ -1,16 +1,13 @@
 import "./style.css";
 import logo from "./../../../assets/images/logo.png"
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { IoMdSettings } from "react-icons/io";
-import { IoIosNotifications } from "react-icons/io";
-import { IoHome, IoPerson } from "react-icons/io5";
-import { RiLogoutCircleLine } from "react-icons/ri";
 import { Button } from "../../../components/Button";
 import { Popup } from "../../../components/Form";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
+import { IoHomeIcon, IoIosNotificationsIcon, IoMdSettingsIcon, IoPersonIcon, RiLogoutCircleLineIcon } from "../../../components/Icon";
 
 
 export const Layout = (props) => {
@@ -26,17 +23,22 @@ export const Layout = (props) => {
 
   return (
     <div style={{position: 'relative'}}>
-    <Header>
+    <HeaderBfLogin>
       <HeaderLeft/>
-    </Header>
+      {/* <HeaderRightBfLogin /> */}
+    </HeaderBfLogin>
     <div className="layout-section">
-      <div className="layout-inner-section">
+      <div className="layout-inner-section" style={{width: props?.width}}>
         {props.children}
       </div>
     </div>
     </div>
   );
 };
+
+Layout.defaultProps = {
+  width: '80%',
+}
 
 
 export const UserLayout = (props) => {
@@ -120,6 +122,12 @@ const Header =({children})=>{
 </div>
 }
 
+const HeaderBfLogin =({children})=>{
+  return <div className="layout-header-bf-login">
+  {children}
+</div>
+}
+
 const HeaderLeft=()=>{
   return <div className="layout-header-logo">
     <img src={logo} alt="logo"/>
@@ -127,22 +135,45 @@ const HeaderLeft=()=>{
 }
 
 
+const HeaderRightBfLogin=(props)=>{
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollPosition(window.pageYOffset);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  console.log(scrollPosition)
+
+  return <div className={`layout-header-content-bf-login ${scrollPosition>10 ? '.active.active' : ''}`}>
+    <div className="layout-right-header-bf-login ">
+      <ul>
+      <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/services">Services</NavLink></li>
+        <li><NavLink to="/about">About</NavLink></li>
+        <li><NavLink to="/contact-us">Contact Us</NavLink></li>
+        <li><NavLink to="/login">Login</NavLink></li>
+      </ul>
+    </div>
+  </div>
+}
+
 
 const HeaderRight=(props)=>{
 
   return <div className="layout-header-content">
     <div className="layout-right-header">
       <ul>
-      <li><NavLink to="/user"><IoHome /></NavLink></li>
-        <li><NavLink to="/user/settings"><IoMdSettings /></NavLink></li>
-        <li><NavLink to=""><IoIosNotifications /></NavLink></li>
+      <li><NavLink to="/user"><IoHomeIcon /></NavLink></li>
+        <li><NavLink to="/user/settings"><IoMdSettingsIcon /></NavLink></li>
+        <li><NavLink to=""><IoIosNotificationsIcon /></NavLink></li>
         {/* <li><NavLink to=""><IoPerson /></NavLink></li> */}
-        <li><NavLink to="" onClick={props?.handleLogout}><RiLogoutCircleLine/></NavLink></li>
+        <li><NavLink to="" onClick={props?.handleLogout}><RiLogoutCircleLineIcon/></NavLink></li>
         {/* <li><NavLink to="">{props?.name}</NavLink></li> */}
       </ul>
     </div>
   </div>
-
 }
 
 

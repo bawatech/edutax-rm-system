@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChatInput, ChatLayout, Dropdown, FileUpload, Form, FormField, FormGroup, FormName, Input, InputDate } from "../../../components/Form";
+import { ChatInput, ChatLayout, Container, Dropdown, FileUpload, Form, FormField, FormGroup, FormName, Input, InputDate } from "../../../components/Form";
 import { Button } from "../../../components/Button";
 import './style.css'
 import { useDispatch } from 'react-redux';
@@ -69,6 +69,9 @@ const ProfileDetails = () => {
 
 
     return <div className="">
+        <Container>
+
+        
             <Form>
                 <FormName name="Profile" />
                 <FormGroup>
@@ -171,7 +174,6 @@ const ProfileDetails = () => {
                     </FormField>
 
                 </FormGroup>
-
                 <br />
                 <div style={{ textAlign: 'center' }}>
                     <Button
@@ -182,7 +184,7 @@ const ProfileDetails = () => {
                 </div>
                 <br />
             </Form>
-
+            </Container>
     </div>
 }
 

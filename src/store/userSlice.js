@@ -122,6 +122,17 @@ export const updatePassword = (param) => async (dispatch) => {
         });
 };
 
+export const sendSpouseInvitation = (param) => async (dispatch) => {
+    return authService.sendSpouseInvitation(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
 const initialState = {
     user: {},
     profile:{}

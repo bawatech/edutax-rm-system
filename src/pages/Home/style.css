@@ -1,0 +1,89 @@
+
+
+.carousel-section{
+    margin-top: -5em;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.carousel-inner-section-abs{
+    position: absolute;
+    inset: 0;
+    z-index: -99;
+}
+
+.carousel-inner-section-abs img{
+    width: 100%;
+    height: 100%;
+    z-index: -99;
+}
+
+.carousel-bg-div-abs{
+    position: absolute;
+    inset: 0;
+    z-index: -99;
+    background: linear-gradient(to bottom, #0e4dcc, #0e4dccd2);
+}
+
+.carousel-txt-content-div{
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;  
+}
+
+.carousel-txt-content-div>div h1{
+    font-size: 5em;
+    text-align: center;
+    color: white;
+}
+
+.carousel-txt-content-div>div h2{
+    font-size: 3em;
+    text-align: center;
+    color: transparent; /* Hide the text */
+    -webkit-text-stroke: 2px white; /* Apply white border to text */
+    background-color: rgba(255, 255, 255, 0); /* Set transparent background */
+    display: inline-block; /* Ensure the background covers the text */
+    padding: 5px; /* Add padding for better visibility */
+}
+
+.carousel-txt-content-div>div p{
+    font-size: 1.5em;
+    text-align: center;
+    color: white;
+}
+
+.carousel-txt-content-div div.carousel-txt-content-btn-div{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 5em;
+}
+
+@media only screen and (min-width: 10px){
+    .carousel-txt-content-div>div{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;  
+        align-items: center;  
+        gap: 2em;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .carousel-txt-content-div>div{
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .carousel-txt-content-div>div{
+        width: 60%;
+    }
+}

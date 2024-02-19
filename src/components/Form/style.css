@@ -277,7 +277,7 @@
 .file-section>button{
     min-width: 100%;
     border: none;
-    z-index: 999;
+    z-index: 9;
     padding: 1.6em;
 }
 
@@ -412,6 +412,7 @@
 @media only screen and (min-width: 100px) {
     .container-inner-div{
         padding: 0em;
+        max-width: 100%;
     }
 }
 
@@ -435,6 +436,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.5em;
+    position: relative;
+    z-index: 999;
 }
 .date-input-div{
     width: 100%;

@@ -47,7 +47,7 @@ const Login = () => {
     }
 
     return <Layout>
-            <Container width="30em">
+            <Container maxWidth="30em">
                 <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Log In</h2>
 
                 <FormGroup>

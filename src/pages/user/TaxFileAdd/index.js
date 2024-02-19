@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import {
-  ChatInput,
-  ChatLayout,
   Container,
   Dropdown,
   FileUpload,
@@ -12,7 +10,6 @@ import {
   FormGroup,
   FormName,
   FormSectionName,
-  Input,
   InputDate,
   LabelYesNo,
 } from "../../../components/Form";
@@ -24,7 +21,6 @@ import { addTaxfile } from "../../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
 import { hideLoader, showLoader } from "../../../BTUI/BtLoader";
-import { Provinces } from "../../../service/master";
 import authService from "../../../service/auth";
 
 
@@ -72,7 +68,7 @@ const TaxFileAdd = () => {
        // console.log("Response", res?.data?.taxfile?.id);
         toastSuccess(res?.data?.message);
         hideLoader()
-        navigate(`/user/taxfile-details/${res?.data?.taxfile?.id}`);
+        navigate(`/user/taxfile-details/${res?.data?.response?.taxfile?.id}`);
       })
       .catch((err) => {
         if (err?.data?.field_errors) {

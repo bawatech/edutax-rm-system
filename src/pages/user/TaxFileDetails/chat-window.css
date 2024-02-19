@@ -1,6 +1,14 @@
 
+
+.chat-wrapper-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .chat-wrapper{
     width: 100%;
+    max-width: 80em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,6 +27,7 @@
     gap: 1em;
     flex-direction: column;
     overflow-y: auto;
+    white-space: pre-line;
 }
 
 
