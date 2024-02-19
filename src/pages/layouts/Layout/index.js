@@ -2,12 +2,12 @@ import "./style.css";
 import logo from "./../../../assets/images/logo.png"
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "../../../components/Button";
-import { Popup } from "../../../components/Form";
+import { Center, Popup } from "../../../components/Form";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
-import { IoHomeIcon, IoIosNotificationsIcon, IoMdSettingsIcon, IoPersonIcon, RiLogoutCircleLineIcon } from "../../../components/Icon";
+import { IoHomeIcon, IoIosNotificationsIcon, IoMdSettingsIcon, RiLogoutCircleLineIcon } from "../../../components/Icon";
 
 
 export const Layout = (props) => {
@@ -16,7 +16,7 @@ export const Layout = (props) => {
   const {user} =useSelector(store=>store?.user)
   console.log('USER',user)
   useEffect(()=>{
-    if(user?.token && user?.verify_status=='VERIFIED'){
+    if(user?.token && user?.verify_status==='VERIFIED'){
       navigate('/user')
     }
   },[user?.user?.token])
@@ -32,6 +32,11 @@ export const Layout = (props) => {
         {props.children}
       </div>
     </div>
+    <Footer>
+      <Center>
+        <p>&copy; 2024 Edutax. All rights reserved.</p>
+      </Center>
+    </Footer>
     </div>
   );
 };
@@ -89,7 +94,11 @@ export const UserLayout = (props) => {
         <Outlet/>
       </div>
     </div>
-
+    <Footer>
+      <Center>
+        <p>&copy; 2024 Edutax. All rights reserved.</p>
+      </Center>
+    </Footer>
 
 
     
@@ -135,29 +144,29 @@ const HeaderLeft=()=>{
 }
 
 
-const HeaderRightBfLogin=(props)=>{
-  const [scrollPosition, setScrollPosition] = useState(0);
+// const HeaderRightBfLogin=(props)=>{
+//   const [scrollPosition, setScrollPosition] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => setScrollPosition(window.pageYOffset);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+//   useEffect(() => {
+//     const handleScroll = () => setScrollPosition(window.pageYOffset);
+//     window.addEventListener('scroll', handleScroll);
+//     return () => window.removeEventListener('scroll', handleScroll);
+//   }, []);
 
-  console.log(scrollPosition)
+//   console.log(scrollPosition)
 
-  return <div className={`layout-header-content-bf-login ${scrollPosition>10 ? '.active.active' : ''}`}>
-    <div className="layout-right-header-bf-login ">
-      <ul>
-      <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/services">Services</NavLink></li>
-        <li><NavLink to="/about">About</NavLink></li>
-        <li><NavLink to="/contact-us">Contact Us</NavLink></li>
-        <li><NavLink to="/login">Login</NavLink></li>
-      </ul>
-    </div>
-  </div>
-}
+//   return <div className={`layout-header-content-bf-login ${scrollPosition>10 ? '.active.active' : ''}`}>
+//     <div className="layout-right-header-bf-login ">
+//       <ul>
+//       <li><NavLink to="/">Home</NavLink></li>
+//         <li><NavLink to="/services">Services</NavLink></li>
+//         <li><NavLink to="/about">About</NavLink></li>
+//         <li><NavLink to="/contact-us">Contact Us</NavLink></li>
+//         <li><NavLink to="/login">Login</NavLink></li>
+//       </ul>
+//     </div>
+//   </div>
+// }
 
 
 const HeaderRight=(props)=>{
@@ -184,8 +193,8 @@ const Footer = ({children}) =>{
   </div>
 }
 
-const FooterContent = () => {
-  return <div className="footer-content">
+// const FooterContent = () => {
+//   return <div className="footer-content">
 
-  </div>
-}
+//   </div>
+// }

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import "./style.css";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import authService from "../../../service/auth";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
@@ -10,7 +9,6 @@ const Dashboard = () => {
   const [errors, setErrors] = useState({});
 //   const [taxfiles, setTaxfiles] = useState([]);
   const [maritalStatus, setMaritalStatus] = useState([]);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   console.log("PAYLOAD IS ", payload);
@@ -86,7 +84,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="dash-menu">
         <div onClick={() => navigate("/user/profile")}>Profile</div>
-        <div onClick={handleReturnClick}>Add Tax File</div>
+        <div onClick={handleReturnClick}>Tax Return</div>
         <div onClick={() => navigate("/user/settings")}>Settings</div>
         <div onClick={() => navigate("/user/invite-spouse")}>Link Spouse</div>
       </div>

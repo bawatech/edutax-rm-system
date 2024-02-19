@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { sendSpouseInvitation } from '../../../store/userSlice'
 import { toastError, toastSuccess } from '../../../BTUI/BtToast'
 import authService from '../../../service/auth'
+import { GoUnlinkIcon } from '../../../components/Icon'
 
 
 const InviteSpouse = () => {
@@ -56,7 +57,7 @@ const InviteSpouse = () => {
                 <div className="spouse-linked-div">
                     <span>{spouseStatus?.data?.response?.spouse?.email}</span>
 
-                    <Button title="Unlink" varient="icon" onClick={()=>alert("Clicked")} />
+                    <Button title={<GoUnlinkIcon />} varient="icon" onClick={()=>alert("Clicked")} />
                 </div>
             </Container>
         }else if(spouseStatus?.status === 400){

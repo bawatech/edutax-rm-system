@@ -193,7 +193,7 @@ const ChatWindow = ({ taxfile_id }) => {
               if (msg?.user_type === "CLIENT") {
                 return <Sender msg={msg?.message} time={msg?.added_on} />;
               } else if (msg?.user_type === "EXECUTIVE") {
-                return;
+                return ;
               }
             })}
           </div>
@@ -261,11 +261,14 @@ const Reciever = (props) => {
 };
 
 const DetailsComponent = (props) => {
-  return (
+  return (<div className="details-component-outer-section">
     <div className="details-component-section">
       <label>{props?.heading}</label>
       <p>{props?.value}</p>
     </div>
+    <hr />
+  </div>
+    
   );
 };
 

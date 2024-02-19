@@ -1,5 +1,5 @@
 .layout-header{
-    background: rgba(240, 240, 253,0.5);
+    /* background: rgba(240, 240, 253,0.5); */
     padding: 8px 1.5em;
     min-height: 80px;
     display: flex;
@@ -9,6 +9,7 @@
     top: 0px;
     backdrop-filter: blur(8px);
     z-index: 999;
+    background: var(--theme-color-a);
 }
 
 .layout-header-bf-login{
@@ -20,6 +21,8 @@
     position: sticky;
     top: 0px;
     z-index: 999;
+    background: var(--theme-color-a);
+
 }
 
 .layout-header-bf-login.active{
@@ -41,6 +44,7 @@
 
 .layout-section{
     width: 100%;
+    min-height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,7 +73,7 @@
 
 .layout-right-header ul li a{
     font-size: 1.5em;
-    color: rgb(48, 48, 48);
+    color: white;
     transition: all 0.3s ease-in-out;
 }
 
@@ -129,4 +133,13 @@
 
 .layout-header-content-bf-login ul li a:hover{
     color: black;
+}
+
+
+/* ====================================================================== */
+
+.layout-footer{
+    width: 100%;
+    background: rgb(230, 230, 230);
+    padding: 1em;
 }

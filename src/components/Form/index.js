@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { EyeIcon, EyeOffIcon } from "../Icon";
 import "./style.css";
-import { IoSendSharp } from "react-icons/io5";
 import { Button } from "../Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -167,7 +166,7 @@ export const Dropdown = (props) => {
               props.name,
               e?.target?.value,
               props?.options?.list.find(
-                (itm) => itm[props?.options?.value] == e?.target?.value
+                (itm) => itm[props?.options?.value] === e?.target?.value
               )
             )
           }
