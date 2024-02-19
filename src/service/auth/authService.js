@@ -15,20 +15,6 @@ class authService {
     logout = async () => {
         return await postRequest('auth/logout');
     }
-
-    // addTaxfile = async (payload) => {
-    //     return await postFormdata('user/upload-documents', payload);
-    // }
-    addTaxfile = async (payload) => {
-        return await postFormdata('user/add-taxfile', payload);
-    }
-    getTaxfileList = async (payload) => {
-        return await getRequest('user/taxfile', payload);
-    }
-    getTaxfileDetails = async (id) => {
-        return await getRequest(`user/taxfile/${id}`);
-    }
-
     verifyEmail = async (payload) => {
         return await postRequest('auth/verify-email', payload);
     }
@@ -45,37 +31,63 @@ class authService {
         return await postRequest('auth/update-password', payload);
     }
 
+
+    
+    // addTaxfile = async (payload) => {
+    //     return await postFormdata('user/upload-documents', payload);
+    // }
+    addTaxfile = async (payload) => {
+        return await postFormdata('user/taxfile', payload);
+    }
+    getTaxfileList = async (payload) => {
+        return await getRequest('user/taxfile', payload);
+    }
+    getTaxfileDetails = async (id) => {
+        return await getRequest(`user/taxfile/${id}`);
+    }
+    updateTaxfile = async (payload) => {
+        return await putRequest('user/taxfile', payload);
+    }
+
+
+
+    addClientMessage = async (payload) => {
+        return await postRequest('user/message', payload);
+    }
+    getClientMessages = async (id) => {
+        return await getRequest(`user/message/${id}`);
+    }
+
+
+
     updateProfile = async (payload) => {
         return await putRequest('user/profile', payload);
     }
-
     getProfile = async (payload) => {
         return await getRequest('user/profile', payload);
     }
 
-    addClientMessage = async (payload) => {
-        // console.log("authservice payload", payload);
-        return await postRequest('user/add-client-message', payload);
+
+    sendSpouseInvitation = async (payload) => {
+        return await postRequest('user/send-invitation', payload);
+    }
+    acceptSpouseInvitation = async (token) => {
+        return await getRequest(`user/accept-invitation/${token}`);
+    }
+    getSpouse = async (payload) => {
+        return await getRequest('user/spouse', payload);
     }
 
-    getClientMessages = async (id) => {
-        return await getRequest(`user/get-client-messages/${id}`);
+
+
+    getMaritalStatus = async (id = null) => {
+        return await getRequest(`user/marital-status`);
     }
-
-
-    ////////////////////////
-    //ROUTES FOR MASTERS //START HERE
-    ////////////////////////
-    getMaritalStatus = async (id=null) => {
-        return await getRequest(`user/get-marital-status`);
+    getProvinces = async (id = null) => {
+        return await getRequest(`user/provinces`);
     }
-
-    getProvinces = async (id=null) => {
-        return await getRequest(`user/get-provinces`,id);
-    }
-
-    getDocumentTypes = async (id) => {
-        return await getRequest(`user/get-document-types`);
+    getDocumentTypes = async (id = null) => {
+        return await getRequest(`user/document-types`);
     }
 
 }
