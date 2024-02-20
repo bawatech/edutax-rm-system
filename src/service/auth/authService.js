@@ -79,7 +79,6 @@ class authService {
     }
 
 
-
     getMaritalStatus = async (id = null) => {
         return await getRequest(`user/marital-status`);
     }

@@ -44,7 +44,7 @@
 
 .layout-section{
     width: 100%;
-    min-height: 85vh;
+    min-height: 87vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,7 +85,7 @@
 .layout-header-content-bf-login{
     width: 40%;
     height: 100%;
-    min-width: 36em;
+    min-width: 25em;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -126,7 +126,7 @@
 }
 
 .layout-header-content-bf-login ul li a:hover::before,
-.layout-header-content-bf-login ul li a.active ::before {
+.layout-header-content-bf-login ul li .active ::before {
     left: 0; /* Slide to left */
     top: 0; /* Slide to top */
 }

@@ -25,7 +25,7 @@ export const Layout = (props) => {
     <div style={{position: 'relative'}}>
     <HeaderBfLogin>
       <HeaderLeft/>
-      {/* <HeaderRightBfLogin /> */}
+      <HeaderRightBfLogin />
     </HeaderBfLogin>
     <div className="layout-section">
       <div className="layout-inner-section" style={{width: props?.width}}>
@@ -144,29 +144,29 @@ const HeaderLeft=()=>{
 }
 
 
-// const HeaderRightBfLogin=(props)=>{
-//   const [scrollPosition, setScrollPosition] = useState(0);
+const HeaderRightBfLogin=(props)=>{
+  const [scrollPosition, setScrollPosition] = useState(0);
 
-//   useEffect(() => {
-//     const handleScroll = () => setScrollPosition(window.pageYOffset);
-//     window.addEventListener('scroll', handleScroll);
-//     return () => window.removeEventListener('scroll', handleScroll);
-//   }, []);
+  useEffect(() => {
+    const handleScroll = () => setScrollPosition(window.pageYOffset);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-//   console.log(scrollPosition)
+  console.log(scrollPosition)
 
-//   return <div className={`layout-header-content-bf-login ${scrollPosition>10 ? '.active.active' : ''}`}>
-//     <div className="layout-right-header-bf-login ">
-//       <ul>
-//       <li><NavLink to="/">Home</NavLink></li>
-//         <li><NavLink to="/services">Services</NavLink></li>
-//         <li><NavLink to="/about">About</NavLink></li>
-//         <li><NavLink to="/contact-us">Contact Us</NavLink></li>
-//         <li><NavLink to="/login">Login</NavLink></li>
-//       </ul>
-//     </div>
-//   </div>
-// }
+  return <div className={`layout-header-content-bf-login ${scrollPosition>10 ? '.active.active' : ''}`}>
+    <div className="layout-right-header-bf-login ">
+      <ul>
+      <li><NavLink to="/">Home</NavLink></li>
+        {/* <li><NavLink to="/services">Services</NavLink></li> */}
+        {/* <li><NavLink to="/about">About</NavLink></li> */}
+        <li><NavLink to="/contact-us">Contact Us</NavLink></li>
+        <li><NavLink to="/login">Login</NavLink></li>
+      </ul>
+    </div>
+  </div>
+}
 
 
 const HeaderRight=(props)=>{

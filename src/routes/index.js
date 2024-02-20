@@ -25,7 +25,8 @@ const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
     const routes = [
         {path:'',element:<Login/>},
-        // {path:'home',element:<Home/>},
+        {path:'home',element:<Home/>},
+        {path:'contact',element:<Home/>},
         {path:'login',element:<Login/>},
         {path:'qna-verify',element:<QnaVerify/>},
         {path:'sign-up',element:<Signup/>},

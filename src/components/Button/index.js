@@ -9,7 +9,7 @@ export const Button = (props)=>{
             name={props?.name}
             type={props?.type}
             value={props?.value}
-            style={{maxWidth: props?.maxWidth}}
+            style={{maxWidth: props?.maxWidth, background: props?.background}}
             onClick={props?.onClick}
             disabled= {props?.disabled || props?.loading}
         >
