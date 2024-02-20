@@ -12,6 +12,7 @@ import { MdEmail } from "react-icons/md";
 import { FiInstagram } from "react-icons/fi";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { HiOutlineMenu } from "react-icons/hi";
 
 export const EyeIcon = () => <IoIosEye />;
 export const EyeOffIcon = () => <IoIosEyeOff />;
@@ -28,3 +29,4 @@ export const Email = () => <MdEmail />;
 export const Insta = () => <FiInstagram />;
 export const Facebook = () => <FaFacebookF />;
 export const Twitter = () => <FaXTwitter />;
+export const Hamberger = () => <HiOutlineMenu />;

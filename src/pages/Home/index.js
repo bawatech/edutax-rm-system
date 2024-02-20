@@ -4,8 +4,8 @@ import CarouselImg from '../../assets/images/mobilebg.png'
 import { Button } from '../../components/Button';
 import RefundImg from '../../assets/images/refund.png'
 import TaxFillingImg from '../../assets/images/tax-filing.jpg'
-import {Facebook, FcCheckmarkIcon, Insta, Twitter } from '../../components/Icon';
-import { NavLink } from 'react-router-dom';
+import { FcCheckmarkIcon} from '../../components/Icon';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () =>{
 
@@ -59,6 +59,8 @@ const Carousel = () =>{
 
 const Carousel2 = () =>{
 
+    const navigate = useNavigate()
+
     return<div className="carousel2-section">
         <div className="carousel2-bg-div-abs"></div>
         <div className="carousel2-bg-neon-abs left"></div>
@@ -74,7 +76,7 @@ const Carousel2 = () =>{
                     <p>We leverage the latest technologies and innovations to deliver cutting-edge solutions that streamline document processes and improve efficiency.</p>
 
                     <div className="carousel2-txt-content-btn-div">
-                        <Button varient="small" background="var(--color-a)" title="Login" maxWidth="100%"/>
+                        <Button varient="small" background="var(--color-a)" title="Login" maxWidth="100%" onClick={()=>navigate('/login')} />
                         {/* <Button varient="small light-outlined" title="Upload Document" maxWidth="100%"/> */}
                     </div>
                     
@@ -132,9 +134,9 @@ const ImgBgDivComponent = () => {
                 </div>
                 
                 <div className="imgBgDiv-cards">
-                    <ImgBgDivCard cardColor="red" count="1" desc="Create Your Account"/>
-                    <ImgBgDivCard cardColor="blue" count="2" desc="Upload Your Documents"/>
-                    <ImgBgDivCard cardColor="green" count="3" desc="And Its Done"/>
+                    <ImgBgDivCard cardColor="red" count="1" desc="Get started by creating your account."/>
+                    <ImgBgDivCard cardColor="blue" count="2" desc="Easily upload your tax documents for processing."/>
+                    <ImgBgDivCard cardColor="green" count="3" desc="Your taxes are done with just a few clicks."/>
                 </div>
             </div>
         </div>
@@ -147,41 +149,5 @@ const ImgBgDivCard = (props) => {
         <span>{props?.count}</span>
 
         <h3>{props?.desc}</h3>
-    </div>
-}
-
-
-
-export const Footer = ({children}) => {
-
-    return<div className="footer-section">
-        <div className="footer-inner-section">
-            <div className="footer-column logo-column">
-                <h1>Edutax</h1>
-
-                <p>We work hard to make your Tax filing process as easy and hassle-free as possible</p>
-                
-                <ul>
-                    <li><NavLink><Insta /></NavLink></li>
-                    <li><NavLink><Facebook /></NavLink></li>
-                    <li><NavLink><Twitter /></NavLink></li>
-                </ul>
-            </div>
-            {children}
-        </div>
-    </div>
-}
-
-export const FooterColumn = (props) => {
-
-    return<div className="footer-column">
-        <h3>{props?.title}</h3>
-        
-        <ul>
-            <li><NavLink>{props?.point1}</NavLink></li>
-            {props?.point2 && <li><NavLink>{props?.point2}</NavLink></li>}
-            {props?.point3 && <li><NavLink>{props?.point3}</NavLink></li>}
-            {props?.point4 && <li><NavLink>{props?.point4}</NavLink></li>}
-        </ul>
     </div>
 }

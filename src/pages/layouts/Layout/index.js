@@ -7,8 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
-import { IoHomeIcon, IoIosNotificationsIcon, IoMdSettingsIcon, RiLogoutCircleLineIcon } from "../../../components/Icon";
-import { Footer, FooterColumn } from "../../Home";
+import { Email, Facebook, Hamberger, Insta, IoHomeIcon, IoIosNotificationsIcon, IoMdSettingsIcon, Location, Phone, RiLogoutCircleLineIcon, Twitter } from "../../../components/Icon";
 
 
 export const Layout = (props) => {
@@ -23,7 +22,7 @@ export const Layout = (props) => {
   },[user?.user?.token])
 
   return (
-    <div style={{position: 'relative'}}>
+    <div className="" style={{position: 'relative'}}>
     <HeaderBfLogin>
       <HeaderLeft/>
       <HeaderRightBfLogin />
@@ -36,32 +35,42 @@ export const Layout = (props) => {
     <Footer>
             <FooterColumn 
                 title="Company"
-
-                point1="About Us"
-                point2="Service"
+                
+                points={[
+                  {title: 'About Us', href: ''},
+                  {title: 'Services', href: ''},
+                ]}
             />
 
             <FooterColumn 
                 title="Support"
 
-                point1="Help"
-                point2="Tweet Us"
+                points={[
+                  {title: 'Help Us', href: ''},
+                  {title: 'Tweet Us', href: ''},
+                ]}
             />
 
             <FooterColumn 
                 title="Links"
 
-                point1="Services"
-                point2="Login"
-                point3="SignUp"
+                points={[
+                  {title: 'Contact Us', href: '/contact'},
+                  {title: 'Login', href: '/login'},
+                  {title: 'Sign Up', href: '/qna-verify'},
+                ]}
             />
 
             <FooterColumn 
                 title="Contact Us"
 
-                point1="Torbram & NorthPark, 9886 Torbram Road Unit 206, Brampton, ON L6S 3L9"
-                point2="905-790-6200"
-                point3="contact@edutax.ca"
+                points={[
+                  {icon: <Location/>, title: `Torbram & NorthPark, 9886 Torbram Road Unit 206, Brampton, ON L6S 3L9`, href: ''},
+                  {icon: <Phone />, title: '905-790-6200', href: ''},
+                  {icon: <Email/>, title: 'contact@edutax.ca', href: ''},
+                ]}
+                point2=""
+                point3=""
             />
         </Footer>
     <LowerFooter>
@@ -164,7 +173,16 @@ const Header =({children})=>{
 }
 
 const HeaderBfLogin =({children})=>{
-  return <div className="layout-header-bf-login">
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollPosition(window.pageYOffset);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  console.log(scrollPosition)
+  return <div className={`layout-header-bf-login ${scrollPosition >= 10 ? 'active' : ''}`}>
   {children}
 </div>
 }
@@ -177,25 +195,24 @@ const HeaderLeft=()=>{
 
 
 const HeaderRightBfLogin=(props)=>{
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [toggle, setToggle] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = () => setScrollPosition(window.pageYOffset);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  console.log(scrollPosition)
-
-  return <div className={`layout-header-content-bf-login ${scrollPosition>10 ? '.active.active' : ''}`}>
+  return <div className={`layout-header-content-bf-login `}>
     <div className="layout-right-header-bf-login ">
-      <ul>
-      <li><NavLink to="/">Home</NavLink></li>
-        {/* <li><NavLink to="/services">Services</NavLink></li> */}
-        {/* <li><NavLink to="/about">About</NavLink></li> */}
+      <ul className="lg-menu">
+        <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/contact">Contact Us</NavLink></li>
         <li><NavLink to="/login">Login</NavLink></li>
       </ul>
+      <ul className="small-menu" style={{display: toggle ? "flex": "none"}}>
+        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/contact">Contact Us</NavLink></li>
+        <li><NavLink to="/login">Login</NavLink></li>
+      </ul>
+
+      <div className="hamburger-div">
+        <span onClick={()=>setToggle((prev) => !prev)} style={{fontSize: '1.5em', color: 'white'}}><Hamberger/></span>
+      </div>
     </div>
   </div>
 }
@@ -217,7 +234,38 @@ const HeaderRight=(props)=>{
   </div>
 }
 
+export const Footer = ({children}) => {
 
+  return<div className="footer-section">
+      <div className="footer-inner-section">
+          <div className="footer-column logo-column">
+              <h1>Edutax</h1>
+
+              <p>We work hard to make your Tax filing process as easy and hassle-free as possible</p>
+              
+              <ul>
+                  <li><NavLink to="https://www.instagram.com/edutax_"><Insta /></NavLink></li>
+                  <li><NavLink to="https://www.facebook.com/profile.php?id=100047636203169&sfnsn=wiwspwa&mibextid=RUbZ1f"><Facebook /></NavLink></li>
+                  <li><NavLink to=""><Twitter /></NavLink></li>
+              </ul>
+          </div>
+          {children}
+      </div>
+  </div>
+}
+
+export const FooterColumn = (props) => {
+
+  return<div className="footer-column">
+      <h3>{props?.title}</h3>
+      
+      <ul>
+        {props?.points?.map((point,index) => {
+          return <li key={index}><NavLink to={point?.href}>{point?.icon && point?.icon}{point?.title}</NavLink></li>
+        })}
+      </ul>
+  </div>
+}
 
 const LowerFooter = ({children}) =>{
   return <div className="layout-footer">
