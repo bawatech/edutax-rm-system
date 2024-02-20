@@ -28,7 +28,7 @@ class authService {
     }
 
     updatePassword = async (payload) => {
-        return await postRequest('auth/update-password', payload);
+        return await putRequest('auth/update-password', payload);
     }
 
 

@@ -80,11 +80,11 @@ export async function postRequest(URL, payload) {
 }
 
 export async function putRequest(URL, payload) {
-    return axiosClient.put(`/${URL}`, payload).then(response => response);
+    return await axiosClient.put(`/${URL}`, payload).then(response => response);
 }
 
 export async function deleteRequest(URL, urlParam) {
-    return axiosClient.delete(`/${URL}`, { data: urlParam }).then(response => response);
+    return await axiosClient.delete(`/${URL}`, { data: urlParam }).then(response => response);
 }
 
 export async function postFormdata(URL, payload) {
