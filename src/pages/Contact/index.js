@@ -1,19 +1,31 @@
 import { Button } from '../../components/Button';
 import { Input, Textarea } from '../../components/Form';
 import { Email, Location, Phone } from '../../components/Icon';
+import ContactImg from '../../assets/images/contact.png'
 import './style.css';
+import { Layout } from '../layouts/Layout';
+import { useState } from 'react';
 
 const ContactUs = () => {
+    const [payload, setPayload] = useState({})
 
-    return<div className="contact-section">
+    const handleChange = (name, value) => {
+        setPayload({
+            ...payload,
+            [name]: value
+        })
+    }
+
+    return<Layout>
+        <div className="contact-section">
         <div className="contact-inner-section">
             <div className="contact-img-div">
                 <img src={ContactImg}/>
                 
                 <ul>
-                    <li><Location /> <p>Abcd Road, Ontario, Canada</p></li>
-                    <li><Phone /> <p>9876543210</p></li>
-                    <li><Email /> <p>example@gmail.com</p></li>
+                    <li><Location /> <p>Torbram & NorthPark, 9886 Torbram Road Unit 206, Brampton, ON L6S 3L9</p></li>
+                    <li><Phone /> <p>905-790-6200</p></li>
+                    <li><Email /> <p>contact@edutax.ca</p></li>
                 </ul>
             </div>
             <div className="contact-form-div">
@@ -22,25 +34,26 @@ const ContactUs = () => {
                 <Input
                     label="Email"
                     name="email"
-                    value=""
-                    handleChange=""
+                    value={payload.email}
+                    handleChange={handleChange}
                 />
                 <Input 
                     label="Subject"
                     name="subject"
-                    value=""
-                    handleChange=""
+                    value={payload?.subject}
+                    handleChange={handleChange}
                 />
                 <Textarea 
                     label="Message"
                     name="message"
-                    value=""
-                    handleChange=""
+                    value={payload?.message}
+                    handleChange={handleChange}
                 />
                 <Button title="Submit" varient="small" background="var(--sec-color)"/>
             </div>
         </div>
     </div>
+    </Layout>
 }
 
 export default ContactUs;

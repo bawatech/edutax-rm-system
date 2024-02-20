@@ -26,37 +26,6 @@ const Home = () =>{
             point3="Easy, step-by-step guidance."
             img={TaxFillingImg}
         />
-        <Footer>
-            <FooterColumn 
-                title="Company"
-
-                point1="About Us"
-                point2="Service"
-            />
-
-            <FooterColumn 
-                title="Support"
-
-                point1="Help"
-                point2="Tweet Us"
-            />
-
-            <FooterColumn 
-                title="Links"
-
-                point1="Services"
-                point2="Login"
-                point3="SignUp"
-            />
-
-            <FooterColumn 
-                title="Contact Us"
-
-                point1="Abcd,Hill Road, Ontario, Canada"
-                point2="9876543210"
-                point3="example@example.com"
-            />
-        </Footer>
     </Layout>
 }
 
@@ -163,9 +132,9 @@ const ImgBgDivComponent = () => {
                 </div>
                 
                 <div className="imgBgDiv-cards">
-                    <ImgBgDivCard cardColor="red" count="1" desc="Answer a few basic questions"/>
-                    <ImgBgDivCard cardColor="blue" count="2" desc="Import your tax slips & maximize your refund"/>
-                    <ImgBgDivCard cardColor="green" count="3" desc="NETFILE your return directly to CRA"/>
+                    <ImgBgDivCard cardColor="red" count="1" desc="Create Your Account"/>
+                    <ImgBgDivCard cardColor="blue" count="2" desc="Upload Your Documents"/>
+                    <ImgBgDivCard cardColor="green" count="3" desc="And Its Done"/>
                 </div>
             </div>
         </div>
@@ -183,14 +152,14 @@ const ImgBgDivCard = (props) => {
 
 
 
-const Footer = ({children}) => {
+export const Footer = ({children}) => {
 
     return<div className="footer-section">
         <div className="footer-inner-section">
             <div className="footer-column logo-column">
                 <h1>Edutax</h1>
 
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                <p>We work hard to make your Tax filing process as easy and hassle-free as possible</p>
                 
                 <ul>
                     <li><NavLink><Insta /></NavLink></li>
@@ -203,7 +172,7 @@ const Footer = ({children}) => {
     </div>
 }
 
-const FooterColumn = (props) => {
+export const FooterColumn = (props) => {
 
     return<div className="footer-column">
         <h3>{props?.title}</h3>

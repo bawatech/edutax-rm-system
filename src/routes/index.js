@@ -20,13 +20,14 @@ import ProfileDetails from '../pages/user/ProfileDetails';
 import { UserLayout } from '../pages/layouts/Layout';
 import Home from '../pages/Home';
 import InviteSpouse from '../pages/user/InviteSpouse';
+import ContactUs from '../pages/Contact';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
     const routes = [
-        {path:'',element:<Login/>},
+        {path:'',element:<Home/>},
         {path:'home',element:<Home/>},
-        {path:'contact',element:<Home/>},
+        {path:'contact',element:<ContactUs/>},
         {path:'login',element:<Login/>},
         {path:'qna-verify',element:<QnaVerify/>},
         {path:'sign-up',element:<Signup/>},

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
 import { IoHomeIcon, IoIosNotificationsIcon, IoMdSettingsIcon, RiLogoutCircleLineIcon } from "../../../components/Icon";
+import { Footer, FooterColumn } from "../../Home";
 
 
 export const Layout = (props) => {
@@ -33,10 +34,41 @@ export const Layout = (props) => {
       </div>
     </div>
     <Footer>
+            <FooterColumn 
+                title="Company"
+
+                point1="About Us"
+                point2="Service"
+            />
+
+            <FooterColumn 
+                title="Support"
+
+                point1="Help"
+                point2="Tweet Us"
+            />
+
+            <FooterColumn 
+                title="Links"
+
+                point1="Services"
+                point2="Login"
+                point3="SignUp"
+            />
+
+            <FooterColumn 
+                title="Contact Us"
+
+                point1="Torbram & NorthPark, 9886 Torbram Road Unit 206, Brampton, ON L6S 3L9"
+                point2="905-790-6200"
+                point3="contact@edutax.ca"
+            />
+        </Footer>
+    <LowerFooter>
       <Center>
         <p>&copy; 2024 Edutax. All rights reserved.</p>
       </Center>
-    </Footer>
+    </LowerFooter>
     </div>
   );
 };
@@ -94,11 +126,11 @@ export const UserLayout = (props) => {
         <Outlet/>
       </div>
     </div>
-    <Footer>
+    <LowerFooter>
       <Center>
         <p>&copy; 2024 Edutax. All rights reserved.</p>
       </Center>
-    </Footer>
+    </LowerFooter>
 
 
     
@@ -161,7 +193,7 @@ const HeaderRightBfLogin=(props)=>{
       <li><NavLink to="/">Home</NavLink></li>
         {/* <li><NavLink to="/services">Services</NavLink></li> */}
         {/* <li><NavLink to="/about">About</NavLink></li> */}
-        <li><NavLink to="/contact-us">Contact Us</NavLink></li>
+        <li><NavLink to="/contact">Contact Us</NavLink></li>
         <li><NavLink to="/login">Login</NavLink></li>
       </ul>
     </div>
@@ -187,7 +219,7 @@ const HeaderRight=(props)=>{
 
 
 
-const Footer = ({children}) =>{
+const LowerFooter = ({children}) =>{
   return <div className="layout-footer">
     {children}
   </div>
