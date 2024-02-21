@@ -1,4 +1,4 @@
-import { postRequest, postFormdata, getRequest, putRequest } from "../axios";
+import { postRequest, postFormdata, getRequest, putRequest, putFormdata } from "../axios";
 /**
  * Api call
  */
@@ -46,7 +46,7 @@ class authService {
         return await getRequest(`user/taxfile/${id}`);
     }
     updateTaxfile = async (payload) => {
-        return await putRequest('user/taxfile', payload);
+        return await putFormdata('user/taxfile', payload);
     }
 
 
