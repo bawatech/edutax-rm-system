@@ -1,6 +1,7 @@
 {
   "name": "edutax-rms",
   "version": "0.1.0",
+  "homepage": "https://manager.edutax.ca",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",

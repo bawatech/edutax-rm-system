@@ -189,6 +189,9 @@ const ChatWindow = ({ taxfile_id }) => {
   return (<div className="chat-wrapper-div">
       <div className="chat-wrapper">
           <div className="chat-messages-list">
+            {
+              messageList.length == 0 ? <p className="chat-start-conv">Start a conversation</p> : null
+            }
             {messageList?.map((msg, index) => {
               if (msg?.user_type === "CLIENT") {
                 return <Sender msg={msg?.message} time={msg?.added_on} />;

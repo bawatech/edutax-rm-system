@@ -63,7 +63,12 @@
     padding: auto 10px;
 }
 
-
+.chat-start-conv{
+    text-align: center;
+    padding: 25px;
+    font-size: 1.5em;
+    color: grey;
+}
 .reciever-div-section{
     width: 100%;
     display: flex;

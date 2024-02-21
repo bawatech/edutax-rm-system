@@ -117,6 +117,16 @@ const ProfileDetails = () => {
                     </FormField>
                     <FormField>
                         <Input
+                            label="Street Number"
+                            name="street_number"
+                            value={payload.street_number}
+                            error={errors?.street_number}
+                            handleChange={handleChange}
+                        />
+                    </FormField>
+
+                    <FormField>
+                        <Input
                             label="Street Name"
                             name="street_name"
                             value={payload.street_name}
