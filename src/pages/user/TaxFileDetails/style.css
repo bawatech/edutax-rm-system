@@ -64,10 +64,14 @@
     background: white;
     /* background: #fafcff; */
     border: 1px solid rgba(0,0,0,0.1);
-
+    border-left: 1px solid var(--sec-color-alpha);
+    border-top: 1px solid var(--sec-color-alpha);
+    border-right: 1px solid var(--theme-color-a-alpha);
+    border-bottom: 1px solid var(--theme-color-a-alpha);
     border-radius: 0.5em;
-    /* box-shadow: 0 0 1em 0.01em #EDF1FA ; */
-    /* box-shadow: 0 0 1em 0.1em rgba(0,0,0,0.03) ; */
+    box-shadow: 0 0 1em 0.03em #EDF1FA ;
+    /* box-shadow: 0.8em 0.8em 0.1em var(--sec-color-alpha); */
+    /* box-shadow: 0 0 1em 0.0em rgba(0,0,0,0.03) ; */
 }
 
 .details-component-section{
@@ -77,11 +81,18 @@
     justify-content: space-between;
 }
 
+.details-component-outer-section>hr{
+    margin: 0.2em 0;
+    width: 100%;
+    border: none;
+    min-height: 1px;
+    opacity: 0.2;
+    background: linear-gradient(to right, var(--sec-color), var(--theme-color-a), var(--sec-color));
+}
 
 .details-component-section label,
 .details-component-section p{
-    padding: 1em 0;
-    color: black;
+    padding: 0.5em 0;
     font-size: 0.8em;
 }
 
@@ -90,12 +101,16 @@
     color: rgb(139, 139, 139);
 }
 
+.details-component-section p{
+    color: var(--theme-color-a);
+}
+
 .file-component-section{
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em 0;
+    padding: 0.5em 0;
     gap: 1em;
     flex-direction: row;
 }
@@ -105,9 +120,21 @@
     width: 20%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     gap: 1em; 
 
 }
+
+.file-component-btn-div>a{
+    color: var(--theme-color-a);
+    font-size: 1.2em;
+    transition: all 0.3s ease-in-out;
+}
+
+.file-component-btn-div>a:hover{
+    color: var(--sec-color);
+}
+
 
 .details-action-btn{
     width: 100%;
@@ -154,7 +181,7 @@
     }
 
     .details-component-section{
-        flex-direction: column;
+        flex-direction: row;
     }
     .details-component-section label,
     .details-component-section p{

@@ -42,7 +42,7 @@ const ChangePassword = (props) => {
         }
     }
 
-    return <Container width="30em">
+    return <Container maxWidth="30em">
                 <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Change Password</h2>
 
                 <FormGroup>

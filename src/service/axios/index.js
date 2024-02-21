@@ -15,7 +15,8 @@ axiosClient.interceptors.request.use(config => {
 
 
 axiosClient.defaults.baseURL = process.env.REACT_APP_API;
-axiosClient.defaults.baseURL = 'http://localhost:3011';
+axiosClient.defaults.baseURL = 'http://184.168.23.210:3007';
+// axiosClient.defaults.baseURL = 'http://localhost:3011';
 axiosClient.defaults.headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': ' *',

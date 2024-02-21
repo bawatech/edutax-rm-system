@@ -71,13 +71,12 @@ class authService {
     sendSpouseInvitation = async (payload) => {
         return await postRequest('user/send-invitation', payload);
     }
-    acceptSpouseInvitation = async (token) => {
-        return await getRequest(`user/accept-invitation/${token}`);
-    }
+    // acceptSpouseInvitation = async (token) => {
+    //     return await getRequest(`user/accept-invitation/${token}`);
+    // }
     getSpouse = async (payload) => {
         return await getRequest('user/spouse', payload);
     }
-
 
 
     getMaritalStatus = async (id = null) => {

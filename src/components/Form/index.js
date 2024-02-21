@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { EyeIcon, EyeOffIcon } from "../Icon";
 import "./style.css";
-import { IoSendSharp } from "react-icons/io5";
 import { Button } from "../Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -167,7 +166,7 @@ export const Dropdown = (props) => {
               props.name,
               e?.target?.value,
               props?.options?.list.find(
-                (itm) => itm[props?.options?.value] == e?.target?.value
+                (itm) => itm[props?.options?.value] === e?.target?.value
               )
             )
           }
@@ -279,18 +278,24 @@ export const Popup = (props)=> {
 // ===================================Popup======================================================
 // ===================================container======================================================
 
-export const Container = ({children, width})=> {
+export const Container = ({children, maxWidth})=> {
 
   return <div className="container-section">
-    <div className="container-inner-div" style={{width: width}}>
+    <div className="container-inner-div" style={{maxWidth: maxWidth}}>
       {children}
     </div>
   </div>
 }
 
 Container.defaultProps = {
-  width: '60em'
+  maxWidth: '60em'
 }
 
 // ===================================container======================================================
 
+export const Center = ({children})=> {
+
+  return <div className="" style={{textAlign: 'center'}}>
+      {children}
+  </div>
+}

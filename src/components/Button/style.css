@@ -38,7 +38,7 @@
 .btn.small{
     background: var(--pri-color);
     padding: .8em 1em;
-    width: fit-content;
+    width: max-content;
     color: white;
     border-radius: 0.3em;
     min-width: 10em;
@@ -48,6 +48,27 @@
 .btn.danger{
     background: var(--sec-color);
 }
+
+.btn.light{
+    background: white;
+    color: black;
+}
+
+.btn.light:hover{
+    background: rgb(224, 224, 224);
+}
+
+.btn.light-outlined{
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    transition: all 0.4s ease-in-out;
+}
+.btn.light-outlined:hover{
+    background: white;
+    color: black;
+}
+
 
 @media only screen and (min-width: 100px) {
     .btn.contained{
@@ -67,7 +88,6 @@
     }
     .btn.small{
         min-width: 10em;
-        max-width: 20%;
     }
 }
 

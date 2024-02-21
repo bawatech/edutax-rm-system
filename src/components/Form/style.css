@@ -134,20 +134,26 @@
     overflow: hidden;
     border: 1px solid rgba(210,210,210);
     border-radius: 0.5em;
+    transition: all 0.5s ease-in-out; 
+
 }
 
 .input-inner-div>input{
     width: 100%;
     border: none;
     background: transparent;
-    font-size: 1.1em;
-    padding: 1em;
+    font-size: 1em;
+    padding: 0.8em 1em;
     outline: none;
 }
 
 .input-inner-div>input::placeholder{
     color: rgba(0,0,0,0.2);
     font-weight: lighter;
+}
+
+.input-inner-div:focus-within {
+    border-color: var(--theme-color-a);
 }
 
 .icon{
@@ -230,16 +236,22 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    transition: all 0.5s ease-in-out; 
+
 }
 
 .dropdown{
     width: 100%;
-    padding: 1.2em;
+    padding: 0.8em;
     outline: none;
     font-size: 1em;
     border: none;
     color: grey;
     background: transparent;
+}
+
+.dropdown-inner-div:focus-within {
+    border-color: var(--theme-color-a);
 }
 
 /* ========================================Dropdown============================================================= */
@@ -277,8 +289,8 @@
 .file-section>button{
     min-width: 100%;
     border: none;
-    z-index: 999;
-    padding: 1.6em;
+    z-index: 9;
+    padding: 1.1em;
 }
 
 .file-main-section{
@@ -319,6 +331,7 @@
     border: 1px solid rgb(221, 221, 221);
     border-radius: 0.3em;
     overflow: hidden;
+    transition: all 0.5s ease-in-out; 
 }
 
 .textarea-inner-div>textarea{
@@ -327,6 +340,10 @@
     outline: none;
     resize: none;
     padding: 1em;
+}
+
+.textarea-inner-div:focus-within {
+    border-color: var(--theme-color-a);
 }
 
 /* ========================================popup============================================================= */
@@ -412,6 +429,7 @@
 @media only screen and (min-width: 100px) {
     .container-inner-div{
         padding: 0em;
+        max-width: 100%;
     }
 }
 
@@ -435,11 +453,13 @@
     display: flex;
     flex-direction: column;
     gap: 0.5em;
+    position: relative;
+    z-index: 999;
 }
 .date-input-div{
     width: 100%;
     border: 1px solid rgba(210,210,210);
-    padding: 1.2em;
+    padding: 0.8em;
     border-radius: 0.5em;
     display: flex;
     align-items: center;
