@@ -1,0 +1,210 @@
+
+
+
+@media only screen and (min-width: 100px){
+    .tax-file-details-heading{
+        text-align: center;
+        font-size: 1.2em;
+    }
+}
+
+@media only screen and (min-width: 400px){
+    .tax-file-details-heading{
+        text-align: center;
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .tax-file-details-heading{
+        text-align: center;
+        font-size: 2em;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .tax-file-details-heading{
+        text-align: center;
+        font-size: 2em;
+    }
+}
+
+/* ============================================================================= */
+
+.userDetails-section{
+    width: 100%;
+    /* padding: 2em; */
+    border-radius: 0.5em;
+    display: flex;
+    justify-content: center;
+}
+
+.userDetails-inner-container{
+    width: 100%;
+    max-width: 80em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.userDetails-head-content{
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.userDetails-txt-content,
+.userDetails-img-content{
+    width: 100%;
+    padding: 2em;
+    background: white;
+    /* background: #fafcff; */
+    border: 1px solid rgba(0,0,0,0.1);
+    border-left: 1px solid var(--sec-color-alpha);
+    border-top: 1px solid var(--sec-color-alpha);
+    border-right: 1px solid var(--theme-color-a-alpha);
+    border-bottom: 1px solid var(--theme-color-a-alpha);
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em 0.03em #EDF1FA ;
+    /* box-shadow: 0.8em 0.8em 0.1em var(--sec-color-alpha); */
+    /* box-shadow: 0 0 1em 0.0em rgba(0,0,0,0.03) ; */
+}
+
+.details-component-section{
+    display: flex;
+    /* flex-direction: column; */
+    width: 100%;
+    justify-content: space-between;
+}
+
+.details-component-outer-section>hr{
+    margin: 0.2em 0;
+    width: 100%;
+    border: none;
+    min-height: 1px;
+    opacity: 0.2;
+    background: linear-gradient(to right, var(--sec-color), var(--theme-color-a), var(--sec-color));
+}
+
+.details-component-section label,
+.details-component-section p{
+    padding: 0.5em 0;
+    font-size: 0.8em;
+}
+
+.details-component-section label{
+    font-weight: bold;
+    color: rgb(139, 139, 139);
+}
+
+.details-component-section p{
+    color: var(--theme-color-a);
+}
+
+.file-component-section{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0;
+    gap: 1em;
+    flex-direction: row;
+}
+
+
+.file-component-btn-div{
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1em; 
+
+}
+
+.file-component-btn-div>a{
+    color: var(--theme-color-a);
+    font-size: 1.2em;
+    transition: all 0.3s ease-in-out;
+}
+
+.file-component-btn-div>a:hover{
+    color: var(--sec-color);
+}
+
+
+.details-action-btn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+@media only screen and (min-width: 100px){
+    .userDetails-head-content{
+        flex-direction: column;
+    }
+
+    .userDetails-section{
+        padding: 0;
+    }
+
+    .details-component-section{
+        flex-direction: row;
+    }
+
+    .userDetails-txt-content,
+    .userDetails-img-content{
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .details-component-section label,
+    .details-component-section p{
+        padding: 0.1em 0;
+        font-size: 0.8em;
+    }
+
+    .details-component-section p{
+        font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: 900px){
+    .userDetails-head-content{
+        flex-direction: row;
+    }
+
+    .details-component-section{
+        flex-direction: row;
+    }
+    .details-component-section label,
+    .details-component-section p{
+        padding: 1em 0;
+        font-size: 0.8em;
+    }
+
+    .details-component-section p{
+        font-size: 1em;
+    }
+}
+
+
+
+@media only screen and (min-width: 10px){
+
+}
+@media only screen and (min-width: 768px){
+    
+}
+@media only screen and (min-width: 1200px){
+    
+}
+@media only screen and (min-width: 1400px){
+    
+}

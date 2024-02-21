@@ -1,0 +1,22 @@
+.dashboard{
+    display: flex;
+    justify-content: center;
+    padding:100px 10px;
+}
+.dash-menu{
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-menu>div{
+    background-color: rgb(225, 229, 231);
+    color: black;
+    font-weight: 400;
+    margin:10px;
+    border-radius: 10px;
+    padding: 15px;
+    width: 90%;
+    min-width: 250px;
+    text-align: center;
+    cursor: pointer;
+    }

@@ -1,0 +1,49 @@
+.login-section{
+    width: 100%;
+    height: 100vh;
+    /* background: rgba(251, 251, 251, 1); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-inner-container{
+    width: 30%;
+    padding: 2em;
+    padding-bottom: 5em;
+    background: rgba(251, 251, 251, 1);
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+.signup-inner-container a{
+    text-decoration: none;
+    text-align: center;
+    width: fit-content;
+}
+
+.forgot-div{
+    padding: 0;
+    text-align: right;
+    width: 100%;
+    margin-top: -0.5em;
+}
+
+
+@media only screen and (min-width: 10px) {
+    .login-inner-container{
+        width: 90%;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .login-inner-container{
+        width: 50%;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .login-inner-container{
+        width: 30%;
+    }
+}

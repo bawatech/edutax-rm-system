@@ -1,0 +1,491 @@
+.label-yn{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding-top: .6em;
+    padding-bottom: .6em;
+    margin-bottom: 1em;
+}
+.label-yn.inline{
+    flex-direction: row;
+    justify-content: space-between;
+}
+.label-yn-label{
+    width: 100%;
+    flex-grow: 1;
+    position: relative;
+}
+
+.label-yn-box,
+.label-field-box{
+    text-align: center;
+    padding: 0.5em 1em;
+    background: black;
+    color: white;
+}
+
+.label-yn-btn{
+    width: 20%;
+    min-width: 8em;
+    display: flex;
+    gap: 1em;
+}
+.label-yn-btn .ynbtn{
+    border:1px solid var(--pri-color);
+    border-radius: 10px;
+    padding: 1.3em 5em;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    color: var(--pri-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.label-yn-btn .ynbtn:hover{
+    background: var(--pri-color-alpha);
+}
+
+.label-yn-btn .ynbtn.active{
+    background: var(--pri-color);
+    color: white;
+}
+
+.input-error-text{
+    color: red;
+}
+.label-yn-btn .ynbtn.active:hover{
+    background: var(--pri-color-active);
+}
+
+.form-name {
+    font-weight: bold;
+    font-size: 32px;
+    text-align: center;
+    padding: 15px;
+}
+.form-section-name {
+    font-weight: bold;
+    font-size:32x;
+    margin-top:50px;
+    color: rgb(68, 67, 67);
+}
+
+@media only screen and (min-width: 10px) {
+    .label-yn-btn .ynbtn{
+        padding: 0.5em 1em;
+    }
+    .label-yn{
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .label-yn-btn .ynbtn{
+        padding: 0.5em 1em;
+    }
+    .label-yn{
+        flex-direction: row;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .label-yn-btn .ynbtn{
+        padding: 0.5em 1em;
+    }
+    .label-yn{
+        flex-direction: row;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    
+}
+/* ========================================Error ============================================================= */
+
+.error-container{
+    padding: 0 1em;
+}
+
+.error-container span{
+    color: red;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+/* ========================================Error ============================================================= */
+
+/* ========================================Input============================================================= */
+
+.input-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.input-div label{
+    font-size: 1em;
+}
+
+.input-inner-div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(210,210,210);
+    border-radius: 0.5em;
+    transition: all 0.5s ease-in-out; 
+
+}
+
+.input-inner-div>input{
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 1em;
+    padding: 0.8em 1em;
+    outline: none;
+}
+
+.input-inner-div>input::placeholder{
+    color: rgba(0,0,0,0.2);
+    font-weight: lighter;
+}
+
+.input-inner-div:focus-within {
+    border-color: var(--theme-color-a);
+}
+
+.icon{
+    padding: 0.5em 0.8em;
+    background: transparent;
+    color: grey;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+/* ========================================Input============================================================= */
+
+/* ========================================Form Group============================================================= */
+
+.form-group{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 0.5em 0;
+    column-gap: 1em;
+}
+
+/* ========================================Form Group============================================================= */
+/* ========================================Form Field============================================================= */
+
+.form-group.column-2 .form-field{
+    flex-grow: 1;
+    width: 45%;
+}
+
+.form-group.column-1 .form-field{
+    flex-grow: 1;
+    width: 100%;
+}
+
+
+@media only screen and (min-width: 100px) {
+    .field-group.sm .form-field{
+        width: 100%;
+        flex-grow: 1;
+    }
+    .form-group.column-2 .form-field{
+        flex-grow: 1;
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .field-group.md .form-field{
+        width: 45%;
+        flex-grow: 1;
+    }
+    .form-group.column-2 .form-field{
+        flex-grow: 1;
+        width: 45%;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .field-group.lg .form-field{
+
+    }
+}
+@media only screen and (min-width: 1500px) {
+    
+}
+
+/* ========================================Form Field============================================================= */
+/* ========================================Dropdown============================================================= */
+
+.dropdown-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.dropdown-inner-div{
+    width: 100%;
+    border: 1px solid rgba(210,210,210);
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out; 
+
+}
+
+.dropdown{
+    width: 100%;
+    padding: 0.8em;
+    outline: none;
+    font-size: 1em;
+    border: none;
+    color: grey;
+    background: transparent;
+}
+
+.dropdown-inner-div:focus-within {
+    border-color: var(--theme-color-a);
+}
+
+/* ========================================Dropdown============================================================= */
+
+/* ========================================file============================================================= */
+.file-main-section{
+    width: 100%;
+}
+
+.file-section{
+    width: 100%;
+    display: flex;
+    border-radius: 0.5em;
+    overflow: hidden;
+    border: 1px solid rgba(210,210,210);
+    position: relative; 
+}
+
+.file-name-display{
+    position: absolute;
+    inset: 0;
+    top: 1em;
+    left: 5%;
+
+}
+
+.file{
+    opacity: 1;
+    width: 0;
+    height: 0;
+    background-color: red;
+   
+}
+
+.file-section>button{
+    min-width: 100%;
+    border: none;
+    z-index: 9;
+    padding: 1.1em;
+}
+
+.file-main-section{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+/* ========================================file============================================================= */
+
+
+@media only screen and (min-width: 10px){
+
+}
+@media only screen and (min-width: 768px){
+    
+}
+@media only screen and (min-width: 1200px){
+    
+}
+@media only screen and (min-width: 1400px){
+    
+}
+/* ===========================Chat Message================================================ */
+.textarea-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.textarea-label{
+    color: grey;
+}
+
+.textarea-inner-div{
+    width: 100%;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 0.3em;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out; 
+}
+
+.textarea-inner-div>textarea{
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 1em;
+}
+
+.textarea-inner-div:focus-within {
+    border-color: var(--theme-color-a);
+}
+
+/* ========================================popup============================================================= */
+
+.popup-section{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    padding: 1em;
+}
+
+.popup-background{
+    background: rgba(0, 0, 0,0.3);
+    position: absolute;
+    inset: 0;
+}
+
+.popup-content{
+    /* max-width: 50%; */
+    /* width: 100%; */
+    background: white;
+    z-index: 9999;
+    padding: 1em;
+    border-radius: 0.5em;
+}
+
+.popup-header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5em;
+    font-size: 1.1em;
+}
+
+.popup-body{
+    /* padding: em; */
+    padding: 0em 1em 1em 1em ;
+}
+
+@media only screen and (min-width:10px){
+    .popup-content{
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width:500px){
+    
+}
+@media only screen and (min-width:900px){
+    .popup-content{
+        max-width: 70%;
+    }
+}
+@media only screen and (min-width:1200px){
+    .popup-content{
+        max-width: 50%;
+    }
+}
+
+/* ========================================popup============================================================= */
+
+/* ========================================container============================================================= */
+
+.container-section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-inner-div{
+    width: 100%;
+    /* max-width: 60em; */
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    padding: 2em;
+    border-radius: 2em;
+}
+
+@media only screen and (min-width: 100px) {
+    .container-inner-div{
+        padding: 0em;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .container-inner-div{
+        padding: 1em;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .container-inner-div{
+        padding: 2em;
+    }
+}
+
+
+
+/* ========================================container============================================================= */
+.dateinput-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    position: relative;
+    z-index: 999;
+}
+.date-input-div{
+    width: 100%;
+    border: 1px solid rgba(210,210,210);
+    padding: 0.8em;
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+}
+
+.date-input-div>div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.date-input-div>div>div{
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.date-input-div .react-datepicker__tab-loop{
+    width: 0%;
+}
+
+.date-input-div>div>div>input{
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0 2.5em;
+    font-size: 1em;
+}

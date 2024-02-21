@@ -1,0 +1,103 @@
+.btn-section{
+    /* width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.btn{
+    font-size: 1.1em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn.contained{
+    background: var(--sec-color);
+    padding: 1.3em 3em;
+    width: 100%;
+    background: green;
+    color: white;
+    border-radius: 3em;
+    max-width: 20%;
+    min-width: 15em;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn.contained:hover{
+    background: rgba(0, 128, 0, 0.9);
+}
+
+.btn.icon{
+    padding: 0.5em;
+    /* background: rgb(255, 246, 246); */
+    border-radius: 0.3em;
+}
+
+.btn.small{
+    background: var(--pri-color);
+    padding: .8em 1em;
+    width: max-content;
+    color: white;
+    border-radius: 0.3em;
+    min-width: 10em;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn.danger{
+    background: var(--sec-color);
+}
+
+.btn.light{
+    background: white;
+    color: black;
+}
+
+.btn.light:hover{
+    background: rgb(224, 224, 224);
+}
+
+.btn.light-outlined{
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    transition: all 0.4s ease-in-out;
+}
+.btn.light-outlined:hover{
+    background: white;
+    color: black;
+}
+
+
+@media only screen and (min-width: 100px) {
+    .btn.contained{
+        min-width: 100%;
+        padding: 1.3em 2em;
+    }
+
+    .btn.small{
+        min-width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .btn.contained{
+        min-width: 15em;
+    }
+    .btn.small{
+        min-width: 10em;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .btn.contained{
+        min-width: 15em;
+        padding: 1.3em 3em;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    
+}

@@ -1,0 +1,33 @@
+
+
+.array-div{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1em;
+}
+
+.array-div .btn.icon{
+    background: rgb(236, 236, 236);
+    /* padding: 7px; */
+    color: rgb(126, 126, 126);
+}
+.array-div .btn.icon:hover{
+    background: rgb(255, 243, 243);
+    color: red;
+}
+
+
+@media only screen and (min-width: 10px){
+
+}
+@media only screen and (min-width: 768px){
+    
+}
+@media only screen and (min-width: 1200px){
+    
+}
+@media only screen and (min-width: 1400px){
+    
+}
+/* ===========================Chat Message================================================ */

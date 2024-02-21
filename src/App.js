@@ -1,9 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import BtRouter from './routes';
+import "./App.css";
+import { BtLoader } from "./BTUI/BtLoader";
+import { BtToast } from "./BTUI/BtToast";
+import BtRouter from "./routes";
 
 function App() {
-  return <BtRouter/>
+  return (
+    <>
+      <BtLoader/>
+      <BtToast/>
+      <BtRouter />
+    </>
+  );
 }
 
 export default App;
