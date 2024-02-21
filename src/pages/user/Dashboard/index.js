@@ -34,7 +34,7 @@ const Dashboard = () => {
         console.log('taxfiles here',res?.data?.response)
         const taxfiles = res?.data?.response?.taxfiles || []
         if(taxfiles.length>0){
-                navigate(`/user/taxfile-details/${taxfiles[0]?.id}`)
+                navigate(`/user/taxfile/${taxfiles[0]?.id}`)
         }else{
             navigate(`/user/taxfile-add`)
         }

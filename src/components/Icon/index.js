@@ -13,6 +13,8 @@ import { FiInstagram } from "react-icons/fi";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMenu } from "react-icons/hi";
+import { MdModeEditOutline } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export const EyeIcon = () => <IoIosEye />;
 export const EyeOffIcon = () => <IoIosEyeOff />;
@@ -30,3 +32,5 @@ export const Insta = () => <FiInstagram />;
 export const Facebook = () => <FaFacebookF />;
 export const Twitter = () => <FaXTwitter />;
 export const Hamberger = () => <HiOutlineMenu />;
+export const Edit = () => <MdModeEditOutline />;
+export const IconDelete = () => <RiDeleteBin6Line />;

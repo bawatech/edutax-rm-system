@@ -79,7 +79,7 @@ const ProfileDetails = () => {
                         <Input
                             label="First Name"
                             name="firstname"
-                            value={payload.firstname}
+                            value={payload?.firstname}
                             error={errors?.firstname}
                             handleChange={handleChange}
                         />
@@ -88,7 +88,7 @@ const ProfileDetails = () => {
                         <Input
                             label="Last Name"
                             name="lastname"
-                            value={payload.lastname}
+                            value={payload?.lastname}
                             error={errors?.lastname}
                             handleChange={handleChange}
                         />
@@ -97,7 +97,7 @@ const ProfileDetails = () => {
                         <InputDate
                             label="Date of Birth"
                             name="date_of_birth"
-                            value={payload.date_of_birth}
+                            value={payload?.date_of_birth}
                             error={errors?.date_of_birth}
                             handleChange={handleChange}
                             openToDate={new Date(2000,0,1)}
@@ -119,7 +119,7 @@ const ProfileDetails = () => {
                         <Input
                             label="Street Number"
                             name="street_number"
-                            value={payload.street_number}
+                            value={payload?.street_number}
                             error={errors?.street_number}
                             handleChange={handleChange}
                         />
@@ -129,7 +129,7 @@ const ProfileDetails = () => {
                         <Input
                             label="Street Name"
                             name="street_name"
-                            value={payload.street_name}
+                            value={payload?.street_name}
                             error={errors?.street_name}
                             handleChange={handleChange}
                         />
@@ -138,7 +138,7 @@ const ProfileDetails = () => {
                         <Input
                             label="City"
                             name="city"
-                            value={payload.city}
+                            value={payload?.city}
                             error={errors?.city}
                             handleChange={handleChange}
                         />
@@ -157,7 +157,7 @@ const ProfileDetails = () => {
                         <Input
                             label="Postal Code"
                             name="postal_code"
-                            value={payload.postal_code}
+                            value={payload?.postal_code}
                             error={errors?.postal_code}
                             handleChange={handleChange}
                         />
@@ -166,7 +166,7 @@ const ProfileDetails = () => {
                         <Input
                             label="Mobile Number"
                             name="mobile_number"
-                            value={payload.mobile_number}
+                            value={payload?.mobile_number}
                             error={errors?.mobile_number}
                             handleChange={handleChange}
                         />
@@ -177,7 +177,7 @@ const ProfileDetails = () => {
                             label="SIN"
                             name="sin"
                             password
-                            value={payload.sin}
+                            value={payload?.sin}
                             error={errors?.sin}
                             handleChange={handleChange}
                         />

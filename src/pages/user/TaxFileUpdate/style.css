@@ -1,0 +1,49 @@
+
+.tax-file-add-section{
+    padding: 2em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tax-file-add-inner-div{
+    width: 100%;
+    max-width: 50em;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    padding: 2em;
+    border-radius: 2em;
+}
+
+.array-div{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1em;
+}
+
+.array-div .btn.icon{
+    background: rgb(236, 236, 236);
+    padding: 18px;
+    color: rgb(126, 126, 126);
+}
+.array-div .btn.icon:hover{
+    background: rgb(255, 243, 243);
+    color: red;
+}
+
+
+@media only screen and (min-width: 10px){
+
+}
+@media only screen and (min-width: 768px){
+    
+}
+@media only screen and (min-width: 1200px){
+    
+}
+@media only screen and (min-width: 1400px){
+    
+}
+/* ===========================Chat Message================================================ */

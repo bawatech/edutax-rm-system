@@ -17,11 +17,11 @@ import { addClientMessage } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
 import { IconSendMessage } from "../../../BTUI/Icons";
 import { showDate, showDatetime } from "../../../utils/formatter";
+import { Edit } from "../../../components/Icon";
 
 const TaxFileDetails = () => {
   const [details, setDetails] = useState(null);
   const param = useParams();
-
   console.log("param", param, "details", details);
   useEffect(() => {
     authService
@@ -101,6 +101,7 @@ const TaxFileDetails = () => {
                     download={details?.taxfile?.document_direct_deposit_cra}
                     downloadName={details?.taxfile?.document_direct_deposit_cra}
                     view={details?.taxfile?.document_direct_deposit_cra}
+                    edit={`update/${details?.taxfile?.id}`}
                   />
                 </FormField>
               </div>
@@ -115,6 +116,7 @@ const TaxFileDetails = () => {
                           download={itm?.full_path}
                           downloadName={itm?.documents?.[index]?.filename}
                           view={itm?.full_path}
+                          edit={`update/${itm?.id}`}
                         />
                       </FormField>
                     </FormGroup>
@@ -196,7 +198,7 @@ const ChatWindow = ({ taxfile_id }) => {
               if (msg?.user_type === "CLIENT") {
                 return <Sender msg={msg?.message} time={msg?.added_on} />;
               } else if (msg?.user_type === "EXECUTIVE") {
-                return ;
+                return <Reciever msg={msg?.message} time={msg?.added_on} />;
               }
             })}
           </div>
@@ -295,6 +297,10 @@ const FileComponent = (props) => {
           }}
         >
           <IoIosEye />
+        </a>
+        <a
+          href={props?.edit}>
+          <Edit />
         </a>
       </div>
     </div>

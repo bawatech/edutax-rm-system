@@ -100,8 +100,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 2em;
-    
 }
 
 .carousel2-bg-div-abs{
@@ -213,6 +211,10 @@
     .carousel2-img-div{
         padding-top: 150%;
     }
+
+    .carousel2-section{
+        padding: 0em;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -232,6 +234,9 @@
     }
     .carousel2-img-div{
         padding-top: 48%;
+    }
+    .carousel2-section{
+        padding: 2em;
     }
 }
 

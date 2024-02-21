@@ -32,9 +32,12 @@
 
 .layout-header-logo{
     max-height: 60px;
-    max-width: 60px;
-    border-radius: 50%;
+    max-width: 80px;
+    /* border-radius: 50%; */
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .layout-header-logo img{
@@ -57,16 +60,17 @@
 @media only screen and (min-width: 10px) {
     .layout-inner-section{
         width: 100% !important;
+        padding: 1em;
     }
 }
 @media only screen and (min-width: 768px) {
     .layout-inner-section{
-        width: 90% !important;
+        width: 95% !important;
     }
 }
 @media only screen and (min-width: 1200px) {
     .layout-inner-section{
-        width: 80% !important;
+        width: 90% !important;
     }
 }
 

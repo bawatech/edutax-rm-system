@@ -5,10 +5,10 @@
     min-width: 300px;
     margin:40px;
     z-index: 1000;
-    left: 50%;
+    /* left: 50%; */
     border-radius: 10px;
     padding:1.5em;
-    translate: -50%;
+    /* translate: -50%; */
     align-items: center;
     display: flex;
     justify-content: center;
@@ -28,3 +28,19 @@
     from {top: 10%;}
     to {top: 13%;}
   } */
+
+@media only screen and (min-width: 10px) {
+    .bt-toast{
+        max-width: 100%;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .bt-toast{
+        max-width: 400px;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .bt-toast{
+        
+    }
+}

@@ -12,7 +12,6 @@ import TaxFileDetails from '../pages/user/TaxFileDetails';
 import VerifyEmail from '../pages/auth/VerifyEmail';
 import NewPassword from '../pages/auth/NewPassword';
 import QnaVerify from '../pages/QnaVerify';
-import ProfileCreate from '../pages/user/ProfileUpdate';
 import ChangePassword from '../pages/auth/ChangePassword';
 import Dashboard from '../pages/user/Dashboard';
 import ProfileUpdate from '../pages/user/ProfileUpdate';
@@ -21,6 +20,7 @@ import { UserLayout } from '../pages/layouts/Layout';
 import Home from '../pages/Home';
 import InviteSpouse from '../pages/user/InviteSpouse';
 import ContactUs from '../pages/Contact';
+import TaxFileUpdate from '../pages/user/TaxFileUpdate';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
@@ -33,7 +33,7 @@ const AllRoutes = () => {
         {path:'sign-up',element:<Signup/>},
         {path:'verify-email',element:<VerifyEmail/>},
         {path:'reset',element:<ForgotPass/>},
-        
+
         {path:'verify-forgot-pass-otp',element:<NewPassword/>},
         {path: 'user',element:<UserLayout/>,
         children:[
@@ -41,9 +41,11 @@ const AllRoutes = () => {
             {path:'profile', element : <ProfileDetails/>},
             {path:'profile-update', element : <ProfileUpdate/>},
             {path:'taxfile-add', element : <TaxFileAdd/>},
-            {path:'taxfile-details/:id', element : <TaxFileDetails/>},
+            {path:'taxfile/:id', element : <TaxFileDetails/>},
+            {path:'update/:id', element: <TaxFileUpdate/>},
             {path:'settings',element:<ChangePassword/>},
             {path:'invite-spouse',element:<InviteSpouse/>},
+            
         ]
     },
 

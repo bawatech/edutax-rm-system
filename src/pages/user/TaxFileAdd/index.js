@@ -68,7 +68,7 @@ const TaxFileAdd = () => {
        // console.log("Response", res?.data?.taxfile?.id);
         toastSuccess(res?.data?.message);
         hideLoader()
-        navigate(`/user/taxfile-details/${res?.data?.response?.taxfile?.id}`);
+        navigate(`/user/taxfile/${res?.data?.response?.taxfile?.id}`);
       })
       .catch((err) => {
         if (err?.data?.field_errors) {
