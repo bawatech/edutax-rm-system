@@ -211,7 +211,7 @@ const HeaderRightBfLogin=(props)=>{
       </ul>
 
       <div className="hamburger-div">
-        <span onClick={()=>setToggle((prev) => !prev)} style={{fontSize: '1.5em', color: 'white'}}><Hamberger/></span>
+        <span onClick={()=>setToggle((prev) => !prev)} style={{fontSize: '1.5em', color: 'white', cursor: 'pointer'}}><Hamberger/></span>
       </div>
     </div>
   </div>
@@ -219,17 +219,24 @@ const HeaderRightBfLogin=(props)=>{
 
 
 const HeaderRight=(props)=>{
+  const [toggle, setToggle] = useState(false)
 
   return <div className="layout-header-content">
     <div className="layout-right-header">
-      <ul>
-      <li><NavLink to="/user"><IoHomeIcon /></NavLink></li>
+      <ul className="lg-menu">
+        <li><NavLink to="/user"><IoHomeIcon /></NavLink></li>
         <li><NavLink to="/user/settings"><IoMdSettingsIcon /></NavLink></li>
-        <li><NavLink to=""><IoIosNotificationsIcon /></NavLink></li>
-        {/* <li><NavLink to=""><IoPerson /></NavLink></li> */}
+        {/* <li><NavLink to=""><IoIosNotificationsIcon /></NavLink></li> */}
         <li><NavLink to="" onClick={props?.handleLogout}><RiLogoutCircleLineIcon/></NavLink></li>
-        {/* <li><NavLink to="">{props?.name}</NavLink></li> */}
       </ul>
+      <ul className="small-menu" style={{display: toggle ? "flex": "none"}}>
+        <li><NavLink to="/user">Home</NavLink></li>
+        <li><NavLink to="/user/settings">Settings</NavLink></li>
+        <li><NavLink to="" onClick={props?.handleLogout}>Logout</NavLink></li>
+      </ul>
+      <div className="hamburger-div">
+        <span onClick={()=>setToggle((prev) => !prev)} style={{fontSize: '1.5em', color: 'white', cursor: 'pointer'}}><Hamberger/></span>
+      </div>
     </div>
   </div>
 }

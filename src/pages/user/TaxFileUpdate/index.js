@@ -6,11 +6,9 @@ import { Layout } from '../../layouts/Layout'
 
     const TaxFileUpdate = () => {
         
-        return<Layout>
-            <Container>
+        return<Container>
                 <h1>blvbjdnbjfnbdfljn</h1>
             </Container>
-        </Layout>
     }
 
     export default TaxFileUpdate;

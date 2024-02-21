@@ -69,8 +69,20 @@ const TaxFileDetails = () => {
                     heading="Mobile Number"
                     value={details?.taxfile?.mobile_number}
                   />
+                  <DetailsComponent
+                    heading="File Status"
+                    value={details?.taxfile?.file_status}
+                  />
+                  <DetailsComponent
+                    heading="Moved to Canada"
+                    value={details?.taxfile?.moved_to_canada}
+                  />
                 </div>
                 <div className="userDetails-txt-content">
+                  <DetailsComponent
+                    heading="Street number"
+                    value={details?.taxfile?.street_number}
+                  />
                   <DetailsComponent
                     heading="Street Name"
                     value={details?.taxfile?.street_name}
@@ -91,6 +103,11 @@ const TaxFileDetails = () => {
                     heading="Tax Year"
                     value={details?.taxfile?.tax_year}
                   />
+                  <DetailsComponent
+                    heading="Direct Deposit CRA"
+                    value={details?.taxfile?.direct_deposit_cra}
+                  />
+                  
                 </div>
               </div>
 
@@ -259,7 +276,7 @@ const Reciever = (props) => {
         <p>{props?.msg}</p>
       </div>
       <div className="reciever-time">
-        <p>{props?.time}</p>
+        <p>{showDatetime(props?.time)}</p>
       </div>
     </div>
   );

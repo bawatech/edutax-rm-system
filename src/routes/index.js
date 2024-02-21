@@ -42,7 +42,7 @@ const AllRoutes = () => {
             {path:'profile-update', element : <ProfileUpdate/>},
             {path:'taxfile-add', element : <TaxFileAdd/>},
             {path:'taxfile/:id', element : <TaxFileDetails/>},
-            {path:'update/:id', element: <TaxFileUpdate/>},
+            {path:'taxfile/update/:id', element: <TaxFileUpdate/>},
             {path:'settings',element:<ChangePassword/>},
             {path:'invite-spouse',element:<InviteSpouse/>},
             

@@ -205,7 +205,7 @@ const TaxFileAdd = () => {
                     }
                   />
 
-                  {index>0 && <Button
+                  {index>0 && <Button maxWidth={'100%'}
                     varient="icon"
                     title={<RiDeleteBin6Line />}
                     onClick={() => handleDeleteArray(index)}

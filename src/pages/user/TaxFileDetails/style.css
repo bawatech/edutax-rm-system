@@ -154,7 +154,7 @@
     }
 
     .details-component-section{
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .userDetails-txt-content,
@@ -172,6 +172,20 @@
 
     .details-component-section p{
         font-size: 1em;
+    }
+
+    .file-component-section{
+        flex-direction: column;
+    }
+    .file-component-btn-div{
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width: 500px){
+    .details-component-section{
+        flex-direction: row;
     }
 }
 
@@ -191,6 +205,14 @@
 
     .details-component-section p{
         font-size: 1em;
+    }
+    .file-component-section{
+        flex-direction: row;
+    }
+
+    .file-component-btn-div{
+        width: 20%;
+        justify-content: flex-end;
     }
 }
 
