@@ -32,7 +32,7 @@
 
 .layout-header-logo{
     max-height: 60px;
-    max-width: 80px;
+    max-width: 150px;
     /* border-radius: 50%; */
     overflow: hidden;
     display: flex;

@@ -3,6 +3,7 @@ import './style.css';
 import CarouselImg from '../../assets/images/mobilebg.png'
 import { Button } from '../../components/Button';
 import RefundImg from '../../assets/images/refund.png'
+import WwoImg1 from '../../assets/images/wwo1.jpg'
 import TaxFillingImg from '../../assets/images/tax-filing.jpg'
 import { FcCheckmarkIcon} from '../../components/Icon';
 import { useNavigate } from 'react-router-dom';
@@ -11,13 +12,14 @@ const Home = () =>{
 
     return<Layout width="100%">
         <Carousel2 />
-        <Services 
+        {/* <Services 
             title="Unlock Your Maximum Tax Refund"
             desc="Guaranteed Satisfaction or Your Money Back!"
             point1="Thousands of Automatic Calculations, Ensuring Your Maximum Tax Refund Every Time!"
             point2="Maximize Your Savings: Explore Our Innovative Tax-Saving Tools Today!"
             img={RefundImg}
-        />
+        /> */}
+        <WhatWeOffer />
         <ImgBgDivComponent />
         <Services 
             title="Experience the simplest tax filing process ever."
@@ -30,32 +32,6 @@ const Home = () =>{
 }
 
 export default Home;
-
-const Carousel = () =>{
-
-    return<div className="carousel-section">
-        <div className="carousel-inner-section-abs">
-            <img src={CarouselImg} />
-        </div> 
-        <div className="carousel-bg-div-abs"></div>
-
-        <div className="carousel-txt-content-div">
-            <div className="">
-                <h1>Unlock Secured & Easy Personal Tax Filing Process</h1>
-
-                <h2>Now, file your personal income tax return from the comfort of your home, following the simple steps. Its Fast , Easy & Secured </h2>
-
-                <p>We leverage the latest technologies and innovations to deliver cutting-edge solutions that streamline document processes and improve efficiency.</p>
-
-                <div className="carousel-txt-content-btn-div">
-                    <Button varient="small light" title="Login" maxWidth="100%"/>
-                    <Button varient="small light-outlined" title="Upload Document" maxWidth="100%"/>
-                </div>
-                
-            </div>
-        </div> 
-    </div>
-}
 
 const Carousel2 = () =>{
 
@@ -73,7 +49,7 @@ const Carousel2 = () =>{
 
                 <h2>Now, file your personal income tax return from the comfort of your home, following the simple steps. Its Fast , Easy & Secured </h2>
 
-                    <p>We leverage the latest technologies and innovations to deliver cutting-edge solutions that streamline document processes and improve efficiency.</p>
+                    {/* <p>We leverage the latest technologies and innovations to deliver cutting-edge solutions that streamline document processes and improve efficiency.</p> */}
 
                     <div className="carousel2-txt-content-btn-div">
                         <Button varient="small" background="var(--color-a)" title="Start Now" maxWidth="100%" onClick={()=>navigate('/login')} />
@@ -149,5 +125,43 @@ const ImgBgDivCard = (props) => {
         <span>{props?.count}</span>
 
         <h3>{props?.desc}</h3>
+    </div>
+}
+
+
+
+const WhatWeOffer = (props) => {
+
+    return<div className="whatWeOffer-section">
+        <div className="whatWeOffer-inner-div">
+            <h1>What We Offer</h1>
+
+            <p>Whether you need help with personal tax preparation, corporate tax compliance, bookkeeping, or estate planning, Sukh Tax has the expertise and knowledge to meet your needs. We beleive in simplicity. Our services and our pricing are both transparent. We at Sukh Tax work to provide you with peace of mind, by providing you the services as per your needs.</p>
+        
+            <WhatWeOfferCards 
+                img={WwoImg1}
+                title="Personal Income Tax"
+                desc="Starting at $499"
+                
+            />
+        </div>
+    </div>
+}
+
+const WhatWeOfferCards = (props) =>{
+
+    return<div className="whatWeOfferCards-section">
+        <div className="whatWeOfferCards-img-div">
+            <div className="whatWeOfferCard-img-abs-div">
+                <img src={props?.img}/>
+            </div>
+        </div>
+        <div className="whatWeOfferCard-txt-div">
+            <h2>{props?.title}</h2>
+
+            <p>{props?.desc}</p>
+
+            <Button varient="small outlined" title="Call us to Learn more"/>
+        </div>
     </div>
 }
