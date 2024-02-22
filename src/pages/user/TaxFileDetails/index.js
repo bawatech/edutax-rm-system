@@ -9,7 +9,7 @@ import {
   FormGroup,
   Textarea,
 } from "../../../components/Form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaDownload } from "react-icons/fa6";
 import { IoIosEye } from "react-icons/io";
 import { useDispatch } from "react-redux";
@@ -18,9 +18,11 @@ import { toastError } from "../../../BTUI/BtToast";
 import { IconSendMessage } from "../../../BTUI/Icons";
 import { showDate, showDatetime } from "../../../utils/formatter";
 import { Edit } from "../../../components/Icon";
+import { Button } from "../../../components/Button";
 
 const TaxFileDetails = () => {
   const [details, setDetails] = useState(null);
+  const navigate = useNavigate()
   const param = useParams();
   console.log("param", param, "details", details);
   useEffect(() => {
@@ -45,8 +47,14 @@ const TaxFileDetails = () => {
         <>
           <h1 className="tax-file-details-heading">Taxfile details </h1>
           <br />
+          
           <div className="userDetails-section">
             <div className="userDetails-inner-container">
+
+            <div style={{display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
+              <Button varient="small" title="Edit" onClick={()=>navigate(`/user/taxfile/update/${details?.taxfile?.id}`)}/>
+            </div>
+
               <div className="userDetails-head-content">
                 <div className="userDetails-txt-content">
                   <DetailsComponent
@@ -118,7 +126,7 @@ const TaxFileDetails = () => {
                     download={details?.taxfile?.document_direct_deposit_cra}
                     downloadName={details?.taxfile?.document_direct_deposit_cra}
                     view={details?.taxfile?.document_direct_deposit_cra}
-                    edit={`update/${details?.taxfile?.id}`}
+                    // edit={`update/${details?.taxfile?.id}`}
                   />
                 </FormField>
               </div>
@@ -133,7 +141,7 @@ const TaxFileDetails = () => {
                           download={itm?.full_path}
                           downloadName={itm?.documents?.[index]?.filename}
                           view={itm?.full_path}
-                          edit={`update/${itm?.id}`}
+                          // edit={`update/${itm?.id}`}
                         />
                       </FormField>
                     </FormGroup>
@@ -148,7 +156,7 @@ const TaxFileDetails = () => {
   }, [details]);
 
   return (
-      <Container maxWidth="100%">
+      <Container maxWidth="100%">        
         {detailBody}
         <br />
         <br />
@@ -315,10 +323,10 @@ const FileComponent = (props) => {
         >
           <IoIosEye />
         </a>
-        <a
+        {/* <a
           href={props?.edit}>
           <Edit />
-        </a>
+        </a> */}
       </div>
     </div>
   );
