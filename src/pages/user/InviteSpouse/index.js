@@ -50,7 +50,7 @@ const InviteSpouse = () => {
             console.log("Spouse",spouseStatus?.data?.response)
             return <Container>
                 <Center>
-                    <h1>Linked Spouse</h1>
+                    <h1>Your Linked Spouse</h1>
                 </Center>
                 <br/>
                 <br/>
@@ -63,7 +63,7 @@ const InviteSpouse = () => {
         }else if(spouseStatus?.status === 400){
             return <Container maxWidth="30em">
                 <Center>
-                    <h1>Link Spouse</h1>
+                    <h1>Link Your Spouse</h1>
                 </Center>
                 <br/>
                 <FormGroup>
@@ -87,7 +87,7 @@ const InviteSpouse = () => {
             </Container>
 
         }
-    },[spouseStatus])
+    },[spouseStatus, payload])
 
     return<>
     {spouseLinkStatus}

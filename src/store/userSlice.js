@@ -65,6 +65,22 @@ export const addTaxfile = (param) => async (dispatch) => {
         });
 };
 
+export const updateTaxfile = (param) => async (dispatch) => {
+    return authService.updateTaxfile(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            // dispatch(setInputs(res?.data.response));
+            // localStorage.setItem("token", res?.data?.response?.token)
+            return res;
+        })
+        .catch((error) => {
+
+            // dispatch(authSuccess(null));
+            // localStorage.removeItem("token")
+            throw error
+        });
+};
+
 export const addClientMessage = (param) => async (dispatch) => {
     return authService.addClientMessage(param)
         .then(async (res) => {
