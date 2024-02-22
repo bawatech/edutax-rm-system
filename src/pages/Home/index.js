@@ -41,9 +41,9 @@ const Carousel = () =>{
 
         <div className="carousel-txt-content-div">
             <div className="">
-                <h1>Unlock Tax Efficiency</h1>
+                <h1>Unlock Secured & Easy Personal Tax Filing Process</h1>
 
-                <h2>Explore Our Expert Document Checking Services!</h2>
+                <h2>Now, file your personal income tax return from the comfort of your home, following the simple steps. Its Fast , Easy & Secured </h2>
 
                 <p>We leverage the latest technologies and innovations to deliver cutting-edge solutions that streamline document processes and improve efficiency.</p>
 
@@ -69,14 +69,14 @@ const Carousel2 = () =>{
         <div className="carousel2-inner-section">
             <div className="carousel2-txt-content-div">
                 <div className="">
-                    <h1>Unlock Tax Efficiency</h1>
+                <h1>Unlock Secured & Easy Personal Tax Filing Process</h1>
 
-                    <h2>Explore Our Expert Document Checking Services!</h2>
+                <h2>Now, file your personal income tax return from the comfort of your home, following the simple steps. Its Fast , Easy & Secured </h2>
 
                     <p>We leverage the latest technologies and innovations to deliver cutting-edge solutions that streamline document processes and improve efficiency.</p>
 
                     <div className="carousel2-txt-content-btn-div">
-                        <Button varient="small" background="var(--color-a)" title="Login" maxWidth="100%" onClick={()=>navigate('/login')} />
+                        <Button varient="small" background="var(--color-a)" title="Start Now" maxWidth="100%" onClick={()=>navigate('/login')} />
                         {/* <Button varient="small light-outlined" title="Upload Document" maxWidth="100%"/> */}
                     </div>
                     
@@ -136,7 +136,7 @@ const ImgBgDivComponent = () => {
                 <div className="imgBgDiv-cards">
                     <ImgBgDivCard cardColor="red" count="1" desc="Get started by creating your account."/>
                     <ImgBgDivCard cardColor="blue" count="2" desc="Easily upload your tax documents for processing."/>
-                    <ImgBgDivCard cardColor="green" count="3" desc="Your taxes are done with just a few clicks."/>
+                    <ImgBgDivCard cardColor="green" count="3" desc="We will prepare your return and submit to CRA on your behalf"/>
                 </div>
             </div>
         </div>

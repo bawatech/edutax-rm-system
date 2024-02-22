@@ -198,7 +198,7 @@
         font-size: 2em;
     }
     .carousel2-txt-content-div>div>h2{
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
     .carousel2-inner-section{
         width: 100%;
@@ -222,7 +222,7 @@
         font-size: 2.5em;
     }
     .carousel2-txt-content-div>div>h2{
-        font-size: 1.8em;
+        font-size: 1.5em;
     }
     .carousel2-inner-section{
         width: 95%;
@@ -245,7 +245,7 @@
         font-size: 3em;
     }
     .carousel2-txt-content-div>div>h2{
-        font-size: 2.5em;
+        font-size: 2.2em;
     }
     .carousel2-inner-section{
         width: 90%;
@@ -255,10 +255,10 @@
 
 @media only screen and (min-width: 1400px) {
     .carousel2-txt-content-div>div>h1{
-        font-size: 4em;
+        font-size: 3em;
     }
     .carousel2-txt-content-div>div>h2{
-        font-size: 3em;
+        font-size: 2.5em;
     }
 }
 
