@@ -4,6 +4,10 @@ import CarouselImg from '../../assets/images/mobilebg.png'
 import { Button } from '../../components/Button';
 import RefundImg from '../../assets/images/refund.png'
 import WwoImg1 from '../../assets/images/wwo1.jpg'
+import WwoImg2 from '../../assets/images/business.jpg'
+import WwoImg3 from '../../assets/images/accounting.jpg'
+import WwoImg4 from '../../assets/images/payroll.jpg'
+import WwoImg5 from '../../assets/images/incorp.jpg'
 import TaxFillingImg from '../../assets/images/tax-filing.jpg'
 import { FcCheckmarkIcon} from '../../components/Icon';
 import { useNavigate } from 'react-router-dom';
@@ -138,19 +142,46 @@ const WhatWeOffer = (props) => {
 
             <p>Whether you need help with personal tax preparation, corporate tax compliance, bookkeeping, or estate planning, Sukh Tax has the expertise and knowledge to meet your needs. We beleive in simplicity. Our services and our pricing are both transparent. We at Sukh Tax work to provide you with peace of mind, by providing you the services as per your needs.</p>
         
-            <WhatWeOfferCards 
-                img={WwoImg1}
-                title="Personal Income Tax"
-                desc="Starting at $499"
-                
-            />
+            <div className="whatWeOffer-cards">
+                <WhatWeOfferCards 
+                    img={WwoImg1}
+                    title="Personal Income Tax"
+                    desc=""
+                    onClick={()=>alert("clicked")}
+                />
+                <WhatWeOfferCards 
+                    img={WwoImg2}
+                    title="Business & Corporate Tax"
+                    desc="Starting at $499"
+                    onClick={()=>alert("clicked")}
+                />
+                <WhatWeOfferCards 
+                    img={WwoImg3}
+                    title="Accounting and Bookkeeping"
+                    desc="Starting at $250/month"
+                    onClick={()=>alert("clicked")}
+                />
+                <WhatWeOfferCards 
+                    img={WwoImg4}
+                    title="Pay Roll"
+                    desc=""
+                    onClick={()=>alert("clicked")}
+                />
+                <WhatWeOfferCards 
+                    img={WwoImg5}
+                    title="Incorporation & Structuring"
+                    desc="Starting at $320"
+                    onClick={()=>alert("clicked")}
+                />
+            </div>
+            
         </div>
     </div>
 }
 
 const WhatWeOfferCards = (props) =>{
 
-    return<div className="whatWeOfferCards-section">
+    return<div className="whatWeOfferCards-section" onClick={props?.onClick}>
         <div className="whatWeOfferCards-img-div">
             <div className="whatWeOfferCard-img-abs-div">
                 <img src={props?.img}/>
@@ -161,7 +192,7 @@ const WhatWeOfferCards = (props) =>{
 
             <p>{props?.desc}</p>
 
-            <Button varient="small outlined" title="Call us to Learn more"/>
+            <Button varient="small outlined" title="Call us to Learn more" onClick={props?.onClick}/>
         </div>
     </div>
 }

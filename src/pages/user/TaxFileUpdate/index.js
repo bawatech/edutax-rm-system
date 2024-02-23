@@ -15,23 +15,15 @@ import { IconDelete } from '../../../components/Icon';
 
 const TaxFileUpdate = () => {
     const param = useParams();
-    const [payload, setPayload] = useState({
-    documents: [
-        {}
-    ],
-    taxfile_id: param?.id
-    });
+    const [oldDocs, setOldDocs] = useState([])
+    const [newDocs, setNewDoc] = useState([{}])
+    const [payload, setPayload] = useState({});
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [provinces, setProvinces] = useState([])
     const [docType, setDocType] = useState([])
-    const [oldDocs, setOldDocs] = useState([])
-    const [newDocs, setNewDoc] = useState({
-        documents: [
-            {}
-        ],
-    })
+    
     
 
     
@@ -45,9 +37,7 @@ const TaxFileUpdate = () => {
                 
                 console.log(err)
             });
-    },[])
 
-    useEffect(()=>{
         authService.getDocumentTypes()
             .then((res)=>{
                 setDocType(res?.data?.response?.documentTypesList)
@@ -57,9 +47,7 @@ const TaxFileUpdate = () => {
                 
                 console.log(err)
             });
-    },[])
 
-    useEffect(()=> {
         authService.getTaxfileDetails(param?.id)
             .then((res) => {
                 console.log("Taxfile List",res)
@@ -71,14 +59,25 @@ const TaxFileUpdate = () => {
             });
     },[])
 
+
     const handleSubmit = () => {
+        
         showLoader()
-        dispatch(updateTaxfile(payload))
+        const documents = newDocs
+
+        oldDocs.forEach(doc=>{
+            documents.push({id: doc?.id})
+        })
+        const newPayload = {
+            ...payload,
+            documents
+        }
+        dispatch(updateTaxfile(newPayload))
             .then((res) => {
                 // console.log("Response", res?.data?.taxfile?.id);
                 toastSuccess(res?.data?.message);
                 hideLoader()
-                navigate(`/user/taxfile/${res?.data?.response?.taxfile?.id}`);
+                // navigate(`/user/taxfile/${res?.data?.response?.taxfile?.id}`);
             })
             .catch((err) => {
                 if (err?.data?.field_errors) {
@@ -90,14 +89,6 @@ const TaxFileUpdate = () => {
             });
     };
 
-    useEffect(()=> {
-        setPayload({
-            ...payload?.documents,
-                newDocs,
-                oldDocs
-        })
-    },[])
-
     const handleChange = (name, value) => {
         setPayload({
             ...payload,
@@ -107,62 +98,41 @@ const TaxFileUpdate = () => {
         console.log(name, value);
     };
 
-    const handleChangeNewDocs =(name, value)=>{
-        setNewDoc({
-            ...newDocs,
-            [name]: value
-        })
-    }
-
-    const handleChangeOldDocs =(name, value) => {
-        setOldDocs({
-            ...oldDocs,
-            [name]: value
-        })
-    }
-
     const handleAddForm = () => {
-        let oldArr = [...newDocs?.documents];
+        let oldArr = [...newDocs];
         let newArr = [...oldArr];
         newArr.push({});
 
-        handleChangeNewDocs("documents", newArr);
+        setNewDoc(newArr);
     };
 
     const handleChangeArray = (name, value, thisIndex) => {
-        let oldArr = [...newDocs?.documents];
+        let oldArr = [...newDocs];
         let curRow = { ...oldArr[thisIndex] };
         curRow[name] = value;
         oldArr[thisIndex] = curRow;
 
-        handleChangeNewDocs("documents", oldArr);
+        setNewDoc(oldArr);
     };
 
     const handleDeleteArray = (delIndex) => {
-        let oldArr = [...newDocs?.documents];
-        handleChangeNewDocs(
-                "documents",
-                oldArr?.filter((itm, ind) => {
-                return ind !== delIndex;
-            })
-        );
+        setNewDoc(newDocs?.filter((itm, ind) => {return ind !== delIndex;}));
     };
 
     const handleChangeFileArray = (name, value, thisIndex) => {
-        let oldArr = [...newDocs?.documents];
+        let oldArr = [...newDocs];
         let curRow = { ...oldArr[thisIndex] };
         curRow[name] = value;
         oldArr[thisIndex] = curRow;
 
-        handleChangeNewDocs("documents", oldArr);
+        setNewDoc(oldArr)
     };
 
     console.log("old Docs",oldDocs)
+    console.log("new Docs",newDocs)
 
     const handleDelete = (index) =>{
-        let oldArr = [...oldDocs];
-        
-        setOldDocs(oldArr?.filter((itm) => {return itm?.id !== index}))
+        setOldDocs(oldDocs?.filter((itm) => {return itm?.id !== index}))
     }
 
     console.log("payload",payload)
@@ -231,7 +201,7 @@ const TaxFileUpdate = () => {
         })}
 
         <FormSectionName name="Attach Documents" />
-        {newDocs?.documents?.map((itm, index) => {
+        {newDocs?.map((itm, index) => {
         return (
             <FormGroup key={index}>
             <FormField>

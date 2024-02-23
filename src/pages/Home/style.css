@@ -490,3 +490,165 @@
 
 
 /* ====================================================================== */
+
+.whatWeOffer-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5em 2em;
+}
+
+.whatWeOffer-inner-div{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.whatWeOffer-inner-div h1{
+    font-size: 3em;
+}
+
+.whatWeOffer-cards{
+    display: flex;
+    gap: 10px;
+}
+
+
+
+.whatWeOfferCards-section{
+    width: 100%;
+    max-width: 18em;
+    height: 100%;
+    cursor: pointer;
+}
+
+.whatWeOfferCards-img-div{
+    padding-top: 150%;
+    position: relative;
+}
+
+.whatWeOfferCard-img-abs-div{
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.whatWeOfferCard-img-abs-div>img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.whatWeOfferCard-txt-div{
+    padding: 1em 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    min-height: 12em;
+    justify-content: space-between;
+}
+
+.whatWeOfferCard-txt-div>h2{
+    font-size: 1.3em;
+}
+
+.whatWeOfferCard-txt-div>p{
+    font-size: .9em;
+}
+
+@media only screen and (min-width: 10px){
+    .whatWeOffer-inner-div{
+        width: 100%;
+    }
+    .whatWeOffer-inner-div>h1{
+        font-size: 1.8em;
+    }
+    .whatWeOffer-cards{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .whatWeOffer-cards>div{
+        max-width: 100%;
+    }
+
+    .whatWeOfferCard-txt-div>p{
+        font-size: .9em;
+        min-height: 0em;
+    }
+
+    .whatWeOfferCard-txt-div{
+        min-height: 0;
+    }
+
+    .whatWeOffer-section{
+        padding: 5em 0em;
+    }
+}
+
+
+@media only screen and (min-width: 768px){
+    .whatWeOffer-inner-div{
+        width: 90%;
+    }
+
+    .whatWeOffer-inner-div>h1{
+        font-size: 2em;
+    }
+    .whatWeOfferCard-txt-div>h2{
+        font-size: 1.5em;
+    }
+    
+    .whatWeOfferCard-txt-div>p{
+        font-size: 1em;
+        min-height: 2.5em;
+    }
+    .whatWeOffer-cards>div{
+        max-width: 48%;
+    }
+
+    .whatWeOfferCard-txt-div{
+        min-height: 12em;
+    }
+
+    .whatWeOffer-section{
+        padding: 5em 2em;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .whatWeOffer-inner-div{
+        width: 80%;
+    }
+    .whatWeOffer-inner-div>h1{
+        font-size: 3em;
+    }
+    .whatWeOfferCard-txt-div>h2{
+        font-size: 1.2em;
+    }
+    
+    .whatWeOfferCard-txt-div>p{
+        font-size: .85em;
+        min-height: 2.5em;
+    }
+
+    .whatWeOffer-cards{
+        flex-wrap: nowrap;
+    }
+    .whatWeOffer-cards>div{
+        max-width: 18em;
+        
+    }
+}
+
+@media only screen and (min-width: 1400px){
+    .whatWeOfferCard-txt-div>h2{
+        font-size: 1.3em;
+    }
+    
+    .whatWeOfferCard-txt-div>p{
+        font-size: .9em;
+        min-height: 2em;
+    }
+}

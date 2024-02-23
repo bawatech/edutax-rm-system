@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./style.css";
 import "./chat-window.css";
 import authService from "../../../service/auth";
@@ -175,7 +175,7 @@ const ChatWindow = ({ taxfile_id }) => {
   const [newMessage, setNewMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const dispatch = useDispatch();
-
+  const ref = useRef();
   const handleSend = () => {
     if (newMessage?.trim()?.length < 1) {
       return false;
@@ -213,17 +213,23 @@ const ChatWindow = ({ taxfile_id }) => {
     getMessageList();
   }, []);
 
+
+  useEffect(() => {
+    const height = ref.current.scrollHeight
+    ref?.current?.scrollTo(0, height)
+  }, [newMessage, messageList]);
+
   return (<div className="chat-wrapper-div">
       <div className="chat-wrapper">
-          <div className="chat-messages-list">
+          <div ref={ref} className="chat-messages-list">
             {
               messageList.length == 0 ? <p className="chat-start-conv">Start a conversation</p> : null
             }
             {messageList?.map((msg, index) => {
               if (msg?.user_type === "CLIENT") {
-                return <Sender msg={msg?.message} time={msg?.added_on} />;
+                return <Sender key={index} msg={msg?.message} time={msg?.added_on} />;
               } else if (msg?.user_type === "EXECUTIVE") {
-                return <Reciever msg={msg?.message} time={msg?.added_on} />;
+                return <Reciever key={index} msg={msg?.message} time={msg?.added_on} />;
               }
             })}
           </div>
@@ -246,6 +252,7 @@ export const ChatInput = (props) => {
           placeholder="Type here..."
           className="chat-input-textarea"
           value={props?.value}
+          rows={5}
           onChange={(e) => {
             props?.handleChange(e.target.value);
           }}
