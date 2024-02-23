@@ -21,6 +21,7 @@ import Home from '../pages/Home';
 import InviteSpouse from '../pages/user/InviteSpouse';
 import ContactUs from '../pages/Contact';
 import TaxFileUpdate from '../pages/user/TaxFileUpdate';
+import AcceptInvite from '../pages/auth/AcceptInvite';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
@@ -33,8 +34,8 @@ const AllRoutes = () => {
         {path:'sign-up',element:<Signup/>},
         {path:'verify-email',element:<VerifyEmail/>},
         {path:'reset',element:<ForgotPass/>},
-
         {path:'verify-forgot-pass-otp',element:<NewPassword/>},
+        {path:'accept-invitation/:token',element:<AcceptInvite/>},
         {path: 'user',element:<UserLayout/>,
         children:[
             {index:true, element : <Dashboard/>},
