@@ -61,7 +61,6 @@ const TaxFileUpdate = () => {
 
 
     const handleSubmit = () => {
-        
         showLoader()
         const documents = newDocs
 
@@ -175,6 +174,10 @@ const TaxFileUpdate = () => {
             />
 
             {payload?.direct_deposit_cra === "YES" && <FormGroup>
+                {/* <FileComponent key={index}
+                    name={itm?.type?.name}
+                    handleDelete={()=>handleDelete(itm?.id)}
+                /> */}
                 <FormField>
                 <div className="array-div">
                     <FileUpload

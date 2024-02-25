@@ -70,6 +70,8 @@ const ChangePassword = (props) => {
                             error={errors?.newPassword}
                         />
                     </FormField>
+                </FormGroup>
+                <FormGroup>
                     <FormField>
                         <Input
                             name="confirmNewPassword"

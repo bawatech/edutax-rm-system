@@ -48,7 +48,6 @@ const ProfileUpdate = () => {
                 toastError(err?.data?.message)
             })
     }
-
     const handleChange = (name, value) => {
         setPayload({
             ...payload,

@@ -59,7 +59,7 @@ const InviteSpouse = () => {
     const spouseLinkStatus = useMemo(()=>{
         if(spouseStatus?.invitation_status === "LINKED"){
             // alert(spouseStatus?.data?.response)
-            console.log("Spouse",spouseStatus?.data?.response)
+            console.log("Spouse",spouseStatus)
             return <Container>
                 <Center>
                     <h1>Your Linked Spouse</h1>
@@ -67,7 +67,7 @@ const InviteSpouse = () => {
                 <br/>
                 <br/>
                 <div className="spouse-linked-div">
-                    <span>{spouseStatus?.data?.response?.spouse?.email}</span>
+                    <span>{spouseStatus?.spouse_email}</span>
 
                     <Button title={<GoUnlinkIcon />} varient="icon" onClick={()=>alert("Clicked")} />
                 </div>
@@ -100,29 +100,32 @@ const InviteSpouse = () => {
             // alert(spouseStatus?.data?.response)
             console.log("Spouse SENT", toggle,spouseStatus)
             
-            {return <Container maxWidth="30em">
-            <Center>
-                <h1>Request already send to this email. But not accepted yet </h1>
-            </Center>
-            <br/>
-            <FormGroup>
-                <FormField>
-                    <Input 
-                        label="Email"
-                        name="email"
-                        value={payload?.email}
-                        handleChange={handleChange}
-                    />
-                </FormField>
-            </FormGroup>
-            <br/>
-            <Center>
-                <Button 
-                    title="Resend Invite"
-                    onClick={handleSubmit}
-                />
-            </Center>
-        </Container>}
+            {return <>
+                <Center>
+                    <h1>Request already send to this email. But not accepted yet </h1>
+                </Center>
+                <br/>
+                <Container maxWidth="30em">
+                    <FormGroup>
+                        <FormField>
+                            <Input 
+                                label="Email"
+                                name="email"
+                                value={payload?.email}
+                                handleChange={handleChange}
+                            />
+                        </FormField>
+                    </FormGroup>
+                    <br/>
+                    <Center>
+                        <Button 
+                            title="Resend Invite"
+                            onClick={handleSubmit}
+                        />
+                    </Center>
+                </Container>
+        </>
+        }
             
         }
     },[spouseStatus, payload, toggle])

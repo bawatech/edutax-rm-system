@@ -14,15 +14,16 @@ const ProfileDetails = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams();
+
     useEffect(() => {
         authService.getProfile()
         .then(res=>{
-           setPayload(res?.data?.response?.profile || {})
+            console.log(res)
+            setPayload(res?.data?.response?.profile || {})
         })
         authService.getMaritalStatus()
             .then((res) => {
                 setMaritalStatus(res?.data?.response?.maritalStatusList)
-                console.log("marital Status", res?.data?.response)
             })
     },[])
 
@@ -54,6 +55,8 @@ const ProfileDetails = () => {
                 toastError(err?.data?.message)
             })
     }
+
+    console.log(payload)
 
     const handleChange = (name, value) => {
         setPayload({

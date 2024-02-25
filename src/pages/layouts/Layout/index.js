@@ -184,7 +184,6 @@ const HeaderBfLogin =({children})=>{
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  console.log(scrollPosition)
   return <div className={`layout-header-bf-login ${scrollPosition >= 10 ? 'active' : ''}`}>
   {children}
 </div>
