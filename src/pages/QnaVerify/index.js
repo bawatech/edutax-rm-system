@@ -10,7 +10,6 @@ const QnaVerify = () =>{
     const [error, setError] = useState("");
     const [selected,setSelected] = useState([])
     const navigate = useNavigate();
-   console.log('ssssssssssss',selected)
     const handleChange = (value,id) => {
         setError("")
         let currentArray = [...selected];

@@ -11,12 +11,9 @@ const Dashboard = () => {
   const [maritalStatus, setMaritalStatus] = useState([]);
   const navigate = useNavigate();
 
-  console.log("PAYLOAD IS ", payload);
-
   useEffect(() => {
     authService.getMaritalStatus().then((res) => {
       setMaritalStatus(res?.data?.response?.maritalStatusList);
-      console.log("marital Status", res?.data?.response);
     })
     .catch(err=>{
       toastError(err?.data?.message)

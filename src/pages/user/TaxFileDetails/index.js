@@ -199,9 +199,6 @@ const ChatWindow = ({ taxfile_id }) => {
     authService
       .getClientMessages(taxfile_id)
       .then((res) => {
-        // console.log('Client messages are ', res?.data)
-        // console.log('Client messages are ', res?.data?.response?.messages)
-        // setDetails(res?.data)
         setMessageList(res?.data?.response?.messages);
       })
       .catch((err) => {
@@ -249,7 +246,7 @@ export const ChatInput = (props) => {
   return (
       <div className="chat-compose">
         <textarea
-          placeholder="Type here..."
+          placeholder="Write here..."
           className="chat-input-textarea"
           value={props?.value}
           rows={5}
@@ -323,10 +320,8 @@ const FileComponent = (props) => {
           <FaDownload />
         </a>
         <a
-          href=""
-          onClick={() => {
-            window.open(props?.view, "_blank");
-          }}
+          href={props?.download}
+          target="_blank"
         >
           <IoIosEye />
         </a>

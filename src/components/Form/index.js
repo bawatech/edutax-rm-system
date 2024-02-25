@@ -197,7 +197,7 @@ export const FileUpload = (props) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  console.log(selectedFile)
+  // console.log(selectedFile)
   const handleUpload = () => {
     refImage.current.click();
   };

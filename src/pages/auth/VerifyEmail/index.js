@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { verifyEmail } from '../../../store/userSlice';
 import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 
@@ -14,6 +14,7 @@ const VerifyEmail = () => {
     const [loadingButton,setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const {user} = useSelector(store=>store.user);
 
 
     const handleChange = (name, value) => {
@@ -28,17 +29,18 @@ const VerifyEmail = () => {
     }
 
     const handleSubmit = () => {
-        dispatch(verifyEmail(payload))
+        dispatch(verifyEmail(payload,user))
             .then(res => {
                 toastSuccess(res?.data?.message)
-                navigate("/user/profile?redirect-type=sign-up")
+                console.log('ress on verify email',res)
+                // setTimeout(()=>{
+                    navigate("/user/profile?redirect-type=sign-up")
+                // }, 2000);
+                
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
-                    toastError(err?.data?.message)
                     setErrors(err?.data?.field_errors)
-                } else {
-                   // alert(err?.data?.message)
                 }
                 toastError(err?.data?.message)
             })
@@ -50,6 +52,7 @@ const VerifyEmail = () => {
                 <div className="signup-inner-container"> */}
                     <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Email Address</h2>
 
+                    <p>Your email is <b> {user?.email}</b></p>
                     <FormGroup>
                         <FormField>
                             <Input

@@ -14,12 +14,11 @@ export const Layout = (props) => {
 
   const navigate = useNavigate();
   const {user} =useSelector(store=>store?.user)
-  console.log('USER',user)
   useEffect(()=>{
     if(user?.token && user?.verify_status==='VERIFIED'){
       navigate('/user')
     }
-  },[user?.user?.token])
+  },[user])
 
   return (
     <div className="" style={{position: 'relative'}}>
@@ -93,9 +92,13 @@ export const UserLayout = (props) => {
   const [toggle,setToggle] = useState(false)
   const user =useSelector(store=>store?.user)
   const dispatch = useDispatch()
+console.log('user',user)
+
   useEffect(()=>{
     if(!user?.user?.token){
       navigate('/login')
+    } else if (user?.user?.verify_status!=='VERIFIED'){
+      navigate('/verify-email')
     }
   },[user?.user?.token])
 

@@ -74,17 +74,15 @@ const TaxFileUpdate = () => {
         }
         dispatch(updateTaxfile(newPayload))
             .then((res) => {
-                // console.log("Response", res?.data?.taxfile?.id);
                 toastSuccess(res?.data?.message);
                 hideLoader()
-                // navigate(`/user/taxfile/${res?.data?.response?.taxfile?.id}`);
+                navigate(`/user/taxfile/${param?.id}`);
             })
             .catch((err) => {
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors);
-                } else {
-                    toastError(err?.data?.message)
-                }
+                } 
+                toastError(err?.data?.message)
                 hideLoader()
             });
     };

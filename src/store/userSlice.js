@@ -94,10 +94,12 @@ export const addClientMessage = (param) => async (dispatch) => {
         });
 };
 
-export const verifyEmail = (param) => async (dispatch) => {
+export const verifyEmail = (param,user) => async (dispatch) => {
     return authService.verifyEmail(param)
         .then(async (res) => {
-            console.log('resp at slice', res)
+            let userData = res?.data?.response?.user || {}
+            dispatch(setUser({...user,...userData || null}))
+            return res;
             return res;
         })
         .catch((error) => {
