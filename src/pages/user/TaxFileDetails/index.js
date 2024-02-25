@@ -59,23 +59,23 @@ const TaxFileDetails = () => {
                 <div className="userDetails-txt-content">
                   <DetailsComponent
                     heading="First Name"
-                    value={details?.taxfile?.firstname}
+                    value={details?.taxfile?.profile?.firstname}
                   />
                   <DetailsComponent
                     heading="Last Name"
-                    value={details?.taxfile?.lastname}
+                    value={details?.taxfile?.profile?.lastname}
                   />
                   <DetailsComponent
                     heading="Date of Birth"
-                    value={showDate(details?.taxfile?.date_of_birth)}
+                    value={showDate(details?.taxfile?.profile?.date_of_birth)}
                   />
                   <DetailsComponent
                     heading="Marital Status"
-                    value={details?.taxfile?.marital_status_detail?.name}
+                    value={details?.taxfile?.profile?.marital_status_detail?.name}
                   />
                   <DetailsComponent
                     heading="Mobile Number"
-                    value={details?.taxfile?.mobile_number}
+                    value={details?.taxfile?.profile?.mobile_number}
                   />
                   <DetailsComponent
                     heading="File Status"
@@ -89,23 +89,23 @@ const TaxFileDetails = () => {
                 <div className="userDetails-txt-content">
                   <DetailsComponent
                     heading="Street number"
-                    value={details?.taxfile?.street_number}
+                    value={details?.taxfile?.profile?.street_number}
                   />
                   <DetailsComponent
                     heading="Street Name"
-                    value={details?.taxfile?.street_name}
+                    value={details?.taxfile?.profile?.street_name}
                   />
                   <DetailsComponent
                     heading="City"
-                    value={details?.taxfile?.city}
+                    value={details?.taxfile?.profile?.city}
                   />
                   <DetailsComponent
                     heading="Province"
-                    value={details?.taxfile?.province_detail?.name}
+                    value={details?.taxfile?.profile?.province_detail?.name}
                   />
                   <DetailsComponent
                     heading="Postal Code"
-                    value={details?.taxfile?.postal_code}
+                    value={details?.taxfile?.profile?.postal_code}
                   />
                   <DetailsComponent
                     heading="Tax Year"
@@ -115,7 +115,6 @@ const TaxFileDetails = () => {
                     heading="Direct Deposit CRA"
                     value={details?.taxfile?.direct_deposit_cra}
                   />
-                  {console.log("CRAAAAAAAAAAAA", details?.taxfile?.direct_deposit_cra!==null)}
                 </div>
               </div>
 
