@@ -61,7 +61,6 @@ const TaxFileUpdate = () => {
 
 
     const handleSubmit = () => {
-        
         showLoader()
         const documents = newDocs
 
@@ -77,7 +76,7 @@ const TaxFileUpdate = () => {
                 // console.log("Response", res?.data?.taxfile?.id);
                 toastSuccess(res?.data?.message);
                 hideLoader()
-                // navigate(`/user/taxfile/${res?.data?.response?.taxfile?.id}`);
+                navigate(`/user/taxfile/${res?.data?.response?.taxfile?.id}`);
             })
             .catch((err) => {
                 if (err?.data?.field_errors) {
@@ -177,6 +176,10 @@ const TaxFileUpdate = () => {
             />
 
             {payload?.direct_deposit_cra === "YES" && <FormGroup>
+                {/* <FileComponent key={index}
+                    name={itm?.type?.name}
+                    handleDelete={()=>handleDelete(itm?.id)}
+                /> */}
                 <FormField>
                 <div className="array-div">
                     <FileUpload

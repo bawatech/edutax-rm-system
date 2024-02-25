@@ -45,7 +45,7 @@ const ChangePassword = (props) => {
     return <Container maxWidth="30em">
                 <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Change Password</h2>
 
-                <FormGroup>
+                {/* <FormGroup>
                     <FormField>
                         <Input
                             name="oldPassword"
@@ -57,7 +57,7 @@ const ChangePassword = (props) => {
                             error={errors?.oldPassword}
                         />
                     </FormField>
-                </FormGroup>
+                </FormGroup> */}
                 <FormGroup>
                     <FormField>
                         <Input
@@ -70,6 +70,8 @@ const ChangePassword = (props) => {
                             error={errors?.newPassword}
                         />
                     </FormField>
+                </FormGroup>
+                <FormGroup>
                     <FormField>
                         <Input
                             name="confirmNewPassword"

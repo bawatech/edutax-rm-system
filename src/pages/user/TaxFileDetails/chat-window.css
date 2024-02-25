@@ -63,6 +63,18 @@
     padding: auto 10px;
 }
 
+.chat-compose-actions-right>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.chat-compose-actions-right>div>svg{
+    transform: rotate(330deg);
+    font-size: 1.5em;
+}
+
 .chat-start-conv{
     text-align: center;
     padding: 25px;

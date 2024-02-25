@@ -115,21 +115,21 @@ const TaxFileDetails = () => {
                     heading="Direct Deposit CRA"
                     value={details?.taxfile?.direct_deposit_cra}
                   />
-                  
+                  {console.log("CRAAAAAAAAAAAA", details?.taxfile?.direct_deposit_cra!==null)}
                 </div>
               </div>
 
-              <div className="userDetails-img-content">
+              {(details?.taxfile?.direct_deposit_cra !== undefined && details?.taxfile?.direct_deposit_cra !== null && details?.taxfile?.direct_deposit_cra !== "") ? <div className="userDetails-img-content">
                 <FormField>
                   <FileComponent
                     name="Document (setup or change your direct deposit with CRA) : "
                     download={details?.taxfile?.document_direct_deposit_cra}
                     downloadName={details?.taxfile?.document_direct_deposit_cra}
                     view={details?.taxfile?.document_direct_deposit_cra}
-                    // edit={`update/${details?.taxfile?.id}`}
                   />
                 </FormField>
-              </div>
+              </div>: ''}
+              
 
               <div className="userDetails-img-content">
                 {details?.taxfile?.documents?.map((itm, index) => {
@@ -141,7 +141,6 @@ const TaxFileDetails = () => {
                           download={itm?.full_path}
                           downloadName={itm?.documents?.[index]?.filename}
                           view={itm?.full_path}
-                          // edit={`update/${itm?.id}`}
                         />
                       </FormField>
                     </FormGroup>
@@ -323,10 +322,8 @@ const FileComponent = (props) => {
           <FaDownload />
         </a>
         <a
-          href=""
-          onClick={() => {
-            window.open(props?.view, "_blank");
-          }}
+          href={props?.view}
+          target="_blank"
         >
           <IoIosEye />
         </a>

@@ -14,7 +14,7 @@ export const Layout = (props) => {
 
   const navigate = useNavigate();
   const {user} =useSelector(store=>store?.user)
-  console.log('USER',user)
+  // console.log('USER',user)
   useEffect(()=>{
     if(user?.token && user?.verify_status==='VERIFIED'){
       navigate('/user')
@@ -181,7 +181,6 @@ const HeaderBfLogin =({children})=>{
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  console.log(scrollPosition)
   return <div className={`layout-header-bf-login ${scrollPosition >= 10 ? 'active' : ''}`}>
   {children}
 </div>

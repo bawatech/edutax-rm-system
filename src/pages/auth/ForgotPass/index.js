@@ -6,6 +6,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
 import { forgotPassword, verifyEmail } from '../../../store/userSlice';
+import { hideLoader, showLoader } from '../../../BTUI/BtLoader';
+import { toastSuccess } from '../../../BTUI/BtToast';
 
 const ForgotPassword = () => {
     const [payload, setPayload] = useState({})
@@ -26,12 +28,15 @@ const ForgotPassword = () => {
     }
 
     const handleSubmit = () => {
+        showLoader()
         dispatch(forgotPassword(payload))
             .then(res => {
-                alert(res?.data?.message)
+                hideLoader()
+                toastSuccess(res?.data?.message)
                 navigate("/verify-forgot-pass-otp")
             })
             .catch(err => {
+                hideLoader()
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
                 } else {
