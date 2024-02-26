@@ -50,7 +50,7 @@ const VerifyLogin = () => {
 
     return <Layout>
         <Container maxWidth="30em">
-            <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Email Address</h2>
+            <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Login</h2>
 
             <span>Otp Sent to <b>{location?.state?.data}</b></span>
             <FormGroup>

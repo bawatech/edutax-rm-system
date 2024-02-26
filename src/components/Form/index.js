@@ -234,6 +234,7 @@ export const InputDate = (props) => {
       props?.handleChange(props?.name, null);
     }
   };
+  
   return (
     <div className="dateinput-div">
       {props?.label && <label className="input-label">{props?.label}</label>}
@@ -241,7 +242,11 @@ export const InputDate = (props) => {
         <DatePicker
           showIcon
           isClearable
-          
+          showPopperArrow={false}
+          // showYearDropdown
+          // showMonthYearDropdown
+          // showMonthYearPicker
+          // showYearPicker
           dateFormat="dd-MMM-YYYY"
           selected={value}
           // selected={new Date(2024, 1, 1)}

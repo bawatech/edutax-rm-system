@@ -19,7 +19,8 @@ const VerifyEmail = () => {
     const handleChange = (name, value) => {
         setPayload({
             ...payload,
-            [name]: value
+            [name]: value,
+            ['email']: location?.state?.data
         })
         setErrors({
             ...errors,
