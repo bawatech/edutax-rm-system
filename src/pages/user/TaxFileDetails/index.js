@@ -159,6 +159,7 @@ const TaxFileDetails = () => {
         <br />
         <br />
         <br />
+        
         <ChatWindow taxfile_id={param?.id} />
         <br />
         <br />
@@ -218,6 +219,7 @@ const ChatWindow = ({ taxfile_id }) => {
   }, [newMessage, messageList]);
 
   return (<div className="chat-wrapper-div">
+    <span id="msgDiv"></span>
       <div className="chat-wrapper">
           <div ref={ref} className="chat-messages-list">
             {

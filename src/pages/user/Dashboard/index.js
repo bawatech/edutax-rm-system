@@ -9,25 +9,17 @@ import { toastError, toastSuccess } from "../../../BTUI/BtToast";
 const Dashboard = () => {
   const [payload, setPayload] = useState({});
   const [errors, setErrors] = useState({});
-  const [maritalStatus, setMaritalStatus] = useState([]);
   const navigate = useNavigate();
 
   console.log("PAYLOAD IS ", payload);
 
   useEffect(() => {
-    authService.getMaritalStatus().then((res) => {
-      setMaritalStatus(res?.data?.response?.maritalStatusList);
-      console.log("marital Status", res?.data?.response);
-    })
-    .catch(err=>{
-      toastError(err?.data?.message)
-    })
 
-    // authService.getTaxfileList().then((res) => {
-    //     if(res?.data?.response?.taxfiles){
-    //         setTaxfiles(res?.data?.response?.taxfiles)
-    //     }
-    // });
+    authService.getTaxfileList().then((res) => {
+        if(res?.data?.response?.taxfiles){
+          setPayload(res?.data?.response?.taxfiles)
+        }
+    });
   }, []);
 
   const handleReturnClick=()=>{
@@ -48,39 +40,6 @@ const Dashboard = () => {
     // }
   }
 
-  const handleSubmit = () => {
-    authService
-      .createProfile(payload)
-      .then((res) => {
-        console.log("Response", res?.data?.taxfile?.id);
-        // alert(res?.data?.message)
-        toastSuccess(res?.data?.message);
-        navigate(`/user/tax-file-add`);
-      })
-      .catch((err) => {
-        if (err?.data?.field_errors) {
-          setErrors(err?.data?.field_errors);
-          toastError(err?.data?.field_errors);
-        } else {
-          // alert(err?.data?.message)
-          toastError(err?.data?.message);
-        }
-        // alert(err?.data?.message)
-        toastError(err?.data?.message);
-      });
-  };
-
-  const handleChange = (name, value) => {
-    setPayload({
-      ...payload,
-      [name]: value,
-    });
-    setErrors({
-      ...errors,
-      [name]: null,
-    });
-  };
-
   return (
     <div className="dashboard">
       <div className="dash-menu">
@@ -88,7 +47,7 @@ const Dashboard = () => {
         <div onClick={handleReturnClick}>Tax Return</div>
         <div onClick={() => navigate("/user/settings")}>Settings</div>
         <div onClick={() => navigate("/user/invite-spouse")}>Link Spouse</div>
-        <div onClick={handleReturnClick}>Messages</div>
+        <div onClick={() => navigate(`/user/taxfile/${payload[0]?.id}#msgDiv`)}>Messages</div>
       </div>
     </div>
   );
