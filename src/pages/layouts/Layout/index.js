@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
-import { Email, Facebook, Hamberger, Insta, IoHomeIcon, IoIosNotificationsIcon, IoMdSettingsIcon, Location, Phone, RiLogoutCircleLineIcon, Twitter } from "../../../components/Icon";
+import { Email, Facebook, Hamberger, IconRxCross2, Insta, IoHomeIcon, IoIosNotificationsIcon, IoMdSettingsIcon, Location, Phone, RiLogoutCircleLineIcon, Twitter } from "../../../components/Icon";
+import { IconCross } from "../../../BTUI/Icons";
 
 
 export const Layout = (props) => {
@@ -65,7 +66,9 @@ export const Layout = (props) => {
                 title="Contact Us"
 
                 points={[
-                  {icon: <Location/>, title: `Torbram & NorthPark, 9886 Torbram Road Unit 206, Brampton, ON L6S 3L9`, href: ''},
+                  {icon: <Location/>, title: `Unit 206- 9886 Torbram Rd \n
+                  Bramtpon - ON \n
+                  L6S 3 L9 `, href: ''},
                   {icon: <Phone />, title: '905-790-6200', href: ''},
                   {icon: <Email/>, title: 'contact@edutax.ca', href: ''},
                 ]}
@@ -204,13 +207,14 @@ const HeaderRightBfLogin=(props)=>{
         <li><NavLink to="/login">Login</NavLink></li>
       </ul>
       <ul className="small-menu" style={{display: toggle ? "flex": "none"}}>
+        <li style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '0em'}} onClick={()=>setToggle((prev) => !prev)}><IconCross /></li>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/contact">Contact Us</NavLink></li>
         <li><NavLink to="/login">Login</NavLink></li>
       </ul>
 
       <div className="hamburger-div">
-        <span onClick={()=>setToggle((prev) => !prev)} style={{fontSize: '1.5em', color: 'white', cursor: 'pointer'}}><Hamberger/></span>
+        <span onClick={()=>setToggle((prev) => !prev)} style={{fontSize: '1.5em', color: 'white', cursor: 'pointer'}}><Hamberger /></span>
       </div>
     </div>
   </div>
@@ -225,10 +229,10 @@ const HeaderRight=(props)=>{
       <ul className="lg-menu">
         <li><NavLink to="/user"><IoHomeIcon /></NavLink></li>
         <li><NavLink to="/user/settings"><IoMdSettingsIcon /></NavLink></li>
-        {/* <li><NavLink to=""><IoIosNotificationsIcon /></NavLink></li> */}
         <li><NavLink to="" onClick={props?.handleLogout}><RiLogoutCircleLineIcon/></NavLink></li>
       </ul>
       <ul className="small-menu" style={{display: toggle ? "flex": "none"}}>
+        <li style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '-1em'}} onClick={()=>setToggle((prev) => !prev)}><IconCross /></li>
         <li><NavLink to="/user">Home</NavLink></li>
         <li><NavLink to="/user/settings">Settings</NavLink></li>
         <li><NavLink to="" onClick={props?.handleLogout}>Logout</NavLink></li>

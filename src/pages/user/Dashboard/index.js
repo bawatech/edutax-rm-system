@@ -87,6 +87,7 @@ const Dashboard = () => {
         <div onClick={handleReturnClick}>Tax Return</div>
         <div onClick={() => navigate("/user/settings")}>Settings</div>
         <div onClick={() => navigate("/user/invite-spouse")}>Link Spouse</div>
+        <div onClick={handleReturnClick}>Messages</div>
       </div>
     </div>
   );

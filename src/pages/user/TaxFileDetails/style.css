@@ -183,10 +183,24 @@
     }
 }
 
+@media only screen and (min-width: 300px){
+    .file-component-section{
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .file-component-btn-div{
+        width: 20%;
+        justify-content: center;
+    }
+}
+
 @media only screen and (min-width: 500px){
     .details-component-section{
         flex-direction: row;
     }
+    
 }
 
 @media only screen and (min-width: 900px){

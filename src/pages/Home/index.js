@@ -1,8 +1,7 @@
-import { Layout, UserLayout } from '../layouts/Layout';
+import { Layout } from '../layouts/Layout';
 import './style.css';
 import CarouselImg from '../../assets/images/mobilebg.png'
 import { Button } from '../../components/Button';
-import RefundImg from '../../assets/images/refund.png'
 import WwoImg1 from '../../assets/images/wwo1.jpg'
 import WwoImg2 from '../../assets/images/business.jpg'
 import WwoImg3 from '../../assets/images/accounting.jpg'
@@ -16,19 +15,12 @@ const Home = () =>{
 
     return<Layout width="100%">
         <Carousel2 />
-        {/* <Services 
-            title="Unlock Your Maximum Tax Refund"
-            desc="Guaranteed Satisfaction or Your Money Back!"
-            point1="Thousands of Automatic Calculations, Ensuring Your Maximum Tax Refund Every Time!"
-            point2="Maximize Your Savings: Explore Our Innovative Tax-Saving Tools Today!"
-            img={RefundImg}
-        /> */}
         <WhatWeOffer />
         <ImgBgDivComponent />
         <Services 
             title="Experience the simplest tax filing process ever."
             point1="Cutting-edge AI technology drives our platform."
-            point2="Import CRA slips or scan effortlessly."
+            point2="Easy Secured"
             point3="Easy, step-by-step guidance."
             img={TaxFillingImg}
         />
@@ -146,7 +138,7 @@ const WhatWeOffer = (props) => {
                 <WhatWeOfferCards 
                     img={WwoImg1}
                     title="Personal Income Tax"
-                    desc=""
+                    desc="$59.99"
                     onClick={()=>alert("clicked")}
                 />
                 <WhatWeOfferCards 

@@ -11,6 +11,7 @@ const ProfileDetails = () => {
     const [payload, setPayload] = useState({sin:123456789});
     const [errors, setErrors] = useState({});
     const [maritalStatus, setMaritalStatus] = useState([]);
+    const [provinces, setProvinces] = useState([])
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams();
@@ -25,6 +26,10 @@ const ProfileDetails = () => {
             .then((res) => {
                 setMaritalStatus(res?.data?.response?.maritalStatusList)
             })
+        authService.getProvinces()
+        .then((res) => {
+            setProvinces(res?.data?.response?.provincesList)
+        })
     },[])
 
     const handleSubmit = () => {
@@ -151,7 +156,7 @@ const ProfileDetails = () => {
                             label="Province"
                             name="province"
                             selected={payload?.province}
-                            options={{ list: province, name: 'name', value: 'code' }}
+                            options={{ list: provinces, name: 'name', value: 'code' }}
                             handleChange={handleChange}
                             error={errors?.province}
                         />
@@ -203,15 +208,4 @@ const ProfileDetails = () => {
 
 export default ProfileDetails;
 
-
-const province = [
-    {
-        code: 'ON',
-        name: 'Ontario',
-    },
-    {
-        code: 'QC',
-        name: 'Quebec',
-    }
-]
 

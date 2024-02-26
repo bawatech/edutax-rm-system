@@ -229,7 +229,7 @@ const TaxFileUpdate = () => {
                     }
                 />
 
-                {index>0 && <Button maxWidth={'100%'}
+                {<Button maxWidth={'100%'}
                     varient="icon"
                     title={<IconDelete />}
                     onClick={() => handleDeleteArray(index)}
