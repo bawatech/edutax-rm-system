@@ -23,10 +23,11 @@ export const signUp = (param) => async (dispatch) => {
 export const login = (param) => async (dispatch) => {
     return authService.login(param)
         .then(async (res) => {
-            localStorage.setItem("token", res?.data?.response?.token)
-            dispatch(setProfile(res?.data?.response?.profile || {}))
-            let userData = res?.data?.response?.user || {}
-            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
+            console.log('resp at login', res)
+            // localStorage.setItem("token", res?.data?.response?.token)
+            // dispatch(setProfile(res?.data?.response?.profile || {}))
+            // let userData = res?.data?.response?.user || {}
+            // dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;
         })
         .catch((error) => {
@@ -98,6 +99,21 @@ export const verifyEmail = (param) => async (dispatch) => {
     return authService.verifyEmail(param)
         .then(async (res) => {
             console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const verifyLogin = (param) => async (dispatch) => {
+    return authService.verifyLogin(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            localStorage.setItem("token", res?.data?.response?.token)
+            dispatch(setProfile(res?.data?.response?.profile || {}))
+            let userData = res?.data?.response?.user || {}
+            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;
         })
         .catch((error) => {

@@ -5,21 +5,25 @@ import { Button } from '../../../components/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
-import { verifyEmail } from '../../../store/userSlice';
+import { verifyLogin } from '../../../store/userSlice';
 import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 
-const VerifyEmail = () => {
+const VerifyLogin = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
+    const location = useLocation();
     const [loadingButton,setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const location = useLocation()
+
+
+    console.log("email", location?.state?.data, payload)
 
     const handleChange = (name, value) => {
         setPayload({
             ...payload,
-            [name]: value
+            [name]: value,
+            ['email']: location?.state?.data
         })
         setErrors({
             ...errors,
@@ -28,10 +32,10 @@ const VerifyEmail = () => {
     }
 
     const handleSubmit = () => {
-        dispatch(verifyEmail(payload))
+        dispatch(verifyLogin(payload))
             .then(res => {
                 toastSuccess(res?.data?.message)
-                navigate("/user/profile?redirect-type=sign-up")
+                navigate("/user")
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
@@ -48,13 +52,13 @@ const VerifyEmail = () => {
         <Container maxWidth="30em">
             <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Email Address</h2>
 
-            <span>Otp sent to <b>{location?.state?.data}</b></span>
+            <span>Otp Sent to <b>{location?.state?.data}</b></span>
             <FormGroup>
                 <FormField>
                     <Input
                         name="otp"
                         value={payload?.otp}
-                        hint="Otp"
+                        hint="Enter Otp Here"
                         handleChange={handleChange}
                         error={errors?.otp}
                     />
@@ -78,4 +82,4 @@ const VerifyEmail = () => {
     </Layout>
 }
 
-export default VerifyEmail;
+export default VerifyLogin;

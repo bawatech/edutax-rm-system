@@ -30,7 +30,8 @@ const Login = () => {
         dispatch(login(payload))
             .then(res => {
                 toastSuccess(res?.data?.message)
-                navigate("/user")
+                // navigate("/user")
+                navigate("/verify-login", {state: { data: payload?.email }})
                 setLoadingButton(false)
                 
             })

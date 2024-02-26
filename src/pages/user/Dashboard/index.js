@@ -4,10 +4,11 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import authService from "../../../service/auth";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
+
+
 const Dashboard = () => {
   const [payload, setPayload] = useState({});
   const [errors, setErrors] = useState({});
-//   const [taxfiles, setTaxfiles] = useState([]);
   const [maritalStatus, setMaritalStatus] = useState([]);
   const navigate = useNavigate();
 

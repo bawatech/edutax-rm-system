@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
-import { Email, Facebook, Hamberger, IconRxCross2, Insta, IoHomeIcon, IoIosNotificationsIcon, IoMdSettingsIcon, Location, Phone, RiLogoutCircleLineIcon, Twitter } from "../../../components/Icon";
+import { Email, Facebook, Hamberger, Insta, IoHomeIcon, IoMdSettingsIcon, Location, Phone, RiLogoutCircleLineIcon, Twitter } from "../../../components/Icon";
 import { IconCross } from "../../../BTUI/Icons";
 
 
@@ -15,7 +15,7 @@ export const Layout = (props) => {
 
   const navigate = useNavigate();
   const {user} =useSelector(store=>store?.user)
-  // console.log('USER',user)
+  console.log('USER',user)
   useEffect(()=>{
     if(user?.token && user?.verify_status==='VERIFIED'){
       navigate('/user')
@@ -94,11 +94,11 @@ export const UserLayout = (props) => {
 
   const navigate = useNavigate();
   const [toggle,setToggle] = useState(false)
-  const user =useSelector(store=>store?.user)
+  const user = useSelector(store=>store?.user)
   const dispatch = useDispatch()
   useEffect(()=>{
     if(!user?.user?.token){
-      navigate('/login')
+      // navigate('/login')
     }
   },[user?.user?.token])
 

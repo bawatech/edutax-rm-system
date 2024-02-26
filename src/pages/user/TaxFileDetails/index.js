@@ -118,7 +118,7 @@ const TaxFileDetails = () => {
                 </div>
               </div>
 
-              {(details?.taxfile?.direct_deposit_cra !== undefined && details?.taxfile?.direct_deposit_cra !== null && details?.taxfile?.direct_deposit_cra !== "") ? <div className="userDetails-img-content">
+              {(details?.taxfile?.direct_deposit_cra !== undefined && details?.taxfile?.direct_deposit_cra !== null && details?.taxfile?.direct_deposit_cra !== "" && details?.taxfile?.direct_deposit_cra !== "NO") ? <div className="userDetails-img-content">
                 <FormField>
                   <FileComponent
                     name="Document (setup or change your direct deposit with CRA) : "
