@@ -61,6 +61,13 @@ class authService {
         return await getRequest(`user/message/${id}`);
     }
 
+    addClientMsgAll = async (payload) => {
+        return await postRequest('user/message-all', payload);
+    }
+    getClientMsgAll = async (id) => {
+        return await getRequest(`user/message-all`);
+    }
+
 
 
     updateProfile = async (payload) => {
