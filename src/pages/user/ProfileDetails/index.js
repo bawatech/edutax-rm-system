@@ -12,7 +12,7 @@ import { toastError, toastSuccess } from "../../../BTUI/BtToast";
 
 const ProfileDetails = () => {
 
-    const [payload, setPayload] = useState({});
+    const [payload, setPayload] = useState({sin:123123127});
     const [errors, setErrors] = useState({});
     const [maritalStatus, setMaritalStatus] = useState([]);
     const [provinces, setProvinces] = useState([])
@@ -192,7 +192,7 @@ const ProfileDetails = () => {
                             handleChange={handleChange}
                         />
                     </FormField>
-
+{/* 
                     <FormField>
                         <Input
                             label="SIN"
@@ -202,7 +202,7 @@ const ProfileDetails = () => {
                             error={errors?.sin}
                             handleChange={handleChange}
                         />
-                    </FormField>
+                    </FormField> */}
 
                 </FormGroup>
                 <br />

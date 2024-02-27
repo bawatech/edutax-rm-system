@@ -101,7 +101,6 @@ export const verifyEmail = (param,user) => async (dispatch) => {
             let userData = res?.data?.response?.user || {}
             dispatch(setUser({...user,...userData || null}))
             return res;
-            return res;
         })
         .catch((error) => {
             throw error

@@ -18,7 +18,7 @@ export const Layout = (props) => {
   console.log('USER',user)
   useEffect(()=>{
     if(user?.token && user?.verify_status==='VERIFIED'){
-      navigate('/user')
+      // navigate('/user')
     }
   },[user])
 
@@ -258,7 +258,7 @@ export const Footer = ({children}) => {
               <ul>
                   <li><NavLink to="https://www.instagram.com/edutax_"><Insta /></NavLink></li>
                   <li><NavLink to="https://www.facebook.com/profile.php?id=100047636203169&sfnsn=wiwspwa&mibextid=RUbZ1f"><Facebook /></NavLink></li>
-                  <li><NavLink to=""><Twitter /></NavLink></li>
+                  {/* <li><NavLink to=""><Twitter /></NavLink></li> */}
               </ul>
           </div>
           {children}

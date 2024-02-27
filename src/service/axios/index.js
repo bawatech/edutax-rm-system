@@ -14,8 +14,8 @@ axiosClient.interceptors.request.use(config => {
 });
 
 
-axiosClient.defaults.baseURL = process.env.REACT_APP_API;
-// axiosClient.defaults.baseURL = 'http://apiserver.edutax.ca:3007/';
+// axiosClient.defaults.baseURL = process.env.REACT_APP_API;
+// axiosClient.defaults.baseURL = 'https://manager.edutax.ca';
  axiosClient.defaults.baseURL = 'http://localhost:3011';
 axiosClient.defaults.headers = {
     'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ axiosClient.interceptors.response.use((response) => {
 
         if (error.response.status == 401) {
             localStorage.removeItem('token')
-            window.location.href = '/login'
+            // window.location.href = '/login'
         }
         return Promise.reject({
             data: error?.response?.data,
