@@ -15,10 +15,10 @@ export const Layout = (props) => {
 
   const navigate = useNavigate();
   const {user} =useSelector(store=>store?.user)
-  console.log('USER',user)
+  // console.log('USER',user)
   useEffect(()=>{
     if(user?.token && user?.verify_status==='VERIFIED'){
-      // navigate('/user')
+      navigate('/user')
     }
   },[user])
 
@@ -96,11 +96,11 @@ export const UserLayout = (props) => {
   const [toggle,setToggle] = useState(false)
   const user = useSelector(store=>store?.user)
   const dispatch = useDispatch()
-console.log('user',user)
+// console.log('user',user)
 
   useEffect(()=>{
     if(!user?.user?.token){
-      // navigate('/login')
+      navigate('/login')
     }
   },[user?.user?.token])
 

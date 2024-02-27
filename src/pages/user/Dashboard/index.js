@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import authService from "../../../service/auth";
-import { toastError, toastSuccess } from "../../../BTUI/BtToast";
+import { toastError } from "../../../BTUI/BtToast";
 
 
 const Dashboard = () => {
@@ -13,12 +13,18 @@ const Dashboard = () => {
 
   useEffect(() => {
 
-    authService.getTaxfileList().then((res) => {
-        if(res?.data?.response?.taxfiles){
-          setPayload(res?.data?.response?.taxfiles)
-        }
-    });
+    authService.getTaxfileList()
+      .then((res) => {
+          if(res?.data?.response?.taxfiles){
+            setPayload(res?.data?.response?.taxfiles)
+          }
+      })
+      .catch((err) => {
+        
+      })
   }, []);
+
+  console.log(payload)
 
   const handleReturnClick=()=>{
     authService.getTaxfileList().then((res) => {
@@ -45,7 +51,7 @@ const Dashboard = () => {
         <div onClick={handleReturnClick}>Tax Return</div>
         <div onClick={() => navigate("/user/settings")}>Settings</div>
         <div onClick={() => navigate("/user/invite-spouse")}>Link Spouse</div>
-        <div onClick={() => navigate(`/user/taxfile/${payload[0]?.id}#msgDiv`)}>Messages</div>
+        <div onClick={() => navigate(`/user/messages/${payload[0]?.id}`)}>Messages</div>
       </div>
     </div>
   );

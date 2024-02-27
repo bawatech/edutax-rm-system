@@ -23,6 +23,7 @@ import ContactUs from '../pages/Contact';
 import TaxFileUpdate from '../pages/user/TaxFileUpdate';
 import AcceptInvite from '../pages/auth/AcceptInvite';
 import VerifyLogin from '../pages/auth/VerifyLoginEmail';
+import Messages from '../pages/user/Messages';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
@@ -45,7 +46,8 @@ const AllRoutes = () => {
             {path:'profile-update', element : <ProfileUpdate/>},
             {path:'taxfile-add', element : <TaxFileAdd/>},
             {path:'taxfile/:id', element : <TaxFileDetails/>},
-            {path:'taxfile/update/:id', element: <TaxFileUpdate/>},
+            {path:'taxfile/:id', element : <TaxFileDetails/>},
+            {path:'messages/:id', element: <Messages />},
             {path:'settings',element:<ChangePassword/>},
             {path:'invite-spouse',element:<InviteSpouse/>},
             

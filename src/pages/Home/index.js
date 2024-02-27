@@ -1,6 +1,6 @@
 import { Layout } from '../layouts/Layout';
 import './style.css';
-import CarouselImg from '../../assets/images/mobilebg.png'
+import CarouselImg from '../../assets/images/mobile.png'
 import { Button } from '../../components/Button';
 import WwoImg1 from '../../assets/images/wwo1.jpg'
 import WwoImg2 from '../../assets/images/business.jpg'
@@ -18,7 +18,7 @@ const Home = () =>{
         <WhatWeOffer />
         <ImgBgDivComponent />
         <Services 
-            title="Experience the simplest tax filing process ever."
+            title="Experience one of the simplest tax filing process ever."
             point1="Cutting-edge AI technology drives our platform."
             point2="Easy Secured"
             point3="Easy, step-by-step guidance."
@@ -139,31 +139,31 @@ const WhatWeOffer = (props) => {
                     img={WwoImg1}
                     title="Personal Income Tax"
                     desc="$59.99"
-                    onClick={()=>alert("clicked")}
+                    onClick={()=>{}}
                 />
                 <WhatWeOfferCards 
                     img={WwoImg2}
                     title="Business & Corporate Tax"
                     desc="Starting at $499"
-                    onClick={()=>alert("clicked")}
+                    onClick={()=>{}}
                 />
                 <WhatWeOfferCards 
                     img={WwoImg3}
                     title="Accounting and Bookkeeping"
                     desc="Starting at $250/month"
-                    onClick={()=>alert("clicked")}
+                    onClick={()=>{}}
                 />
                 <WhatWeOfferCards 
                     img={WwoImg4}
                     title="Pay Roll"
                     desc=""
-                    onClick={()=>alert("clicked")}
+                    onClick={()=>{}}
                 />
                 <WhatWeOfferCards 
                     img={WwoImg5}
                     title="Incorporation & Structuring"
                     desc="Starting at $320"
-                    onClick={()=>alert("clicked")}
+                    onClick={()=>{}}
                 />
             </div>
             
