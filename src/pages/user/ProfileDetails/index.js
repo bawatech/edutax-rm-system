@@ -1,35 +1,53 @@
 import { useEffect, useState } from "react";
-import { ChatInput, ChatLayout, Container, Dropdown, FileUpload, Form, FormField, FormGroup, FormName, Input, InputDate } from "../../../components/Form";
+import { Container, Dropdown, Form, FormField, FormGroup, FormName, Input, InputDate } from "../../../components/Form";
 import { Button } from "../../../components/Button";
 import './style.css'
 import { useDispatch } from 'react-redux';
 import { useNavigate, useSearchParams } from "react-router-dom";
 import authService from "../../../service/auth";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
+
+
+
+
 const ProfileDetails = () => {
 
-    const [payload, setPayload] = useState({sin:123456789});
+    const [payload, setPayload] = useState({});
     const [errors, setErrors] = useState({});
     const [maritalStatus, setMaritalStatus] = useState([]);
+    const [provinces, setProvinces] = useState([])
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         authService.getProfile()
-        .then(res=>{
-            console.log(res)
-            setPayload(res?.data?.response?.profile || {})
-        })
+            .then(res=>{
+                console.log(res)
+                setPayload(res?.data?.response?.profile || {})
+            })
+            .catch(err=>{
+                console.log(err)
+            })
         authService.getMaritalStatus()
             .then((res) => {
                 setMaritalStatus(res?.data?.response?.maritalStatusList)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        authService.getProvinces()
+            .then((res) => {
+                setProvinces(res?.data?.response?.provincesList)
+            })
+            .catch(err=>{
+                console.log(err)
             })
     },[])
 
     const handleSubmit = () => {
 
-        authService.updateProfile(payload)
+        authService?.updateProfile(payload)
             .then(res => {
                 console.log('Response', res?.data?.taxfile?.id)
                 // alert(res?.data?.message)
@@ -151,7 +169,7 @@ const ProfileDetails = () => {
                             label="Province"
                             name="province"
                             selected={payload?.province}
-                            options={{ list: province, name: 'name', value: 'code' }}
+                            options={{ list: provinces, name: 'name', value: 'code' }}
                             handleChange={handleChange}
                             error={errors?.province}
                         />
@@ -203,15 +221,4 @@ const ProfileDetails = () => {
 
 export default ProfileDetails;
 
-
-const province = [
-    {
-        code: 'ON',
-        name: 'Ontario',
-    },
-    {
-        code: 'QC',
-        name: 'Quebec',
-    }
-]
 

@@ -15,6 +15,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMenu } from "react-icons/hi";
 import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { RxCross2 } from "react-icons/rx";
+
 
 export const EyeIcon = () => <IoIosEye />;
 export const EyeOffIcon = () => <IoIosEyeOff />;
@@ -34,3 +36,4 @@ export const Twitter = () => <FaXTwitter />;
 export const Hamberger = () => <HiOutlineMenu />;
 export const Edit = () => <MdModeEditOutline />;
 export const IconDelete = () => <RiDeleteBin6Line />;
+export const IconRxCross2 = () => <RxCross2 />;

@@ -19,6 +19,7 @@ const TaxFileUpdate = () => {
     const [newDocs, setNewDoc] = useState([{}])
     const [payload, setPayload] = useState({});
     const [errors, setErrors] = useState({});
+    const [directDepositCra, setDirectDepositCra] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [provinces, setProvinces] = useState([])
@@ -57,8 +58,15 @@ const TaxFileUpdate = () => {
             .catch((err)=>{
                 console.log("Taxfile List",err)
             });
+
+        
     },[])
 
+    useEffect(()=>{
+        if(payload?.direct_deposit_cra === "NO"){
+            setDirectDepositCra(false)
+        }
+    },[payload?.direct_deposit_cra])
 
     const handleSubmit = () => {
         showLoader()
@@ -173,22 +181,22 @@ const TaxFileUpdate = () => {
                 handleChange={handleChange}
             />
 
-            {payload?.direct_deposit_cra === "YES" && <FormGroup>
-                {/* <FileComponent key={index}
-                    name={itm?.type?.name}
-                    handleDelete={()=>handleDelete(itm?.id)}
-                /> */}
+            {payload?.direct_deposit_cra === "YES" ? directDepositCra ? <FileComponent 
+                    name="Document (setup or change your direct deposit with CRA)"
+                    handleDelete={()=>setDirectDepositCra(false)}
+                /> : <FormGroup>
                 <FormField>
-                <div className="array-div">
-                    <FileUpload
-                    label="."
-                    name="document_direct_deposit_cra"
-                    fileName={payload?.document_direct_deposit_cra?.name}
-                    handleFileChange={handleChange}
-                    />
-                </div>
+                    <div className="array-div">
+                        <FileUpload
+                        label="."
+                        name="document_direct_deposit_cra"
+                        fileName={payload?.document_direct_deposit_cra?.name}
+                        handleFileChange={handleChange}
+                        />
+                    </div>
                 </FormField>
-            </FormGroup>}
+            </FormGroup>
+            : null}
 
         </Form>
 
@@ -227,7 +235,7 @@ const TaxFileUpdate = () => {
                     }
                 />
 
-                {index>0 && <Button maxWidth={'100%'}
+                {<Button maxWidth={'100%'}
                     varient="icon"
                     title={<IconDelete />}
                     onClick={() => handleDeleteArray(index)}

@@ -1,39 +1,48 @@
 import { useEffect, useState } from "react";
-import { ChatInput, ChatLayout, Dropdown, FileUpload, Form, FormField, FormGroup, FormName, Input, InputDate } from "../../../components/Form";
+import {Container, Dropdown, Form, FormField, FormGroup, FormName, Input, InputDate } from "../../../components/Form";
 import { Button } from "../../../components/Button";
 import './style.css'
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from 'react-redux';
-import { addTaxfile } from "../../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import authService from "../../../service/auth";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
+
+
+
+
 const ProfileUpdate = () => {
 
     const [payload, setPayload] = useState({});
     const [errors, setErrors] = useState({});
     const [maritalStatus, setMaritalStatus] = useState([]);
+    const [province, setProvince] = useState([]);
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     console.log('PAYLOAD IS ', payload)
 
     useEffect(() => {
-        authService.getMaritalStatus()
+        authService?.getMaritalStatus()
             .then((res) => {
                 setMaritalStatus(res?.data?.response?.maritalStatusList)
+                console.log("marital Status", res?.data?.response)
+            })
+
+        authService?.getProvinces()
+            .then((res) => {
+                setProvince(res?.data?.response?.provincesList)
                 console.log("marital Status", res?.data?.response)
             })
     },[])
 
     const handleSubmit = () => {
 
-        authService.updateProfile(payload)
+        authService?.updateProfile(payload)
             .then(res => {
                 console.log('Response', res?.data?.taxfile?.id)
                 // alert(res?.data?.message)
                 toastSuccess(res?.data?.message)
-                navigate(`/user/tax-file-add`)
+                navigate(`/user`)
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
@@ -62,6 +71,7 @@ const ProfileUpdate = () => {
 
 
     return <div className="">
+        <Container>
             <Form>
                 <FormName name="Profile" />
                 <FormGroup>
@@ -69,7 +79,7 @@ const ProfileUpdate = () => {
                         <Input
                             label="First Name"
                             name="firstname"
-                            value={payload.firstname}
+                            value={payload?.firstname}
                             error={errors?.firstname}
                             handleChange={handleChange}
                         />
@@ -78,7 +88,7 @@ const ProfileUpdate = () => {
                         <Input
                             label="Last Name"
                             name="lastname"
-                            value={payload.lastname}
+                            value={payload?.lastname}
                             error={errors?.lastname}
                             handleChange={handleChange}
                         />
@@ -87,7 +97,7 @@ const ProfileUpdate = () => {
                         <InputDate
                             label="Date of Birth"
                             name="date_of_birth"
-                            value={payload.date_of_birth}
+                            value={payload?.date_of_birth}
                             error={errors?.date_of_birth}
                             handleChange={handleChange}
                             openToDate={new Date(2000,0,1)}
@@ -109,7 +119,7 @@ const ProfileUpdate = () => {
                         <Input
                             label="Street Number"
                             name="street_number"
-                            value={payload.street_number}
+                            value={payload?.street_number}
                             error={errors?.street_number}
                             handleChange={handleChange}
                         />
@@ -118,7 +128,7 @@ const ProfileUpdate = () => {
                         <Input
                             label="Street Name"
                             name="street_name"
-                            value={payload.street_name}
+                            value={payload?.street_name}
                             error={errors?.street_name}
                             handleChange={handleChange}
                         />
@@ -127,7 +137,7 @@ const ProfileUpdate = () => {
                         <Input
                             label="City"
                             name="city"
-                            value={payload.city}
+                            value={payload?.city}
                             error={errors?.city}
                             handleChange={handleChange}
                         />
@@ -146,7 +156,7 @@ const ProfileUpdate = () => {
                         <Input
                             label="Postal Code"
                             name="postal_code"
-                            value={payload.postal_code}
+                            value={payload?.postal_code}
                             error={errors?.postal_code}
                             handleChange={handleChange}
                         />
@@ -155,7 +165,7 @@ const ProfileUpdate = () => {
                         <Input
                             label="Mobile Number"
                             name="mobile_number"
-                            value={payload.mobile_number}
+                            value={payload?.mobile_number}
                             error={errors?.mobile_number}
                             handleChange={handleChange}
                         />
@@ -165,7 +175,7 @@ const ProfileUpdate = () => {
                             label="SIN"
                             name="sin"
                             password
-                            value={payload.sin}
+                            value={payload?.sin}
                             error={errors?.sin}
                             handleChange={handleChange}
                         />
@@ -183,21 +193,9 @@ const ProfileUpdate = () => {
                 </div>
                 <br />
             </Form>
-
+        </Container>
     </div>
 }
 
 export default ProfileUpdate;
-
-
-const province = [
-    {
-        code: 'ON',
-        name: 'Ontario',
-    },
-    {
-        code: 'QC',
-        name: 'Quebec',
-    }
-]
 

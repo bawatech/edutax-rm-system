@@ -109,18 +109,19 @@
         font-size: 2em;
     }
     .carousel2-txt-content-div>div>h2{
-        font-size: 1.3em;
+        font-size: 1em;
+        font-weight: normal;
     }
     .carousel2-inner-section{
         width: 100%;
-        flex-direction: column-reverse;
+        flex-direction: column;
         padding: 2em 1em;
     }
     .carousel2-txt-content-div>div>p{
         font-size: 1em;
     }
     .carousel2-img-div{
-        padding-top: 150%;
+        padding-top: 100%;
     }
 
     .carousel2-section{
@@ -403,8 +404,8 @@
 }
 
 .imgBgDivCard-section span{
-    font-size: 1.1em;
-    color: rgb(170, 170, 170);
+    font-size: 1em;
+    color: rgb(116, 116, 116);
 }
 
 .imgBgDivCard-section.red{
@@ -422,14 +423,15 @@
 @media only screen and (min-width: 10px) { 
     .imgBgDiv-inner-section{
         width: 100%;
-        min-height: 51em;
+        min-height: 42em;
+        max-height: 100vh;
     }
     .imgBgDiv-content-div>div>h1{
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
 
     .imgBgDiv-content-div>div>p{
-        font-size: 1em;
+        font-size: 0.8em;
     }
     .imgBgDiv-cards{
         flex-direction: column;
@@ -439,10 +441,14 @@
     }
     .imgBgDiv-content-div{
         gap: 0;
-        padding: 1em;
+        padding: 0.5em;
     }
     .imgBgDiv-section{
         padding: 5em 1em;
+    }
+
+    .imgBgDivCard-section h3{
+        font-size: 1em;
     }
 
 }
@@ -453,10 +459,10 @@
         min-height: 35em;
     }
     .imgBgDiv-content-div>div>h1{
-        font-size: 2em;
+        font-size: 1.8em;
     }
     .imgBgDiv-content-div>div>p{
-        font-size: 1.3em;
+        font-size: 1.1em;
     }
     .imgBgDiv-cards{
         flex-direction: row;
@@ -470,6 +476,9 @@
     }
     .imgBgDiv-section{
         padding: 5em 2em;
+    }
+    .imgBgDivCard-section h3{
+        font-size: 1em;
     }
 }
 

@@ -23,7 +23,9 @@ const ContactUs = () => {
                 <img src={ContactImg}/>
                 
                 <ul>
-                    <li><Location /> <p>Torbram & NorthPark, 9886 Torbram Road Unit 206, Brampton, ON L6S 3L9</p></li>
+                    <li><Location /> <p>Unit 206- 9886 Torbram Rd <br/>
+                                        Bramtpon - ON <br/>
+                                        L6S 3 L9 </p></li>
                     <li><Phone /> <p>905-790-6200</p></li>
                     <li><Email /> <p>contact@edutax.ca</p></li>
                 </ul>

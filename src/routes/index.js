@@ -22,6 +22,7 @@ import InviteSpouse from '../pages/user/InviteSpouse';
 import ContactUs from '../pages/Contact';
 import TaxFileUpdate from '../pages/user/TaxFileUpdate';
 import AcceptInvite from '../pages/auth/AcceptInvite';
+import VerifyLogin from '../pages/auth/VerifyLoginEmail';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
@@ -33,6 +34,7 @@ const AllRoutes = () => {
         {path:'qna-verify',element:<QnaVerify/>},
         {path:'sign-up',element:<Signup/>},
         {path:'verify-email',element:<VerifyEmail/>},
+        {path:'verify-login',element:<VerifyLogin/>},
         {path:'reset',element:<ForgotPass/>},
         {path:'verify-forgot-pass-otp',element:<NewPassword/>},
         {path:'accept-invitation/:token',element:<AcceptInvite/>},

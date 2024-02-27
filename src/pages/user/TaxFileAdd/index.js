@@ -205,11 +205,11 @@ const TaxFileAdd = () => {
                     }
                   />
 
-                  {index>0 && <Button maxWidth={'100%'}
+                  <Button maxWidth={'100%'}
                     varient="icon"
                     title={<RiDeleteBin6Line />}
                     onClick={() => handleDeleteArray(index)}
-                  />}
+                  />
                   
                 </div>
               </FormField>

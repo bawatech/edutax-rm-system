@@ -18,6 +18,9 @@ class authService {
     verifyEmail = async (payload) => {
         return await postRequest('auth/verify-email', payload);
     }
+    verifyLogin = async (payload) => {
+        return await postRequest('auth/verify-login', payload);
+    }
 
     forgotPassword = async (payload) => {
         return await postRequest('auth/forgot-password', payload);

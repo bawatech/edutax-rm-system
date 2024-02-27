@@ -118,7 +118,7 @@ const TaxFileDetails = () => {
                 </div>
               </div>
 
-              {(details?.taxfile?.direct_deposit_cra !== undefined && details?.taxfile?.direct_deposit_cra !== null && details?.taxfile?.direct_deposit_cra !== "") ? <div className="userDetails-img-content">
+              {(details?.taxfile?.showSingleDocument != false && details?.taxfile?.direct_deposit_cra == "YES") ? <div className="userDetails-img-content">
                 <FormField>
                   <FileComponent
                     name="Document (setup or change your direct deposit with CRA) : "
@@ -159,6 +159,7 @@ const TaxFileDetails = () => {
         <br />
         <br />
         <br />
+        
         <ChatWindow taxfile_id={param?.id} />
         <br />
         <br />
@@ -215,6 +216,7 @@ const ChatWindow = ({ taxfile_id }) => {
   }, [newMessage, messageList]);
 
   return (<div className="chat-wrapper-div">
+    <span id="msgDiv"></span>
       <div className="chat-wrapper">
           <div ref={ref} className="chat-messages-list">
             {

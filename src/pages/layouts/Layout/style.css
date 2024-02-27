@@ -178,7 +178,6 @@
 .layout-header-content-bf-login ul.small-menu{
     display: flex;
     width: max-content;
-    max-width: 15em;
     flex-direction: column;
     position: absolute;
     top: 3em;
@@ -201,8 +200,24 @@
         display: none;
     }
 
+    .layout-right-header ul.small-menu,
+    .layout-header-content-bf-login ul.small-menu{
+        width: 100%;
+        max-width: 100%;
+        right: 0;
+        left: 0;
+        top: 0;
+        text-align: center;
+    }
+
+    .layout-header-content,
+    .layout-header-content-bf-login{
+        position: static;
+    }
+
     .hamburger-div{
         display: flex;
+        width: 100%;
     }
 }
 
@@ -215,7 +230,8 @@
         min-width: 22em;
     }
 
-    .hamburger-div{
+    .hamburger-div,
+    .layout-right-header ul.small-menu{
         display: none;
     }
 }

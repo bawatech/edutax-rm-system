@@ -4,19 +4,20 @@ import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
-import { useDispatch, useSelector } from 'react-redux';
-import { verifyEmail } from '../../../store/userSlice';
+import { useDispatch } from 'react-redux';
+import { verifyLogin } from '../../../store/userSlice';
 import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 
-const VerifyEmail = () => {
+const VerifyLogin = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
+    const location = useLocation();
     const [loadingButton,setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {user} = useSelector(store=>store.user);
 
-    const location = useLocation()
+
+    console.log("email", location?.state?.data, payload)
 
     const handleChange = (name, value) => {
         setPayload({
@@ -31,18 +32,17 @@ const VerifyEmail = () => {
     }
 
     const handleSubmit = () => {
-        dispatch(verifyEmail(payload,user))
+        dispatch(verifyLogin(payload))
             .then(res => {
                 toastSuccess(res?.data?.message)
-                console.log('ress on verify email',res)
-                // setTimeout(()=>{
-                    navigate("/user/profile?redirect-type=sign-up")
-                // }, 2000);
-                
+                navigate("/user")
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
+                    toastError(err?.data?.message)
                     setErrors(err?.data?.field_errors)
+                } else {
+                   // alert(err?.data?.message)
                 }
                 toastError(err?.data?.message)
             })
@@ -50,17 +50,15 @@ const VerifyEmail = () => {
 
     return <Layout>
         <Container maxWidth="30em">
-            {/* <div className="signup-section">
-                <div className="signup-inner-container"> */}
-                    <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Email Address</h2>
+            <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Login</h2>
 
-            <span>Otp sent to <b>{location?.state?.data}</b></span>
+            <span>Otp Sent to <b>{location?.state?.data}</b></span>
             <FormGroup>
                 <FormField>
                     <Input
                         name="otp"
                         value={payload?.otp}
-                        hint="Otp"
+                        hint="Enter Otp Here"
                         handleChange={handleChange}
                         error={errors?.otp}
                     />
@@ -84,4 +82,4 @@ const VerifyEmail = () => {
     </Layout>
 }
 
-export default VerifyEmail;
+export default VerifyLogin;
