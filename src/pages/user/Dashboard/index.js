@@ -24,7 +24,7 @@ const Dashboard = () => {
       })
   }, []);
 
-  console.log(payload)
+  console.log("Dashboard",payload)
 
   const handleReturnClick=()=>{
     authService.getTaxfileList().then((res) => {
@@ -51,7 +51,7 @@ const Dashboard = () => {
         <div onClick={handleReturnClick}>Tax Return</div>
         <div onClick={() => navigate("/user/settings")}>Settings</div>
         <div onClick={() => navigate("/user/invite-spouse")}>Link Spouse</div>
-        <div onClick={() => navigate(`/user/messages/${payload[0]?.id}`)}>Messages</div>
+        <div onClick={() => navigate(`/user/messages`)}>Messages</div>
       </div>
     </div>
   );

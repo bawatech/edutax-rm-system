@@ -47,7 +47,7 @@ const AllRoutes = () => {
             {path:'taxfile-add', element : <TaxFileAdd/>},
             {path:'taxfile/:id', element : <TaxFileDetails/>},
             {path:'taxfile/:id', element : <TaxFileDetails/>},
-            {path:'messages/:id', element: <Messages />},
+            {path:'messages', element: <Messages />},
             {path:'settings',element:<ChangePassword/>},
             {path:'invite-spouse',element:<InviteSpouse/>},
             

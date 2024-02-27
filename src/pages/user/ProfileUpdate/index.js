@@ -170,7 +170,7 @@ const ProfileUpdate = () => {
                             handleChange={handleChange}
                         />
                     </FormField>
-                    <FormField>
+                    {/* <FormField>
                         <Input
                             label="SIN"
                             name="sin"
@@ -179,7 +179,7 @@ const ProfileUpdate = () => {
                             error={errors?.sin}
                             handleChange={handleChange}
                         />
-                    </FormField>
+                    </FormField> */}
 
                 </FormGroup>
 
