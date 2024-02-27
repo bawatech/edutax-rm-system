@@ -98,8 +98,9 @@ export const addClientMessage = (param) => async (dispatch) => {
 export const verifyEmail = (param,user) => async (dispatch) => {
     return authService.verifyEmail(param)
         .then(async (res) => {
+            localStorage.setItem("token", res?.data?.response?.token)
             let userData = res?.data?.response?.user || {}
-            dispatch(setUser({...user,...userData || null}))
+            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;
         })
         .catch((error) => {
