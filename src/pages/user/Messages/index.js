@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import authService from "../../../service/auth";
 import { useParams } from "react-router-dom";
-import { addClientMessage } from "../../../store/userSlice";
+import { addClientMsgAll } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
 import { IconSendMessage } from "../../../BTUI/Icons";
 import { showDatetime } from "../../../utils/formatter";
@@ -14,7 +14,7 @@ const Messages = () => {
 
     const params = useParams()
     return<Container>
-        <Center><h1>Your Messages</h1></Center>
+        <Center><h1>Chat</h1></Center>
         <br/>
         <br/>
         <ChatWindow 
@@ -34,9 +34,7 @@ const ChatWindow = ({ taxfile_id }) => {
         if (newMessage?.trim()?.length < 1) {
         return false;
         }
-        dispatch(
-        addClientMessage({
-            taxfile_id,
+        dispatch(addClientMsgAll({
             message: newMessage,
         })
         )
@@ -50,8 +48,9 @@ const ChatWindow = ({ taxfile_id }) => {
     };
 
     const getMessageList = () => {
-        authService.getClientMessages(taxfile_id)
+        authService.getClientMsgAll()
         .   then((res) => {
+                console.log(res);
                 setMessageList(res?.data?.response?.messages);
             })
             .catch((err) => {
@@ -74,7 +73,7 @@ const ChatWindow = ({ taxfile_id }) => {
         <div className="chat-wrapper">
             <div ref={ref} className="chat-messages-list">
                 {
-                messageList.length == 0 ? <p className="chat-start-conv">Start a conversation</p> : null
+                messageList.length == 0 ? <p className="chat-start-conv">Have Any Query? Let's Chat</p> : null
                 }
                 {messageList?.map((msg, index) => {
                 if (msg?.user_type === "CLIENT") {

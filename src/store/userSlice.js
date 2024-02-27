@@ -95,11 +95,27 @@ export const addClientMessage = (param) => async (dispatch) => {
         });
 };
 
+export const addClientMsgAll = (param) => async (dispatch) => {
+    return authService.addClientMsgAll(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            
+            return res;
+        })
+        .catch((error) => {
+            
+            throw error
+        });
+};
+
 export const verifyEmail = (param,user) => async (dispatch) => {
     return authService.verifyEmail(param)
         .then(async (res) => {
+            // let userData = res?.data?.response?.user || {}
+            // dispatch(setUser({...user,...userData || null}))
+            localStorage.setItem("token", res?.data?.response?.token)
             let userData = res?.data?.response?.user || {}
-            dispatch(setUser({...user,...userData || null}))
+            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;
         })
         .catch((error) => {
@@ -112,7 +128,6 @@ export const verifyLogin = (param) => async (dispatch) => {
         .then(async (res) => {
             console.log('resp at slice', res)
             localStorage.setItem("token", res?.data?.response?.token)
-            dispatch(setProfile(res?.data?.response?.profile || {}))
             let userData = res?.data?.response?.user || {}
             dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;

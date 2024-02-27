@@ -12,7 +12,7 @@ import { toastError, toastSuccess } from "../../../BTUI/BtToast";
 
 const ProfileDetails = () => {
 
-    const [payload, setPayload] = useState({sin:123123127});
+    const [payload, setPayload] = useState({});
     const [errors, setErrors] = useState({});
     const [maritalStatus, setMaritalStatus] = useState([]);
     const [provinces, setProvinces] = useState([])
