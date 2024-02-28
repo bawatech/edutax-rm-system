@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
 import { Email, Facebook, Hamberger, Insta, IoHomeIcon, IoMdSettingsIcon, Location, Phone, RiLogoutCircleLineIcon, Twitter } from "../../../components/Icon";
-import { IconCross } from "../../../BTUI/Icons";
+import { IconCross, IconSocialCall, IconSocialMessage, IconWhatsapp } from "../../../BTUI/Icons";
 
 
 export const Layout = (props) => {
@@ -29,6 +29,10 @@ export const Layout = (props) => {
       <HeaderRightBfLogin />
     </HeaderBfLogin>
     <div className="layout-section">
+      <div className="layout-social-section">
+        <IconWhatsapp color="green"/>
+        <IconSocialCall color="var(--theme-color-a)"/>
+      </div>
       <div className="layout-inner-section" style={{width: props?.width}}>
         {props.children}
       </div>
