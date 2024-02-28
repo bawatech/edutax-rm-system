@@ -14,7 +14,7 @@ const Messages = () => {
 
     const params = useParams()
     return<Container>
-        <Center><h1>Chat</h1></Center>
+        <Center><h1>Let's Chat</h1></Center>
         <br/>
         <br/>
         <ChatWindow 
@@ -109,7 +109,7 @@ const ChatWindow = ({ taxfile_id }) => {
             }}
             ></textarea>
             <div className="chat-compose-actions-right">
-            <IconSendMessage size='30px' color="navy" onClick={props?.handleSend} />
+            <IconSendMessage size='40px' color="#2d87ca" onClick={props?.handleSend} />
             </div>
             
         </div>
