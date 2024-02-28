@@ -35,7 +35,7 @@ class authService {
     }
 
 
-    
+
     // addTaxfile = async (payload) => {
     //     return await postFormdata('user/upload-documents', payload);
     // }
@@ -54,18 +54,18 @@ class authService {
 
 
 
-    addClientMessage = async (payload) => {
+    // addClientMessage = async (payload) => {
+    //     return await postRequest('user/message', payload);
+    // }
+    // getClientMessages = async (id) => {
+    //     return await getRequest(`user/message/${id}`);
+    // }
+
+    addClientMsg = async (payload) => {
         return await postRequest('user/message', payload);
     }
-    getClientMessages = async (id) => {
-        return await getRequest(`user/message/${id}`);
-    }
-
-    addClientMsgAll = async (payload) => {
-        return await postRequest('user/message-all', payload);
-    }
-    getClientMsgAll = async (id) => {
-        return await getRequest(`user/message-all`);
+    getClientMsg = async (id) => {
+        return await getRequest(`user/message`);
     }
 
 
