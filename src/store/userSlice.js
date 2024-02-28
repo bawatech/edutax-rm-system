@@ -82,31 +82,30 @@ export const updateTaxfile = (param) => async (dispatch) => {
         });
 };
 
-export const addClientMessage = (param) => async (dispatch) => {
-    return authService.addClientMessage(param)
+export const addClientMsg = (param) => async (dispatch) => {
+    return authService.addClientMsg(param)
         .then(async (res) => {
             console.log('resp at slice', res)
             
             return res;
         })
         .catch((error) => {
-            
             throw error
         });
 };
 
-export const addClientMsgAll = (param) => async (dispatch) => {
-    return authService.addClientMsgAll(param)
-        .then(async (res) => {
-            console.log('resp at slice', res)
+// export const getClientMsg = (param) => async (dispatch) => {
+//     return authService.getClientMsg(param)
+//         .then(async (res) => {
+//             console.log('resp at slice', res)
             
-            return res;
-        })
-        .catch((error) => {
+//             return res;
+//         })
+//         .catch((error) => {
             
-            throw error
-        });
-};
+//             throw error
+//         });
+// };
 
 export const verifyEmail = (param,user) => async (dispatch) => {
     return authService.verifyEmail(param)

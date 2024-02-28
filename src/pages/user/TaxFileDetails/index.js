@@ -1,23 +1,20 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import "./style.css";
 import "./chat-window.css";
-import authService from "../../../service/auth";
-import { UserLayout } from "../../layouts/Layout";
+// import authService from "../../../service/auth";
 import {
   Container,
   FormField,
   FormGroup,
-  Textarea,
 } from "../../../components/Form";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaDownload } from "react-icons/fa6";
 import { IoIosEye } from "react-icons/io";
-import { useDispatch } from "react-redux";
-import { addClientMessage } from "../../../store/userSlice";
-import { toastError } from "../../../BTUI/BtToast";
-import { IconSendMessage } from "../../../BTUI/Icons";
+// import { useDispatch } from "react-redux";
+// import { addClientMsg } from "../../../store/userSlice";
+// import { toastError } from "../../../BTUI/BtToast";
+// import { IconSendMessage } from "../../../BTUI/Icons";
 import { showDate, showDatetime } from "../../../utils/formatter";
-import { Edit } from "../../../components/Icon";
 import { Button } from "../../../components/Button";
 
 const TaxFileDetails = () => {
@@ -25,19 +22,19 @@ const TaxFileDetails = () => {
   const navigate = useNavigate()
   const param = useParams();
   console.log("param", param, "details", details);
-  useEffect(() => {
-    authService
-      .getTaxfileDetails(param?.id)
-      .then((res) => {
-        console.log('details are ', res?.data)
-        setDetails(res?.data?.response);
-      })
-      .catch((err) => {
-        // console.log('Error in taxfiledetail', err)
-        // alert(err?.data?.message);
-        toastError(err?.data?.message)
-      });
-  }, []);
+  // useEffect(() => {
+  //   authService
+  //     .getClientMsg(param?.id)
+  //     .then((res) => {
+  //       console.log('details are ', res?.data)
+  //       setDetails(res?.data?.response);
+  //     })
+  //     .catch((err) => {
+  //       // console.log('Error in taxfiledetail', err)
+  //       // alert(err?.data?.message);
+  //       toastError(err?.data?.message)
+  //     });
+  // }, []);
 
   const detailBody = useMemo(() => {
     if (details == null) {
@@ -159,8 +156,7 @@ const TaxFileDetails = () => {
         <br />
         <br />
         <br />
-        
-        <ChatWindow taxfile_id={param?.id} />
+        {/* <ChatWindow taxfile_id={param?.id} /> */}
         <br />
         <br />
         <br />
@@ -170,129 +166,125 @@ const TaxFileDetails = () => {
 
 export default TaxFileDetails;
 
-const ChatWindow = ({ taxfile_id }) => {
-  const [newMessage, setNewMessage] = useState("");
-  const [messageList, setMessageList] = useState([]);
-  const dispatch = useDispatch();
-  const ref = useRef();
-  const handleSend = () => {
-    if (newMessage?.trim()?.length < 1) {
-      return false;
-    }
-    dispatch(
-      addClientMessage({
-        taxfile_id,
-        message: newMessage,
-      })
-    )
-      .then((res) => {
-        getMessageList();
-        setNewMessage("");
-      })
-      .catch((err) => {
-        toastError(err?.data?.message);
-      });
-  };
+// const ChatWindow = ({ taxfile_id }) => {
+//   const [newMessage, setNewMessage] = useState("");
+//   const [messageList, setMessageList] = useState([]);
+//   const dispatch = useDispatch();
+//   const ref = useRef();
+//   const handleSend = () => {
+//     if (newMessage?.trim()?.length < 1) {
+//       return false;
+//     }
+//     dispatch(
+//       addClientMsg())
+//       .then((res) => {
+//         getMessageList();
+//         setNewMessage("");
+//       })
+//       .catch((err) => {
+//         toastError(err?.data?.message);
+//       });
+//   };
 
-  const getMessageList = () => {
-    authService
-      .getClientMessages(taxfile_id)
-      .then((res) => {
-        setMessageList(res?.data?.response?.messages);
-      })
-      .catch((err) => {
-        console.log('Error in Get Client Messages', err)
-        toastError(err?.data?.message);
-      });
-  };
-  useEffect(() => {
-    getMessageList();
-  }, []);
+//   const getMessageList = () => {
+//     authService
+//       .getClientMsg(taxfile_id)
+//       .then((res) => {
+//         setMessageList(res?.data?.response?.messages);
+//       })
+//       .catch((err) => {
+//         console.log('Error in Get Client Messages', err)
+//         toastError(err?.data?.message);
+//       });
+//   };
+//   useEffect(() => {
+//     getMessageList();
+//   }, []);
 
 
-  useEffect(() => {
-    const height = ref.current.scrollHeight
-    ref?.current?.scrollTo(0, height)
-  }, [newMessage, messageList]);
+//   useEffect(() => {
+//     const height = ref.current.scrollHeight
+//     ref?.current?.scrollTo(0, height)
+//   }, [newMessage, messageList]);
 
-  return (<div className="chat-wrapper-div">
-    <span id="msgDiv"></span>
-      <div className="chat-wrapper">
-          <div ref={ref} className="chat-messages-list">
-            {
-              messageList.length == 0 ? <p className="chat-start-conv">Start a conversation</p> : null
-            }
-            {messageList?.map((msg, index) => {
-              if (msg?.user_type === "CLIENT") {
-                return <Sender key={index} msg={msg?.message} time={msg?.added_on} />;
-              } else if (msg?.user_type === "EXECUTIVE") {
-                return <Reciever key={index} msg={msg?.message} time={msg?.added_on} />;
-              }
-            })}
-          </div>
-          <ChatInput
-            name="message"
-            value={newMessage}
-            hint="write message here"
-            handleChange={setNewMessage}
-            handleSend={handleSend}
-          />
-      </div>
-    </div>
-  );
-};
+//   return (<div className="chat-wrapper-div">
+//     <span id="msgDiv"></span>
+//       <div className="chat-wrapper">
+//           <div ref={ref} className="chat-messages-list">
+//             {
+//               messageList.length == 0 ? <p className="chat-start-conv">Start a conversation</p> : null
+//             }
+//             {messageList?.map((msg, index) => {
+//               if (msg?.user_type === "CLIENT") {
+//                 return <Sender key={index} msg={msg?.message} time={msg?.added_on} />;
+//               } else if (msg?.user_type === "EXECUTIVE") {
+//                 return <Reciever key={index} msg={msg?.message} time={msg?.added_on} />;
+//               }
+//             })}
+//           </div>
+//           <ChatInput
+//             name="message"
+//             value={newMessage}
+//             hint="write message here"
+//             handleChange={setNewMessage}
+//             handleSend={handleSend}
+//           />
+//       </div>
+//     </div>
+//   );
+// };
 
-export const ChatInput = (props) => {
-  return (
-      <div className="chat-compose">
-        <textarea
-          placeholder="Write here..."
-          className="chat-input-textarea"
-          value={props?.value}
-          rows={5}
-          onChange={(e) => {
-            props?.handleChange(e.target.value);
-          }}
-        ></textarea>
-        <div className="chat-compose-actions-right">
-        <IconSendMessage size='30px' color="navy" onClick={props?.handleSend} />
-        </div>
+// export const ChatInput = (props) => {
+//   return (
+//       <div className="chat-compose">
+//         <textarea
+//           placeholder="Write here..."
+//           className="chat-input-textarea"
+//           value={props?.value}
+//           rows={5}
+//           onChange={(e) => {
+//             props?.handleChange(e.target.value);
+//           }}
+//         ></textarea>
+//         <div className="chat-compose-actions-right">
+//         <IconSendMessage size='30px' color="navy" onClick={props?.handleSend} />
+//         </div>
         
-      </div>
-  );
-};
+//       </div>
+//   );
+// };
 
-ChatInput.defaultProps = {
-  type: "text",
-  rows: 2,
-  cols: 1,
-};
+// ChatInput.defaultProps = {
+//   type: "text",
+//   rows: 2,
+//   cols: 1,
+// };
 
-const Sender = (props) => {
-  return (
-    <div className="sender-div-section">
-      <div className="sender-div">
-        <p>{props?.msg}</p>
-      </div>
-      <div className="sender-time">
-        <p>{showDatetime(props?.time)}</p>
-      </div>
-    </div>
-  );
-};
+// const Sender = (props) => {
+//   return (
+//     <div className="sender-div-section">
+//       <div className="sender-div">
+//         <p>{props?.msg}</p>
+//       </div>
+//       <div className="sender-time">
+//         <p>{showDatetime(props?.time)}</p>
+//       </div>
+//     </div>
+//   );
+// };
 
-const Reciever = (props) => {
-  return (
-    <div className="reciever-div-section">
-      <div className="reciever-div">
-        <p>{props?.msg}</p>
-      </div>
-      <div className="reciever-time">
-        <p>{showDatetime(props?.time)}</p>
-      </div>
-    </div>
-  );
-};
+// const Reciever = (props) => {
+//   return (
+//     <div className="reciever-div-section">
+//       <div className="reciever-div">
+//         <p>{props?.msg}</p>
+//       </div>
+//       <div className="reciever-time">
+//         <p>{showDatetime(props?.time)}</p>
+//       </div>
+//     </div>
+//   );
+// };
 
 const DetailsComponent = (props) => {
   return (<div className="details-component-outer-section">

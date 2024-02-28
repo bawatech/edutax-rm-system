@@ -1,6 +1,6 @@
 import { Layout } from '../layouts/Layout';
 import './style.css';
-import CarouselImg from '../../assets/images/mobile.png'
+import CarouselImg from '../../assets/images/carousel1.png'
 import { Button } from '../../components/Button';
 import WwoImg1 from '../../assets/images/wwo1.jpg'
 import WwoImg2 from '../../assets/images/business.jpg'

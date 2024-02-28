@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import authService from "../../../service/auth";
 import { useParams } from "react-router-dom";
-import { addClientMsgAll } from "../../../store/userSlice";
+import { addClientMsg } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
 import { IconSendMessage } from "../../../BTUI/Icons";
 import { showDatetime } from "../../../utils/formatter";
@@ -18,7 +18,7 @@ const Messages = () => {
         <br/>
         <br/>
         <ChatWindow 
-            taxfile_id={params?.id}
+            // taxfile_id={params?.id}
         />
     </Container>
 }
@@ -30,26 +30,27 @@ const ChatWindow = ({ taxfile_id }) => {
     const [messageList, setMessageList] = useState([]);
     const dispatch = useDispatch();
     const ref = useRef();
+    
+    
     const handleSend = () => {
         if (newMessage?.trim()?.length < 1) {
-        return false;
+            return false;
         }
-        dispatch(addClientMsgAll({
-            message: newMessage,
-        })
-        )
-        .then((res) => {
-            getMessageList();
-            setNewMessage("");
-        })
-        .catch((err) => {
-            toastError(err?.data?.message);
-        });
+        dispatch(addClientMsg(newMessage))
+            .then((res) => {
+                console.log(res);
+                getMessageList();
+                setNewMessage("");
+            })
+            .catch((err) => {
+                console.log(err);
+                toastError(err?.data?.message);
+            });
     };
 
     const getMessageList = () => {
-        authService.getClientMsgAll()
-        .   then((res) => {
+        authService.getClientMsg()
+            .then((res) => {
                 console.log(res);
                 setMessageList(res?.data?.response?.messages);
             })
