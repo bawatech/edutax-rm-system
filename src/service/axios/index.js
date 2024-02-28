@@ -15,8 +15,8 @@ axiosClient.interceptors.request.use(config => {
 
 
 // axiosClient.defaults.baseURL = process.env.REACT_APP_API;
-// axiosClient.defaults.baseURL = 'https://manager.edutax.ca';
- axiosClient.defaults.baseURL = 'http://localhost:3011';
+axiosClient.defaults.baseURL = 'https://manager.edutax.ca';
+//  axiosClient.defaults.baseURL = 'http://localhost:3011';
 axiosClient.defaults.headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': ' *',

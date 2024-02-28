@@ -84,6 +84,21 @@
     width: 80%;
 }
 
+
+.float-acts{
+    position: fixed;
+    background-color: white;
+    box-shadow:  0 0 10px -5px grey;
+    height: 100px;
+    width: 100px;
+    z-index: 1000;
+    border-radius: 50%;
+    right: 10px;
+    bottom: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @media only screen and (min-width: 10px) {
     .layout-inner-section{
         width: 100% !important;

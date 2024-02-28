@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
 import { Email, Facebook, Hamberger, Insta, IoHomeIcon, IoMdSettingsIcon, Location, Phone, RiLogoutCircleLineIcon, Twitter } from "../../../components/Icon";
-import { IconCross, IconSocialCall, IconSocialMessage, IconWhatsapp } from "../../../BTUI/Icons";
+import { IconCross, IconSocialCall, IconWhatsapp } from "../../../BTUI/Icons";
 
 
 export const Layout = (props) => {
@@ -132,6 +132,8 @@ export const UserLayout = (props) => {
 
   return (
     <div style={{position: 'relative'}}>
+
+      <div className="float-acts"><IconMessage size="50px" color="#2d87ca" onClick={()=>navigate('/user/messages')}/></div>
     <Header>
       <HeaderLeft/>
       <HeaderRight 

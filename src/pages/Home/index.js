@@ -128,6 +128,9 @@ const ImgBgDivCard = (props) => {
 
 const WhatWeOffer = (props) => {
 
+    const handleClickToCall=()=>{
+        window.open(`tel:${9057906200}`, "_self");
+    }
     return<div className="whatWeOffer-section">
         <div className="whatWeOffer-inner-div">
             <h1>What We Offer</h1>
@@ -139,31 +142,31 @@ const WhatWeOffer = (props) => {
                     img={WwoImg1}
                     title="Personal Income Tax"
                     desc="$59.99"
-                    onClick={()=>{}}
+                    onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards 
                     img={WwoImg2}
                     title="Business & Corporate Tax"
                     desc="Starting at $499"
-                    onClick={()=>{}}
+                    onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards 
                     img={WwoImg3}
                     title="Accounting and Bookkeeping"
                     desc="Starting at $250/month"
-                    onClick={()=>{}}
+                    onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards 
                     img={WwoImg4}
                     title="Pay Roll"
                     desc=""
-                    onClick={()=>{}}
+                    onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards 
                     img={WwoImg5}
                     title="Incorporation & Structuring"
                     desc="Starting at $320"
-                    onClick={()=>{}}
+                    onClick={handleClickToCall}
                 />
             </div>
             
@@ -173,7 +176,7 @@ const WhatWeOffer = (props) => {
 
 const WhatWeOfferCards = (props) =>{
 
-    return<div className="whatWeOfferCards-section" onClick={props?.onClick}>
+    return<div className="whatWeOfferCards-section">
         <div className="whatWeOfferCards-img-div">
             <div className="whatWeOfferCard-img-abs-div">
                 <img src={props?.img}/>
