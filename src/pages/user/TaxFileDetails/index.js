@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./style.css";
 import "./chat-window.css";
-// import authService from "../../../service/auth";
+import authService from "../../../service/auth";
 import {
   Container,
   FormField,
@@ -16,25 +16,26 @@ import { IoIosEye } from "react-icons/io";
 // import { IconSendMessage } from "../../../BTUI/Icons";
 import { showDate, showDatetime } from "../../../utils/formatter";
 import { Button } from "../../../components/Button";
+import { toastError } from "../../../BTUI/BtToast";
 
 const TaxFileDetails = () => {
   const [details, setDetails] = useState(null);
   const navigate = useNavigate()
   const param = useParams();
   console.log("param", param, "details", details);
-  // useEffect(() => {
-  //   authService
-  //     .getClientMsg(param?.id)
-  //     .then((res) => {
-  //       console.log('details are ', res?.data)
-  //       setDetails(res?.data?.response);
-  //     })
-  //     .catch((err) => {
-  //       // console.log('Error in taxfiledetail', err)
-  //       // alert(err?.data?.message);
-  //       toastError(err?.data?.message)
-  //     });
-  // }, []);
+  useEffect(() => {
+    authService
+      .getTaxfileDetails(param?.id)
+      .then((res) => {
+        console.log('details are ', res?.data)
+        setDetails(res?.data?.response);
+      })
+      .catch((err) => {
+        // console.log('Error in taxfiledetail', err)
+        // alert(err?.data?.message);
+        toastError(err?.data?.message)
+      });
+  }, []);
 
   const detailBody = useMemo(() => {
     if (details == null) {

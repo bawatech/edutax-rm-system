@@ -64,7 +64,7 @@ class authService {
     addClientMsg = async (payload) => {
         return await postRequest('user/message', payload);
     }
-    getClientMsg = async (id) => {
+    getClientMsg = async () => {
         return await getRequest(`user/message`);
     }
 

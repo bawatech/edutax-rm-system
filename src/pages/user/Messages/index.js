@@ -26,7 +26,7 @@ const Messages = () => {
 export default Messages;
 
 const ChatWindow = ({ taxfile_id }) => {
-    const [newMessage, setNewMessage] = useState("");
+    const [newMessage, setNewMessage] = useState();
     const [messageList, setMessageList] = useState([]);
     const dispatch = useDispatch();
     const ref = useRef();
@@ -36,7 +36,7 @@ const ChatWindow = ({ taxfile_id }) => {
         if (newMessage?.trim()?.length < 1) {
             return false;
         }
-        dispatch(addClientMsg(newMessage))
+        dispatch(addClientMsg({message:newMessage}))
             .then((res) => {
                 console.log(res);
                 getMessageList();
