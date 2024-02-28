@@ -135,7 +135,7 @@ const WhatWeOffer = (props) => {
         <div className="whatWeOffer-inner-div">
             <h1>What We Offer</h1>
 
-            <p>Whether you need help with personal tax preparation, corporate tax compliance, bookkeeping, or estate planning, Sukh Tax has the expertise and knowledge to meet your needs. We beleive in simplicity. Our services and our pricing are both transparent. We at Sukh Tax work to provide you with peace of mind, by providing you the services as per your needs.</p>
+            <p>Whether you need help with personal tax preparation, corporate tax compliance, bookkeeping, or estate planning, EduTax has the expertise and knowledge to meet your needs. We beleive in simplicity. Our services and our pricing are both transparent. We at EduTax work to provide you with peace of mind, by providing you the services as per your needs.</p>
         
             <div className="whatWeOffer-cards">
                 <WhatWeOfferCards 
