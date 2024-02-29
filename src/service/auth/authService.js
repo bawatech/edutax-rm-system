@@ -7,6 +7,9 @@ class authService {
     signUp = async (payload) => {
         return await postRequest('auth/sign-up', payload);
     }
+    resendSignupOtp = async (payload) => {
+        return await postRequest('auth/resend-signup-otp', payload);
+    }
     verifyEmail = async (payload) => {
         return await postRequest('auth/verify-email', payload);
     }
@@ -27,6 +30,9 @@ class authService {
 
     forgotPassword = async (payload) => {
         return await postRequest('auth/forgot-password', payload);
+    }
+    resendForgotPassOtp = async (payload) => {
+        return await postRequest('auth/resend-forgot-pass-otp', payload);
     }
     setNewPassword = async (payload) => {
         return await postRequest('auth/new-password', payload);
