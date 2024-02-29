@@ -49,7 +49,7 @@ const VerifyLogin = () => {
     }
 
     const handleResendOtp = () =>{
-        dispatch(resendLoginOtp({email:location?.state?.email}))
+        dispatch(resendLoginOtp({email:location?.state?.data}))
         .then((res)=>{
             console.log("resend",res)
             toastSuccess(res?.data?.message)
