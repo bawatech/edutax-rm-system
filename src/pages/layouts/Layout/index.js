@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/userSlice";
 import { toastError } from "../../../BTUI/BtToast";
 import { Email, Facebook, Hamberger, Insta, IoHomeIcon, IoMdSettingsIcon, Location, Phone, RiLogoutCircleLineIcon, Twitter } from "../../../components/Icon";
-import { IconCross, IconSocialCall, IconWhatsapp } from "../../../BTUI/Icons";
+import { IconCross, IconMessage, IconSocialCall, IconWhatsapp } from "../../../BTUI/Icons";
 
 
 export const Layout = (props) => {

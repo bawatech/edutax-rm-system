@@ -24,6 +24,7 @@ import TaxFileUpdate from '../pages/user/TaxFileUpdate';
 import AcceptInvite from '../pages/auth/AcceptInvite';
 import VerifyLogin from '../pages/auth/VerifyLoginEmail';
 import Messages from '../pages/user/Messages';
+import VerifyForgotPass from '../pages/auth/VerifyForgotPass';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
@@ -37,7 +38,9 @@ const AllRoutes = () => {
         {path:'verify-email',element:<VerifyEmail/>},
         {path:'verify-login',element:<VerifyLogin/>},
         {path:'reset',element:<ForgotPass/>},
-        {path:'verify-forgot-pass-otp',element:<NewPassword/>},
+        {path:'verify-forgot-pass-otp',element:<VerifyForgotPass/>},
+        {path:'set-new-password',element:<NewPassword/>},
+        
         {path:'accept-invitation/:token',element:<AcceptInvite/>},
         {path: 'user',element:<UserLayout/>,
         children:[

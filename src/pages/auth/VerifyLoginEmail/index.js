@@ -1,11 +1,11 @@
 import './style.css';
-import { Container, FormField, FormGroup, Input } from "../../../components/Form";
+import { Center, Container, FormField, FormGroup, Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
-import { verifyLogin } from '../../../store/userSlice';
+import { resendLoginOtp, verifyLogin } from '../../../store/userSlice';
 import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 
 const VerifyLogin = () => {
@@ -48,6 +48,18 @@ const VerifyLogin = () => {
             })
     }
 
+    const handleResendOtp = () =>{
+        dispatch(resendLoginOtp({email:location?.state?.email}))
+        .then((res)=>{
+            console.log("resend",res)
+            toastSuccess(res?.data?.message)
+        })
+        .catch((err)=>{
+            console.log("resend",err)
+            toastError(err?.data?.message)
+        })
+    }
+
     return <Layout>
         <Container maxWidth="30em">
             <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Login</h2>
@@ -77,6 +89,10 @@ const VerifyLogin = () => {
             </div>
             
             <br />
+
+            <Center>
+                <p onClick={handleResendOtp} style={{cursor: 'pointer', fontSize: '0.9em'}}>resend otp</p>
+            </Center>
         </Container>
         
     </Layout>

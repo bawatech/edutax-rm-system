@@ -178,6 +178,39 @@ export const sendSpouseInvitation = (param) => async (dispatch) => {
         });
 };
 
+export const resendSignupOtp = (param) => async (dispatch) => {
+    return authService.resendSignupOtp(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const resendForgotPassOtp = (param) => async (dispatch) => {
+    return authService.resendForgotPassOtp(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const resendLoginOtp = (param) => async (dispatch) => {
+    return authService.resendLoginOtp(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
 const initialState = {
     user: {},
     profile:{}

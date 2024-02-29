@@ -1,11 +1,11 @@
 import './style.css';
-import { Container, FormField, FormGroup, Input } from "../../../components/Form";
+import { Center, Container, FormField, FormGroup, Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { verifyEmail } from '../../../store/userSlice';
+import { resendSignupOtp, verifyEmail } from '../../../store/userSlice';
 import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 
 const VerifyEmail = () => {
@@ -31,8 +31,10 @@ const VerifyEmail = () => {
     }
 
     const handleSubmit = () => {
+        setLoadingButton(true)
         dispatch(verifyEmail(payload,user))
             .then(res => {
+                setLoadingButton(false)
                 toastSuccess(res?.data?.message)
                 console.log('ress on verify email',res)
                 // setTimeout(()=>{
@@ -44,15 +46,26 @@ const VerifyEmail = () => {
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
                 }
+                setLoadingButton(false)
                 toastError(err?.data?.message)
             })
     }
 
+    const handleResendOtp = () =>{
+        dispatch(resendSignupOtp({email:location?.state?.data}))
+        .then((res)=>{
+            console.log("resend",res)
+            toastSuccess(res?.data?.message)
+        })
+        .catch((err)=>{
+            console.log("resend",err)
+            toastError(err?.data?.message)
+        })
+    }
+
     return <Layout>
         <Container maxWidth="30em">
-            {/* <div className="signup-section">
-                <div className="signup-inner-container"> */}
-                    <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Email Address</h2>
+            <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Verify Email Address</h2>
 
             <span>Otp sent to <b>{location?.state?.data}</b></span>
             <FormGroup>
@@ -79,6 +92,10 @@ const VerifyEmail = () => {
             </div>
             
             <br />
+
+            <Center>
+                <p onClick={handleResendOtp} style={{cursor: 'pointer', fontSize: '0.9em'}}>resend otp</p>
+            </Center>
         </Container>
         
     </Layout>

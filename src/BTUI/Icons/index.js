@@ -6,6 +6,7 @@ import { BiSolidMessageRounded } from "react-icons/bi";
 import { IoIosCall } from "react-icons/io";
 import { IoLogoWhatsapp } from "react-icons/io";
 
+
 const Icon=(props)=>{
     return <IconContext.Provider value={{ color: "black", className: "global-class-name",...props }}>
     {
@@ -55,5 +56,12 @@ export const IconWhatsapp=(props)=>{
 
   return <Icon {...props}>
       <IoLogoWhatsapp/>
+  </Icon>
+}
+
+export const IconMessage=(props)=>{
+
+  return <Icon {...props}>
+      <FaMessage/>
   </Icon>
 }

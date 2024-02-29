@@ -35,6 +35,7 @@ const TaxFileAdd = () => {
   const navigate = useNavigate();
   const [provinces, setProvinces] = useState([])
   const [docType, setDocType] = useState([])
+  const [loadingButton, setLoadingButton] = useState(false)
 
   
   useEffect(()=>{
@@ -62,12 +63,12 @@ const TaxFileAdd = () => {
   },[])
 
   const handleSubmit = () => {
-    showLoader()
+    setLoadingButton(true)
     dispatch(addTaxfile(payload))
       .then((res) => {
        // console.log("Response", res?.data?.taxfile?.id);
         toastSuccess(res?.data?.message);
-        hideLoader()
+        setLoadingButton(false)
         navigate(`/user/taxfile/${res?.data?.response?.taxfile?.id}`);
       })
       .catch((err) => {
@@ -76,7 +77,7 @@ const TaxFileAdd = () => {
         } else {
           toastError(err?.data?.message)
         }
-        hideLoader()
+        setLoadingButton(false);
       });
   };
 
@@ -141,7 +142,7 @@ const TaxFileAdd = () => {
           <LabelYesNo
             label="Have you moved to canada in 2023?"
             name="moved_to_canada"
-            value={payload?.moved_to_canada === undefined || payload?.moved_to_canada === "" ? "NO" : payload?.moved_to_canada}
+            value={payload?.moved_to_canada === undefined || payload?.moved_to_canada === "" ? "" : payload?.moved_to_canada}
             handleChange={handleChange}
           />
 
@@ -160,7 +161,7 @@ const TaxFileAdd = () => {
           <LabelYesNo
             label="Do you want to setup or change your direct deposit with CRA?"
             name="direct_deposit_cra"
-            value={payload?.direct_deposit_cra === undefined || payload?.direct_deposit_cra === "" ? "NO" : payload?.direct_deposit_cra}
+            value={payload?.direct_deposit_cra === undefined || payload?.direct_deposit_cra === "" ? "" : payload?.direct_deposit_cra}
             handleChange={handleChange}
           />
 
@@ -233,6 +234,7 @@ const TaxFileAdd = () => {
           <Button
             name="addTaxFile"
             title="Add Tax File"
+            loading={loadingButton}
             onClick={handleSubmit}
           />
         </div>

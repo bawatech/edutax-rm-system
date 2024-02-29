@@ -49,9 +49,10 @@ const TaxFileDetails = () => {
           <div className="userDetails-section">
             <div className="userDetails-inner-container">
 
-            <div style={{display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
+            {details?.taxfile?.file_status === "NEEDS_RESUBMISSION" && <div style={{display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
               <Button varient="small" title="Edit" onClick={()=>navigate(`/user/taxfile/update/${details?.taxfile?.id}`)}/>
-            </div>
+            </div>}
+            
 
               <div className="userDetails-head-content">
                 <div className="userDetails-txt-content">

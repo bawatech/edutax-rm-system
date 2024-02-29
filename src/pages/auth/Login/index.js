@@ -7,6 +7,9 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../../store/userSlice';
 import { Layout } from '../../layouts/Layout';
 import { toastError, toastSuccess } from '../../../BTUI/BtToast';
+
+
+
 const Login = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
@@ -30,7 +33,7 @@ const Login = () => {
         dispatch(login(payload))
             .then(res => {
                 toastSuccess(res?.data?.message)
-                // navigate("/user")
+                navigate("/user")
                 navigate("/verify-login", {state: { data: payload?.email }})
                 setLoadingButton(false)
                 

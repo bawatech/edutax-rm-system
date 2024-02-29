@@ -12,6 +12,7 @@ import { toastSuccess } from '../../../BTUI/BtToast';
 const ForgotPassword = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
+    const [loadingButton, setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -28,15 +29,15 @@ const ForgotPassword = () => {
     }
 
     const handleSubmit = () => {
-        showLoader()
+        setLoadingButton(true)
         dispatch(forgotPassword(payload))
             .then(res => {
-                hideLoader()
+                setLoadingButton(false)
                 toastSuccess(res?.data?.message)
-                navigate("/verify-forgot-pass-otp")
+                navigate("/verify-forgot-pass-otp", {state: {email: payload?.email}})
             })
             .catch(err => {
-                hideLoader()
+                setLoadingButton(false)
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
                 } else {
@@ -57,7 +58,7 @@ const ForgotPassword = () => {
                         <FormField>
                             <Input
                                 name="email"
-                                value={payload.email}
+                                value={payload?.email}
                                 hint="Email"
                                 handleChange={handleChange}
                                 error={errors?.email}
@@ -70,6 +71,7 @@ const ForgotPassword = () => {
                         <Button
                             name="getOtp"
                             title="Get Otp"
+                            loading={loadingButton}
                             onClick={handleSubmit}
                         />
                     </div>
