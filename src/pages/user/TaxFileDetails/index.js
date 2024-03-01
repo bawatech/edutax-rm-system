@@ -137,7 +137,7 @@ const TaxFileDetails = () => {
                   <h4 style={{marginBottom: '-0.5em', fontWeight: '550'}}>Client Uploaded Documents</h4>
                   <hr/>
                   {details?.taxfile?.documents?.map((itm, index) => {
-                          return itm?.user_type === "CLIENT" ? <FormGroup key={index}>
+                          return itm?.user_type === "CLIENT" && <FormGroup key={index}>
                               <FormField>
                                   <FileComponent
                                       name={itm?.type?.name || 'Document'}
@@ -148,16 +148,16 @@ const TaxFileDetails = () => {
                               </FormField>
 
                           </FormGroup>
-                          : <p style={{color: 'grey'}}>No Record Found</p>
+                          // : <p style={{color: 'grey'}}>No Record Found</p>
                       })
                   }
               </div>
 
-              <div className="userDetails-img-content">
+              {details?.taxfile?.documents?.filter((itm) => itm?.user_type === "EXECUTIVE" ).length>0 && <div className="userDetails-img-content">
                   <h4 style={{marginBottom: '-0.5em', fontWeight: '550'}}>Executive Uploaded Documents</h4>
                   <hr/>
                   {details?.taxfile?.documents?.map((itm, index) => {
-                          return itm?.user_type === "EXECUTIVE" ? <FormGroup key={index}>
+                          return itm?.user_type === "EXECUTIVE" && <FormGroup key={index}>
                               <FormField>
                                   <FileComponent
                                       name={itm?.type?.name || 'Document'}
@@ -168,10 +168,11 @@ const TaxFileDetails = () => {
                               </FormField>
 
                           </FormGroup>
-                          : <p style={{color: 'grey'}}>No Record Found</p>
+                          // : <p style={{color: 'grey'}}>No Record Found</p>
                       })
                   }
-              </div>
+              </div>}
+              
             </div>
           </div>
         </>
