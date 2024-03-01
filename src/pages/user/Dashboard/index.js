@@ -4,6 +4,7 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import authService from "../../../service/auth";
 import { toastError } from "../../../BTUI/BtToast";
+import { IconAddPerson, IconFile, IconMessage, IconProfile, IconSetting } from "../../../BTUI/Icons";
 
 
 const Dashboard = () => {
@@ -47,11 +48,11 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="dash-menu">
-        <div onClick={() => navigate("/user/profile")}>Profile</div>
-        <div onClick={handleReturnClick}>Tax Return</div>
-        <div onClick={() => navigate("/user/settings")}>Settings</div>
-        <div onClick={() => navigate("/user/invite-spouse")}>Link Spouse</div>
-        <div onClick={() => navigate(`/user/messages`)}>Messages</div>
+        <div onClick={() => navigate("/user/profile")}><IconProfile color="var(--pri-color)" style={{fontSize: '3em'}}/> Profile</div>
+        <div onClick={handleReturnClick}><IconFile color="var(--pri-color)" style={{fontSize: '3em'}}/> Tax Return</div>
+        <div onClick={() => navigate("/user/settings")}><IconSetting color="var(--pri-color)" style={{fontSize: '3em'}}/>Settings</div>
+        <div onClick={() => navigate("/user/invite-spouse")}><IconAddPerson color="var(--pri-color)" style={{fontSize: '3em'}}/>Link Spouse</div>
+        <div onClick={() => navigate(`/user/messages`)}><IconMessage color="var(--pri-color)" style={{fontSize: '3em'}}/>Messages</div>
       </div>
     </div>
   );

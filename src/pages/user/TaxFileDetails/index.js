@@ -43,13 +43,13 @@ const TaxFileDetails = () => {
     } else {
       return (
         <>
-          <h1 className="tax-file-details-heading">Taxfile details </h1>
+          <h1 className="tax-file-details-heading">Tax Return details </h1>
           <br />
           
           <div className="userDetails-section">
             <div className="userDetails-inner-container">
 
-            {details?.taxfile?.file_status === "NEEDS_RESUBMISSION" && <div style={{display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
+            {details?.taxfile?.file_status === "NEEDS_RESUBMISSION" || details?.taxfile?.file_status === "NEW_REQUEST"  && <div style={{display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
               <Button varient="small" title="Edit" onClick={()=>navigate(`/user/taxfile/update/${details?.taxfile?.id}`)}/>
             </div>}
             
@@ -78,11 +78,15 @@ const TaxFileDetails = () => {
                   />
                   <DetailsComponent
                     heading="File Status"
-                    value={details?.taxfile?.file_status}
+                    value={details?.taxfile?.file_status_name}
                   />
                   <DetailsComponent
                     heading="Moved to Canada"
                     value={details?.taxfile?.moved_to_canada}
+                  />
+                  <DetailsComponent
+                    heading="Date of Entry"
+                    value={details?.taxfile?.date_of_entry}
                   />
                 </div>
                 <div className="userDetails-txt-content">
@@ -114,6 +118,7 @@ const TaxFileDetails = () => {
                     heading="Direct Deposit CRA"
                     value={details?.taxfile?.direct_deposit_cra}
                   />
+                  
                 </div>
               </div>
 

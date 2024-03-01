@@ -127,7 +127,7 @@ const TaxFileAdd = () => {
 
   return <Container>
         <Form>
-          <FormName name="Add Tax File Details" />
+          <FormName name="Add Tax Return Details" />
           <FormGroup>
             <FormField>
               <Dropdown

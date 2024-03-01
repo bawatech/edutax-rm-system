@@ -22,6 +22,10 @@ export const Layout = (props) => {
     }
   },[user])
 
+  const handleClickToCall = () => {
+    window.open(`tel:${9057906200}`, "_self");
+  }
+
   return (
     <div className="" style={{position: 'relative'}}>
     <HeaderBfLogin>
@@ -30,8 +34,8 @@ export const Layout = (props) => {
     </HeaderBfLogin>
     <div className="layout-section">
       <div className="layout-social-section">
-        <IconWhatsapp color="green"/>
-        <IconSocialCall color="var(--theme-color-a)"/>
+        {/* <IconWhatsapp color="green"/> */}
+        <IconSocialCall color="var(--theme-color-a)" onClick={handleClickToCall}/>
       </div>
       <div className="layout-inner-section" style={{width: props?.width}}>
         {props.children}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Container, Dropdown, Form, FormField, FormGroup, FormName, Input, InputDate } from "../../../components/Form";
+import {Container, Dropdown, Form, FormField, FormGroup, FormName, Input, InputDate, LabelYesNo } from "../../../components/Form";
 import { Button } from "../../../components/Button";
 import './style.css'
 import { useDispatch } from 'react-redux';
@@ -182,6 +182,13 @@ const ProfileUpdate = () => {
                     </FormField> */}
 
                 </FormGroup>
+
+                <LabelYesNo
+                    name="areYouExistingClient"
+                    label="Are you existing client of edu-tax?"
+                    value={payload?.areYouExistingClient}
+                    handleChange={handleChange}
+                />
 
                 <br />
                 <div style={{ textAlign: 'center' }}>
