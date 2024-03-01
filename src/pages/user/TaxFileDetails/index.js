@@ -43,7 +43,7 @@ const TaxFileDetails = () => {
     } else {
       return (
         <>
-          <h1 className="tax-file-details-heading">Tax Return details </h1>
+          <h1 className="tax-file-details-heading">Tax Return File details </h1>
           <br />
           
           <div className="userDetails-section">
@@ -133,22 +133,44 @@ const TaxFileDetails = () => {
                 </FormField>
               </div>: ''}
               
+              <div className="userDetails-img-content">
+                  <h4 style={{marginBottom: '-0.5em', fontWeight: '550'}}>Client Uploaded Documents</h4>
+                  <hr/>
+                  {details?.taxfile?.documents?.map((itm, index) => {
+                          return itm?.user_type === "CLIENT" ? <FormGroup key={index}>
+                              <FormField>
+                                  <FileComponent
+                                      name={itm?.type?.name || 'Document'}
+                                      download={itm?.full_path}
+                                      downloadName={itm?.documents?.[index]?.filename}
+                                      view={itm?.full_path}
+                                  />
+                              </FormField>
+
+                          </FormGroup>
+                          : <p style={{color: 'grey'}}>No Record Found</p>
+                      })
+                  }
+              </div>
 
               <div className="userDetails-img-content">
-                {details?.taxfile?.documents?.map((itm, index) => {
-                  return (
-                    <FormGroup key={index}>
-                      <FormField>
-                        <FileComponent
-                          name={itm?.type?.name || "Document"}
-                          download={itm?.full_path}
-                          downloadName={itm?.documents?.[index]?.filename}
-                          view={itm?.full_path}
-                        />
-                      </FormField>
-                    </FormGroup>
-                  );
-                })}
+                  <h4 style={{marginBottom: '-0.5em', fontWeight: '550'}}>Executive Uploaded Documents</h4>
+                  <hr/>
+                  {details?.taxfile?.documents?.map((itm, index) => {
+                          return itm?.user_type === "EXECUTIVE" ? <FormGroup key={index}>
+                              <FormField>
+                                  <FileComponent
+                                      name={itm?.type?.name || 'Document'}
+                                      download={itm?.full_path}
+                                      downloadName={itm?.documents?.[index]?.filename}
+                                      view={itm?.full_path}
+                                  />
+                              </FormField>
+
+                          </FormGroup>
+                          : <p style={{color: 'grey'}}>No Record Found</p>
+                      })
+                  }
               </div>
             </div>
           </div>

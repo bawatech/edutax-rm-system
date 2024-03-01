@@ -20,7 +20,6 @@ import { useDispatch } from "react-redux";
 import { addTaxfile } from "../../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
-import { hideLoader, showLoader } from "../../../BTUI/BtLoader";
 import authService from "../../../service/auth";
 
 
@@ -127,7 +126,7 @@ const TaxFileAdd = () => {
 
   return <Container>
         <Form>
-          <FormName name="Add Tax Return Details" />
+          <FormName name="Add Tax Return" />
           <FormGroup>
             <FormField>
               <Dropdown
@@ -233,7 +232,7 @@ const TaxFileAdd = () => {
         <div style={{ textAlign: "center" }}>
           <Button
             name="addTaxFile"
-            title="Add Tax File"
+            title="Submit"
             loading={loadingButton}
             onClick={handleSubmit}
           />

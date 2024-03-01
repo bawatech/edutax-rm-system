@@ -183,12 +183,12 @@ const ProfileUpdate = () => {
 
                 </FormGroup>
 
-                <LabelYesNo
-                    name="areYouExistingClient"
+                {/* <LabelYesNo
+                    name="existing_client"
                     label="Are you existing client of edu-tax?"
-                    value={payload?.areYouExistingClient}
+                    value={payload?.existing_client}
                     handleChange={handleChange}
-                />
+                /> */}
 
                 <br />
                 <div style={{ textAlign: 'center' }}>

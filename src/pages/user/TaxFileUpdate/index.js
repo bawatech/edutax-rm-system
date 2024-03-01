@@ -143,7 +143,7 @@ const TaxFileUpdate = () => {
     console.log("payload",payload)
     return<Container>
         <Form>
-            <FormName name="Add Tax File Details" />
+            <FormName name="Update Tax Return" />
             <FormGroup>
                 <FormField>
                 <Dropdown
@@ -262,7 +262,7 @@ const TaxFileUpdate = () => {
         <div style={{ textAlign: "center" }}>
         <Button
             name="addTaxFile"
-            title="Update Tax File"
+            title="Update"
             onClick={handleSubmit}
         />
         </div>
@@ -286,4 +286,4 @@ const FileComponent = (props) => {
             </div>
         </div>
     );
-  };
+};

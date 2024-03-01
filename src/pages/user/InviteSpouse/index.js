@@ -13,6 +13,7 @@ import { hideLoader, showLoader } from '../../../BTUI/BtLoader'
 const InviteSpouse = () => {
     const [payload, setPayload] = useState({})
     const [spouseStatus, setSpouseStatus] = useState({})
+    const [loadingButton, setLoadingButton] = useState(false)
     const [toggle,setToggle] = useState(false);
     const dispatch = useDispatch()
 
@@ -41,17 +42,17 @@ const InviteSpouse = () => {
     }
 
     const handleSubmit = () => {
-        showLoader()
+        setLoadingButton(true)
         dispatch(sendSpouseInvitation(payload))
             .then((res) => {
                 toastSuccess(res?.data?.message)
-                hideLoader()
+                setLoadingButton(false)
                 // setPayload("")
                 setToggle(false)
             })
             .catch((err) => {
                 toastError(err?.data?.message)
-                hideLoader()
+                setLoadingButton(false)
             });
     }
     console.log(payload)
@@ -92,6 +93,7 @@ const InviteSpouse = () => {
                 <Center>
                     <Button 
                         title="Send Invite"
+                        loading={loadingButton}
                         onClick={handleSubmit}
                     />
                 </Center>
@@ -120,18 +122,29 @@ const InviteSpouse = () => {
                     <Center>
                         <Button 
                             title="Resend Invite"
+                            loading={loadingButton}
                             onClick={handleSubmit}
                         />
                     </Center>
                 </Container>
-        </>
-        }
+            </>
+            }
             
+        }else{
+            <Container>
+                <Center>
+                    <p>May Be You are not Logged in or your Session time Out. Please Login Again </p>
+                </Center>
+            </Container>
         }
     },[spouseStatus, payload, toggle])
 
     return<>
-    {spouseLinkStatus}
+    {spouseLinkStatus || <Container>
+                <Center>
+                    <p>May Be You are not logged in or your session time out. Please login again </p>
+                </Center>
+            </Container>}
     </>
 }
 

@@ -7,7 +7,7 @@ import { Layout } from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
 import { forgotPassword, verifyEmail } from '../../../store/userSlice';
 import { hideLoader, showLoader } from '../../../BTUI/BtLoader';
-import { toastSuccess } from '../../../BTUI/BtToast';
+import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 
 const ForgotPassword = () => {
     const [payload, setPayload] = useState({})
@@ -43,7 +43,7 @@ const ForgotPassword = () => {
                 } else {
                     // alert(err?.data?.message)
                 }
-                alert(err?.data?.message)
+                toastError(err?.data?.message)
             })
     }
 

@@ -91,7 +91,7 @@ const VerifyLogin = () => {
             <br />
 
             <Center>
-                <p onClick={handleResendOtp} style={{cursor: 'pointer', fontSize: '0.9em'}}>resend otp</p>
+                <p style={{fontSize: '0.9em'}}>Didn't receive the OTP ? <span style={{cursor: 'pointer', color: 'var(--theme-color-a)'}} onClick={handleResendOtp}>Send again</span></p>
             </Center>
         </Container>
         
