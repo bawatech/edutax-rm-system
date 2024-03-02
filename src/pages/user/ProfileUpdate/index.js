@@ -3,10 +3,10 @@ import {Container, Dropdown, Form, FormField, FormGroup, FormName, Input, InputD
 import { Button } from "../../../components/Button";
 import './style.css'
 import { useDispatch } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import authService from "../../../service/auth";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
-
+import PdfFile from '../../../assets/documents/app.pdf'
 
 
 
@@ -16,6 +16,7 @@ const ProfileUpdate = () => {
     const [errors, setErrors] = useState({});
     const [maritalStatus, setMaritalStatus] = useState([]);
     const [province, setProvince] = useState([]);
+    const [loadingButton, setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -36,24 +37,22 @@ const ProfileUpdate = () => {
     },[])
 
     const handleSubmit = () => {
-
+        setLoadingButton(true)
         authService?.updateProfile(payload)
             .then(res => {
                 console.log('Response', res?.data?.taxfile?.id)
-                // alert(res?.data?.message)
                 toastSuccess(res?.data?.message)
                 navigate(`/user`)
+                setLoadingButton(false)
             })
             .catch(err => {
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
                     toastError(err?.data?.field_errors)
                 } else {
-                    // alert(err?.data?.message)
                     toastError(err?.data?.message)
-
                 }
-                // alert(err?.data?.message)
+                setLoadingButton(false)
                 toastError(err?.data?.message)
             })
     }
@@ -183,18 +182,23 @@ const ProfileUpdate = () => {
 
                 </FormGroup>
 
-                {/* <LabelYesNo
+                <LabelYesNo
                     name="existing_client"
                     label="Are you existing client of edu-tax?"
                     value={payload?.existing_client}
                     handleChange={handleChange}
-                /> */}
+                />
+
+                {payload?.existing_client !== "YES" && <div className="">
+                    <p>Please Authorize us on CRA, to know how to authorize please <a href={PdfFile} target="_blank" rel="noreferrer" style={{color: 'var(--theme-color-a)'}}>Click here</a></p>
+                </div>}
 
                 <br />
                 <div style={{ textAlign: 'center' }}>
                     <Button
                         name="createProfile"
                         title="Save"
+                        loading={loadingButton}
                         onClick={handleSubmit}
                     />
                 </div>
