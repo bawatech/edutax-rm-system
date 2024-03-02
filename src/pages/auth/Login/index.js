@@ -80,7 +80,7 @@ const Login = () => {
                 </FormGroup>
 
                 <div className='forgot-div'>
-                    <NavLink className="gotoForgot" to="/reset">forgot password?</NavLink>
+                    <NavLink className="gotoForgot" to="/reset">Forgot password?</NavLink>
                 </div>
                 <br />
 
