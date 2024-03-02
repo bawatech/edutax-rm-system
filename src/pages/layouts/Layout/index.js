@@ -136,8 +136,8 @@ export const UserLayout = (props) => {
 
   return (
     <div style={{position: 'relative'}}>
-      {/* <div className="float-acts"><IconMessage size="50px" color="#2d87ca" onClick={()=>navigate('/user/messages')}/></div> */}
-      <div className="float-acts-message" onClick={()=>navigate('/user/messages')}>Let's Chat with us</div>
+      <div className="float-acts-message">Let's Chat</div>
+      <div className="float-acts"><IconMessage size="50px" color="#2d87ca" onClick={()=>navigate('/user/messages')}/></div>
     <Header>
       <HeaderLeft/>
       <HeaderRight 

@@ -104,16 +104,14 @@
     position: fixed;
     background-color: white;
     box-shadow:  0 0 10px -5px var(--pri-color);
-    /* height: 100px; */
-    /* width: 100px; */
     padding: 1em;
     z-index: 1000;
     border-radius: 0.5em;
     right: 10px;
-    bottom: 80px;
+    bottom: 190px;
     color: var(--theme-color-a);
     display: flex;
-    cursor: pointer;
+    /* cursor: pointer; */
     justify-content: center;
     align-items: center;
 }

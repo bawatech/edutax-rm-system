@@ -208,7 +208,7 @@ const ProfileDetails = () => {
                 />
 
                 {payload?.existing_client !== "YES" && <div className="">
-                    <p>Please Authorize us on CRA, to know how to authorize please <a href={PdfFile} target="_blank" rel="noreferrer" style={{color: 'var(--theme-color-a)'}}>Click here</a></p>
+                    <p>Please authorize us on CRA. To learn how, <a href={PdfFile} target="_blank" rel="noreferrer" style={{color: 'var(--theme-color-a)'}}>click here</a>.</p>
                 </div>}
 
                 <br />
