@@ -121,7 +121,7 @@ const ProfileDetails = () => {
                             value={payload?.date_of_birth}
                             error={errors?.date_of_birth}
                             handleChange={handleChange}
-                            openToDate={new Date(2000,0,1)}
+                            openToDate={payload?.date_of_birth ||  new Date("01-Jan-2000")}
                         />
 
                     </FormField>
