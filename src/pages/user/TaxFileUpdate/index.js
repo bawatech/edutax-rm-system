@@ -24,7 +24,7 @@ const TaxFileUpdate = () => {
     const navigate = useNavigate();
     const [provinces, setProvinces] = useState([])
     const [docType, setDocType] = useState([])
-    
+    const [loadingButton, setLoadingButton] = useState(false);
     
 
     
@@ -69,7 +69,7 @@ const TaxFileUpdate = () => {
     },[payload?.direct_deposit_cra])
 
     const handleSubmit = () => {
-        showLoader()
+        setLoadingButton(true)
         const documents = newDocs
 
         oldDocs.forEach(doc=>{
@@ -82,7 +82,7 @@ const TaxFileUpdate = () => {
         dispatch(updateTaxfile(newPayload))
             .then((res) => {
                 toastSuccess(res?.data?.message);
-                hideLoader()
+                setLoadingButton(false)
                 navigate(`/user/taxfile/${param?.id}`);
             })
             .catch((err) => {
@@ -90,7 +90,7 @@ const TaxFileUpdate = () => {
                     setErrors(err?.data?.field_errors);
                 } 
                 toastError(err?.data?.message)
-                hideLoader()
+                setLoadingButton(false)
             });
     };
 
@@ -263,6 +263,7 @@ const TaxFileUpdate = () => {
         <Button
             name="addTaxFile"
             title="Update"
+            loading={loadingButton}
             onClick={handleSubmit}
         />
         </div>

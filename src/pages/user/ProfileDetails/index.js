@@ -3,10 +3,10 @@ import { Container, Dropdown, Form, FormField, FormGroup, FormName, Input, Input
 import { Button } from "../../../components/Button";
 import './style.css'
 import { useDispatch } from 'react-redux';
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import authService from "../../../service/auth";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
-
+import PdfFile from "../../../assets/documents/app.pdf"
 
 
 
@@ -16,6 +16,7 @@ const ProfileDetails = () => {
     const [errors, setErrors] = useState({});
     const [maritalStatus, setMaritalStatus] = useState([]);
     const [provinces, setProvinces] = useState([])
+    const [loadingButton, setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +24,6 @@ const ProfileDetails = () => {
     useEffect(() => {
         authService.getProfile()
             .then(res=>{
-                console.log(res)
                 setPayload(res?.data?.response?.profile || {})
             })
             .catch(err=>{
@@ -46,35 +46,29 @@ const ProfileDetails = () => {
     },[])
 
     const handleSubmit = () => {
-
+        setLoadingButton(true)
         authService?.updateProfile(payload)
             .then(res => {
-                console.log('Response', res?.data?.taxfile?.id)
-                // alert(res?.data?.message)
                 toastSuccess(res?.data?.message)
                 if(searchParams.get('redirect-type') && searchParams.get('redirect-type')=='sign-up'){
                     navigate(`/user/taxfile-add`)    
                 }else{
                     navigate(-1)
                 }
-                
+                setLoadingButton(false)
             })
             .catch(err => {
-                console.log('ddddddddddddddddddddddddddddd',err)
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
                     toastError(err?.data?.message)
                 } else {
-                    // alert(err?.data?.message)
                     toastError(err?.data?.message)
 
                 }
-                // alert(err?.data?.message)
+                setLoadingButton(false)
                 toastError(err?.data?.message)
             })
     }
-
-    console.log(payload)
 
     const handleChange = (name, value) => {
         setPayload({
@@ -206,18 +200,23 @@ const ProfileDetails = () => {
 
                 </FormGroup>
                 
-                {/* <LabelYesNo 
+                <LabelYesNo 
                     name="existing_client"
                     label="Are you existing client of edu-tax?"
                     value={payload?.existing_client}
                     handleChange={handleChange}
-                /> */}
+                />
+
+                {payload?.existing_client !== "YES" && <div className="">
+                    <p>Please authorize us on CRA. To learn how, <a href={PdfFile} target="_blank" rel="noreferrer" style={{color: 'var(--theme-color-a)'}}>click here</a>.</p>
+                </div>}
 
                 <br />
                 <div style={{ textAlign: 'center' }}>
                     <Button
                         name="createProfile"
                         title="Save"
+                        loading={loadingButton}
                         onClick={handleSubmit}
                     />
                 </div>
