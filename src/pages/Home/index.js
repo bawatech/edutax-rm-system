@@ -141,19 +141,19 @@ const WhatWeOffer = (props) => {
                 <WhatWeOfferCards 
                     img={WwoImg1}
                     title="Personal Income Tax"
-                    desc="$59.99"
+                    desc="Starting from $59.99"
                     onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards 
                     img={WwoImg2}
                     title="Business & Corporate Tax"
-                    desc="Starting at $499"
+                    desc="Starting from $499"
                     onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards 
                     img={WwoImg3}
                     title="Accounting and Bookkeeping"
-                    desc="Starting at $250/month"
+                    desc="Starting from $250/month"
                     onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards 
@@ -165,7 +165,7 @@ const WhatWeOffer = (props) => {
                 <WhatWeOfferCards 
                     img={WwoImg5}
                     title="Incorporation & Structuring"
-                    desc="Starting at $320"
+                    desc="Starting from $320"
                     onClick={handleClickToCall}
                 />
             </div>

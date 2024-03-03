@@ -114,6 +114,7 @@
     /* cursor: pointer; */
     justify-content: center;
     align-items: center;
+    font-weight: bold;
 }
 @media only screen and (min-width: 10px) {
     .layout-inner-section{
