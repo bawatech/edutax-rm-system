@@ -85,36 +85,28 @@
 }
 
 
-.float-acts{
+.float-acts-item{
     position: fixed;
     background-color: white;
     box-shadow:  0 0 10px -5px grey;
-    height: 100px;
     width: 100px;
     z-index: 1000;
-    border-radius: 50%;
+    border-radius: 10px;
     right: 10px;
     bottom: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    row-gap: 8px;
+    padding: 12px;
+    cursor: pointer;
 }
 
-.float-acts-message{
-    position: fixed;
-    background-color: white;
-    box-shadow:  0 0 10px -5px var(--pri-color);
-    padding: 1em;
-    z-index: 1000;
-    border-radius: 0.5em;
-    right: 10px;
-    bottom: 190px;
+.float-acts-item .title{
     color: var(--theme-color-a);
-    display: flex;
-    /* cursor: pointer; */
-    justify-content: center;
-    align-items: center;
     font-weight: bold;
+    text-wrap: nowrap;
 }
 @media only screen and (min-width: 10px) {
     .layout-inner-section{
