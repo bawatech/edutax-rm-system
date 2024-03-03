@@ -1,10 +1,19 @@
+.bt-toast-div{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    width: 100%;
+    padding: 2em 0;
+    z-index: 1000;
+
+}
+
 .bt-toast{
     
     position: fixed;
     max-width: 400px;
     min-width: 300px;
-    margin:40px;
-    z-index: 1000;
     left: 50%;
     border-radius: 10px;
     padding:1.5em;
@@ -28,3 +37,19 @@
     from {top: 10%;}
     to {top: 13%;}
   } */
+
+@media only screen and (min-width: 10px) {
+    .bt-toast{
+        max-width: 100%;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .bt-toast{
+        max-width: 400px;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .bt-toast{
+        
+    }
+}

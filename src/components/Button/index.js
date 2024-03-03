@@ -1,5 +1,5 @@
 import './style.css'
-
+import ReactLoading from 'react-loading';
 
 export const Button = (props)=>{
 
@@ -13,7 +13,7 @@ export const Button = (props)=>{
             onClick={props?.onClick}
             disabled= {props?.disabled || props?.loading}
         >
-            {props?.loading ? props?.loadingText : props?.title}
+            {props?.loading ? <Loader type="bars" color="white"/> : props?.title}
         </button>
     </div>
 }
@@ -26,3 +26,7 @@ Button.defaultProps = {
     loadingText:'Loading',
     maxWidth: '20%',
 }
+
+const Loader = ({ type, color }) => (
+    <ReactLoading type={type} color={color} height={'50px'} width={'100%'} />
+);

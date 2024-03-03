@@ -45,7 +45,7 @@
     border: none;
     background: white;
     font-size: 1.1em;
-    padding: 0.5em;
+    padding: 1em;
     outline: none;
     resize: none;
     border-radius: 10px;
@@ -59,8 +59,20 @@
 }
 
 .chat-compose-actions-right{
-    min-width: 50px;
+    min-width: 80px;
     padding: auto 10px;
+}
+
+.chat-compose-actions-right>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.chat-compose-actions-right>div>svg{
+    transform: rotate(330deg);
+    font-size: 1.5em;
 }
 
 .chat-start-conv{

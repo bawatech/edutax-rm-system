@@ -69,6 +69,36 @@
     color: black;
 }
 
+.btn.outlined{
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--pri-color);
+    color: var(--pri-color);
+    transition: all 0.4s ease-in-out;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+    max-width: 100% !important;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn.outlined:hover{
+    border: 1px solid var(--pri-color);
+    background: var(--pri-color);
+    color: white;
+}
+
+
+
+
+.btn> div{
+    max-height: 30px;
+}
+
+.btn> div> svg{
+    max-height: 100%;
+
+}
+
 
 @media only screen and (min-width: 100px) {
     .btn.contained{

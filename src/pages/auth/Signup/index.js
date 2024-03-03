@@ -33,7 +33,7 @@ const Signup = () => {
             .then(res => {
                 toastSuccess(res.data?.message)
                 setLoadingButton(false)
-                navigate("/verify-email")
+                navigate("/verify-email", {state: {data: payload?.email}})
             })
             .catch(err => {
                 if (err?.data?.field_errors) {

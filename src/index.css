@@ -7,9 +7,9 @@
 :root{
   --theme-color-a: #2d87ca;
   --theme-color-a-alpha: #004bad2d;
-  --pri-color: #005acf;
+  --pri-color: #4592CE;
   --pri-color-active: #b1a296d0;
-  --pri-color-alpha: #b1a29630;
+  --pri-color-alpha: #4593ce1c;
   --sec-color: #FE5757;
   --sec-color-alpha: #fe57572f;
   --sec-color-active: #fe5757e5;
@@ -47,5 +47,13 @@ code {
 a{
   text-decoration: none;
   color: black;
+}
+
+hr{
+  border: none;
+  background: rgb(231, 231, 231);
+  width: 100%;
+  height: 1px;
+  opacity: 0.5;
 }
 

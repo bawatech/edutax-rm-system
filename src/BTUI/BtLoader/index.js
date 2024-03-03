@@ -1,5 +1,9 @@
 import { useState, useEffect, useMemo } from "react";
 import "./style.css";
+import ReactLoading from 'react-loading';
+
+
+
 export const BtLoader = () => {
   const [isVisible, setIsVisible] = useState(false);
   const handleBtToast = (data) => {
@@ -26,7 +30,11 @@ export const BtLoader = () => {
     <>
       <div className='bt-loader-wrapper'>
         <div className="bt-loader-body">
-          <h3 style={{textAlign:'center'}}>Loading ...</h3>
+          <Loader 
+            type="cylon"
+            color="#000"
+          />
+          {/* <h3 style={{textAlign:'center'}}>Loading ...</h3> */}
         </div>
       </div>
     </>
@@ -46,3 +54,8 @@ export const hideLoader = () => {
   });
   window.dispatchEvent(event);
 };
+
+
+const Loader = ({ type, color }) => (
+  <ReactLoading type={type} color={color} height={'20%'} width={'20%'} />
+);

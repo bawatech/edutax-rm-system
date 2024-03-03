@@ -197,7 +197,7 @@ export const FileUpload = (props) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  console.log(selectedFile)
+  // console.log(selectedFile)
   const handleUpload = () => {
     refImage.current.click();
   };
@@ -234,17 +234,20 @@ export const InputDate = (props) => {
       props?.handleChange(props?.name, null);
     }
   };
+  
   return (
     <div className="dateinput-div">
       {props?.label && <label className="input-label">{props?.label}</label>}
       <div className="date-input-div">
         <DatePicker
           showIcon
-          isClearable
-          
+          isClearable={true}
+          showPopperArrow={false}
+          showYearDropdown
+          showMonthDropdown
+          dropdownMode="select"
           dateFormat="dd-MMM-YYYY"
           selected={value}
-          // selected={new Date(2024, 1, 1)}
           onChange={handleChange}
           {...props}
         />

@@ -1,56 +1,71 @@
 import { useEffect, useState } from "react";
-import { ChatInput, ChatLayout, Container, Dropdown, FileUpload, Form, FormField, FormGroup, FormName, Input, InputDate } from "../../../components/Form";
+import { Container, Dropdown, Form, FormField, FormGroup, FormName, Input, InputDate, LabelYesNo } from "../../../components/Form";
 import { Button } from "../../../components/Button";
 import './style.css'
 import { useDispatch } from 'react-redux';
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import authService from "../../../service/auth";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
+import PdfFile from "../../../assets/documents/app.pdf"
+
+
+
 const ProfileDetails = () => {
 
-    const [payload, setPayload] = useState({sin:123456789});
+    const [payload, setPayload] = useState({});
     const [errors, setErrors] = useState({});
     const [maritalStatus, setMaritalStatus] = useState([]);
+    const [provinces, setProvinces] = useState([])
+    const [loadingButton, setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams();
+
     useEffect(() => {
         authService.getProfile()
-        .then(res=>{
-           setPayload(res?.data?.response?.profile || {})
-        })
+            .then(res=>{
+                setPayload(res?.data?.response?.profile || {})
+            })
+            .catch(err=>{
+                console.log(err)
+            })
         authService.getMaritalStatus()
             .then((res) => {
                 setMaritalStatus(res?.data?.response?.maritalStatusList)
-                console.log("marital Status", res?.data?.response)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        authService.getProvinces()
+            .then((res) => {
+                setProvinces(res?.data?.response?.provincesList)
+            })
+            .catch(err=>{
+                console.log(err)
             })
     },[])
 
     const handleSubmit = () => {
-
-        authService.updateProfile(payload)
+        setLoadingButton(true)
+        authService?.updateProfile(payload)
             .then(res => {
-                console.log('Response', res?.data?.taxfile?.id)
-                // alert(res?.data?.message)
                 toastSuccess(res?.data?.message)
                 if(searchParams.get('redirect-type') && searchParams.get('redirect-type')=='sign-up'){
                     navigate(`/user/taxfile-add`)    
                 }else{
                     navigate(-1)
                 }
-                
+                setLoadingButton(false)
             })
             .catch(err => {
-                console.log('ddddddddddddddddddddddddddddd',err)
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
                     toastError(err?.data?.message)
                 } else {
-                    // alert(err?.data?.message)
                     toastError(err?.data?.message)
 
                 }
-                // alert(err?.data?.message)
+                setLoadingButton(false)
                 toastError(err?.data?.message)
             })
     }
@@ -79,7 +94,7 @@ const ProfileDetails = () => {
                         <Input
                             label="First Name"
                             name="firstname"
-                            value={payload.firstname}
+                            value={payload?.firstname}
                             error={errors?.firstname}
                             handleChange={handleChange}
                         />
@@ -88,7 +103,7 @@ const ProfileDetails = () => {
                         <Input
                             label="Last Name"
                             name="lastname"
-                            value={payload.lastname}
+                            value={payload?.lastname}
                             error={errors?.lastname}
                             handleChange={handleChange}
                         />
@@ -97,10 +112,10 @@ const ProfileDetails = () => {
                         <InputDate
                             label="Date of Birth"
                             name="date_of_birth"
-                            value={payload.date_of_birth}
+                            value={payload?.date_of_birth}
                             error={errors?.date_of_birth}
                             handleChange={handleChange}
-                            openToDate={new Date(2000,0,1)}
+                            openToDate={payload?.date_of_birth ||  new Date("01-Jan-2000")}
                         />
 
                     </FormField>
@@ -119,7 +134,7 @@ const ProfileDetails = () => {
                         <Input
                             label="Street Number"
                             name="street_number"
-                            value={payload.street_number}
+                            value={payload?.street_number}
                             error={errors?.street_number}
                             handleChange={handleChange}
                         />
@@ -129,7 +144,7 @@ const ProfileDetails = () => {
                         <Input
                             label="Street Name"
                             name="street_name"
-                            value={payload.street_name}
+                            value={payload?.street_name}
                             error={errors?.street_name}
                             handleChange={handleChange}
                         />
@@ -138,7 +153,7 @@ const ProfileDetails = () => {
                         <Input
                             label="City"
                             name="city"
-                            value={payload.city}
+                            value={payload?.city}
                             error={errors?.city}
                             handleChange={handleChange}
                         />
@@ -148,7 +163,7 @@ const ProfileDetails = () => {
                             label="Province"
                             name="province"
                             selected={payload?.province}
-                            options={{ list: province, name: 'name', value: 'code' }}
+                            options={{ list: provinces, name: 'name', value: 'code' }}
                             handleChange={handleChange}
                             error={errors?.province}
                         />
@@ -157,7 +172,7 @@ const ProfileDetails = () => {
                         <Input
                             label="Postal Code"
                             name="postal_code"
-                            value={payload.postal_code}
+                            value={payload?.postal_code}
                             error={errors?.postal_code}
                             handleChange={handleChange}
                         />
@@ -166,29 +181,42 @@ const ProfileDetails = () => {
                         <Input
                             label="Mobile Number"
                             name="mobile_number"
-                            value={payload.mobile_number}
+                            value={payload?.mobile_number}
                             error={errors?.mobile_number}
                             handleChange={handleChange}
                         />
                     </FormField>
-
+{/* 
                     <FormField>
                         <Input
                             label="SIN"
                             name="sin"
                             password
-                            value={payload.sin}
+                            value={payload?.sin}
                             error={errors?.sin}
                             handleChange={handleChange}
                         />
-                    </FormField>
+                    </FormField> */}
 
                 </FormGroup>
+                
+                <LabelYesNo 
+                    name="existing_client"
+                    label="Are you existing client of edu-tax?"
+                    value={payload?.existing_client}
+                    handleChange={handleChange}
+                />
+
+                {payload?.existing_client !== "YES" && <div className="">
+                    <p>Please authorize us on CRA. To learn how, <a href={PdfFile} target="_blank" rel="noreferrer" style={{color: 'var(--theme-color-a)'}}>click here</a>.</p>
+                </div>}
+
                 <br />
                 <div style={{ textAlign: 'center' }}>
                     <Button
                         name="createProfile"
                         title="Save"
+                        loading={loadingButton}
                         onClick={handleSubmit}
                     />
                 </div>
@@ -200,15 +228,4 @@ const ProfileDetails = () => {
 
 export default ProfileDetails;
 
-
-const province = [
-    {
-        code: 'ON',
-        name: 'Ontario',
-    },
-    {
-        code: 'QC',
-        name: 'Quebec',
-    }
-]
 

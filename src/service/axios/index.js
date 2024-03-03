@@ -14,9 +14,9 @@ axiosClient.interceptors.request.use(config => {
 });
 
 
-axiosClient.defaults.baseURL = process.env.REACT_APP_API;
-axiosClient.defaults.baseURL = 'http://184.168.23.210:3007';
-// axiosClient.defaults.baseURL = 'http://localhost:3011';
+// axiosClient.defaults.baseURL = process.env.REACT_APP_API;
+// axiosClient.defaults.baseURL = 'https://manager.edutax.ca';
+//  axiosClient.defaults.baseURL = 'http://localhost:3011';
 axiosClient.defaults.headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': ' *',
@@ -24,7 +24,7 @@ axiosClient.defaults.headers = {
 };
 
 //All request will wait 2 seconds before timeout
-axiosClient.defaults.timeout = 5000;
+axiosClient.defaults.timeout = 15000;
 
 axiosClient.defaults.withCredentials = false;
 axiosClient.interceptors.response.use((response) => {
@@ -41,7 +41,7 @@ axiosClient.interceptors.response.use((response) => {
 
         if (error.response.status == 401) {
             localStorage.removeItem('token')
-            window.location.href = '/login'
+            // window.location.href = '/login'
         }
         return Promise.reject({
             data: error?.response?.data,
@@ -96,6 +96,15 @@ export async function postFormdata(URL, payload) {
     //     formData.append(key, payload[key]);
     // });
     return await axiosClient.post(`/${URL}`, payload, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${access_token}`
+        }
+    }).then(response => response);
+}
+
+export async function putFormdata(URL, payload) {
+    return await axiosClient.put(`/${URL}`, payload, {
         headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${access_token}`

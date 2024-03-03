@@ -54,9 +54,9 @@
 .input-error-text{
     color: red;
 }
-.label-yn-btn .ynbtn.active:hover{
+/* .label-yn-btn .ynbtn.active:hover{
     background: var(--pri-color-active);
-}
+} */
 
 .form-name {
     font-weight: bold;

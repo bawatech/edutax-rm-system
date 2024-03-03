@@ -23,10 +23,11 @@ export const signUp = (param) => async (dispatch) => {
 export const login = (param) => async (dispatch) => {
     return authService.login(param)
         .then(async (res) => {
-            localStorage.setItem("token", res?.data?.response?.token)
-            dispatch(setProfile(res?.data?.response?.profile || {}))
-            let userData = res?.data?.response?.user || {}
-            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
+            console.log('resp at login', res)
+            // localStorage.setItem("token", res?.data?.response?.token)
+            // dispatch(setProfile(res?.data?.response?.profile || {}))
+            // let userData = res?.data?.response?.user || {}
+            // dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;
         })
         .catch((error) => {
@@ -65,23 +66,67 @@ export const addTaxfile = (param) => async (dispatch) => {
         });
 };
 
-export const addClientMessage = (param) => async (dispatch) => {
-    return authService.addClientMessage(param)
+export const updateTaxfile = (param) => async (dispatch) => {
+    return authService.updateTaxfile(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            // dispatch(setInputs(res?.data.response));
+            // localStorage.setItem("token", res?.data?.response?.token)
+            return res;
+        })
+        .catch((error) => {
+
+            // dispatch(authSuccess(null));
+            // localStorage.removeItem("token")
+            throw error
+        });
+};
+
+export const addClientMsg = (param) => async (dispatch) => {
+    return authService.addClientMsg(param)
         .then(async (res) => {
             console.log('resp at slice', res)
             
             return res;
         })
         .catch((error) => {
-            
             throw error
         });
 };
 
-export const verifyEmail = (param) => async (dispatch) => {
+// export const getClientMsg = (param) => async (dispatch) => {
+//     return authService.getClientMsg(param)
+//         .then(async (res) => {
+//             console.log('resp at slice', res)
+            
+//             return res;
+//         })
+//         .catch((error) => {
+            
+//             throw error
+//         });
+// };
+
+export const verifyEmail = (param,user) => async (dispatch) => {
     return authService.verifyEmail(param)
         .then(async (res) => {
+            localStorage.setItem("token", res?.data?.response?.token)
+            let userData = res?.data?.response?.user || {}
+            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const verifyLogin = (param) => async (dispatch) => {
+    return authService.verifyLogin(param)
+        .then(async (res) => {
             console.log('resp at slice', res)
+            localStorage.setItem("token", res?.data?.response?.token)
+            let userData = res?.data?.response?.user || {}
+            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;
         })
         .catch((error) => {
@@ -124,6 +169,39 @@ export const updatePassword = (param) => async (dispatch) => {
 
 export const sendSpouseInvitation = (param) => async (dispatch) => {
     return authService.sendSpouseInvitation(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const resendSignupOtp = (param) => async (dispatch) => {
+    return authService.resendSignupOtp(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const resendForgotPassOtp = (param) => async (dispatch) => {
+    return authService.resendForgotPassOtp(param)
+        .then(async (res) => {
+            console.log('resp at slice', res)
+            return res;
+        })
+        .catch((error) => {
+            throw error
+        });
+};
+
+export const resendLoginOtp = (param) => async (dispatch) => {
+    return authService.resendLoginOtp(param)
         .then(async (res) => {
             console.log('resp at slice', res)
             return res;

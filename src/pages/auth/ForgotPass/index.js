@@ -6,10 +6,13 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
 import { forgotPassword, verifyEmail } from '../../../store/userSlice';
+import { hideLoader, showLoader } from '../../../BTUI/BtLoader';
+import { toastError, toastSuccess } from '../../../BTUI/BtToast';
 
 const ForgotPassword = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
+    const [loadingButton, setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -26,18 +29,21 @@ const ForgotPassword = () => {
     }
 
     const handleSubmit = () => {
+        setLoadingButton(true)
         dispatch(forgotPassword(payload))
             .then(res => {
-                alert(res?.data?.message)
-                navigate("/verify-forgot-pass-otp")
+                setLoadingButton(false)
+                toastSuccess(res?.data?.message)
+                navigate("/verify-forgot-pass-otp", {state: {email: payload?.email}})
             })
             .catch(err => {
+                setLoadingButton(false)
                 if (err?.data?.field_errors) {
                     setErrors(err?.data?.field_errors)
                 } else {
                     // alert(err?.data?.message)
                 }
-                alert(err?.data?.message)
+                toastError(err?.data?.message)
             })
     }
 
@@ -52,7 +58,7 @@ const ForgotPassword = () => {
                         <FormField>
                             <Input
                                 name="email"
-                                value={payload.email}
+                                value={payload?.email}
                                 hint="Email"
                                 handleChange={handleChange}
                                 error={errors?.email}
@@ -65,6 +71,7 @@ const ForgotPassword = () => {
                         <Button
                             name="getOtp"
                             title="Get Otp"
+                            loading={loadingButton}
                             onClick={handleSubmit}
                         />
                     </div>

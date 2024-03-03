@@ -7,6 +7,9 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../../store/userSlice';
 import { Layout } from '../../layouts/Layout';
 import { toastError, toastSuccess } from '../../../BTUI/BtToast';
+
+
+
 const Login = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
@@ -31,6 +34,7 @@ const Login = () => {
             .then(res => {
                 toastSuccess(res?.data?.message)
                 navigate("/user")
+                navigate("/verify-login", {state: { data: payload?.email }})
                 setLoadingButton(false)
                 
             })
@@ -76,7 +80,7 @@ const Login = () => {
                 </FormGroup>
 
                 <div className='forgot-div'>
-                    <NavLink className="gotoForgot" to="/reset">forgot password?</NavLink>
+                    <NavLink className="gotoForgot" to="/reset">Forgot password?</NavLink>
                 </div>
                 <br />
 

@@ -32,9 +32,12 @@
 
 .layout-header-logo{
     max-height: 60px;
-    max-width: 60px;
-    border-radius: 50%;
+    max-width: 150px;
+    /* border-radius: 50%; */
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .layout-header-logo img{
@@ -46,27 +49,87 @@
     width: 100%;
     min-height: 87vh;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
+}
+
+.layout-social-section{
+    position: fixed;
+    top: 85%;
+    right: 1em;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.layout-social-section>div{
+    min-width: 2.5em;
+    min-height: 2.5em;
+    padding: 0.6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #cae9ff5e;
+    /* box-shadow: 0 0 2em 0.01em var(--theme-color-a-alpha); */
+}
+
+.layout-social-section svg{
+    font-size: 2em;
 }
 
 .layout-inner-section{
     width: 80%;
 }
 
+
+.float-acts{
+    position: fixed;
+    background-color: white;
+    box-shadow:  0 0 10px -5px grey;
+    height: 100px;
+    width: 100px;
+    z-index: 1000;
+    border-radius: 50%;
+    right: 10px;
+    bottom: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.float-acts-message{
+    position: fixed;
+    background-color: white;
+    box-shadow:  0 0 10px -5px var(--pri-color);
+    padding: 1em;
+    z-index: 1000;
+    border-radius: 0.5em;
+    right: 10px;
+    bottom: 190px;
+    color: var(--theme-color-a);
+    display: flex;
+    /* cursor: pointer; */
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
 @media only screen and (min-width: 10px) {
     .layout-inner-section{
         width: 100% !important;
+        padding: 1em;
     }
 }
 @media only screen and (min-width: 768px) {
     .layout-inner-section{
-        width: 90% !important;
+        width: 95% !important;
     }
 }
 @media only screen and (min-width: 1200px) {
     .layout-inner-section{
-        width: 80% !important;
+        width: 90% !important;
     }
 }
 
@@ -78,7 +141,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    
+    position: relative;
 }
 
 .layout-right-header ul{
@@ -86,6 +149,27 @@
     display: flex;
     gap: 2em;
 }
+
+.layout-right-header ul.small-menu{
+    flex-direction: column;
+    position: absolute;
+    background: white;
+    box-shadow: 0 0 1em 0.1em rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    right: 1em;
+    top: 2.5em;
+    width: max-content;
+    max-width: 15em;
+    border-radius: 0.2em;
+    gap: 1em;
+    display: none;
+}
+
+.layout-right-header ul.small-menu>li>a{
+    color: #2d86cae5;
+    font-size: 1em;
+}
+
 
 .layout-right-header ul li a{
     font-size: 1.5em;
@@ -153,7 +237,6 @@
 .layout-header-content-bf-login ul.small-menu{
     display: flex;
     width: max-content;
-    max-width: 15em;
     flex-direction: column;
     position: absolute;
     top: 3em;
@@ -171,24 +254,43 @@
 }
 
 @media only screen and (min-width: 100px) {
-    .layout-header-content-bf-login ul.lg-menu{
+    .layout-header-content-bf-login ul.lg-menu,
+    .layout-right-header ul.lg-menu{
         display: none;
+    }
+
+    .layout-right-header ul.small-menu,
+    .layout-header-content-bf-login ul.small-menu{
+        width: 100%;
+        max-width: 100%;
+        right: 0;
+        left: 0;
+        top: 0;
+        text-align: center;
+    }
+
+    .layout-header-content,
+    .layout-header-content-bf-login{
+        position: static;
     }
 
     .hamburger-div{
         display: flex;
+        width: 100%;
     }
 }
 
 @media only screen and (min-width: 768px) {
-    .layout-header-content-bf-login ul.lg-menu{
+    .layout-header-content-bf-login ul.lg-menu,
+    .layout-right-header ul.lg-menu{
         display: flex;
     }
     .layout-header-content-bf-login{
         min-width: 22em;
     }
 
-    .hamburger-div{
+    .hamburger-div,
+    .layout-right-header ul.small-menu{
         display: none;
     }
 }

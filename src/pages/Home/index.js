@@ -1,8 +1,12 @@
-import { Layout, UserLayout } from '../layouts/Layout';
+import { Layout } from '../layouts/Layout';
 import './style.css';
-import CarouselImg from '../../assets/images/mobilebg.png'
+import CarouselImg from '../../assets/images/carousel1.png'
 import { Button } from '../../components/Button';
-import RefundImg from '../../assets/images/refund.png'
+import WwoImg1 from '../../assets/images/wwo1.jpg'
+import WwoImg2 from '../../assets/images/business.jpg'
+import WwoImg3 from '../../assets/images/accounting.jpg'
+import WwoImg4 from '../../assets/images/payroll.jpg'
+import WwoImg5 from '../../assets/images/incorp.jpg'
 import TaxFillingImg from '../../assets/images/tax-filing.jpg'
 import { FcCheckmarkIcon} from '../../components/Icon';
 import { useNavigate } from 'react-router-dom';
@@ -11,18 +15,12 @@ const Home = () =>{
 
     return<Layout width="100%">
         <Carousel2 />
-        <Services 
-            title="Unlock Your Maximum Tax Refund"
-            desc="Guaranteed Satisfaction or Your Money Back!"
-            point1="Thousands of Automatic Calculations, Ensuring Your Maximum Tax Refund Every Time!"
-            point2="Maximize Your Savings: Explore Our Innovative Tax-Saving Tools Today!"
-            img={RefundImg}
-        />
+        <WhatWeOffer />
         <ImgBgDivComponent />
         <Services 
-            title="Experience the simplest tax filing process ever."
+            title="Experience one of the simplest tax filing process ever."
             point1="Cutting-edge AI technology drives our platform."
-            point2="Import CRA slips or scan effortlessly."
+            point2="Easy Secured"
             point3="Easy, step-by-step guidance."
             img={TaxFillingImg}
         />
@@ -30,32 +28,6 @@ const Home = () =>{
 }
 
 export default Home;
-
-const Carousel = () =>{
-
-    return<div className="carousel-section">
-        <div className="carousel-inner-section-abs">
-            <img src={CarouselImg} />
-        </div> 
-        <div className="carousel-bg-div-abs"></div>
-
-        <div className="carousel-txt-content-div">
-            <div className="">
-                <h1>Unlock Tax Efficiency</h1>
-
-                <h2>Explore Our Expert Document Checking Services!</h2>
-
-                <p>We leverage the latest technologies and innovations to deliver cutting-edge solutions that streamline document processes and improve efficiency.</p>
-
-                <div className="carousel-txt-content-btn-div">
-                    <Button varient="small light" title="Login" maxWidth="100%"/>
-                    <Button varient="small light-outlined" title="Upload Document" maxWidth="100%"/>
-                </div>
-                
-            </div>
-        </div> 
-    </div>
-}
 
 const Carousel2 = () =>{
 
@@ -69,14 +41,14 @@ const Carousel2 = () =>{
         <div className="carousel2-inner-section">
             <div className="carousel2-txt-content-div">
                 <div className="">
-                    <h1>Unlock Tax Efficiency</h1>
+                <h1>Unlock Secured & Easy Personal Tax Filing Process</h1>
 
-                    <h2>Explore Our Expert Document Checking Services!</h2>
+                <h2>Now, file your personal income tax return from the comfort of your home, following the simple steps. Its Fast , Easy & Secured </h2>
 
-                    <p>We leverage the latest technologies and innovations to deliver cutting-edge solutions that streamline document processes and improve efficiency.</p>
+                    {/* <p>We leverage the latest technologies and innovations to deliver cutting-edge solutions that streamline document processes and improve efficiency.</p> */}
 
                     <div className="carousel2-txt-content-btn-div">
-                        <Button varient="small" background="var(--color-a)" title="Login" maxWidth="100%" onClick={()=>navigate('/login')} />
+                        <Button varient="small" background="var(--color-a)" title="Start Now" maxWidth="100%" onClick={()=>navigate('/login')} />
                         {/* <Button varient="small light-outlined" title="Upload Document" maxWidth="100%"/> */}
                     </div>
                     
@@ -136,7 +108,7 @@ const ImgBgDivComponent = () => {
                 <div className="imgBgDiv-cards">
                     <ImgBgDivCard cardColor="red" count="1" desc="Get started by creating your account."/>
                     <ImgBgDivCard cardColor="blue" count="2" desc="Easily upload your tax documents for processing."/>
-                    <ImgBgDivCard cardColor="green" count="3" desc="Your taxes are done with just a few clicks."/>
+                    <ImgBgDivCard cardColor="green" count="3" desc="We will prepare your return and submit to CRA on your behalf"/>
                 </div>
             </div>
         </div>
@@ -149,5 +121,73 @@ const ImgBgDivCard = (props) => {
         <span>{props?.count}</span>
 
         <h3>{props?.desc}</h3>
+    </div>
+}
+
+
+
+const WhatWeOffer = (props) => {
+
+    const handleClickToCall=()=>{
+        window.open(`tel:${9057906200}`, "_self");
+    }
+    return<div className="whatWeOffer-section">
+        <div className="whatWeOffer-inner-div">
+            <h1>What We Offer</h1>
+
+            <p>Whether you need help with personal tax preparation, corporate tax compliance, bookkeeping, or estate planning, EduTax has the expertise and knowledge to meet your needs. We beleive in simplicity. Our services and our pricing are both transparent. We at EduTax work to provide you with peace of mind, by providing you the services as per your needs.</p>
+        
+            <div className="whatWeOffer-cards">
+                <WhatWeOfferCards 
+                    img={WwoImg1}
+                    title="Personal Income Tax"
+                    desc="Starting from $59.99"
+                    onClick={handleClickToCall}
+                />
+                <WhatWeOfferCards 
+                    img={WwoImg2}
+                    title="Business & Corporate Tax"
+                    desc="Starting from $499"
+                    onClick={handleClickToCall}
+                />
+                <WhatWeOfferCards 
+                    img={WwoImg3}
+                    title="Accounting and Bookkeeping"
+                    desc="Starting from $250/month"
+                    onClick={handleClickToCall}
+                />
+                <WhatWeOfferCards 
+                    img={WwoImg4}
+                    title="Pay Roll"
+                    desc=""
+                    onClick={handleClickToCall}
+                />
+                <WhatWeOfferCards 
+                    img={WwoImg5}
+                    title="Incorporation & Structuring"
+                    desc="Starting from $320"
+                    onClick={handleClickToCall}
+                />
+            </div>
+            
+        </div>
+    </div>
+}
+
+const WhatWeOfferCards = (props) =>{
+
+    return<div className="whatWeOfferCards-section">
+        <div className="whatWeOfferCards-img-div">
+            <div className="whatWeOfferCard-img-abs-div">
+                <img src={props?.img}/>
+            </div>
+        </div>
+        <div className="whatWeOfferCard-txt-div">
+            <h2>{props?.title}</h2>
+
+            <p>{props?.desc}</p>
+
+            <Button varient="small outlined" title="Call us to Learn more" onClick={props?.onClick}/>
+        </div>
     </div>
 }

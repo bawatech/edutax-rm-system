@@ -1,8 +1,8 @@
 import './style.css';
-import { Container, FormField, FormGroup, Input } from "../../../components/Form";
+import { Center, Container, FormField, FormGroup, Input } from "../../../components/Form";
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from '../../layouts/Layout';
 import { useDispatch } from 'react-redux';
 import { setNewPassword } from '../../../store/userSlice';
@@ -10,8 +10,10 @@ import { setNewPassword } from '../../../store/userSlice';
 const NewPassword = () => {
     const [payload, setPayload] = useState({})
     const [errors, setErrors] = useState({});
+    const [loadingButton,setLoadingButton] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const location = useLocation()
 
 
     const handleChange = (name, value) => {
@@ -26,71 +28,80 @@ const NewPassword = () => {
     }
 
     const handleSubmit = () => {
-        dispatch(setNewPassword(payload))
-            .then(res => {
-                alert(res?.data?.message)
-                navigate("/login")
+        setLoadingButton(true)
+        if(payload?.newPassword === payload?.confirmPassword){
+            dispatch(setNewPassword({
+                newPassword: payload?.newPassword,
+                email:location?.state?.email,
+                otp:location?.state?.otp,
+            }))
+                .then(res => {
+                    alert(res?.data?.message)
+                    navigate("/login")
+                    setLoadingButton(false)
+                })
+                .catch(err => {
+                    if (err?.data?.field_errors) {
+                        console.log(err)
+                        setErrors(err?.data?.field_errors)
+                    } else {
+                        // alert(err?.data?.message)
+                    }
+                    setLoadingButton(false)
+                    alert(err?.data?.message)
+                })
+        }else{
+            setLoadingButton(false)
+            setErrors({
+                ...errors,
+                ['confirmPassword']: 'New password should be equal to confirm password'
             })
-            .catch(err => {
-                if (err?.data?.field_errors) {
-                    setErrors(err?.data?.field_errors)
-                } else {
-                    // alert(err?.data?.message)
-                }
-                alert(err?.data?.message)
-            })
+        }
+        
     }
+
+    console.log("data from verify ", location?.state?.email, location?.state?.otp, payload?.newPassword)
 
     return <Layout>
         <Container maxWidth="30em">
-        {/* <div className="signup-section">
-            <div className="signup-inner-container"> */}
                 <h2 style={{ textAlign: 'center', marginBottom: '2em' }}>Set New Password</h2>
 
                 <FormGroup>
                     <FormField>
                         <Input
-                            name="email"
-                            value={payload.email}
-                            hint="Email"
-                            handleChange={handleChange}
-                            error={errors?.email}
-                        />
-                    </FormField>
-                </FormGroup>
-                <FormGroup>
-                    <FormField>
-                        <Input
-                            name="otp"
-                            value={payload.otp}
-                            hint="OTP"
-                            handleChange={handleChange}
-                            error={errors?.otp}
-                        />
-                    </FormField>
-                </FormGroup>
-                <FormGroup>
-                    <FormField>
-                        <Input
                             name="newPassword"
-                            value={payload.newPassword}
+                            value={payload?.newPassword}
                             hint="New Password"
+                            password
                             handleChange={handleChange}
                             error={errors?.newPassword}
                         />
                     </FormField>
                 </FormGroup>
+                <FormGroup>
+                    <FormField>
+                        <Input
+                            name="confirmPassword"
+                            value={payload?.confirmPassword}
+                            hint="Confirm Password"
+                            password
+                            handleChange={handleChange}
+                            error={errors?.confirmPassword}
+                        />
+                    </FormField>
+                </FormGroup>
 
                 <br />
-                <Button
-                    name="setNewPassword"
-                    title="Set New Password"
-                    onClick={handleSubmit}
-                />
-                <br />
+                <Center>
+                    <Button
+                        name=""
+                        title="Set New Password"
+                        loading={loadingButton}
+                        onClick={handleSubmit}
+                    />
+                </Center>
                 
-            {/* </div>
-        </div> */}
+                <br />
         </Container>
     </Layout>
 }

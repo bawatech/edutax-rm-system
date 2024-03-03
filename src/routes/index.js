@@ -12,7 +12,6 @@ import TaxFileDetails from '../pages/user/TaxFileDetails';
 import VerifyEmail from '../pages/auth/VerifyEmail';
 import NewPassword from '../pages/auth/NewPassword';
 import QnaVerify from '../pages/QnaVerify';
-import ProfileCreate from '../pages/user/ProfileUpdate';
 import ChangePassword from '../pages/auth/ChangePassword';
 import Dashboard from '../pages/user/Dashboard';
 import ProfileUpdate from '../pages/user/ProfileUpdate';
@@ -21,6 +20,11 @@ import { UserLayout } from '../pages/layouts/Layout';
 import Home from '../pages/Home';
 import InviteSpouse from '../pages/user/InviteSpouse';
 import ContactUs from '../pages/Contact';
+import TaxFileUpdate from '../pages/user/TaxFileUpdate';
+import AcceptInvite from '../pages/auth/AcceptInvite';
+import VerifyLogin from '../pages/auth/VerifyLoginEmail';
+import Messages from '../pages/user/Messages';
+import VerifyForgotPass from '../pages/auth/VerifyForgotPass';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
@@ -32,18 +36,24 @@ const AllRoutes = () => {
         {path:'qna-verify',element:<QnaVerify/>},
         {path:'sign-up',element:<Signup/>},
         {path:'verify-email',element:<VerifyEmail/>},
+        {path:'verify-login',element:<VerifyLogin/>},
         {path:'reset',element:<ForgotPass/>},
+        {path:'verify-forgot-pass-otp',element:<VerifyForgotPass/>},
+        {path:'set-new-password',element:<NewPassword/>},
         
-        {path:'verify-forgot-pass-otp',element:<NewPassword/>},
+        {path:'accept-invitation/:token',element:<AcceptInvite/>},
         {path: 'user',element:<UserLayout/>,
         children:[
             {index:true, element : <Dashboard/>},
             {path:'profile', element : <ProfileDetails/>},
             {path:'profile-update', element : <ProfileUpdate/>},
             {path:'taxfile-add', element : <TaxFileAdd/>},
-            {path:'taxfile-details/:id', element : <TaxFileDetails/>},
+            {path:'taxfile/:id', element : <TaxFileDetails/>},
+            {path:'taxfile/update/:id', element : <TaxFileUpdate/>},
+            {path:'messages', element: <Messages />},
             {path:'settings',element:<ChangePassword/>},
             {path:'invite-spouse',element:<InviteSpouse/>},
+            
         ]
     },
 

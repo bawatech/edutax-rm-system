@@ -20,7 +20,6 @@ import { useDispatch } from "react-redux";
 import { addTaxfile } from "../../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toastError, toastSuccess } from "../../../BTUI/BtToast";
-import { hideLoader, showLoader } from "../../../BTUI/BtLoader";
 import authService from "../../../service/auth";
 
 
@@ -35,6 +34,7 @@ const TaxFileAdd = () => {
   const navigate = useNavigate();
   const [provinces, setProvinces] = useState([])
   const [docType, setDocType] = useState([])
+  const [loadingButton, setLoadingButton] = useState(false)
 
   
   useEffect(()=>{
@@ -62,13 +62,13 @@ const TaxFileAdd = () => {
   },[])
 
   const handleSubmit = () => {
-    showLoader()
+    setLoadingButton(true)
     dispatch(addTaxfile(payload))
       .then((res) => {
        // console.log("Response", res?.data?.taxfile?.id);
         toastSuccess(res?.data?.message);
-        hideLoader()
-        navigate(`/user/taxfile-details/${res?.data?.response?.taxfile?.id}`);
+        setLoadingButton(false)
+        navigate(`/user/taxfile/${res?.data?.response?.taxfile?.id}`);
       })
       .catch((err) => {
         if (err?.data?.field_errors) {
@@ -76,7 +76,7 @@ const TaxFileAdd = () => {
         } else {
           toastError(err?.data?.message)
         }
-        hideLoader()
+        setLoadingButton(false);
       });
   };
 
@@ -126,7 +126,7 @@ const TaxFileAdd = () => {
 
   return <Container>
         <Form>
-          <FormName name="Add Tax File Details" />
+          <FormName name="Add Tax Return" />
           <FormGroup>
             <FormField>
               <Dropdown
@@ -141,7 +141,7 @@ const TaxFileAdd = () => {
           <LabelYesNo
             label="Have you moved to canada in 2023?"
             name="moved_to_canada"
-            value={payload?.moved_to_canada}
+            value={payload?.moved_to_canada === undefined || payload?.moved_to_canada === "" ? "" : payload?.moved_to_canada}
             handleChange={handleChange}
           />
 
@@ -160,7 +160,7 @@ const TaxFileAdd = () => {
           <LabelYesNo
             label="Do you want to setup or change your direct deposit with CRA?"
             name="direct_deposit_cra"
-            value={payload?.direct_deposit_cra}
+            value={payload?.direct_deposit_cra === undefined || payload?.direct_deposit_cra === "" ? "" : payload?.direct_deposit_cra}
             handleChange={handleChange}
           />
 
@@ -205,11 +205,11 @@ const TaxFileAdd = () => {
                     }
                   />
 
-                  {index>0 && <Button
+                  <Button maxWidth={'100%'}
                     varient="icon"
                     title={<RiDeleteBin6Line />}
                     onClick={() => handleDeleteArray(index)}
-                  />}
+                  />
                   
                 </div>
               </FormField>
@@ -232,7 +232,8 @@ const TaxFileAdd = () => {
         <div style={{ textAlign: "center" }}>
           <Button
             name="addTaxFile"
-            title="Add Tax File"
+            title="Submit"
+            loading={loadingButton}
             onClick={handleSubmit}
           />
         </div>

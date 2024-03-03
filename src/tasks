@@ -1,10 +1,31 @@
-change password both
-chat screen design 
+# change password both
+# chat screen design 
 
-edit taxfile on client side 
-textarea + button add, popup (templets title show)
+# edit taxfile on client side 
+# textarea + button add, popup (templets title show)
 
 
-executive list for admin
-templets add show at 
-add, edit and list toggle status of executive (new Page in admin)
+# executive list for admin
+# templets add show at 
+# add, edit and list toggle status of executive (new Page in admin)
+
+
+# edit screen at night
+
+# *template working 
+# *category template 
+
+# newmsg
+# setCategor
+
+
+29/2/24
+# executive dashboard file status code shown 
+# review page //// not imp
+
+    Done
+    # file status resubmission then show edit button on taxfile details - done
+    # resend otp - done
+    # forgot password > email otp > new pass an confirm pass - done
+    # loading on all btns - done
+

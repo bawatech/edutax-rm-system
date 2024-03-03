@@ -1,94 +1,5 @@
 
 
-.carousel-section{
-    margin-top: -5em;
-    width: 100%;
-    height: 100vh;
-    position: relative;
-}
-
-.carousel-inner-section-abs{
-    position: absolute;
-    inset: 0;
-    z-index: -99;
-}
-
-.carousel-inner-section-abs img{
-    width: 100%;
-    height: 100%;
-    z-index: -99;
-}
-
-.carousel-bg-div-abs{
-    position: absolute;
-    inset: 0;
-    z-index: -99;
-    background: linear-gradient(to bottom, #0e4dcc, #0e4dccd2);
-}
-
-.carousel-txt-content-div{
-    width: 100%;
-    height: 100%;
-    padding: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  
-    align-items: center;  
-}
-
-.carousel-txt-content-div>div h1{
-    font-size: 5em;
-    text-align: center;
-    color: white;
-}
-
-.carousel-txt-content-div>div h2{
-    font-size: 3em;
-    text-align: center;
-    color: transparent; /* Hide the text */
-    -webkit-text-stroke: 2px white; /* Apply white border to text */
-    background-color: rgba(255, 255, 255, 0); /* Set transparent background */
-    display: inline-block; /* Ensure the background covers the text */
-    padding: 5px; /* Add padding for better visibility */
-}
-
-.carousel-txt-content-div>div p{
-    font-size: 1.5em;
-    text-align: center;
-    color: white;
-}
-
-.carousel-txt-content-div div.carousel-txt-content-btn-div{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    gap: 5em;
-}
-
-@media only screen and (min-width: 10px){
-    .carousel-txt-content-div>div{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;  
-        align-items: center;  
-        gap: 2em;
-    }
-}
-
-@media only screen and (min-width: 768px){
-    .carousel-txt-content-div>div{
-        width: 80%;
-    }
-}
-
-@media only screen and (min-width: 1200px){
-    .carousel-txt-content-div>div{
-        width: 60%;
-    }
-}
-
-
 /* =======================carousel2================================================ */
 
 
@@ -100,8 +11,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 2em;
-    
 }
 
 .carousel2-bg-div-abs{
@@ -200,18 +109,23 @@
         font-size: 2em;
     }
     .carousel2-txt-content-div>div>h2{
-        font-size: 1.5em;
+        font-size: 1em;
+        font-weight: normal;
     }
     .carousel2-inner-section{
         width: 100%;
-        flex-direction: column-reverse;
+        flex-direction: column;
         padding: 2em 1em;
     }
     .carousel2-txt-content-div>div>p{
         font-size: 1em;
     }
     .carousel2-img-div{
-        padding-top: 150%;
+        padding-top: 100%;
+    }
+
+    .carousel2-section{
+        padding: 0em;
     }
 }
 
@@ -220,7 +134,7 @@
         font-size: 2.5em;
     }
     .carousel2-txt-content-div>div>h2{
-        font-size: 1.8em;
+        font-size: 1.5em;
     }
     .carousel2-inner-section{
         width: 95%;
@@ -233,6 +147,9 @@
     .carousel2-img-div{
         padding-top: 48%;
     }
+    .carousel2-section{
+        padding: 2em;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -240,7 +157,7 @@
         font-size: 3em;
     }
     .carousel2-txt-content-div>div>h2{
-        font-size: 2.5em;
+        font-size: 2.2em;
     }
     .carousel2-inner-section{
         width: 90%;
@@ -250,10 +167,10 @@
 
 @media only screen and (min-width: 1400px) {
     .carousel2-txt-content-div>div>h1{
-        font-size: 4em;
+        font-size: 3em;
     }
     .carousel2-txt-content-div>div>h2{
-        font-size: 3em;
+        font-size: 2em;
     }
 }
 
@@ -487,8 +404,8 @@
 }
 
 .imgBgDivCard-section span{
-    font-size: 1.1em;
-    color: rgb(170, 170, 170);
+    font-size: 1em;
+    color: rgb(116, 116, 116);
 }
 
 .imgBgDivCard-section.red{
@@ -506,14 +423,15 @@
 @media only screen and (min-width: 10px) { 
     .imgBgDiv-inner-section{
         width: 100%;
-        min-height: 51em;
+        min-height: 42em;
+        max-height: 100vh;
     }
     .imgBgDiv-content-div>div>h1{
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
 
     .imgBgDiv-content-div>div>p{
-        font-size: 1em;
+        font-size: 0.8em;
     }
     .imgBgDiv-cards{
         flex-direction: column;
@@ -523,10 +441,14 @@
     }
     .imgBgDiv-content-div{
         gap: 0;
-        padding: 1em;
+        padding: 0.5em;
     }
     .imgBgDiv-section{
         padding: 5em 1em;
+    }
+
+    .imgBgDivCard-section h3{
+        font-size: 1em;
     }
 
 }
@@ -537,10 +459,10 @@
         min-height: 35em;
     }
     .imgBgDiv-content-div>div>h1{
-        font-size: 2em;
+        font-size: 1.8em;
     }
     .imgBgDiv-content-div>div>p{
-        font-size: 1.3em;
+        font-size: 1.1em;
     }
     .imgBgDiv-cards{
         flex-direction: row;
@@ -554,6 +476,9 @@
     }
     .imgBgDiv-section{
         padding: 5em 2em;
+    }
+    .imgBgDivCard-section h3{
+        font-size: 1em;
     }
 }
 
@@ -574,3 +499,165 @@
 
 
 /* ====================================================================== */
+
+.whatWeOffer-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5em 2em;
+}
+
+.whatWeOffer-inner-div{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.whatWeOffer-inner-div h1{
+    font-size: 3em;
+}
+
+.whatWeOffer-cards{
+    display: flex;
+    gap: 10px;
+}
+
+
+
+.whatWeOfferCards-section{
+    width: 100%;
+    max-width: 18em;
+    height: 100%;
+    cursor: pointer;
+}
+
+.whatWeOfferCards-img-div{
+    padding-top: 150%;
+    position: relative;
+}
+
+.whatWeOfferCard-img-abs-div{
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.whatWeOfferCard-img-abs-div>img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.whatWeOfferCard-txt-div{
+    padding: 1em 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    min-height: 12em;
+    justify-content: space-between;
+}
+
+.whatWeOfferCard-txt-div>h2{
+    font-size: 1.3em;
+}
+
+.whatWeOfferCard-txt-div>p{
+    font-size: .9em;
+}
+
+@media only screen and (min-width: 10px){
+    .whatWeOffer-inner-div{
+        width: 100%;
+    }
+    .whatWeOffer-inner-div>h1{
+        font-size: 1.8em;
+    }
+    .whatWeOffer-cards{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .whatWeOffer-cards>div{
+        max-width: 100%;
+    }
+
+    .whatWeOfferCard-txt-div>p{
+        font-size: .9em;
+        min-height: 0em;
+    }
+
+    .whatWeOfferCard-txt-div{
+        min-height: 0;
+    }
+
+    .whatWeOffer-section{
+        padding: 5em 0em;
+    }
+}
+
+
+@media only screen and (min-width: 768px){
+    .whatWeOffer-inner-div{
+        width: 90%;
+    }
+
+    .whatWeOffer-inner-div>h1{
+        font-size: 2em;
+    }
+    .whatWeOfferCard-txt-div>h2{
+        font-size: 1.5em;
+    }
+    
+    .whatWeOfferCard-txt-div>p{
+        font-size: 1em;
+        min-height: 2.5em;
+    }
+    .whatWeOffer-cards>div{
+        max-width: 48%;
+    }
+
+    .whatWeOfferCard-txt-div{
+        min-height: 12em;
+    }
+
+    .whatWeOffer-section{
+        padding: 5em 2em;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .whatWeOffer-inner-div{
+        width: 80%;
+    }
+    .whatWeOffer-inner-div>h1{
+        font-size: 3em;
+    }
+    .whatWeOfferCard-txt-div>h2{
+        font-size: 1.2em;
+    }
+    
+    .whatWeOfferCard-txt-div>p{
+        font-size: .85em;
+        min-height: 2.5em;
+    }
+
+    .whatWeOffer-cards{
+        flex-wrap: nowrap;
+    }
+    .whatWeOffer-cards>div{
+        max-width: 18em;
+        
+    }
+}
+
+@media only screen and (min-width: 1400px){
+    .whatWeOfferCard-txt-div>h2{
+        font-size: 1.3em;
+    }
+    
+    .whatWeOfferCard-txt-div>p{
+        font-size: .9em;
+        min-height: 2em;
+    }
+}

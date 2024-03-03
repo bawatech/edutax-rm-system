@@ -24,7 +24,7 @@ export const BtToast = () => {
     return false;
   }
   return (
-    <>
+    <div className="bt-toast-div">
       <div
         className={`bt-toast type-${data?.type || "error"}`}
         onClick={() => setData(null)}
@@ -32,7 +32,7 @@ export const BtToast = () => {
         {/* {data?.title?<p style={{fontSize:'1.2em',fontWeight:'400',color:'white'}}>{data?.title}</p>:null} */}
         <p style={{ fontSize: "1em", color: "white" }}>{data?.message}</p>
       </div>
-    </>
+    </div>
   );
 };
 
