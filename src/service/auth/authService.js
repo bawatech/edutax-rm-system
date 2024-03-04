@@ -81,6 +81,9 @@ class authService {
     getClientMsg = async () => {
         return await getRequest(`user/message`);
     }
+    getClientMsgCount = async (payload) => {
+        return await getRequest('user/message/count', payload);
+    }
 
 
 
