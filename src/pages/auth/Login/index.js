@@ -37,7 +37,7 @@ const Login = () => {
                 if(res?.data?.response?.user?.verify_status === "VERIFIED"){
                     navigate("/user")
                 }else{
-                    navigate("/verify-login", {state: { data: payload?.email }})
+                    navigate("/verify-email", {state: { data: payload?.email }})
                 }
                 
             })
