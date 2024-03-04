@@ -24,10 +24,10 @@ export const login = (param) => async (dispatch) => {
     return authService.login(param)
         .then(async (res) => {
             console.log('resp at login', res)
-            // localStorage.setItem("token", res?.data?.response?.token)
+            localStorage.setItem("token", res?.data?.response?.token)
             // dispatch(setProfile(res?.data?.response?.profile || {}))
-            // let userData = res?.data?.response?.user || {}
-            // dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
+            let userData = res?.data?.response?.user || {}
+            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;
         })
         .catch((error) => {
