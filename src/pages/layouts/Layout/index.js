@@ -17,24 +17,23 @@ import {
   Location,
   Phone,
   RiLogoutCircleLineIcon,
-  Twitter,
 } from "../../../components/Icon";
 import {
   IconCross,
   IconMessage,
   IconSocialCall,
-  IconWhatsapp,
 } from "../../../BTUI/Icons";
+import authService from "../../../service/auth";
 
 export const Layout = (props) => {
   const navigate = useNavigate();
   const { user } = useSelector((store) => store?.user);
   // console.log('USER',user)
-  useEffect(() => {
-    if (user?.token && user?.verify_status === "VERIFIED") {
-      navigate("/user");
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user?.token && user?.verify_status === "VERIFIED") {
+  //     navigate("/user");
+  //   }
+  // }, [user]);
 
   const handleClickToCall = () => {
     window.open(`tel:${9057906200}`, "_self");
@@ -116,6 +115,7 @@ Layout.defaultProps = {
 
 export const UserLayout = (props) => {
   const navigate = useNavigate();
+  const [messageCount, setMessageCount] = useState(0);
   const [toggle, setToggle] = useState(false);
   const user = useSelector((store) => store?.user);
   const dispatch = useDispatch();
@@ -126,6 +126,18 @@ export const UserLayout = (props) => {
       navigate("/login");
     }
   }, [user?.user?.token]);
+
+
+  useEffect(()=>{
+    authService?.getClientMsgCount()
+      .then((res)=> {
+        // console.log("Message Count",res)
+        setMessageCount(res?.data?.response?.msgCount)
+      })
+      .catch((err)=> {
+        console.log("Error",err)
+      })
+  },[Outlet])
 
   const handleLogout = (e) => {
     dispatch(logout())
@@ -140,6 +152,8 @@ export const UserLayout = (props) => {
     window.localStorage.clear();
   };
 
+
+
   const handleToggle = (e) => {
     e.preventDefault();
 
@@ -152,6 +166,7 @@ export const UserLayout = (props) => {
       {location.pathname != "/user/messages" && (
         <>
           <div className="float-acts-item" onClick={() => navigate("/user/messages")}>
+            {messageCount>0 && <span className="float-notification">{messageCount}</span>}
             <p className="title">Let's Chat</p>
             <IconMessage
               size="50px"

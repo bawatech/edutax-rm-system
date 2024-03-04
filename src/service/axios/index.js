@@ -39,7 +39,7 @@ axiosClient.interceptors.response.use((response) => {
         // console.log('API Error header',error.response.headers);
 
 
-        if (error.response.status == 401) {
+        if (error.response.status === 401) {
             localStorage.removeItem('token')
             // window.location.href = '/login'
         }
