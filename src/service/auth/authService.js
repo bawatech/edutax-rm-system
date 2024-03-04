@@ -120,4 +120,4 @@ class authService {
 
 const instance = new authService();
 
-export default instance;
+export default instance;  
