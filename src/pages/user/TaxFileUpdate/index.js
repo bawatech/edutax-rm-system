@@ -67,50 +67,54 @@ const TaxFileUpdate = () => {
     },[payload?.direct_deposit_cra])
 
     const handleSubmit = () => {
-        setLoadingButton(true)
-        if(!newDocs?.[0]?.taxfile && newDocs?.[0]?.typeid>0){
-            console.log("NO TAXFILE")
-            setLoadingButton(false)
-            toastError("Please select a file and a Type or remove empty field")
-        }else{
-            if(newDocs?.[0]?.taxfile && !newDocs?.[0]?.typeid>0){
-                console.log("NO TYPEID")
-                setLoadingButton(false)
-                toastError("Please select a file and a Type or remove empty field")
-            }else{
-                if(newDocs?.[0]?.typeid == 0){
-                    console.log("NO TYPEID")
-                    setLoadingButton(false)
-                    toastError("Please select a file and a Type or remove empty field")
-                    return ;
-                }
-                const documents = newDocs
-                oldDocs.forEach(doc=>{
-                    documents.push({id: doc?.id})
-                })
-                const newPayload = {
-                    ...payload,
-                    documents
-                }
-                dispatch(updateTaxfile(newPayload))
-                .then((res) => {
-                    toastSuccess(res?.data?.message);
-                    setLoadingButton(false)
-                    navigate(`/user/taxfile/${param?.id}`);
-                })
-                .catch((err) => {
-                    if (err?.data?.field_errors) {
-                        setErrors(err?.data?.field_errors);
-                    } 
-                    toastError(err?.data?.message)
-                    setLoadingButton(false)
-                });
-            }
-            
+        setLoadingButton(true);
+        const hasTaxfile = newDocs?.some(itm => !!itm?.taxfile);
+        const hasValidTypeId = newDocs?.some(itm => itm?.typeid > 0);
+        // If type ID is selected but no tax file is attached, show error
+        if (!hasTaxfile && hasValidTypeId) {
+            console.log("Missing fields");
+            setLoadingButton(false);
+            toastError("Please select a file or specify a Type");
+            return;
         }
-        
-        
+
+        // If tax file is attached but type ID is not selected, show error
+        if (hasTaxfile && !hasValidTypeId) {
+            console.log("Missing fields");
+            setLoadingButton(false);
+            toastError("Please select a file or specify a Type");
+            return;
+        }
+    
+        if (hasTaxfile && newDocs[0]?.typeid === 0) {
+            console.log("Invalid Type");
+            setLoadingButton(false);
+            toastError("Please select a valid Type or remove empty field");
+            return;
+        }
+    
+        const documents = [...newDocs, ...oldDocs.map(doc => ({ id: doc?.id }))];
+    
+        const newPayload = {
+            ...payload,
+            documents
+        };
+    
+        dispatch(updateTaxfile(newPayload))
+            .then((res) => {
+                toastSuccess(res?.data?.message);
+                setLoadingButton(false);
+                navigate(`/user/taxfile/${param?.id}`);
+            })
+            .catch((err) => {
+                if (err?.data?.field_errors) {
+                    setErrors(err?.data?.field_errors);
+                } 
+                toastError(err?.data?.message);
+                setLoadingButton(false);
+            });
     };
+    
 
     const handleChange = (name, value) => {
         setPayload({
