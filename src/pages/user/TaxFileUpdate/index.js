@@ -26,8 +26,6 @@ const TaxFileUpdate = () => {
     const [docType, setDocType] = useState([])
     const [loadingButton, setLoadingButton] = useState(false);
     
-
-    
     useEffect(()=>{
         authService.getProvinces()
             .then((res)=>{
@@ -70,16 +68,20 @@ const TaxFileUpdate = () => {
 
     const handleSubmit = () => {
         setLoadingButton(true)
-        const documents = newDocs
-
-        oldDocs.forEach(doc=>{
-            documents.push({id: doc?.id})
-        })
-        const newPayload = {
-            ...payload,
-            documents
-        }
-        dispatch(updateTaxfile(newPayload))
+        if(!newDocs?.[0]?.taxfile && newDocs?.[0]?.typeid>0){
+            console.log("NO TAXFILE")
+            setLoadingButton(false)
+            toastError("Please select file or remove empty field")
+        }else{
+            const documents = newDocs
+            oldDocs.forEach(doc=>{
+                documents.push({id: doc?.id})
+            })
+            const newPayload = {
+                ...payload,
+                documents
+            }
+            dispatch(updateTaxfile(newPayload))
             .then((res) => {
                 toastSuccess(res?.data?.message);
                 setLoadingButton(false)
@@ -92,6 +94,9 @@ const TaxFileUpdate = () => {
                 toastError(err?.data?.message)
                 setLoadingButton(false)
             });
+        }
+        
+        
     };
 
     const handleChange = (name, value) => {
