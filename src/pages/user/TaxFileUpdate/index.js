@@ -71,29 +71,42 @@ const TaxFileUpdate = () => {
         if(!newDocs?.[0]?.taxfile && newDocs?.[0]?.typeid>0){
             console.log("NO TAXFILE")
             setLoadingButton(false)
-            toastError("Please select file or remove empty field")
+            toastError("Please select a file and a Type or remove empty field")
         }else{
-            const documents = newDocs
-            oldDocs.forEach(doc=>{
-                documents.push({id: doc?.id})
-            })
-            const newPayload = {
-                ...payload,
-                documents
+            if(newDocs?.[0]?.taxfile && !newDocs?.[0]?.typeid>0){
+                console.log("NO TYPEID")
+                setLoadingButton(false)
+                toastError("Please select a file and a Type or remove empty field")
+            }else{
+                if(newDocs?.[0]?.typeid == 0){
+                    console.log("NO TYPEID")
+                    setLoadingButton(false)
+                    toastError("Please select a file and a Type or remove empty field")
+                    return ;
+                }
+                const documents = newDocs
+                oldDocs.forEach(doc=>{
+                    documents.push({id: doc?.id})
+                })
+                const newPayload = {
+                    ...payload,
+                    documents
+                }
+                dispatch(updateTaxfile(newPayload))
+                .then((res) => {
+                    toastSuccess(res?.data?.message);
+                    setLoadingButton(false)
+                    navigate(`/user/taxfile/${param?.id}`);
+                })
+                .catch((err) => {
+                    if (err?.data?.field_errors) {
+                        setErrors(err?.data?.field_errors);
+                    } 
+                    toastError(err?.data?.message)
+                    setLoadingButton(false)
+                });
             }
-            dispatch(updateTaxfile(newPayload))
-            .then((res) => {
-                toastSuccess(res?.data?.message);
-                setLoadingButton(false)
-                navigate(`/user/taxfile/${param?.id}`);
-            })
-            .catch((err) => {
-                if (err?.data?.field_errors) {
-                    setErrors(err?.data?.field_errors);
-                } 
-                toastError(err?.data?.message)
-                setLoadingButton(false)
-            });
+            
         }
         
         
