@@ -51,12 +51,11 @@ const TaxFileUpdate = () => {
             .then((res) => {
                 console.log("Taxfile List",res)
                 setPayload(res?.data?.response?.taxfile)
-                setOldDocs(res?.data?.response?.taxfile?.documents)
+                setOldDocs(res?.data?.response?.taxfile?.documents.filter(doc=>doc?.user_type==="CLIENT"))
             })
             .catch((err)=>{
                 console.log("Taxfile List",err)
             });
-
         
     },[])
 
