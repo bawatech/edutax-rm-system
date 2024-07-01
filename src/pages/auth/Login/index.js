@@ -33,9 +33,12 @@ const Login = () => {
         dispatch(login(payload))
             .then(res => {
                 toastSuccess(res?.data?.message)
-                navigate("/user")
-                navigate("/verify-login", {state: { data: payload?.email }})
-                setLoadingButton(false)
+                console.log("login",res)
+                if(res?.data?.response?.user?.verify_status === "VERIFIED"){
+                    navigate("/user")
+                }else{
+                    navigate("/verify-email", {state: { data: payload?.email }})
+                }
                 
             })
             .catch(err => {
@@ -46,8 +49,9 @@ const Login = () => {
                 } else {
                     toastError(err?.data?.message)
                 }
-                setLoadingButton(false)
+                
             })
+            .finally(() => setLoadingButton(false))
     }
 
     return <Layout>
