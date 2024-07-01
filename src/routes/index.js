@@ -25,6 +25,7 @@ import AcceptInvite from '../pages/auth/AcceptInvite';
 import VerifyLogin from '../pages/auth/VerifyLoginEmail';
 import Messages from '../pages/user/Messages';
 import VerifyForgotPass from '../pages/auth/VerifyForgotPass';
+import Chat from '../pages/Chat';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
@@ -40,6 +41,7 @@ const AllRoutes = () => {
         {path:'reset',element:<ForgotPass/>},
         {path:'verify-forgot-pass-otp',element:<VerifyForgotPass/>},
         {path:'set-new-password',element:<NewPassword/>},
+        {path:'chat',element:<Chat/>},
         
         {path:'accept-invitation/:token',element:<AcceptInvite/>},
         {path: 'user',element:<UserLayout/>,
