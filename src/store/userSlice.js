@@ -1,20 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import authService from "../service/auth";
+import socket from "../service/sockets";
 
 
 
 export const signUp = (param) => async (dispatch) => {
     return authService.signUp(param)
         .then(async (res) => {
-            console.log('resp at slice', res)
+            let userData = res?.data?.response?.user || {};
+            socket.emit('register', userData?.id);
             localStorage.setItem("token", res?.data?.response?.token)
-            let userData = res?.data?.response?.user || {}
             dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
             return res;
         })
         .catch((error) => {
-
-            // dispatch(authSuccess(null));
             localStorage.removeItem("token")
             throw error
         });
@@ -23,11 +22,10 @@ export const signUp = (param) => async (dispatch) => {
 export const login = (param) => async (dispatch) => {
     return authService.login(param)
         .then(async (res) => {
-            console.log('resp at login', res)
-            localStorage.setItem("token", res?.data?.response?.token)
-            // dispatch(setProfile(res?.data?.response?.profile || {}))
-            let userData = res?.data?.response?.user || {}
-            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
+            let userData = res?.data?.response?.user || {};
+            socket.emit('register', userData?.id);
+            localStorage.setItem("token", res?.data?.response?.token);
+            dispatch(setUser({...userData,token:res?.data?.response?.token || null}));
             return res;
         })
         .catch((error) => {
