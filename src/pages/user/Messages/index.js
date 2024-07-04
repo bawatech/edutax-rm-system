@@ -8,10 +8,13 @@ import { toastError } from "../../../BTUI/BtToast";
 import { IconSendMessage } from "../../../BTUI/Icons";
 import { showDatetime } from "../../../utils/formatter";
 import { Center, Container } from "../../../components/Form";
-import socket from '../../../service/sockets';
+import { io } from 'socket.io-client';
+
+// import { socket } from '../../../App';
+//import socket from '../../../service/sockets';
 
 
-// const socket = io('http://localhost:3011');
+//   const socket = io('http://localhost:3011');
 
 const Messages = () => {
     const params = useParams()
@@ -35,13 +38,33 @@ const ChatWindow = ({ userId }) => {
     const dispatch = useDispatch();
     const ref = useRef();
 
+    const socket = io("http://localhost:3011");
+
     useEffect(() => {
+        let roomData = { user_id: user_id, socket_id: socket.id, room: `company_${user_id}`, user_type: 'CLIENT', in_chat: "YES" };
+        socket.emit('register', roomData);
+        console.log(`Connected with ID from Chat Screen First Time: ${socket.id}`);
+
+        const handleFocus = () => { 
+            socket.emit('focus', {});
+        };
+
+        const handleBlur = () => {
+            socket.emit('blur', {});
+        };
+
+        window.addEventListener('focus', handleFocus);
+        window.addEventListener('blur', handleBlur);
+        window.addEventListener('beforeunload', handleBlur);
+
         socket.on('connect', () => {
-            console.log(`Connected with ID: ${socket.id}`);
+            let roomData = { user_id: user_id, socket_id: socket.id, room: `company_${user_id}`, user_type: 'CLIENT', in_chat: "YES" };
+            socket.emit('register', roomData);
+            console.log(`Connected with ID from Chat Screen on Reconnect: ${socket.id}`);
         });
 
         socket.on('disconnect', (reason) => {
-          //  socket.emit('discon', user_id);
+            //  socket.emit('discon', user_id);
             console.log(`Disconnected: ${reason}`);
         });
 
@@ -49,16 +72,22 @@ const ChatWindow = ({ userId }) => {
             getMessageList();
         });
 
-        socket.on('onlineStatus', (data) => {
-            setOnlineUsers((prevUsers) => ({
-                ...prevUsers,
-                [data.userId]: data.status,
-            }));
+        socket.on('notification', (data) => {
+            alert("New Notification Received")
         });
+        // socket.on('onlineStatus', (data) => {
+        //     setOnlineUsers((prevUsers) => ({
+        //         ...prevUsers,
+        //         [data.userId]: data.status,
+        //     }));
+        // });
 
         return () => {
+            window.removeEventListener('focus', handleFocus);
+            window.removeEventListener('blur', handleBlur);
+            window.removeEventListener('beforeunload', handleBlur);
             socket.off('message');
-            socket.off('onlineStatus');
+            // socket.off('onlineStatus');
         };
     }, []);
 
@@ -72,7 +101,7 @@ const ChatWindow = ({ userId }) => {
             return false;
         }
         const message = {
-            roomId: user_id,
+            roomId: `company_${user_id}`,
         };
         dispatch(addClientMsg({ message: newMessage }))
             .then((res) => {

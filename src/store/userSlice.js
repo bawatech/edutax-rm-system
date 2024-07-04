@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import authService from "../service/auth";
-import socket from "../service/sockets";
+
 
 
 
@@ -8,9 +8,10 @@ export const signUp = (param) => async (dispatch) => {
     return authService.signUp(param)
         .then(async (res) => {
             let userData = res?.data?.response?.user || {};
-            socket.emit('register', userData?.id);
+            // socket.emit('register', userData?.id);
+           // console.log(`Connected with ID after Signup: ${socket.id}`);
             localStorage.setItem("token", res?.data?.response?.token)
-            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
+            dispatch(setUser({ ...userData, token: res?.data?.response?.token || null }))
             return res;
         })
         .catch((error) => {
@@ -23,9 +24,10 @@ export const login = (param) => async (dispatch) => {
     return authService.login(param)
         .then(async (res) => {
             let userData = res?.data?.response?.user || {};
-            socket.emit('register', userData?.id);
+            // socket.emit('register', userData?.id);
+           // console.log(`Connected with ID after login: ${socket.id}`);
             localStorage.setItem("token", res?.data?.response?.token);
-            dispatch(setUser({...userData,token:res?.data?.response?.token || null}));
+            dispatch(setUser({ ...userData, token: res?.data?.response?.token || null }));
             return res;
         })
         .catch((error) => {
@@ -84,7 +86,7 @@ export const addClientMsg = (param) => async (dispatch) => {
     return authService.addClientMsg(param)
         .then(async (res) => {
             console.log('resp at slice', res)
-            
+
             return res;
         })
         .catch((error) => {
@@ -96,21 +98,21 @@ export const addClientMsg = (param) => async (dispatch) => {
 //     return authService.getClientMsg(param)
 //         .then(async (res) => {
 //             console.log('resp at slice', res)
-            
+
 //             return res;
 //         })
 //         .catch((error) => {
-            
+
 //             throw error
 //         });
 // };
 
-export const verifyEmail = (param,user) => async (dispatch) => {
+export const verifyEmail = (param, user) => async (dispatch) => {
     return authService.verifyEmail(param)
         .then(async (res) => {
             localStorage.setItem("token", res?.data?.response?.token)
             let userData = res?.data?.response?.user || {}
-            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
+            dispatch(setUser({ ...userData, token: res?.data?.response?.token || null }))
             return res;
         })
         .catch((error) => {
@@ -124,7 +126,7 @@ export const verifyLogin = (param) => async (dispatch) => {
             console.log('resp at slice', res)
             localStorage.setItem("token", res?.data?.response?.token)
             let userData = res?.data?.response?.user || {}
-            dispatch(setUser({...userData,token:res?.data?.response?.token || null}))
+            dispatch(setUser({ ...userData, token: res?.data?.response?.token || null }))
             return res;
         })
         .catch((error) => {
@@ -211,7 +213,7 @@ export const resendLoginOtp = (param) => async (dispatch) => {
 
 const initialState = {
     user: {},
-    profile:{}
+    profile: {}
 };
 
 const userSlice = createSlice({
@@ -228,8 +230,8 @@ const userSlice = createSlice({
 });
 
 export const {
-setProfile,
-setUser
+    setProfile,
+    setUser
 } = userSlice.actions;
 
 export default userSlice.reducer;

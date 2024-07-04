@@ -4,14 +4,15 @@ import { BtLoader } from "./BTUI/BtLoader";
 import { BtToast } from "./BTUI/BtToast";
 import BtRouter from "./routes";
 import { toNull } from "./utils/commonFunctions";
-import socket from "./service/sockets";
+// import socket from "./service/sockets";
 
 function App() {
-  const user = useSelector((store) => store?.user);
-  const user_id = user?.user?.id;
-  if (toNull(user_id) != null) {
-    socket.emit('register', user_id);
-  }
+  // const user = useSelector((store) => store?.user);
+  // const user_id = user?.user?.id;
+  // if (toNull(user_id) != null) {
+  //   socket.emit('register', user_id);
+  //   console.log(`Connected with ID from App.js with socket id: ${socket.id}`);
+  // }
   
   return (
     <>
