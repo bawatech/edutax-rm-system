@@ -36,10 +36,7 @@ const VerifyEmail = () => {
             .then(res => {
                 setLoadingButton(false)
                 toastSuccess(res?.data?.message)
-                console.log('ress on verify email',res)
-                // setTimeout(()=>{
                     navigate("/user/profile?redirect-type=sign-up")
-                // }, 2000);
                 
             })
             .catch(err => {
@@ -54,11 +51,9 @@ const VerifyEmail = () => {
     const handleResendOtp = () =>{
         dispatch(resendSignupOtp({email:location?.state?.data}))
         .then((res)=>{
-            console.log("resend",res)
             toastSuccess(res?.data?.message)
         })
         .catch((err)=>{
-            console.log("resend",err)
             toastError(err?.data?.message)
         })
     }
