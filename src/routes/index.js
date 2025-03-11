@@ -25,6 +25,7 @@ import AcceptInvite from '../pages/auth/AcceptInvite';
 import VerifyLogin from '../pages/auth/VerifyLoginEmail';
 import Messages from '../pages/user/Messages';
 import VerifyForgotPass from '../pages/auth/VerifyForgotPass';
+import PaymentResponse from '../pages/payment/PaymentResponse';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
@@ -42,6 +43,7 @@ const AllRoutes = () => {
         {path:'set-new-password',element:<NewPassword/>},
         
         {path:'accept-invitation/:token',element:<AcceptInvite/>},
+        {path:'payment/response/:uid',element:<PaymentResponse/>},
         {path: 'user',element:<UserLayout/>,
         children:[
             {index:true, element : <Dashboard/>},

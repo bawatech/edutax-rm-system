@@ -1,0 +1,30 @@
+.payment-resp-wrapper {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-top:150px
+}
+.payment-resp {
+    display:flex;
+    min-width:200px;
+    min-height:200px;
+    background:#f1f1f1;
+    padding:25px;
+    border-radius:10px;
+}
+.payment-resp-loading {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+.payment-resp-content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+}
+.payment-resp-content .resp-message{
+    font-size: 1.5em;
+    font-weight: 600;
+}
