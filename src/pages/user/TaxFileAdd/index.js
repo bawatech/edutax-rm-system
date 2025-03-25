@@ -157,12 +157,12 @@ const TaxFileAdd = () => {
             </FormField>
           </FormGroup>}
 
-          <LabelYesNo
+          {/* <LabelYesNo
             label="Do you want to setup or change your direct deposit with CRA?"
             name="direct_deposit_cra"
             value={payload?.direct_deposit_cra === undefined || payload?.direct_deposit_cra === "" ? "" : payload?.direct_deposit_cra}
             handleChange={handleChange}
-          />
+          /> */}
 
           {payload?.direct_deposit_cra === "YES" && <FormGroup>
             <FormField>

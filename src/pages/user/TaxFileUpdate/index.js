@@ -194,13 +194,13 @@ const TaxFileUpdate = () => {
                 />
                 </FormField>
             </FormGroup>}
-
+{/* 
             <LabelYesNo
                 label="Do you want to setup or change your direct deposit with CRA?"
                 name="direct_deposit_cra"
                 value={payload?.direct_deposit_cra}
                 handleChange={handleChange}
-            />
+            /> */}
 
             {payload?.direct_deposit_cra === "YES" ? directDepositCra ? <FileComponent 
                     name="Document (setup or change your direct deposit with CRA)"
