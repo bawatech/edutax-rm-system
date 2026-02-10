@@ -49,7 +49,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="dash-menu">
         <div onClick={() => navigate("/user/profile")}><IconProfile color="var(--pri-color)" style={{fontSize: '3em'}}/> Profile</div>
-        <div onClick={handleReturnClick}><IconFile color="var(--pri-color)" style={{fontSize: '3em'}}/> Tax Return ( YR-2024 )</div>
+        <div onClick={handleReturnClick}><IconFile color="var(--pri-color)" style={{fontSize: '3em'}}/> Tax Return ( YR-2025 )</div>
         <div onClick={() => navigate("/user/settings")}><IconSetting color="var(--pri-color)" style={{fontSize: '3em'}}/>Settings</div>
         <div onClick={() => navigate("/user/invite-spouse")}><IconAddPerson color="var(--pri-color)" style={{fontSize: '3em'}}/>Link Spouse</div>
         <div onClick={() => navigate(`/user/messages`)}><IconMessage color="var(--pri-color)" style={{fontSize: '3em'}}/>Messages</div>
