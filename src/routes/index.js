@@ -25,37 +25,48 @@ import AcceptInvite from '../pages/auth/AcceptInvite';
 import VerifyLogin from '../pages/auth/VerifyLoginEmail';
 import Messages from '../pages/user/Messages';
 import VerifyForgotPass from '../pages/auth/VerifyForgotPass';
+import PersonalTaxFiling from '../pages/PersonalTaxFiling';
+import BusinessCorporateTax from '../pages/BusinessCorporateTax';
+import AccountingBookkeeping from '../pages/AccountingBookkeeping';
+import PayrollServices from '../pages/PayrollServices';
+import IncorporationServices from '../pages/IncorporationServices';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
     const routes = [
-        {path:'',element:<Home/>},
-        {path:'home',element:<Home/>},
-        {path:'contact',element:<ContactUs/>},
-        {path:'login',element:<Login/>},
-        {path:'qna-verify',element:<QnaVerify/>},
-        {path:'sign-up',element:<Signup/>},
-        {path:'verify-email',element:<VerifyEmail/>},
-        {path:'verify-login',element:<VerifyLogin/>},
-        {path:'reset',element:<ForgotPass/>},
-        {path:'verify-forgot-pass-otp',element:<VerifyForgotPass/>},
-        {path:'set-new-password',element:<NewPassword/>},
-        
-        {path:'accept-invitation/:token',element:<AcceptInvite/>},
-        {path: 'user',element:<UserLayout/>,
-        children:[
-            {index:true, element : <Dashboard/>},
-            {path:'profile', element : <ProfileDetails/>},
-            {path:'profile-update', element : <ProfileUpdate/>},
-            {path:'taxfile-add', element : <TaxFileAdd/>},
-            {path:'taxfile/:id', element : <TaxFileDetails/>},
-            {path:'taxfile/update/:id', element : <TaxFileUpdate/>},
-            {path:'messages', element: <Messages />},
-            {path:'settings',element:<ChangePassword/>},
-            {path:'invite-spouse',element:<InviteSpouse/>},
-            
-        ]
-    },
+        { path: '', element: <Home /> },
+        { path: 'home', element: <Home /> },
+        { path: 'contact', element: <ContactUs /> },
+        { path: 'personal-tax-filing-brampton', element: <PersonalTaxFiling /> },
+        { path: 'business-corporate-tax-brampton', element: <BusinessCorporateTax /> },
+        { path: 'accounting-bookkeeping-services-brampton', element: <AccountingBookkeeping /> },
+        { path: 'payroll-services-brampton', element: <PayrollServices /> },
+        { path: 'incorporation-services-brampton', element: <IncorporationServices /> },
+        { path: 'login', element: <Login /> },
+        { path: 'qna-verify', element: <QnaVerify /> },
+        { path: 'sign-up', element: <Signup /> },
+        { path: 'verify-email', element: <VerifyEmail /> },
+        { path: 'verify-login', element: <VerifyLogin /> },
+        { path: 'reset', element: <ForgotPass /> },
+        { path: 'verify-forgot-pass-otp', element: <VerifyForgotPass /> },
+        { path: 'set-new-password', element: <NewPassword /> },
+
+        { path: 'accept-invitation/:token', element: <AcceptInvite /> },
+        {
+            path: 'user', element: <UserLayout />,
+            children: [
+                { index: true, element: <Dashboard /> },
+                { path: 'profile', element: <ProfileDetails /> },
+                { path: 'profile-update', element: <ProfileUpdate /> },
+                { path: 'taxfile-add', element: <TaxFileAdd /> },
+                { path: 'taxfile/:id', element: <TaxFileDetails /> },
+                { path: 'taxfile/update/:id', element: <TaxFileUpdate /> },
+                { path: 'messages', element: <Messages /> },
+                { path: 'settings', element: <ChangePassword /> },
+                { path: 'invite-spouse', element: <InviteSpouse /> },
+
+            ]
+        },
 
 
         { path: '*', element: <h1>error</h1> }

@@ -8,16 +8,16 @@ import WwoImg3 from '../../assets/images/accounting.jpg'
 import WwoImg4 from '../../assets/images/payroll.jpg'
 import WwoImg5 from '../../assets/images/incorp.jpg'
 import TaxFillingImg from '../../assets/images/tax-filing.jpg'
-import { FcCheckmarkIcon} from '../../components/Icon';
+import { FcCheckmarkIcon } from '../../components/Icon';
 import { useNavigate } from 'react-router-dom';
 
-const Home = () =>{
+const Home = () => {
 
-    return<Layout width="100%">
+    return <Layout width="100%">
         <Carousel2 />
         <WhatWeOffer />
         <ImgBgDivComponent />
-        <Services 
+        <Services
             title="Experience one of the simplest tax filing process ever."
             point1="Cutting-edge AI technology drives our platform."
             point2="Easy Secured"
@@ -29,11 +29,11 @@ const Home = () =>{
 
 export default Home;
 
-const Carousel2 = () =>{
+const Carousel2 = () => {
 
     const navigate = useNavigate()
 
-    return<div className="carousel2-section">
+    return <div className="carousel2-section">
         <div className="carousel2-bg-div-abs"></div>
         <div className="carousel2-bg-neon-abs left"></div>
         <div className="carousel2-bg-neon-abs right"></div>
@@ -41,34 +41,34 @@ const Carousel2 = () =>{
         <div className="carousel2-inner-section">
             <div className="carousel2-txt-content-div">
                 <div className="">
-                <h1>Unlock Secured & Easy Personal Tax Filing Process</h1>
+                    <h1>Unlock Secured & Easy Personal Tax Filing Process</h1>
 
-                <h2>Now, file your personal income tax return from the comfort of your home, following the simple steps. Its Fast , Easy & Secured </h2>
+                    <h2>Now, file your personal income tax return from the comfort of your home, following the simple steps. Its Fast , Easy & Secured </h2>
 
                     {/* <p>We leverage the latest technologies and innovations to deliver cutting-edge solutions that streamline document processes and improve efficiency.</p> */}
 
                     <div className="carousel2-txt-content-btn-div">
-                        <Button varient="small" background="var(--color-a)" title="Start Now" maxWidth="100%" onClick={()=>navigate('/login')} />
+                        <Button varient="small" background="var(--color-a)" title="Start Now" maxWidth="100%" onClick={() => navigate('/login')} />
                         {/* <Button varient="small light-outlined" title="Upload Document" maxWidth="100%"/> */}
                     </div>
-                    
+
                 </div>
-            </div> 
+            </div>
             <div className="carousel2-img-div">
                 <div className="carousel2-img-div-abs">
                     <img src={CarouselImg} />
-                </div> 
+                </div>
             </div>
-            
+
         </div>
 
-       
+
     </div>
 }
 
-const Services = (props) =>{
+const Services = (props) => {
 
-    return<div className="services-section">
+    return <div className="services-section">
         <div className="services-inner-section">
             <div className="services-txt">
                 <h1>{props?.title}</h1>
@@ -76,9 +76,9 @@ const Services = (props) =>{
                 {props?.desc && <h2>{props?.desc}</h2>}
 
                 <ul>
-                    <li><FcCheckmarkIcon/> <p>{props?.point1}</p></li>
-                    <li><FcCheckmarkIcon/> <p>{props?.point2}</p></li>
-                    {props?.point3 && <li><FcCheckmarkIcon/> <p>{props?.point3}</p></li>}
+                    <li><FcCheckmarkIcon /> <p>{props?.point1}</p></li>
+                    <li><FcCheckmarkIcon /> <p>{props?.point2}</p></li>
+                    {props?.point3 && <li><FcCheckmarkIcon /> <p>{props?.point3}</p></li>}
                 </ul>
             </div>
             <div className="services-img">
@@ -92,7 +92,7 @@ const Services = (props) =>{
 
 const ImgBgDivComponent = () => {
 
-    return<div className="imgBgDiv-section">
+    return <div className="imgBgDiv-section">
         <div className="imgBgDiv-inner-section">
             <div className="imgBgDiv-bg-abs"></div>
             <div className="imgBgDiv-bg-abs-img">
@@ -101,14 +101,14 @@ const ImgBgDivComponent = () => {
             <div className="imgBgDiv-content-div">
                 <div>
                     <h1>Effortless, Swift, and Precise: Your Tax Journey Made Simple!</h1>
-                    <br/>
+                    <br />
                     <p>Experience hassle-free tax filing with our intuitive application. Say goodbye to complexity and paperwork, and focus on what truly matters in your life.</p>
                 </div>
-                
+
                 <div className="imgBgDiv-cards">
-                    <ImgBgDivCard cardColor="red" count="1" desc="Get started by creating your account."/>
-                    <ImgBgDivCard cardColor="blue" count="2" desc="Easily upload your tax documents for processing."/>
-                    <ImgBgDivCard cardColor="green" count="3" desc="We will prepare your return and submit to CRA on your behalf"/>
+                    <ImgBgDivCard cardColor="red" count="1" desc="Get started by creating your account." />
+                    <ImgBgDivCard cardColor="blue" count="2" desc="Easily upload your tax documents for processing." />
+                    <ImgBgDivCard cardColor="green" count="3" desc="We will prepare your return and submit to CRA on your behalf" />
                 </div>
             </div>
         </div>
@@ -116,8 +116,8 @@ const ImgBgDivComponent = () => {
 }
 
 const ImgBgDivCard = (props) => {
-    
-    return<div className={`imgBgDivCard-section ${props?.cardColor}`}>
+
+    return <div className={`imgBgDivCard-section ${props?.cardColor}`}>
         <span>{props?.count}</span>
 
         <h3>{props?.desc}</h3>
@@ -128,58 +128,86 @@ const ImgBgDivCard = (props) => {
 
 const WhatWeOffer = (props) => {
 
-    const handleClickToCall=()=>{
+    const navigate = useNavigate();
+
+    const handleClickToCall = () => {
         window.open(`tel:${9057906200}`, "_self");
     }
-    return<div className="whatWeOffer-section">
+
+    const handleLearnMore = () => {
+        navigate('/personal-tax-filing-brampton');
+    }
+
+    const handleBusinessLearnMore = () => {
+        navigate('/business-corporate-tax-brampton');
+    }
+
+    const handleAccountingLearnMore = () => {
+        navigate('/accounting-bookkeeping-services-brampton');
+    }
+
+    const handlePayrollLearnMore = () => {
+        navigate('/payroll-services-brampton');
+    }
+
+    const handleIncorporationLearnMore = () => {
+        navigate('/incorporation-services-brampton');
+    }
+
+    return <div className="whatWeOffer-section">
         <div className="whatWeOffer-inner-div">
             <h1>What We Offer</h1>
 
             <p>Whether you need help with personal tax preparation, corporate tax compliance, bookkeeping, or estate planning, EduTax has the expertise and knowledge to meet your needs. We beleive in simplicity. Our services and our pricing are both transparent. We at EduTax work to provide you with peace of mind, by providing you the services as per your needs.</p>
-        
+
             <div className="whatWeOffer-cards">
-                <WhatWeOfferCards 
+                <WhatWeOfferCards
                     img={WwoImg1}
                     title="Personal Income Tax"
                     desc="Starting from $59.99"
-                    onClick={handleClickToCall}
+                    buttonText="Learn More"
+                    onClick={handleLearnMore}
                 />
-                <WhatWeOfferCards 
+                <WhatWeOfferCards
                     img={WwoImg2}
                     title="Business & Corporate Tax"
                     desc="Starting from $499"
-                    onClick={handleClickToCall}
+                    buttonText="Learn More"
+                    onClick={handleBusinessLearnMore}
                 />
-                <WhatWeOfferCards 
+                <WhatWeOfferCards
                     img={WwoImg3}
                     title="Accounting and Bookkeeping"
                     desc="Starting from $250/month"
-                    onClick={handleClickToCall}
+                    buttonText="Learn More"
+                    onClick={handleAccountingLearnMore}
                 />
-                <WhatWeOfferCards 
+                <WhatWeOfferCards
                     img={WwoImg4}
                     title="Pay Roll"
                     desc=""
-                    onClick={handleClickToCall}
+                    buttonText="Learn More"
+                    onClick={handlePayrollLearnMore}
                 />
-                <WhatWeOfferCards 
+                <WhatWeOfferCards
                     img={WwoImg5}
                     title="Incorporation & Structuring"
                     desc="Starting from $320"
-                    onClick={handleClickToCall}
+                    buttonText="Learn More"
+                    onClick={handleIncorporationLearnMore}
                 />
             </div>
-            
+
         </div>
     </div>
 }
 
-const WhatWeOfferCards = (props) =>{
+const WhatWeOfferCards = (props) => {
 
-    return<div className="whatWeOfferCards-section">
+    return <div className="whatWeOfferCards-section">
         <div className="whatWeOfferCards-img-div">
             <div className="whatWeOfferCard-img-abs-div">
-                <img src={props?.img}/>
+                <img src={props?.img} />
             </div>
         </div>
         <div className="whatWeOfferCard-txt-div">
@@ -187,7 +215,7 @@ const WhatWeOfferCards = (props) =>{
 
             <p>{props?.desc}</p>
 
-            <Button varient="small outlined" title="Call us to Learn more" onClick={props?.onClick}/>
+            <Button varient="small outlined" title={props?.buttonText || "Call us to Learn more"} onClick={props?.onClick} />
         </div>
     </div>
 }
