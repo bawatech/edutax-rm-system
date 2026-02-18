@@ -8,7 +8,7 @@ import userSlice from './userSlice';
 
 
 const persistConfig = {
-  key: 'root',
+  key: 'edutaxcrm',
   storage,
 }
 
