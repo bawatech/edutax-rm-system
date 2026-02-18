@@ -164,7 +164,7 @@ const TaxFileUpdate = () => {
     console.log("payload",payload)
     return<Container>
         <Form>
-            <FormName name="Update Tax Return ( Year 2024 )" />
+            <FormName name="Update Tax Return ( Year 2025 )" />
             <FormGroup>
                 <FormField>
                 <Dropdown
@@ -177,7 +177,7 @@ const TaxFileUpdate = () => {
                 </FormField>
             </FormGroup>
             <LabelYesNo
-                label="Have you moved to canada in 2024?"
+                label="Have you moved to canada in 2025?"
                 name="moved_to_canada"
                 value={payload?.moved_to_canada}
                 handleChange={handleChange}
@@ -194,13 +194,13 @@ const TaxFileUpdate = () => {
                 />
                 </FormField>
             </FormGroup>}
-
+{/* 
             <LabelYesNo
                 label="Do you want to setup or change your direct deposit with CRA?"
                 name="direct_deposit_cra"
                 value={payload?.direct_deposit_cra}
                 handleChange={handleChange}
-            />
+            /> */}
 
             {payload?.direct_deposit_cra === "YES" ? directDepositCra ? <FileComponent 
                     name="Document (setup or change your direct deposit with CRA)"

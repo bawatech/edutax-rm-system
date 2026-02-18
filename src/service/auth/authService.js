@@ -119,6 +119,10 @@ class authService {
         return await getRequest(`user/document-types`);
     }
 
+    getPaymentOrderResponse = async (uid = null) => {
+        return await getRequest(`user/payment/order-status/${uid}`);
+    }
+
 }
 
 const instance = new authService();
