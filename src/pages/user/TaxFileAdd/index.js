@@ -126,7 +126,7 @@ const TaxFileAdd = () => {
 
   return <Container>
         <Form>
-          <FormName name="Add Tax Return (  Year 2024 )" />
+          <FormName name="Add Tax Return (  Year 2025 )" />
           <FormGroup>
             <FormField>
               <Dropdown
@@ -139,7 +139,7 @@ const TaxFileAdd = () => {
             </FormField>
           </FormGroup>
           <LabelYesNo
-            label="Have you moved to canada in 2024?"
+            label="Have you moved to canada in 2025?"
             name="moved_to_canada"
             value={payload?.moved_to_canada === undefined || payload?.moved_to_canada === "" ? "" : payload?.moved_to_canada}
             handleChange={handleChange}
@@ -157,12 +157,12 @@ const TaxFileAdd = () => {
             </FormField>
           </FormGroup>}
 
-          <LabelYesNo
+          {/* <LabelYesNo
             label="Do you want to setup or change your direct deposit with CRA?"
             name="direct_deposit_cra"
             value={payload?.direct_deposit_cra === undefined || payload?.direct_deposit_cra === "" ? "" : payload?.direct_deposit_cra}
             handleChange={handleChange}
-          />
+          /> */}
 
           {payload?.direct_deposit_cra === "YES" && <FormGroup>
             <FormField>
