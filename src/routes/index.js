@@ -26,11 +26,11 @@ import VerifyLogin from '../pages/auth/VerifyLoginEmail';
 import Messages from '../pages/user/Messages';
 import VerifyForgotPass from '../pages/auth/VerifyForgotPass';
 import PaymentResponse from '../pages/payment/PaymentResponse';
-import PersonalTaxFiling from '../pages/PersonalTaxFiling';
-import BusinessCorporateTax from '../pages/BusinessCorporateTax';
-import AccountingBookkeeping from '../pages/AccountingBookkeeping';
-import PayrollServices from '../pages/PayrollServices';
-import IncorporationServices from '../pages/IncorporationServices';
+// import PersonalTaxFiling from '../pages/PersonalTaxFiling';
+// import BusinessCorporateTax from '../pages/BusinessCorporateTax';
+// import AccountingBookkeeping from '../pages/AccountingBookkeeping';
+// import PayrollServices from '../pages/PayrollServices';
+// import IncorporationServices from '../pages/IncorporationServices';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
