@@ -25,11 +25,6 @@ import AcceptInvite from '../pages/auth/AcceptInvite';
 import VerifyLogin from '../pages/auth/VerifyLoginEmail';
 import Messages from '../pages/user/Messages';
 import VerifyForgotPass from '../pages/auth/VerifyForgotPass';
-import PersonalTaxFiling from '../pages/PersonalTaxFiling';
-import BusinessCorporateTax from '../pages/BusinessCorporateTax';
-import AccountingBookkeeping from '../pages/AccountingBookkeeping';
-import PayrollServices from '../pages/PayrollServices';
-import IncorporationServices from '../pages/IncorporationServices';
 
 const AllRoutes = () => {
     // const isLoggedIn = localStorage.getItem('token')
@@ -37,11 +32,6 @@ const AllRoutes = () => {
         { path: '', element: <Home /> },
         { path: 'home', element: <Home /> },
         { path: 'contact', element: <ContactUs /> },
-        { path: 'personal-tax-filing-brampton', element: <PersonalTaxFiling /> },
-        { path: 'business-corporate-tax-brampton', element: <BusinessCorporateTax /> },
-        { path: 'accounting-bookkeeping-services-brampton', element: <AccountingBookkeeping /> },
-        { path: 'payroll-services-brampton', element: <PayrollServices /> },
-        { path: 'incorporation-services-brampton', element: <IncorporationServices /> },
         { path: 'login', element: <Login /> },
         { path: 'qna-verify', element: <QnaVerify /> },
         { path: 'sign-up', element: <Signup /> },

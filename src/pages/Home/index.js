@@ -134,26 +134,6 @@ const WhatWeOffer = (props) => {
         window.open(`tel:${9057906200}`, "_self");
     }
 
-    const handleLearnMore = () => {
-        navigate('/personal-tax-filing-brampton');
-    }
-
-    const handleBusinessLearnMore = () => {
-        navigate('/business-corporate-tax-brampton');
-    }
-
-    const handleAccountingLearnMore = () => {
-        navigate('/accounting-bookkeeping-services-brampton');
-    }
-
-    const handlePayrollLearnMore = () => {
-        navigate('/payroll-services-brampton');
-    }
-
-    const handleIncorporationLearnMore = () => {
-        navigate('/incorporation-services-brampton');
-    }
-
     return <div className="whatWeOffer-section">
         <div className="whatWeOffer-inner-div">
             <h1>What We Offer</h1>
@@ -165,36 +145,31 @@ const WhatWeOffer = (props) => {
                     img={WwoImg1}
                     title="Personal Income Tax"
                     desc="Starting from $59.99"
-                    buttonText="Learn More"
-                    onClick={handleLearnMore}
+                    onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards
                     img={WwoImg2}
                     title="Business & Corporate Tax"
                     desc="Starting from $499"
-                    buttonText="Learn More"
-                    onClick={handleBusinessLearnMore}
+                    onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards
                     img={WwoImg3}
                     title="Accounting and Bookkeeping"
                     desc="Starting from $250/month"
-                    buttonText="Learn More"
-                    onClick={handleAccountingLearnMore}
+                    onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards
                     img={WwoImg4}
                     title="Pay Roll"
                     desc=""
-                    buttonText="Learn More"
-                    onClick={handlePayrollLearnMore}
+                    onClick={handleClickToCall}
                 />
                 <WhatWeOfferCards
                     img={WwoImg5}
                     title="Incorporation & Structuring"
                     desc="Starting from $320"
-                    buttonText="Learn More"
-                    onClick={handleIncorporationLearnMore}
+                    onClick={handleClickToCall}
                 />
             </div>
 
